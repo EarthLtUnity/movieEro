@@ -1,0 +1,16 @@
+DROP TABLE MEMBER;
+CREATE TABLE MEMBER(
+	ID          VARCHAR2(30),
+	PASSWD      VARCHAR2(30) NOT NULL,
+	NAME        VARCHAR2(30) NOT NULL,
+	MAIL        VARCHAR2(30),
+	MAILDOMAIN  VARCHAR2(20),
+	PHONE       VARCHAR2(15) NOT NULL,
+	PRIMARY KEY(ID)
+);
+
+INSERT INTO member values('kjm', 'qwe123', '김종민', 'kjm', 'google.com', '01012341234');
+
+SELECT id FROM member WHERE id='km' AND passwd='123qwe';
+
+SELECT * FROM MEMBER;

@@ -1,0 +1,11 @@
+@charset "UTF-8";
+*{margin: 0; padding: 0;}
+.sub_content{padding: 100px 50px;}
+.sub_content input{color: #333;}
+
+.common_bgc{background: #e7e7e7;}
+.common_fc{color: #fb802d;}
+
+/*회원가입*/
+.member_join_wrap{background: url(../images/bg/bg_member_join.jpg) 0 0 no-repeat;}
+.member_join_wrap label{color: #fb802d;}
