@@ -5,14 +5,14 @@
 <c:import url="../inc/head.jsp"/>
 <c:import url="../inc/header.jsp"/>
 <script>
-	alert("회원가입완료");
-	location.href="/movieEro"
+	alert("데이터베이스 에러가 발생했습니다. 관리자에게 문의하세요");
+	location.href="join.do"
 </script>			
 
 <section class="sub_content member_join_wrap">
 	<div class="container">
 		<div class="row">               
-			<h2 class="sub_tit">회원가입완료</h2>
+			<h2 class="sub_tit">데이터베이스 에러</h2>
 		</div>	
 	</div> 
 </section>

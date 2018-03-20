@@ -34,7 +34,7 @@
 					    <ul class="li_mail cf">
 					    	<li><input type="text" class="form-control" maxlength="10" name="mail" id="mail"></li>
 					    	<li>@</li>
-					    	<li><input type="text" class="form-control" maxlength="10" name="mailDomain" id="mailDomain"></li>
+					    	<li><input type="text" class="form-control" maxlength="10" name="maildomain" id="maildomain"></li>
 					    	<li>
 							    <select name="selectMail" id="selectMail" class="select_mail">
 							    	<option value="">선택</option>

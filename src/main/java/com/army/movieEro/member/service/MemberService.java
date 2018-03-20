@@ -6,4 +6,6 @@ public interface MemberService {
 
 	public int insertMember(MemberVO memberVO);
 
+	public boolean idCheck(String desiredId);
+
 }

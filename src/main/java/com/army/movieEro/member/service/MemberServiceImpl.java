@@ -16,4 +16,9 @@ public class MemberServiceImpl implements MemberService {
 	public int insertMember(MemberVO memberVO) {
 		return memberDao.insertMember(memberVO);
 	}
+
+	@Override
+	public boolean idCheck(String desiredId) {
+		return memberDao.idCheck(desiredId);
+	}
 }

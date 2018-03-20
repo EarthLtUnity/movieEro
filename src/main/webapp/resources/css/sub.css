@@ -16,3 +16,6 @@
 /*회원가입*/
 .member_join_wrap{background: url(../images/bg/bg_member_join.jpg) 0 0 no-repeat;}
 .member_join_wrap label{color: #fb802d;}
+
+.check_txt_success{color: blue;}
+.check_txt_warning{color: red;}
