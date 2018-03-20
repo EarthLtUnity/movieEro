@@ -11,12 +11,36 @@
 <header id="header" class="menu-top-left">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-sm-6 col-xs-4">
-				<a href="./" id="logo" title="Tenguu" class="logo-image" data-bg-image="images/logo.png">Tenguu</a>
+			<div class="col-md-8 col-sm-6 col-xs-4">
+				<a href="./" id="logo" title="Tenguu" class="logo-image" data-bg-image="images/common/logo.png">Tenguu</a>
+				<nav class="nav" id="headerNav">
+					<ul class="cf">
+						<li><a href="#">Movie</a>
+							<ul class="dep2">
+								<li><a href="#">평점</a></li>
+								<li><a href="#">영화 개요</a></li>
+								<li><a href="#">줄거리</a></li>
+								<li><a href="#">스틸컷</a></li>
+							</ul>
+						</li>
+						<li><a href="#">Hall</a>
+							<ul class="dep2">
+								<li><a href="#">상영관 대관</a></li>
+								<li><a href="#">대관 문의</a></li>
+							</ul>						
+						</li>
+						<li><a href="#">Community</a>
+							<ul class="dep2">
+								<li><a href="#">같이보기</a></li>
+								<li><a href="#">게시판</a></li>
+							</ul>						
+						</li>
+					</ul>
+				</nav>
 			</div>
-			<div class="col-md-4 col-md-offset-2 col-sm-6 col-xs-8 phl0">
+			<div class="header_menu col-md-4 col-sm-6 col-xs-8 phl0">
 				<div class="header_author">
-					<a href="#">Amanda green</a>
+					<a href="#">jongmin</a>
 					<!-- <img src="images/user.png" class="user" alt="user"> -->
 				</div>
 				<div class="header_ticket">

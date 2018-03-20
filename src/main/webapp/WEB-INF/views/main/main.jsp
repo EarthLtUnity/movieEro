@@ -1050,31 +1050,7 @@
         </div>
     </div>    
     <div class="fullscreen-section">
-        <div id="tt-google-map" class="tt-google-map" data-lat="47.919311" data-lng="106.917643" data-zoom="16" data-saturation="-100" data-color="#333" data-marker="images/marker.png">
-            <div id="gmap_content">
-                <div class="gmap-item">
-                    <label class="label-title">Keep in Touch</label>
-                </div>
-                <div class="gmap-item">
-                    <label>
-                        <i class="fa fa-map-marker"></i>
-                    </label>
-                    <span>Address : 86 New Design Street, Melbourne 105</span>
-                </div>
-                <div class="gmap-item">
-                    <label>
-                        <i class="fa fa-phone"></i>
-                    </label>
-                    <span>Phone: (01) 200 123 544</span>
-                </div>
-                <div class="gmap-item">
-                    <label>
-                        <i class="fa fa-envelope"></i>
-                    </label>
-                    <span>Email: info@example.com</span>
-                </div>
-            </div>
-        </div>
+	<!-- 뭐 넣을까?? -->
     </div>
     <script type="text/javascript" src="js/google-maps.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>

@@ -51,7 +51,7 @@ header#header {
   top: 0px;
   left: 0px;
   width: 100%;
-  line-height: 90px;
+  /*line-height: 90px;*/
   z-index: 999;
 }
 header#header .button_container {
@@ -233,7 +233,7 @@ header#header .overlay ul li a:after {
   transition: .35s;
 }
 header#header #logo {
-  display: inline-block;
+  /*display: inline-block;*/float: left;
 }
 header#header #logo.logo-image {
   width: 150px;
@@ -328,6 +328,13 @@ header#header #header-search:hover {
   text-decoration: none;
   color: #fb802d;
 }
+header#header .nav{float: left; width: calc(100% - 150px);}
+header#header .nav>ul>li{float: left; width: 33%; text-align: center;}
+header#header .nav>ul>li>a{color: #fff; line-height: 90px; }
+header#header .nav .dep2{display: none; }
+header#header .nav .dep2 li{margin-bottom: 10px;}
+header#header .nav .dep2 li a{display: block; color: #fff;}
+header#header .header_menu{line-height: 90px;}
 body.sticky-menu #header {
   -webkit-transition: all 0.25s ease;
   -moz-transition: all 0.25s ease;

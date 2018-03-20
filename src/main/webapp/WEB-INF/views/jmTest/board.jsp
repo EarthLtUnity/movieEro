@@ -5,7 +5,7 @@
 <c:import url="../inc/head.jsp"/>
 <c:import url="../inc/header.jsp"/>
 
-<section class="block_board" id="board">
+			<section class="block_board" id="board">
 				
 				<div class="bl_brd_wrap">
 					<h1 id="news02">NEWS</h1>
