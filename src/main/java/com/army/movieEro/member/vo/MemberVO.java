@@ -9,6 +9,11 @@ public class MemberVO {
 	private String phone;
 	private String group;
 	
+	public MemberVO(String id, String passwd) {
+		this.id = id;
+		this.passwd = passwd;
+	}
+	
 	public String getId() {
 		return id;
 	}

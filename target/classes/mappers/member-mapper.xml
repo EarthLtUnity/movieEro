@@ -9,10 +9,14 @@
  	INSERT INTO MEMBER VALUES(#{id}, #{passwd}, #{name}, #{mail}, #{maildomain}, #{phone})
 </insert>
 
-<!-- 
-<select id="dupId" parameterType="string" resultType="_int">
+<select id="selectID" parameterType="string" resultType="boolean">
 	SELECT count(*) FROM MEMBER WHERE ID = #{id}
 </select>
+
+<select id="loginCheck" parameterType="Member" resultType="boolean">
+	SELECT * FROM MEMBER WHERE ID = #{id} and PASSWD = #{passwd}
+</select>
+<!-- 
 
 <select id="selectOne" parameterType="Member" resultMap="resultMember">
 	SELECT * FROM MEMBER WHERE ID = #{id} and PASSWD = #{passwd}

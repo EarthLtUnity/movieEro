@@ -2877,11 +2877,11 @@ form input[type=email] {
   background-color: #fff;
   width: 100%;
   letter-spacing: 0.7px;
-  font-family: 'Open Sans';
-  text-transform: uppercase;
-  font-size: 13px;
+  /*font-family: 'Open Sans';*/
+  /*text-transform: uppercase;*/
+  font-size: 14px;
   font-weight: 100;
-  font-style: italic;
+  /*font-style: italic;*/
   color: #333;
   padding-left: 20px;
   padding-right: 20px;

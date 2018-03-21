@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -29,18 +30,6 @@ public class MemberController {
 		return "member/meberJoin";
 	}
 	
-	// 회원 가입 완료
-	@RequestMapping(value="memberInsert.do")
-	public String memberInsert(MemberVO memberVO) {
-		int result;
-		try {
-			result = memberService.insertMember(memberVO);
-		} catch (Exception e) {
-			return "error/db";
-		}
-		return "member/meberJoinComplete";
-	}
-	
 	// 회원 아이디 중복검사
 	@RequestMapping(value="memberIdCheck.do")
 	public void memberIdCheck(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -55,4 +44,25 @@ public class MemberController {
 			response.getWriter().write(desiredId);
 		}
 	}
+	
+	// 회원 가입 완료
+	@RequestMapping(value="memberInsert.do")
+	public String memberInsert(MemberVO memberVO) {
+		int result;
+		try {
+			result = memberService.insertMember(memberVO);
+		} catch (Exception e) {
+			return "error/db";
+		}
+		return "member/meberJoinComplete";
+	}
+	
+	// 회원 로그인
+	@RequestMapping(value="login.do")
+	public void memberLogin(HttpSession session, MemberVO memberVO) {
+		session.setAttribute("member", memberService.loginMember(memberVO.getId(), memberVO.getPasswd()));
+		
+		// 로그인 ajax로 처리해보기
+	}	
+
 }

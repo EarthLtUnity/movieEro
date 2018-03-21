@@ -40,7 +40,8 @@
 			</div>
 			<div class="header_menu col-md-4 col-sm-6 col-xs-8 phl0">
 				<div class="header_author">
-					<a href="#">jongmin</a>
+					<a href="#" data-target="#layerpop" data-toggle="modal" class="">Sign in/up</a>
+					<!-- <a href="#">jongmin</a> -->
 					<!-- <img src="images/user.png" class="user" alt="user"> -->
 				</div>
 				<div class="header_ticket">
@@ -68,3 +69,37 @@
 		</div>
 	</div>
 </header>   
+
+<!-- 로그인 모달창 -->
+<div class="modal fade" id="layerpop" >
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<!-- 닫기(x) 버튼 -->
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<!-- header title -->
+				<h4 class="modal-title">Login</h4>
+			</div>
+			
+			<form action="./memberLogin.shiva" method="post" id="frmLoginModal" name="frmLoginModal">
+				<div class="modal-body">
+					<!-- 로그인 폼 -->
+					<div class="form-group">
+					    <label for="id">ID</label>
+					    <input type="text" class="form-control" size="10" name="id" id="id">
+					</div>
+					<div class="form-group">
+					    <label for="pass">비밀번호</label>
+					    <input type="password" class="form-control" size="20" name="passwd" id="passwd">
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<a href="login.do" class="btn btn-warning">회원가입</a>
+					<button type="submit" id="btnLogin" class="btn btn-primary">로그인</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!--// 로그인 모달창 -->

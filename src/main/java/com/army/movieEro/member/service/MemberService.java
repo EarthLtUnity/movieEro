@@ -8,4 +8,6 @@ public interface MemberService {
 
 	public boolean idCheck(String desiredId);
 
+	public MemberVO loginMember(String id, String passwd);
+
 }

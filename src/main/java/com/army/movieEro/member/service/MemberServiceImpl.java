@@ -21,4 +21,9 @@ public class MemberServiceImpl implements MemberService {
 	public boolean idCheck(String desiredId) {
 		return memberDao.idCheck(desiredId);
 	}
+
+	@Override
+	public MemberVO loginMember(String id, String passwd) {
+		return memberDao.loginMember(id, passwd);
+	}
 }
