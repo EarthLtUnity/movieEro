@@ -40,7 +40,7 @@
 			</div>
 			<div class="header_menu col-md-4 col-sm-6 col-xs-8 phl0">
 				<div class="header_author">
-					<a href="#" data-target="#layerpop" data-toggle="modal" class="">Sign in/up</a>
+					<a href="#" data-target="#loginPopup" data-toggle="modal" class="">Sign in/up</a>
 					<!-- <a href="#">jongmin</a> -->
 					<!-- <img src="images/user.png" class="user" alt="user"> -->
 				</div>
@@ -71,7 +71,7 @@
 </header>   
 
 <!-- 로그인 모달창 -->
-<div class="modal fade" id="layerpop" >
+<div class="modal fade" id="loginPopup" >
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -81,7 +81,7 @@
 				<h4 class="modal-title">Login</h4>
 			</div>
 			
-			<form action="./memberLogin.shiva" method="post" id="frmLoginModal" name="frmLoginModal">
+			<!-- <form action="./" method="post" id="frmLoginModal" name="frmLoginModal"> -->
 				<div class="modal-body">
 					<!-- 로그인 폼 -->
 					<div class="form-group">
@@ -95,10 +95,10 @@
 				</div>
 
 				<div class="modal-footer">
-					<a href="login.do" class="btn btn-warning">회원가입</a>
-					<button type="submit" id="btnLogin" class="btn btn-primary">로그인</button>
+					<a href="join.do" class="btn">회원가입</a>
+					<button type="button" id="btnLogin" class="btn">로그인</button>
 				</div>
-			</form>
+			<!-- </form> -->
 		</div>
 	</div>
 </div>

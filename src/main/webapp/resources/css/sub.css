@@ -19,3 +19,8 @@
 
 .check_txt_success{color: blue;}
 .check_txt_warning{color: red;}
+
+/*로그인*/
+#loginPopup{}
+#loginPopup .modal-header{background: #fb802d; color: #fff;}
+#loginPopup .modal-footer .btn{color: #fb802d;}
