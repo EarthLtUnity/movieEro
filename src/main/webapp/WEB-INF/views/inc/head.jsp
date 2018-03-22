@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,4 +18,6 @@
     <link rel="stylesheet" type="text/css" href="css/default.css">
     <link rel="stylesheet" type="text/css" href="css/board.css">
     <link rel="stylesheet" type="text/css" href="css/sub.css">
+    <!-- 나머지 Javascript 라이브러리 파일은 footer에 있음 / 개인 사용 js는 자기 페이지에만 링크걸것 -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
 </head>

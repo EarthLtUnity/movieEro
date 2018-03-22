@@ -4,15 +4,11 @@
 <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:import url="../inc/head.jsp"/>
 <c:import url="../inc/header.jsp"/>
-<script>
-	alert("회원가입완료");
-	location.href="/movieEro"
-</script>			
 
 <section class="sub_content member_join_wrap">
 	<div class="container">
 		<div class="row">               
-			<h2 class="sub_tit">회원가입완료</h2>
+			<h2 class="sub_tit">회원완료</h2>
 		</div>	
 	</div> 
 </section>

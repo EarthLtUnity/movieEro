@@ -24,7 +24,6 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public MemberVO loginMember(String id, String passwd) {
-		System.out.println( (String)sqlSession.selectOne("Member.loginCheck", new MemberVO(id ,passwd)) );
 		return sqlSession.selectOne("Member.loginCheck", new MemberVO(id ,passwd));
 	}
 

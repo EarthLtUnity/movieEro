@@ -153,14 +153,55 @@ if (/join.do/.exec(nowUrl) != null){
 
 
 /* 로그인 */
+// 로그인 버튼 비동기 처리
+var loginAjax = {
+	$btnLogin : $('#btnLogin'),
+	excute : function() {
+		this.$btnLogin.on('click', function() {
+			$.ajax({
+				type: 'POST',
+				url: 'login.do',
+				data: {login_id : $("#login_id").val(), login_pw : $("#login_pw").val()},
+				success: function(data) {
+					$("#btnCloseLogin").click();
+					if(!data){
+						alert("data가 없습니다");
+					}
+				}
+			});
+		});
+	}
+}
+loginAjax.excute();
+
+/*
+				$.ajax({
+					type: 'POST',
+					url: './memberIdCheck.do',
+					data: {'desiredId':desiredId},
+					success: function(data) {
+						// alert(data);
+						if(data) {
+							that.$msgCheckId.text(data+'는 사용 가능한 아이디 입니다.');
+							that.$msgCheckId.attr("class","check_txt_success");
+							valiStep1 = true;
+						} else {
+							that.$msgCheckId.text('중복된 아이디가 존재합니다. 다른 아이디를 입력해주세요');
+							that.$msgCheckId.attr("class","check_txt_warning");
+							valiStep1 = false;
+						}
+					}
+				});	
+*/
+
 // 로그인 유효성 검사후 비동기로 로그인해보기
 var modalValidator = {
-	$id       : $('#frmLoginModal #id'),
-	$pw       : $('#frmLoginModal #passwd'),
+	$id       : $('#frmLoginModal #mb_id'),
+	$pw       : $('#frmLoginModal #mb_passwd'),
 	$btnLogin : $('#btnLogin'),
 	excute : function() {
 		var that = this;
-		$btnLogin.on('click', function(){
+		$btnLogin.on('click', function() {
 			if(that.$id.val()==''){
 				alert('아이디를 입력해주세요');
 				that.id.focus();
