@@ -6,15 +6,15 @@
 
 <insert id="insertMember" parameterType="Member" flushCache="true"
  statementType="PREPARED" useGeneratedKeys="true" timeout="20">
- 	INSERT INTO MEMBER VALUES(#{id}, #{passwd}, #{name}, #{mail}, #{maildomain}, #{phone})
+ 	INSERT INTO MEMBER VALUES(#{mb_id}, #{mb_passwd}, #{mb_name}, #{mb_mail}, #{mb_maildomain}, #{mb_phone})
 </insert>
 
 <select id="selectID" parameterType="string" resultType="boolean">
-	SELECT count(*) FROM MEMBER WHERE ID = #{id}
+	SELECT count(*) FROM MEMBER WHERE MB_ID = #{mb_id}
 </select>
 
 <select id="loginCheck" parameterType="Member" resultType="boolean">
-	SELECT * FROM MEMBER WHERE ID = #{id} and PASSWD = #{passwd}
+	SELECT * FROM MEMBER WHERE MB_ID = #{mb_id} and PASSWD = #{mb_passwd}
 </select>
 <!-- 
 

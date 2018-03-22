@@ -22,10 +22,10 @@ navMenu.excute();
 /* 회원가입 */
 // 셀렉트박스로 이메일 도메인 선택시 자동 입력
 var mailCopy = {
-	$selectMail : $('#selectMail'),
+	$selectMail : $('#mb_selectMail'),
 	excute : function() {
 		this.$selectMail.on('change', function() {
-			$('#maildomain').val($(this).val());
+			$('#mb_maildomain').val($(this).val());
 		});
 	}
 };
@@ -34,7 +34,7 @@ mailCopy.excute();
 //asyncValidator : 비동기로 아이디 중복 검사
 var valiStep1 = false;
 var asyncValidator = {
-	$id : $('#frmMemberJoin #id'),
+	$id : $('#frmMemberJoin #mb_id'),
 	$msgCheckId : $('#msgCheckId'),
 	excute : function() {
 		var that = this;
@@ -70,27 +70,27 @@ asyncValidator.excute();
 // pwValidator : 비밀번호와 비번확인 일치여부 체크
 var valiStep2 = false;
 var pwValidator = {
-	msgCheckPw = $('#msgCheckPw'),
-	pw1 = $('#passwd').val(),
-	pw2 = $('#passwdChk').val(),		
 	excute : function() {
 		var passCheck = function() {
-			if(this.pw1 =='' && this.pw2 =='') {
-				this.msgCheckPw.text('비밀번호를 입력해주세요');
-				this.msgCheckPw.attr("class","check_txt_warning");
+			var msgCheckPw = $('#msgCheckPw');
+			var pw1 = $('#mb_passwd').val();
+			var pw2 = $('#mb_passwdChk').val();
+			if(pw1 =='' && pw2 =='') {
+				msgCheckPw.text('비밀번호를 입력해주세요');
+				msgCheckPw.attr("class","check_txt_warning");
 				valiStep2 = false;
-			} else if(this.pw1 != this.pw2) {
-				this.msgCheckPw.text('비밀번호가 일치하지 않습니다');
-				this.msgCheckPw.attr("class","check_txt_warning");
+			} else if(pw1 != pw2) {
+				msgCheckPw.text('비밀번호가 일치하지 않습니다');
+				msgCheckPw.attr("class","check_txt_warning");
 				valiStep2 = false;
-			} else if(this.pw1 == this.pw2) {
-				this.msgCheckPw.text('비밀번호가 일치합니다');	
-				this.msgCheckPw.attr("class","check_txt_success");
+			} else if(pw1 == pw2) {
+				msgCheckPw.text('비밀번호가 일치합니다');	
+				msgCheckPw.attr("class","check_txt_success");
 				valiStep2 = true;
 			}
 		}// passCheck()
-		$('#passwd').on('keyup', passCheck);
-		$('#passwdChk').on('keyup', passCheck);
+		$('#mb_passwd').on('keyup', passCheck);
+		$('#mb_passwdChk').on('keyup', passCheck);
 	}
 };
 pwValidator.excute();
@@ -102,40 +102,40 @@ var nullValidator = {
 	excute : function(frm) {
 		var that = this;
 		this.frm = frm;
-		$('#selectMail').on('change', function() {
-			$('#mailDomain').val($(this).val());
+		$('#mb_selectMail').on('change', function() {
+			$('#mb_mailDomain').val($(this).val());
 		});
 		$('#btnJoin').on('click', function() {
-			if($(that.frm+' #id').val()=='') {
+			if($(that.frm+' #mb_id').val()=='') {
 				alert('아이디를 입력해주세요');
-				$(that.frm+' #id').focus();
+				$(that.frm+' #mb_id').focus();
 			} else if (valiStep1===false) {
 				alert('중복된 아이디가 존재합니다. 다른 아이디를 입력해주세요');
-				$(that.frm+' #id').focus();
-			} else if ($(that.frm+' #passwd').val()=='') {
+				$(that.frm+' #mb_id').focus();
+			} else if ($(that.frm+' #mb_passwd').val()=='') {
 				alert('비밀번호를 입력해주세요');
-				$(that.frm+' #passwd').focus();
-			} else if ($(that.frm+' #passwdChk').val()=='') {
+				$(that.frm+' #mb_passwd').focus();
+			} else if ($(that.frm+' #mb_passwdChk').val()=='') {
 				alert('비밀번호 확인을 입력해주세요');
-				$(that.frm+' #passwdChk').focus();
+				$(that.frm+' #mb_passwdChk').focus();
 			} else if (valiStep2===false) {
 				alert('비밀번호가 일치하지 않습니다');
-				$(that.frm+' #passwd').focus();
-			} else if ($(that.frm+' #name').val()=='') {
+				$(that.frm+' #mb_passwd').focus();
+			} else if ($(that.frm+' #mb_name').val()=='') {
 				alert('이름을 입력해주세요');
-				$(that.frm+' #name').focus();
-			} else if ($(that.frm+' #mail').val()=='') {
+				$(that.frm+' #mb_name').focus();
+			} else if ($(that.frm+' #mb_mail').val()=='') {
 				alert('이메일을 입력해주세요');
-				$(that.frm+' #mail').focus();
-			} else if ($(that.frm+' #maildomain').val()=='') {
+				$(that.frm+' #mb_mail').focus();
+			} else if ($(that.frm+' #mb_maildomain').val()=='') {
 				alert('이메일 도메인을 입력 혹은 선택해주세요');
-				$(that.frm+' #maildomain').focus();
-			} else if ($(that.frm+' #phone').val()=='') {
+				$(that.frm+' #mb_maildomain').focus();
+			} else if ($(that.frm+' #mb_phone').val()=='') {
 				alert('전화번호를 입력해주세요');
-				$(that.frm+' #phone').focus();
-			} else if (/^[0-9]*$/.exec($(that.frm+' #phone').val())==null) {	
+				$(that.frm+' #mb_phone').focus();
+			} else if (/^[0-9]*$/.exec($(that.frm+' #mb_phone').val())==null) {	
 				alert('전화번호는 숫자만 입력해주세요');
-				$(that.frm+' #phone').focus();
+				$(that.frm+' #mb_phone').focus();
 			} else if(valiStep1===true&&valiStep2===true){
 				$(that.frm).submit();						
 			}
