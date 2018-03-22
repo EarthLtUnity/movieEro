@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <body class="sticky-menu">
     <div id="loader">
         <div class="loader-ring">
@@ -40,9 +41,16 @@
 			</div>
 			<div class="header_menu col-md-4 col-sm-6 col-xs-8 phl0">
 				<div class="header_author">
-					<a href="#" data-target="#loginPopup" data-toggle="modal" class="">Sign in/up</a>
-					<!-- <a href="#">jongmin</a> -->
-					<!-- <img src="images/user.png" class="user" alt="user"> -->
+					<c:set var="memberId" value="${member}" />
+					<c:choose>
+						<c:when test="${empty memberId}">
+							<a href="#" data-target="#loginPopup" data-toggle="modal" class="">Sign in/up</a>
+						</c:when>
+						<c:otherwise>
+							<a href="mypage.do">${memberId}</a>
+							<img src="images/user.png" class="user" alt="user">
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<div class="header_ticket">
 					<a href="#order" class="order_btn">My tickets</a>
@@ -85,12 +93,12 @@
 				<div class="modal-body">
 					<!-- 로그인 폼 -->
 					<div class="form-group">
-					    <label for="id">ID</label>
-					    <input type="text" class="form-control" size="10" name="id" id="id">
+					    <label for="login_id">ID</label>
+					    <input type="text" class="form-control" size="10" name="login_id" id="login_id">
 					</div>
 					<div class="form-group">
-					    <label for="pass">비밀번호</label>
-					    <input type="password" class="form-control" size="20" name="passwd" id="passwd">
+					    <label for="login_pass">비밀번호</label>
+					    <input type="password" class="form-control" size="20" name="login_pw" id="login_pw">
 					</div>
 				</div>
 

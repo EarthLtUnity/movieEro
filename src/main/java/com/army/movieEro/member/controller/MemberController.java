@@ -60,7 +60,7 @@ public class MemberController {
 	// 회원 로그인
 	@RequestMapping(value="login.do")
 	public void memberLogin(HttpSession session, MemberVO memberVO) {
-		session.setAttribute("member", memberService.loginMember(memberVO.getId(), memberVO.getPasswd()));
+		session.setAttribute("member", memberService.loginMember(memberVO.getMb_id(), memberVO.getMb_passwd()));
 		
 		// 로그인 ajax로 처리해보기
 	}	
