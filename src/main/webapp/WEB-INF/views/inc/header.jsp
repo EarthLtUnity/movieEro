@@ -42,15 +42,27 @@
 			<div class="header_menu col-md-4 col-sm-6 col-xs-8 phl0">
 				<div class="header_author">
 					<c:set var="memberId" value="${member}" />
+					<%-- 로그인 여부로 보여지는 메뉴 --%>
 					<c:choose>
 						<c:when test="${empty memberId}">
-							<a href="#" data-target="#loginPopup" data-toggle="modal" class="">Sign in/up</a>
+							<span id="beforeLoginMenu">
+								<a href="#" data-target="#loginPopup" data-toggle="modal" id="signInUp">Sign in/up</a>
+							</span>
 						</c:when>
 						<c:otherwise>
-							<a href="mypage.do">${memberId}</a>
-							<img src="images/user.png" class="user" alt="user">
+							<span id="afterLoginMenu">
+								<a href="mypage.do">${memberId}</a>
+								<a href="signOut.do">Sign Out</a>
+								<img src="images/temp_user.jpg" class="user" alt="">
+							</span>
 						</c:otherwise>
 					</c:choose>
+					<%-- ajax로 호출시 보여지는 메뉴 --%>
+					<span id="ajaxLoginMenu" style="display:none">
+						<a href="mypage.do">${memberId}</a>
+						<a href="signOut.do">Sign Out</a>
+						<img src="images/temp_user.jpg" class="user" alt="">
+					</span>
 				</div>
 				<div class="header_ticket">
 					<a href="#order" class="order_btn">My tickets</a>

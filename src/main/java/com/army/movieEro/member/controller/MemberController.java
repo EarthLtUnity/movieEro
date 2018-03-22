@@ -63,7 +63,7 @@ public class MemberController {
 	
 	// 회원 로그인
 	@RequestMapping(value="login.do")
-	public void memberLogin(@RequestParam Map<String, String> loginInfo, HttpSession session) {
+	public void memberLogin(@RequestParam Map<String, String> loginInfo, HttpSession session, HttpServletResponse response) {
 		//session.setAttribute("member", memberService.loginMember(memberVO.getMb_id() , memberVO.getMb_passwd()));
 		
 		// 로그인 ajax로 처리해보기
@@ -76,9 +76,9 @@ public class MemberController {
 		MemberVO result;
 		try {
 			result = memberService.loginMember(id, pw);
-			if(result != null) {
+			if(result != null) { // 로그인 성공시 아이디를 화면에 내림
 				session.setAttribute("member", loginInfo.get("login_id"));
-				System.out.println(result);
+				response.getWriter().write(id);
 				System.out.println(id+" 로그인 완료");
 			} else  {
 				System.out.println(id+" 로그인 실패");			
@@ -89,4 +89,11 @@ public class MemberController {
 		
 	}	
 
+	// 회원 로그아웃
+	@RequestMapping(value="signOut.do")
+	public String memberLogOut(HttpSession session) {
+		session.invalidate();
+		return "redirect:./";
+	}
+	
 }

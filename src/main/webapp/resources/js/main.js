@@ -162,11 +162,12 @@ var loginAjax = {
 				type: 'POST',
 				url: 'login.do',
 				data: {login_id : $("#login_id").val(), login_pw : $("#login_pw").val()},
-				success: function(data) {
-					$("#btnCloseLogin").click();
-					if(!data){
-						alert("data가 없습니다");
-					}
+				success: function(member_id) {
+					alert(member_id+"님 환영합니다");
+					// ajax로 로그인 성공시 모달창 닫고 로그인 버튼 없애고 로그아웃 버튼 생성
+					$('#loginPopup').modal('hide');
+					$('#beforeLoginMenu').hide();
+					$('#ajaxLoginMenu').show();
 				}
 			});
 		});
@@ -174,25 +175,6 @@ var loginAjax = {
 }
 loginAjax.excute();
 
-/*
-				$.ajax({
-					type: 'POST',
-					url: './memberIdCheck.do',
-					data: {'desiredId':desiredId},
-					success: function(data) {
-						// alert(data);
-						if(data) {
-							that.$msgCheckId.text(data+'는 사용 가능한 아이디 입니다.');
-							that.$msgCheckId.attr("class","check_txt_success");
-							valiStep1 = true;
-						} else {
-							that.$msgCheckId.text('중복된 아이디가 존재합니다. 다른 아이디를 입력해주세요');
-							that.$msgCheckId.attr("class","check_txt_warning");
-							valiStep1 = false;
-						}
-					}
-				});	
-*/
 
 // 로그인 유효성 검사후 비동기로 로그인해보기
 var modalValidator = {
