@@ -1,5 +1,7 @@
 package com.army.movieEro.member.dao;
 
+import java.util.Map;
+
 import com.army.movieEro.member.vo.MemberVO;
 
 public interface MemberDao {

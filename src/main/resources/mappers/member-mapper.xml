@@ -13,9 +13,10 @@
 	SELECT count(*) FROM MEMBER WHERE MB_ID = #{mb_id}
 </select>
 
-<select id="loginCheck" parameterType="Member" resultType="boolean">
-	SELECT * FROM MEMBER WHERE MB_ID = #{mb_id} and PASSWD = #{mb_passwd}
+<select id="loginCheck" parameterType="Member" resultType="Member">
+	SELECT * FROM MEMBER WHERE MB_ID = #{mb_id} and MB_PASSWD = #{mb_passwd}
 </select>
+
 <!-- 
 
 <select id="selectOne" parameterType="Member" resultMap="resultMember">
