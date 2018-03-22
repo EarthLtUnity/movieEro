@@ -70,22 +70,22 @@ asyncValidator.excute();
 // pwValidator : 비밀번호와 비번확인 일치여부 체크
 var valiStep2 = false;
 var pwValidator = {
+	msgCheckPw = $('#msgCheckPw'),
+	pw1 = $('#passwd').val(),
+	pw2 = $('#passwdChk').val(),		
 	excute : function() {
 		var passCheck = function() {
-			var msgCheckPw = $('#msgCheckPw');
-			var pw1 = $('#passwd').val();
-			var pw2 = $('#passwdChk').val();
-			if(pw1 =='' && pw2 =='') {
-				msgCheckPw.text('비밀번호를 입력해주세요');
-				msgCheckPw.attr("class","check_txt_warning");
+			if(this.pw1 =='' && this.pw2 =='') {
+				this.msgCheckPw.text('비밀번호를 입력해주세요');
+				this.msgCheckPw.attr("class","check_txt_warning");
 				valiStep2 = false;
-			} else if(pw1 != pw2) {
-				msgCheckPw.text('비밀번호가 일치하지 않습니다');
-				msgCheckPw.attr("class","check_txt_warning");
+			} else if(this.pw1 != this.pw2) {
+				this.msgCheckPw.text('비밀번호가 일치하지 않습니다');
+				this.msgCheckPw.attr("class","check_txt_warning");
 				valiStep2 = false;
-			} else if(pw1 == pw2) {
-				msgCheckPw.text('비밀번호가 일치합니다');	
-				msgCheckPw.attr("class","check_txt_success");
+			} else if(this.pw1 == this.pw2) {
+				this.msgCheckPw.text('비밀번호가 일치합니다');	
+				this.msgCheckPw.attr("class","check_txt_success");
 				valiStep2 = true;
 			}
 		}// passCheck()
@@ -93,7 +93,7 @@ var pwValidator = {
 		$('#passwdChk').on('keyup', passCheck);
 	}
 };
-var valiStep2 = pwValidator.excute();
+pwValidator.excute();
 
 // nullValidator : null값 없는지 체크
 var nullValidator = {
