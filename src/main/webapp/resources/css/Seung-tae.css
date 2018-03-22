@@ -3,12 +3,114 @@
 ** 작성자 : 김승태
 *
 ** 담당 페이지명 :  
-* 공지사항 : noticeBoard.jsp
-* 빠른예매 : reserve.jsp
+* Community : boardList.jsp
 */
-
-/* 빠른예매 */
 .Seungtae_wrap{}
 
-/* 공지사항 */
-.Seungtae_wrap{}
+/* Community */
+.Seungtae_wrap .block_board{background: black; word-break:keep-all;}
+.Seungtae_wrap .bg_pale{background:rgba(14, 34, 33, 0.7)}
+.Seungtae_wrap .col-sm-7{width:80%;}
+.Seungtae_wrap .title{color:white}
+
+/* 게시판 정보 스크롤이동 */
+.Seungtae_wrap .floating{
+	position: fixed; 
+	right: 45%; 
+	top: 20%; 
+	margin-right: -800px; 
+	text-align:center; 
+	width: 500px; }
+	
+/* 게시판 라인 */
+.Seungtae_wrap .section-content .wpc-boxoffice  li {
+  border-top: 2px solid #555;
+}
+.Seungtae_wrap .section-content .wpc-boxoffice li:last-child {
+  border-bottom: 2px solid #555;
+}
+
+/* 게시판 마지막 라인 오른쪽 끝 주황점 수정 */ 
+.Seungtae_wrap .section-content .wpc-boxoffice  li:last-child:after {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 4px;
+  margin-top: 77px;
+  background: #fb802d;
+  display: block;
+  right: 10px;
+  position: absolute;
+}
+
+/* 게시판 join 버튼 */
+.Seungtae_wrap .join {
+  padding: 15px 15px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #fb802d;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999;
+}
+.Seungtae_wrap .join:hover {
+	background-color: #fb8f46b3;
+	}
+.Seungtae_wrap .join:active {
+  background-color: #fb8f46b3;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+/* join 버튼 투명 없애기 */
+.Seungtae_wrap .section-content .wpc-boxoffice .wpc-box-list li ol li.bx-item-d 
+ {opacity:1}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.Seungtae_wrap .collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.Seungtae_wrap .collapsible:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.Seungtae_wrap .content1 {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+}
+ 
+ .active:after {
+    content: "\2212";
+}
+
+.active, .collapsible:hover {
+    background-color: #555;
+}
+  
