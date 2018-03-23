@@ -5,13 +5,12 @@
 <section class="sub_content member_join_wrap">
 	<div class="container">
 		<div class="row">               
-			<h2 class="sub_tit">회원가입</h2>
+			<h2 class="sub_tit">회원수정</h2>
 			<div class="sub_page join_page">
 				<form action="./memberInsert.do" method="post" id="frmMemberJoin" name="frmMemberJoin">
 					<div class="form-group">
 						<label for="id">아이디</label>
-						<input type="text" class="form-control" maxlength="10" name="mb_id" id="mb_id">
-						<p id="msgCheckId" class="check_txt_check">아이디를 입력 해주세요</p>
+						<input type="text" class="form-control" name="mb_id" id="mb_id" value="${member}" readonly="readonly">
 					</div>
 					<div class="form-group">
 					    <label for="pass">비밀번호</label>
@@ -48,7 +47,7 @@
 					    <input type="text" class="form-control" maxlength="11" name="mb_phone" id="mb_phone" placeholder="-없이 입력해주세요">
 					</div>
 					<div class="text-right">
-						<button type=button id="btnJoin" class="btn">회원가입</button>
+						<button type=button id="btnJoin" class="btn">회원정보수정</button>
 						<a href="./" class="btn">메인화면</a>
 					</div>
 				</form>

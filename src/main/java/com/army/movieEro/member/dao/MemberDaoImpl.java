@@ -27,4 +27,9 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectOne("Member.loginCheck", new MemberVO(id ,passwd));
 	}
 
+	@Override
+	public int updateMember(MemberVO memberVO) {
+		return sqlSession.update("Member.updateMember", memberVO);
+	}
+
 }

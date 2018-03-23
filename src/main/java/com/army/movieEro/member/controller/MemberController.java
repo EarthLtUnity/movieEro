@@ -2,7 +2,6 @@ package com.army.movieEro.member.controller;
 
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,16 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.army.movieEro.member.service.MemberService;
 import com.army.movieEro.member.vo.MemberVO;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class MemberController {
@@ -31,7 +27,7 @@ public class MemberController {
 	@RequestMapping(value="join.do")
 	public String memberJoin(Model model) {
 		
-		return "member/meberJoin";
+		return "member/memberJoin";
 	}
 	
 	// 회원 아이디 중복검사
@@ -58,10 +54,10 @@ public class MemberController {
 		} catch (Exception e) {
 			return "error/db";
 		}
-		return "member/meberJoinComplete";
+		return "member/memberJoinComplete";
 	}
 	
-	// 회원 로그인
+	// 로그인
 	@RequestMapping(value="login.do")
 	public void memberLogin(@RequestParam Map<String, String> loginInfo, HttpSession session, HttpServletResponse response) {
 		//session.setAttribute("member", memberService.loginMember(memberVO.getMb_id() , memberVO.getMb_passwd()));
@@ -89,11 +85,22 @@ public class MemberController {
 		
 	}	
 
-	// 회원 로그아웃
+	// 로그아웃
 	@RequestMapping(value="signOut.do")
 	public String memberLogOut(HttpSession session) {
 		session.invalidate();
 		return "redirect:./";
 	}
-	
+
+	// 회원정보 수정
+	@RequestMapping(value="memberModify.do")
+	public String memberModify(MemberVO memberVO) {
+		int result;
+		try {
+			//result = memberService.updateMember(memberVO);
+		} catch (Exception e) {
+			return "error/db";
+		}		
+		return "member/memberUpdate";
+	}
 }
