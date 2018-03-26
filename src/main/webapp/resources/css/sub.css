@@ -4,6 +4,7 @@
 @import url("Tae-kyu.css");
 @import url("Jae-kyeom.css");
 
+/* 서브 공통 */
 *{margin: 0; padding: 0;}
 .cf:after{display: block; content: ''; clear: both;}
 
@@ -14,14 +15,25 @@
 .common_bgc{background: #e7e7e7;}
 .common_fc{color: #fb802d;}
 
-/*회원가입*/
-.member_join_wrap{background: url(../images/bg/bg_member_join.jpg) 0 0 no-repeat;}
-.member_join_wrap label{color: #fb802d;}
-
 .check_txt_success{color: blue;}
 .check_txt_warning{color: red;}
 
-/*로그인*/
+/* 회원가입 */
+.member_join_wrap{background: url(../images/bg/bg_member_join.jpg) 0 0 no-repeat;}
+.member_join_wrap label{color: #fb802d;}
+
+/* 회원 가입/수정 완료 */
+.member_complete_wrap{background: url(../images/bg/bg_member_join.jpg) 0 0 no-repeat;}
+.member_complete_wrap h1 {
+    margin-bottom: 42px;
+    line-height: 1;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 56px;
+    color: #fff;
+}
+
+/* 로그인 */
 #loginPopup{}
 #loginPopup .modal-header{background: #fb802d; color: #fff;}
 #loginPopup .modal-footer .btn{color: #fb802d;}

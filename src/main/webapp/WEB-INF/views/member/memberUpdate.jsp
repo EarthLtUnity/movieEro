@@ -19,7 +19,7 @@
 					</div>
 					<div class="form-group">
 					    <label for="pass">비밀번호</label>
-					    <input type="password" class="form-control" maxlength="20" name="mb_passwd" id="mb_passwd">
+					    <input type="password" class="form-control" maxlength="20" name="mb_passwd" id="mb_passwd" value="<c:out value="${memberInfo.mb_passwd}" />">
 					</div>
 					<div class="form-group">
 					    <label for="pass">비밀번호 확인</label>
@@ -28,14 +28,14 @@
 					</div>
 					<div class="form-group">
 					    <label for="id">이름</label>
-					    <input type="text" class="form-control" maxlength="10" name="mb_name" id="mb_name">
+					    <input type="text" class="form-control" maxlength="10" name="mb_name" id="mb_name" value="<c:out value="${memberInfo.mb_name}" />">
 					</div>
 					<div class="form-group">
 					    <label for="id">이메일</label>
 					    <ul class="li_mail cf">
-					    	<li><input type="text" class="form-control" maxlength="20" name="mb_mail" id="mb_mail"></li>
+					    	<li><input type="text" class="form-control" maxlength="20" name="mb_mail" id="mb_mail" value="<c:out value="${memberInfo.mb_mail}" />"></li>
 					    	<li>@</li>
-					    	<li><input type="text" class="form-control" maxlength="20" name="mb_maildomain" id="mb_maildomain"></li>
+					    	<li><input type="text" class="form-control" maxlength="20" name="mb_maildomain" id="mb_maildomain" value="<c:out value="${memberInfo.mb_maildomain}" />"></li>
 					    	<li>
 							    <select name="mb_selectMail" id="mb_selectMail">
 							    	<option value="">선택</option>
@@ -49,7 +49,7 @@
 					</div>
 					<div class="form-group">
 					    <label for="id">전화번호</label>
-					    <input type="text" class="form-control" maxlength="11" name="mb_phone" id="mb_phone" placeholder="-없이 입력해주세요">
+					    <input type="text" class="form-control" maxlength="11" name="mb_phone" id="mb_phone" value="<c:out value="${memberInfo.mb_phone}" />" placeholder="-없이 입력해주세요">
 					</div>
 					<div class="text-right">
 						<button type=button id="btnJoin" class="btn">회원정보수정</button>

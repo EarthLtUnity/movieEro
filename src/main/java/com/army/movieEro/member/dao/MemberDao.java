@@ -1,5 +1,8 @@
 package com.army.movieEro.member.dao;
 
+import java.util.HashMap;
+import java.util.List;
+
 import com.army.movieEro.member.vo.MemberVO;
 
 public interface MemberDao {
@@ -11,4 +14,6 @@ public interface MemberDao {
 	public MemberVO loginMember(String id, String passwd);
 
 	public int updateMember(MemberVO memberVO);
+
+	public MemberVO selectMemberInfo(String loginId);
 }
