@@ -107,6 +107,12 @@ public class MemberController {
 				
 		return "member/memberUpdate";
 	}
+
+	// 회원정보 수정
+	@RequestMapping(value="mypage.do")
+	public String memberPage() {
+		return "member/mypage";
+	}
 	
 	// 회원정보 수정
 	@RequestMapping(value="memberModify.do")
