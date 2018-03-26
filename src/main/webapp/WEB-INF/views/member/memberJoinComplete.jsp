@@ -6,7 +6,10 @@
 	<div class="container">
 		<div class="row">               
 			<h2 class="sub_tit">회원가입완료</h2>
-		</div>	
+			<div class="text-center">
+				<a href="./" class="btn">메인화면</a>
+			</div>		
+		</div>
 	</div> 
 </section>
 

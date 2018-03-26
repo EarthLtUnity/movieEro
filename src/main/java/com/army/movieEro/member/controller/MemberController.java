@@ -2,6 +2,7 @@ package com.army.movieEro.member.controller;
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,7 @@ import com.army.movieEro.member.vo.MemberVO;
 public class MemberController {
 
 	@Autowired
-	private MemberService memberService;	
+	private MemberService memberService;
 	
 	// 회원 가입 폼
 	@RequestMapping(value="join.do")
@@ -60,9 +61,7 @@ public class MemberController {
 	// 로그인
 	@RequestMapping(value="login.do")
 	public void memberLogin(@RequestParam Map<String, String> loginInfo, HttpSession session, HttpServletResponse response) {
-		//session.setAttribute("member", memberService.loginMember(memberVO.getMb_id() , memberVO.getMb_passwd()));
-		
-		// 로그인 ajax로 처리해보기
+		// 로그인 ajax로 처리
 		//System.out.println(loginInfo); //{login_id=qwqw, login_pw=asas}
 		String id = loginInfo.get("login_id");
 		String pw = loginInfo.get("login_pw");
@@ -77,6 +76,7 @@ public class MemberController {
 				response.getWriter().write(id);
 				System.out.println(id+" 로그인 완료");
 			} else  {
+				response.getWriter().write("FAIL");
 				System.out.println(id+" 로그인 실패");			
 			}
 		} catch (Exception e) {
@@ -92,15 +92,38 @@ public class MemberController {
 		return "redirect:./";
 	}
 
-	// 회원정보 수정
-	@RequestMapping(value="memberModify.do")
-	public String memberModify(MemberVO memberVO) {
-		int result;
-		try {
-			//result = memberService.updateMember(memberVO);
-		} catch (Exception e) {
-			return "error/db";
-		}		
+	// 회원정보 수정폼 이동
+	@RequestMapping(value="memberModifyForm.do")
+	public String memberModifyForm(HttpSession session) {
+		//System.out.println(session.getAttribute("member"));
 		return "member/memberUpdate";
 	}
+	
+	// 회원정보 수정
+	@RequestMapping(value="memberModify.do")
+	public void memberModify(MemberVO memberVO, HttpSession session, HttpServletResponse response) {
+		int result;
+		response.setContentType("text/html; charset=UTF-8");
+		try {
+			result = memberService.updateMember(memberVO);
+			PrintWriter out = response.getWriter();
+			if(result > 0) {
+				out.print("<script>");
+				out.print("<script>alert('회원정보 수정 완료');");
+				out.print("location.href='./';");
+				out.print("</script>");
+				System.out.println("회원정보 수정 완료");				
+			} else {
+				out.print("<script>");
+				out.print("<script>alert('회원정보 수정중 에러가 발생했습니다');");
+				out.print("location.href='./';");
+				out.print("</script>");				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			//return "error/db";
+		}
+		//return "member/memberModiComplete";		
+	}	
+	
 }

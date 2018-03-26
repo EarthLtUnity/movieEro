@@ -9,6 +9,7 @@
 
 .sub_content{padding: 100px 50px;}
 .sub_content input{color: #333;}
+.sub_content .form-control[readonly] {border: none; background-color: #e6e6ee 6px;}
 
 .common_bgc{background: #e7e7e7;}
 .common_fc{color: #fb802d;}

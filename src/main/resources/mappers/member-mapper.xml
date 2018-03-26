@@ -17,10 +17,10 @@
 	SELECT * FROM MEMBER WHERE MB_ID = #{mb_id} and MB_PASSWD = #{mb_passwd}
 </select>
 
-<update id="updateMember" parameterType="Member" flushCache="true">
+<update id="updateMember" parameterType="Member" flushCache="true" statementType="PREPARED">
 	UPDATE MEMBER SET MB_PASSWD = #{mb_passwd}, MB_NAME = #{mb_name}, 
 	MB_MAIL = #{mb_mail}, MB_MAILDOMAIN = #{mb_maildomain}, MB_PHONE = #{mb_phone} 
-	WHERE ID = #{id} 
+	WHERE MB_ID = #{mb_id} 
 </update>
 <!-- 
 

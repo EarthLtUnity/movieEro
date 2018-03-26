@@ -59,7 +59,7 @@
 					</c:choose>
 					<%-- ajax로 호출시 보여지는 메뉴 --%>
 					<span id="ajaxLoginMenu" style="display:none">
-						<a href="mypage.do">${memberId}</a>
+						<a href="mypage.do" id="ajaxLoginId"></a>
 						<a href="signOut.do">Sign Out</a>
 						<img src="images/temp_user.jpg" class="user" alt="">
 					</span>

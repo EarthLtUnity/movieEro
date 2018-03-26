@@ -1,13 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../inc/head.jsp" flush="false" />
 <jsp:include page="../inc/header.jsp" flush="false" />
-
+<c:if test="${empty member}">
+	<script>
+		location.href="./";
+	</script>
+</c:if>	
 <section class="sub_content member_join_wrap">
 	<div class="container">
 		<div class="row">               
 			<h2 class="sub_tit">회원수정</h2>
 			<div class="sub_page join_page">
-				<form action="./memberInsert.do" method="post" id="frmMemberJoin" name="frmMemberJoin">
+				<form action="./memberModify.do" method="post" id="frmMembermodi" name="frmMembermodi">
 					<div class="form-group">
 						<label for="id">아이디</label>
 						<input type="text" class="form-control" name="mb_id" id="mb_id" value="${member}" readonly="readonly">
