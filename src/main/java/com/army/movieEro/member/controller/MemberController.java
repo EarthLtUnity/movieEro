@@ -93,6 +93,12 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:./";
 	}
+	
+	// 마이페이지
+	@RequestMapping(value="mypage.do")
+	public String memberPage() {
+		return "member/mypage";
+	}
 
 	// 회원정보 수정폼 이동
 	@RequestMapping(value="memberModifyForm.do")
@@ -108,11 +114,6 @@ public class MemberController {
 		return "member/memberUpdate";
 	}
 
-	// 회원정보 수정
-	@RequestMapping(value="mypage.do")
-	public String memberPage() {
-		return "member/mypage";
-	}
 	
 	// 회원정보 수정
 	@RequestMapping(value="memberModify.do")
@@ -127,6 +128,11 @@ public class MemberController {
 			return "error/db";
 		}
 		return "member/memberModiComplete";		
-	}	
-
+	}
+	
+	// 위시리스트
+	@RequestMapping(value="wishlist.do")
+	public String wishlistPage() {
+		return "member/wishlist";
+	}
 }
