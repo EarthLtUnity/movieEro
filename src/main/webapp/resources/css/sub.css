@@ -4,8 +4,10 @@
 @import url("Tae-kyu.css");
 @import url("Jae-kyeom.css");
 
+/* 서브 공통 */
 *{margin: 0; padding: 0;}
 .cf:after{display: block; content: ''; clear: both;}
+.c_orange{color: #fb802d;}
 
 .sub_content{padding: 100px 50px;}
 .sub_content input{color: #333;}
@@ -14,14 +16,49 @@
 .common_bgc{background: #e7e7e7;}
 .common_fc{color: #fb802d;}
 
-/*회원가입*/
-.member_join_wrap{background: url(../images/bg/bg_member_join.jpg) 0 0 no-repeat;}
-.member_join_wrap label{color: #fb802d;}
-
 .check_txt_success{color: blue;}
 .check_txt_warning{color: red;}
 
-/*로그인*/
+/* 회원가입 */
+.member_join_wrap{background: url(../images/bg/bg_member_join.jpg) 0 0 no-repeat;}
+.member_join_wrap label{color: #fb802d;}
+
+/* 회원 가입/수정 완료 */
+.member_complete_wrap{background: url(../images/bg/bg_member_join.jpg) 0 0 no-repeat;}
+.member_complete_wrap h1 {
+    margin-bottom: 42px;
+    line-height: 1;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 56px;
+    color: #fff;
+}
+
+/* 로그인 - 모달창 */
 #loginPopup{}
 #loginPopup .modal-header{background: #fb802d; color: #fff;}
 #loginPopup .modal-footer .btn{color: #fb802d;}
+
+/* 마이페이지 */
+.mypage_wrap{background: url(../images/bg/bg_black_rhombus.jpg) 0 0 no-repeat;}
+.mypage_wrap h2{text-align: center; color: #fff; padding-top: 50px;}
+.mypage_wrap .mypage_grid{margin-top: 30px; height: 683px; background-color: #fff;}
+
+/* 영화결제내역 */
+.mypage_wrap .mypage_grid .lft_mypage_box{color:#333;}
+.mypage_wrap .mypage_grid .lft_mypage_box>ul>li{margin-bottom: 10px; border: 1px solid #dcdcdc; box-sizing:border-box; text-align: center;}
+.mypage_wrap .mypage_grid .lft_mypage_box>ul>li>a{display: block; padding: 10px 0;}
+.mypage_wrap .mypage_grid .lft_mypage_box>ul>li>a strong{font-size: 30px;}
+.mypage_wrap .mypage_grid .rgh_mypage_box{overflow-y: scroll; height: 683px;}
+.mypage_wrap .mypage_grid .rgh_mypage_box>ul>li{padding: 20px 0; border-bottom: 1px solid #000;}
+.mypage_wrap .mypage_grid .rgh_mypage_box li a{display: block; color: #333;}
+.mypage_wrap .mypage_grid .rgh_mypage_box li>div{float: left;}
+.mypage_wrap .mypage_grid .rgh_mypage_box li .lft_img_sec{width: 30%;}
+.mypage_wrap .mypage_grid .rgh_mypage_box li .lft_img_sec img{width: 100%; max-width: 91px;}
+.mypage_wrap .mypage_grid .rgh_mypage_box li .mdl_txt_sec{width: 50%;}
+.mypage_wrap .mypage_grid .rgh_mypage_box li .mdl_txt_sec ul{padding-top: 20px;}
+.mypage_wrap .mypage_grid .rgh_mypage_box li .mdl_txt_sec .mypage_movie_tit{font-size: 24px;}
+.mypage_wrap .mypage_grid .rgh_mypage_box li .rgh_btn_sec{margin-top: 20px; width: 20%; text-align: center;}
+.mypage_wrap .mypage_grid .rgh_mypage_box li .rgh_btn_sec .btn_reserve_cl{}
+
+
