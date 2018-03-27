@@ -19,5 +19,8 @@ public interface noticeDao {
 
 	public noticeVO selectBoardDetail(int NOTICE_BOARD_NO);
 
+	public int modifyNoticeBoard(noticeVO noticeVO);
+
+
 
 }

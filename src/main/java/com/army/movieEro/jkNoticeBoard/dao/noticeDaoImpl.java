@@ -52,4 +52,10 @@ public class noticeDaoImpl implements noticeDao{
 		return sqlSession.selectOne("noticeVO.selectBoardDetail",NOTICE_BOARD_NO);
 	}
 
+	@Override
+	public int modifyNoticeBoard(noticeVO noticeVO) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("noticeVO.modifyNoticeBoard",noticeVO);
+	}
+
 }

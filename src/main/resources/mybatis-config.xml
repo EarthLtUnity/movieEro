@@ -14,8 +14,6 @@
 		<typeAlias type="org.kh.firstSpring.board.model.vo.Board" alias="Board"/> -->
 	</typeAliases>
 	
-	
-	
 	<mappers>
  		<mapper resource="mappers/member-mapper.xml"/>
  		<mapper resource="mappers/notice-mapper.xml"/>

@@ -16,4 +16,7 @@ public interface noticeService {
 	public void addReadCount(int NOTICE_BOARD_NO);
 
 	public noticeVO selectBoardDetail(int NOTICE_BOARD_NO);
+
+	public int modifyNoticeBoard(noticeVO noticeVO);
+
 }

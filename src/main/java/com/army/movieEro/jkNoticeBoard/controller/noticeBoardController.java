@@ -21,10 +21,12 @@ import com.army.movieEro.jkNoticeBoard.vo.noticeVO;
 
 @Controller
 public class noticeBoardController {
-	//
+	
 	@Autowired
 	private noticeService NTService;
 
+	
+	//공지사항 메인화면으로 이동하기위한 컨트롤러
 	@RequestMapping(value = "notice.do")
 	public String testInit(Model model) {
 		System.out.println("noticeBoardController 도착!!");
@@ -158,4 +160,42 @@ public class noticeBoardController {
 		}
 		return mv;
 	}
+	
+	//수정하기 페이지에 작성된 글을 가져가기위한 컨트롤러
+	@RequestMapping("noticeModifyForm.do")
+	public ModelAndView noticeModifyForm(ModelAndView mv, @RequestParam("NOTICE_BOARD_NO") int NOTICE_BOARD_NO) {
+		System.out.println("noticeModifyForm.do 실행");
+		noticeVO noticeVO = NTService.selectBoardDetail(NOTICE_BOARD_NO);
+		System.out.println("noticeModifyForm.do 실행후 selectBoardDetail실행"+noticeVO);
+		
+		if(noticeVO != null) {
+			System.out.println("noticeModifyForm.do 실행후 들어갔나??"+noticeVO);
+			mv.addObject("noticeVO", noticeVO)
+			.setViewName("jkNoticeBoard/noticeBoardModifyForm");
+		}else {
+			System.out.println("수정하기 불러오기 실패");
+			mv.addObject("error","수정하기 폼 불러오기 실패")
+			//밑에 Admin은 User로 바꾸던가 조건문으로 권한에따라 다르게 바꿀것.
+			.setViewName("redirect:noticeBoardListAdmin.do");
+		}
+		return mv;
+	}
+	
+	//수정 작업을 수행하는 컨트롤러
+	@RequestMapping("noticeBoardModify.do")
+	public ModelAndView noticeBoardModify(HttpServletRequest request,
+			 ModelAndView mv, noticeVO noticeVO, @RequestParam("NOTICE_BOARD_NO") int NOTICE_BOARD_NO) {
+		System.out.println("noticeBoardModify 도착");
+		
+		
+		if(NTService.modifyNoticeBoard(noticeVO) > 0) {
+			System.out.println("noticeBoardModify 쿼리문 실행 완료");
+			System.out.println("수정 완료");
+			mv.setViewName("redirect:noticeBoardlistAdmin.do");
+		}else {
+			mv.setViewName("redirect:noticeBoardlistAdmin.do");
+		}
+		return mv;
+	}
+
 }

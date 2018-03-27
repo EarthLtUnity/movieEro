@@ -44,8 +44,12 @@ public class noticeServiceImpl implements noticeService{
 
 	@Override
 	public noticeVO selectBoardDetail(int NOTICE_BOARD_NO) {
-		// TODO Auto-generated method stub
 		return NTDao.selectBoardDetail(NOTICE_BOARD_NO);
+	}
+
+	@Override
+	public int modifyNoticeBoard(noticeVO noticeVO) {
+		return NTDao.modifyNoticeBoard(noticeVO);
 	}
 
 

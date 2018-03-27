@@ -30,7 +30,7 @@
 						<tr>
 							<td>
 								<div>작성자</div>
-							</td>		
+							</td>	
 							<td colspan="3" class = "tit">
 								${nvo.MB_ID}
 							</td>
@@ -58,6 +58,7 @@
 			<%-- 답변, 수정, 삭제, 목록의 링크를 표시합니다. --%>
 					</tbody>
 				</table>
+				<a href="noticeModifyForm.do?NOTICE_BOARD_NO=${nvo.NOTICE_BOARD_NO}" class="btn btn-primary">수정</a>
 	</div>
 </section>
 
