@@ -1,4 +1,4 @@
-package com.army.movieEro.stCommunity.board.controller;
+package com.army.movieEro.stCommunity.With_board.controller;
 
 import java.util.Locale;
 
