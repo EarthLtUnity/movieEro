@@ -112,7 +112,7 @@
 									<c:param name="NOTICE_BOARD_NO" value="${n.NOTICE_BOARD_NO}"/>
 									<c:param name="page" value="${currentPage}"/>
 								</c:url>
-								<a href="${noticeDetail}">${n.NOTICE_BOARD_TITLE}</a>
+								<a href="./noticeDetail.do?NOTICE_BOARD_NO=${n.NOTICE_BOARD_NO}">${n.NOTICE_BOARD_TITLE}</a>
 							</td>
 							<td align="center">${n.MB_ID}</td>
 							<td align="center">${n.NOTICE_BOARD_DATE}</td>

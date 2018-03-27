@@ -40,4 +40,16 @@ public class noticeDaoImpl implements noticeDao{
 		return sqlSession.selectOne("noticeVO.getListCount");
 	}
 
+	@Override
+	public int addReadCount(int NOTICE_BOARD_NO) {
+		return sqlSession.update("noticeVO.addReadCount",NOTICE_BOARD_NO);
+		
+	}
+
+	@Override
+	public noticeVO selectBoardDetail(int NOTICE_BOARD_NO) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("noticeVO.selectBoardDetail",NOTICE_BOARD_NO);
+	}
+
 }

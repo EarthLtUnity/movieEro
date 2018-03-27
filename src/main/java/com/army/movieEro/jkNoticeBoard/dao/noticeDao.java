@@ -15,5 +15,9 @@ public interface noticeDao {
 
 	public int getListCount();
 
+	public int addReadCount(int NOTICE_BOARD_NO);
+
+	public noticeVO selectBoardDetail(int NOTICE_BOARD_NO);
+
 
 }

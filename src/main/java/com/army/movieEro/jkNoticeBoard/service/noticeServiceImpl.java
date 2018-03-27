@@ -36,6 +36,18 @@ public class noticeServiceImpl implements noticeService{
 		return NTDao.getListCount();
 	}
 
+	@Override
+	public void addReadCount(int NOTICE_BOARD_NO) {
+		NTDao.addReadCount(NOTICE_BOARD_NO);
+		
+	}
+
+	@Override
+	public noticeVO selectBoardDetail(int NOTICE_BOARD_NO) {
+		// TODO Auto-generated method stub
+		return NTDao.selectBoardDetail(NOTICE_BOARD_NO);
+	}
+
 
 	
 }

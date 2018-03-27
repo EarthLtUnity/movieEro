@@ -130,4 +130,32 @@ public class noticeBoardController {
 		}
 		return mv;
 	}
+	
+	//상세보기 맵핑
+	@RequestMapping("noticeDetail.do")
+	public ModelAndView noticeDetail(ModelAndView mv, @RequestParam("NOTICE_BOARD_NO") int NOTICE_BOARD_NO
+			,@RequestParam(value = "page", required = false) Integer page) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		NTService.addReadCount(NOTICE_BOARD_NO);
+		System.out.println("조회수 업데이트 성공");
+		
+		
+		noticeVO noticeVO = NTService.selectBoardDetail(NOTICE_BOARD_NO);
+		System.out.println("상세값 가져오기 성공" + noticeVO);
+		if(noticeVO != null) {
+			System.out.println("상세값 가져오기 성공 뿌려주기 성공" + noticeVO);
+			mv.addObject("noticeVO",noticeVO)
+			.addObject("currentPage",currentPage)
+			.setViewName("jkNoticeBoard/noticeBoardDetail");
+		}else {
+			System.out.println("상세값 가져오기 성공 뿌려주기 실패" + noticeVO);
+			mv.addObject("error","상세조회 실패")
+			.setViewName("redirect:noticeBoardListAdmin");
+		}
+		return mv;
+	}
 }
