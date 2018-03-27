@@ -1,5 +1,8 @@
 package com.army.movieEro.member.dao;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -30,6 +33,11 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int updateMember(MemberVO memberVO) {
 		return sqlSession.update("Member.updateMember", memberVO);
+	}
+
+	@Override
+	public MemberVO selectMemberInfo(String loginId) {
+		return sqlSession.selectOne("Member.selectMemberInfo", loginId);
 	}
 
 }
