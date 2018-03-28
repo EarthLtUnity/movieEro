@@ -3,15 +3,21 @@
 @import url("Seung-tae.css");
 @import url("Tae-kyu.css");
 @import url("Jae-kyeom.css");
+@import url("common_board.css");
 
 /* 서브 공통 */
 *{margin: 0; padding: 0;}
+a{text-decoration: none;}
 .cf:after{display: block; content: ''; clear: both;}
 .c_orange{color: #fb802d;}
 
 .sub_content{padding: 100px 50px;}
 .sub_content input{color: #333;}
+.sub_content .form-control{margin: 0;}
 .sub_content .form-control[readonly] {border: none; background-color: #e6e6ee 6px;}
+.sub_content .btn{vertical-align: middle;}
+
+.sub_content .sub_tit{text-align: center;}
 
 .common_bgc{background: #e7e7e7;}
 .common_fc{color: #fb802d;}
@@ -41,15 +47,17 @@
 
 /* 마이페이지 */
 .mypage_wrap{background: url(../images/bg/bg_black_rhombus.jpg) 0 0 no-repeat;}
-.mypage_wrap h2{text-align: center; color: #fff; padding-top: 50px;}
+.mypage_wrap .sub_tit{color: #fff; padding-top: 50px;}
 .mypage_wrap .mypage_grid{margin-top: 30px; height: 683px; background-color: #fff;}
 
 /* 영화결제내역 */
 .mypage_wrap .mypage_grid .lft_mypage_box{color:#333;}
 .mypage_wrap .mypage_grid .lft_mypage_box>ul>li{margin-bottom: 10px; border: 1px solid #dcdcdc; box-sizing:border-box; text-align: center;}
+.mypage_wrap .mypage_grid .lft_mypage_box>ul>li .mypage_user_pic{}
+.mypage_wrap .mypage_grid .lft_mypage_box>ul>li .mypage_user_pic img{max-width:225px; width: 100%;}
 .mypage_wrap .mypage_grid .lft_mypage_box>ul>li>a{display: block; padding: 10px 0;}
 .mypage_wrap .mypage_grid .lft_mypage_box>ul>li>a strong{font-size: 30px;}
-.mypage_wrap .mypage_grid .rgh_mypage_box{overflow-y: scroll; height: 683px;}
+.mypage_wrap .mypage_grid .rgh_mypage_box{overflow-y: scroll; height: 683px; background-color: #fff;}
 .mypage_wrap .mypage_grid .rgh_mypage_box>ul>li{padding: 20px 0; border-bottom: 1px solid #000;}
 .mypage_wrap .mypage_grid .rgh_mypage_box li a{display: block; color: #333;}
 .mypage_wrap .mypage_grid .rgh_mypage_box li>div{float: left;}

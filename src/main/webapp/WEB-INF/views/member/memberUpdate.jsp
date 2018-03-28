@@ -10,7 +10,7 @@
 <section class="sub_content member_join_wrap">
 	<div class="container">
 		<div class="row">               
-			<h2 class="sub_tit">회원수정</h2>
+			<h1 class="sub_tit">회원수정</h1>
 			<div class="sub_page join_page">
 				<form action="./memberModify.do" method="post" id="frmMembermodi" name="frmMembermodi">
 					<div class="form-group">
@@ -53,7 +53,7 @@
 					</div>
 					<div class="text-right">
 						<button type=button id="btnJoin" class="btn">회원정보수정</button>
-						<a href="./" class="btn">메인화면</a>
+						<a href="mypage.do" class="btn">마이페이지</a>
 					</div>
 				</form>
 	

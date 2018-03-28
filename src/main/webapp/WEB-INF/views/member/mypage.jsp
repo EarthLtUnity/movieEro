@@ -5,7 +5,7 @@
 <section class="sub_content mypage_wrap">
 	<div class="container">
 		<div class="row">               
-			<h2 class="sub_tit">영화결제내역</h2>
+			<h1 class="sub_tit">영화결제내역</h1>
 			<div class="sub_page mypage_grid">
 				<div class="lft_mypage_box col-md-3 col-sm-5 col-xs-12">
 					<jsp:include page="../inc/mypage_menu.jsp" flush="false" />

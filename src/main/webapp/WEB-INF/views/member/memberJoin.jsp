@@ -5,7 +5,7 @@
 <section class="sub_content member_join_wrap">
 	<div class="container">
 		<div class="row">               
-			<h2 class="sub_tit">회원가입</h2>
+			<h1 class="sub_tit">회원가입</h1>
 			<div class="sub_page join_page">
 				<form action="./memberInsert.do" method="post" id="frmMemberJoin" name="frmMemberJoin">
 					<div class="form-group">
