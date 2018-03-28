@@ -3,7 +3,7 @@
 
 <ul>
 	<li>
-		<div>
+		<div class="mypage_user_pic">
 			<img src="images/common/ico_person.png" alt="" />
 		</div>
 		<p>김종민 님 / <a href="memberModifyForm.do">회원정보수정</a></p>

@@ -1,0 +1,21 @@
+@charset "UTF-8";
+/* 게시판 리스트 */
+.common_board_list th, .common_board_list td{text-align: center;}
+.common_board_list .tit{text-align: left;}
+.tr_th th{background: #fb802d; color: #fff; font-size: 14px;}
+.mb30{margin-bottom: 30px;}
+.mb40{margin-bottom: 40px;}
+.mb50{margin-bottom: 50px;}
+
+/* 게시판 뷰 */
+.common_board_view{border-bottom: 1px solid #ddd;}
+.common_board_view th{text-align: center;}
+
+/* 페이징 */
+.common_board_wrap .post-navigation {display: block; text-align: center;}
+.common_board_wrap .post-navigation ul {padding: 0; list-style-type: none; display: inline-block;}
+.common_board_wrap .post-navigation ul li {float: left; background-color: #191919; margin-right: 9px; border-radius: 50%; transition: all 0.25s ease;}
+.common_board_wrap .post-navigation ul li:hover {background-color: #fb802d;}
+.common_board_wrap .post-navigation ul li:hover a {color: #fff; text-decoration: none;}
+.common_board_wrap .post-navigation ul li a {color: #fb802d; font-size: 16px; padding: 11px; transition: all 0.25s ease;}
+.common_board_wrap .post-navigation ul li a.arrow { font-size: 28px; display: block; padding: 0 8px;}

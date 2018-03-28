@@ -22,5 +22,17 @@ public class TestController {
 	@RequestMapping(value="testJoin.do")
 	public String testInit1(MemberVO memberVO) {
 		return "member/memberJoinComplete";
+	}
+	
+	// 게시판 템플릿 : 리스트
+	@RequestMapping(value="testlist.do")
+	public String testlist(MemberVO memberVO) {
+		return "template/board_list";
+	}	
+	
+	// 게시판 템플릿 : 뷰
+	@RequestMapping(value="testview.do")
+	public String testview(MemberVO memberVO) {
+		return "template/board_view";
 	}	
 }
