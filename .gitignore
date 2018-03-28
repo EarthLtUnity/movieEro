@@ -99,3 +99,5 @@ buildNumber.properties
 
 
 # End of https://www.gitignore.io/api/java,maven,eclipse
+
+*/img/ckeditor/*.jpg

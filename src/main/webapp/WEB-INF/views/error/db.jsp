@@ -6,7 +6,8 @@
 <c:import url="../inc/header.jsp"/>
 <script>
 	alert("데이터베이스 에러가 발생했습니다. 관리자에게 문의하세요");
-	location.href="join.do"
+	history.back();
+	//location.href=""
 </script>			
 
 <section class="sub_content member_join_wrap">

@@ -2,12 +2,18 @@
 /**
 ** 작성자 : 김승태
 *
-** 담당 페이지명 :  
-* Community : boardList.jsp
-*/
-.Seungtae_wrap{}
+** 담당 페이지명 :  boardList.jsp
+** 담당 페이지명 :  boardInsertForm.jsp
 
-/* Community */
+
+
+*/
+
+
+ /***********************
+   boardList.jsp
+  ***********************/
+  
 .Seungtae_wrap .block_board{background: black; word-break:keep-all;}
 .Seungtae_wrap .bg_pale{background:rgba(14, 34, 33, 0.7)}
 .Seungtae_wrap .col-sm-7{width:80%;}
@@ -76,41 +82,115 @@
  
  
  
- 
- 
-.Seungtae_wrap .collapsible {
-    background-color: #777;
-    color: white;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
+ /***********************
+  boardInsertForm.jsp 
+  ***********************/
+  
+ /* insertForm 크기 */
+ .Seungtae_wrap .col-md-6{
+  width:70%;
+  }
+ /* textarea size 조절 */
+.Seungtae_wrap textarea{
+	height:400px;
+} 
+
+/* text 전체 글씨 색 변경 */
+.Seungtae_wrap .inputValidation {
+	color: white;
+	}
+
+.Seungtae_wrap .widget-title {
+    margin-top: 50%;
+
 }
 
-.Seungtae_wrap .collapsible:after {
-    content: '\002B';
-    color: white;
-    font-weight: bold;
-    float: right;
-    margin-left: 5px;
+
+
+select box
+    background-color: transparent;
+    font-family: 'Montserrat-Light';
+    text-transform: none;
+    font-style: normal;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* accordion */
+
+.container1{
+	width:80%;
+	max-width: 600px;
+	margin:50px auto;
+} 
+ 
+a.accordion{
+	width: 100%;
+	background-color:whitesmoke;
+	border: none;
+	outline: none;
+	text-align: left;
+	padding: 15px; 
+	font-size: 18px;
+	cursor: pointer;
+	
 }
 
-.Seungtae_wrap .content1 {
+a.accordion:hover {
+	background-color: #ddd;
+}
+ 
+ 
+.accordion-content{
+	padding: 0 20px;
+	border-left: 1px solid whitesmoke;
+	border-right: 1px solid whitesmoke;
+	max-height: 0;
+	overflow: hidden;
+	
+}
+ 
+ 
+ /*  */
+ 
+ .accordion-content {
     padding: 0 18px;
+    background-color: #00000080;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
-    background-color: #f1f1f1;
 }
  
- .active:after {
-    content: "\2212";
+  .hello-content {
+    padding: 0 18px;
+    background-color: #00000080;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
 }
+ 
 
-.active, .collapsible:hover {
-    background-color: #555;
-}
   

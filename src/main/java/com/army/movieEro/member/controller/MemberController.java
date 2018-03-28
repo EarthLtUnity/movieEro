@@ -3,6 +3,8 @@ package com.army.movieEro.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,28 +12,25 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.army.movieEro.member.service.MemberService;
 import com.army.movieEro.member.vo.MemberVO;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class MemberController {
 
 	@Autowired
-	private MemberService memberService;	
+	private MemberService memberService;
 	
 	// 회원 가입 폼
 	@RequestMapping(value="join.do")
 	public String memberJoin(Model model) {
 		
-		return "member/meberJoin";
+		return "member/memberJoin";
 	}
 	
 	// 회원 아이디 중복검사
@@ -58,15 +57,13 @@ public class MemberController {
 		} catch (Exception e) {
 			return "error/db";
 		}
-		return "member/meberJoinComplete";
+		return "member/memberJoinComplete";
 	}
 	
-	// 회원 로그인
+	// 로그인
 	@RequestMapping(value="login.do")
 	public void memberLogin(@RequestParam Map<String, String> loginInfo, HttpSession session, HttpServletResponse response) {
-		//session.setAttribute("member", memberService.loginMember(memberVO.getMb_id() , memberVO.getMb_passwd()));
-		
-		// 로그인 ajax로 처리해보기
+		// 로그인 ajax로 처리
 		//System.out.println(loginInfo); //{login_id=qwqw, login_pw=asas}
 		String id = loginInfo.get("login_id");
 		String pw = loginInfo.get("login_pw");
@@ -81,6 +78,7 @@ public class MemberController {
 				response.getWriter().write(id);
 				System.out.println(id+" 로그인 완료");
 			} else  {
+				response.getWriter().write("FAIL");
 				System.out.println(id+" 로그인 실패");			
 			}
 		} catch (Exception e) {
@@ -89,11 +87,52 @@ public class MemberController {
 		
 	}	
 
-	// 회원 로그아웃
+	// 로그아웃
 	@RequestMapping(value="signOut.do")
 	public String memberLogOut(HttpSession session) {
 		session.invalidate();
 		return "redirect:./";
 	}
 	
+	// 마이페이지
+	@RequestMapping(value="mypage.do")
+	public String memberPage() {
+		return "member/mypage";
+	}
+
+	// 회원정보 수정폼 이동
+	@RequestMapping(value="memberModifyForm.do")
+	public String memberModifyForm(Model model, HttpSession session) {
+		System.out.println("현재 로그인한 아이디(세션): "+session.getAttribute("member"));
+		String loginId = (String) session.getAttribute("member");
+		if(loginId!=null) {
+			MemberVO memberInfo = memberService.selectMemberInfo(loginId);			
+			model.addAttribute("memberInfo", memberInfo);
+			System.out.println(memberInfo);
+		}
+				
+		return "member/memberUpdate";
+	}
+
+	
+	// 회원정보 수정
+	@RequestMapping(value="memberModify.do")
+	public String memberModify(MemberVO memberVO, HttpSession session, HttpServletResponse response) {
+		int result;
+		response.setContentType("text/html; charset=UTF-8");
+		try {
+			result = memberService.updateMember(memberVO);
+			PrintWriter out = response.getWriter();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error/db";
+		}
+		return "member/memberModiComplete";		
+	}
+	
+	// 위시리스트
+	@RequestMapping(value="wishlist.do")
+	public String wishlistPage() {
+		return "member/wishlist";
+	}
 }

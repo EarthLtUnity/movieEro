@@ -17,16 +17,20 @@
 	SELECT * FROM MEMBER WHERE MB_ID = #{mb_id} and MB_PASSWD = #{mb_passwd}
 </select>
 
+<select id="selectMemberInfo" parameterType="string" resultType="Member">
+	SELECT * FROM MEMBER WHERE MB_ID = #{mb_id}
+</select>
+
+<update id="updateMember" parameterType="Member" flushCache="true" statementType="PREPARED">
+	UPDATE MEMBER SET MB_PASSWD = #{mb_passwd}, MB_NAME = #{mb_name}, 
+	MB_MAIL = #{mb_mail}, MB_MAILDOMAIN = #{mb_maildomain}, MB_PHONE = #{mb_phone} 
+	WHERE MB_ID = #{mb_id} 
+</update>
 <!-- 
 
 <select id="selectOne" parameterType="Member" resultMap="resultMember">
 	SELECT * FROM MEMBER WHERE ID = #{id} and PASSWD = #{passwd}
 </select>
-
-<update id="updateMember" parameterType="Member" flushCache="true" statementType="PREPARED">
-	UPDATE MEMBER SET PASSWD = #{passwd}, EMAIL = #{email}, AGE = #{age},
-		PHONE = #{phone}, ADDRESS = #{address} WHERE ID = #{id}
- </update>
 
 <delete id="deleteMember" parameterType="string" flushCache="true" statementType="PREPARED">
 	DELETE FROM MEMBER WHERE ID = #{userid}

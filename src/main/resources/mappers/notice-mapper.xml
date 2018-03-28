@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="noticeVO">
+
+	<!-- 게시글 등록 -->
+	<insert id="insertNoticeBoard" parameterType = "noticeVO">
+		INSERT INTO NOTICE_BOARD VALUES ( #{MB_ID}, #{NOTICE_BOARD_TITLE},
+		#{NOTICE_BOARD_CONTENT}, SYSDATE, null , 2,2)
+	</insert>
+	<!-- null부분에 소스 수정후에 #{NOTICE_BOARD_PICTURE} 이것으로 변경  -->
+	<!-- 게시글 조회 (관리자 페이지) -->
+	<select id="selectList" resultType="noticeVO">
+		SELECT * FROM NOTICE_BOARD ORDER BY NOTICE_BOARD_DATE DESC
+	</select>
+	
+	<select id="selectOne" parameterType="noticeVO" resultType="_int">
+		SELECT * FROM BOARD WHERE BOARD_NUM = #{NOTICE_BOARD_NO}
+	</select>
+	
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*) FROM NOTICE_BOARD
+	</select>
+	
+	<select id="selectListAdmin" resultType="noticeVO">
+		SELECT * FROM NOTICE_BOARD ORDER BY NOTICE_BOARD_DATE DESC
+	</select>
+	
+	<update id="addReadCount">
+		UPDATE NOTICE_BOARD SET NOTICE_BOARD_READCNT = (NOTICE_BOARD_READCNT + 1) WHERE NOTICE_BOARD_NO = #{NOTICE_BOARD_NO}
+	</update> 
+	
+	<select id="selectBoardDetail" parameterType="_int" resultType="noticeVO">
+		SELECT * FROM NOTICE_BOARD WHERE NOTICE_BOARD_NO = #{NOTICE_BOARD_NO}
+	</select>
+	
+	<update id="modifyNoticeBoard" parameterType = "noticeVO">
+		UPDATE BOARD_NOTICE SET NOTICE_BOARD_TITLE = #{NOTICE_BOARD_TITLE}, NOTICE_BOARD_CONTENT = #{NOTICE_BOARD_CONTENT} WHERE NOTICE_BOARD_NO = #{NOTICE_BOARD_NO}
+	</update>
+</mapper>
+
+
+<!-- 
+	NOTICE_BOARD
+"MB_ID" VARCHAR2(30 BYTE) NOT NULL ENABLE, 
+	"NOTICE_BOARD_TITLE" VARCHAR2(200 BYTE), 
+	"NOTICE_BOARD_CONTENT" VARCHAR2(500 BYTE), 
+	"NOTICE_BOARD_DATE" DATE, 
+	"NOTICE_BOARD_PICTURE" VARCHAR2(200 BYTE), 
+	"NOTICE_BOARD_READCNT" NUMBER, 
+	"NOTICE_BOARD_NO" NUMBER,  -->

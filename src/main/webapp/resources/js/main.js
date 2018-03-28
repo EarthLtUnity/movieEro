@@ -97,8 +97,7 @@ pwValidator.excute();
 
 // nullValidator : null값 없는지 체크
 var nullValidator = {
-	//frm : '#frmMemberJoin',
-	frm : '',
+	frm : '', // 파라미터를 유동적 타겟으로 설정
 	excute : function(frm) {
 		var that = this;
 		this.frm = frm;
@@ -106,13 +105,22 @@ var nullValidator = {
 			$('#mb_mailDomain').val($(this).val());
 		});
 		$('#btnJoin').on('click', function() {
-			if($(that.frm+' #mb_id').val()=='') {
-				alert('아이디를 입력해주세요');
-				$(that.frm+' #mb_id').focus();
-			} else if (valiStep1===false) {
-				alert('중복된 아이디가 존재합니다. 다른 아이디를 입력해주세요');
-				$(that.frm+' #mb_id').focus();
-			} else if ($(that.frm+' #mb_passwd').val()=='') {
+			// 회원가입의 경우 중복 아이디 검사
+			if(frm==="#frmMemberJoin") {
+				if($(that.frm+' #mb_id').val()==='') {
+					alert('아이디를 입력해주세요');
+					$(that.frm+' #mb_id').focus();
+				} else if (valiStep1===false || $(that.frm+' #mb_id').val()==='FAIL') {
+					alert('중복된 아이디가 존재합니다. 다른 아이디를 입력해주세요');
+					$(that.frm+' #mb_id').focus();
+				}				
+			} else{
+				valiStep1=true;
+				//alert("회원정보수정");
+			} 
+			// 회원가입과 회원정보수정 모두 수행
+			
+			if ($(that.frm+' #mb_passwd').val()=='') {
 				alert('비밀번호를 입력해주세요');
 				$(that.frm+' #mb_passwd').focus();
 			} else if ($(that.frm+' #mb_passwdChk').val()=='') {
@@ -138,18 +146,20 @@ var nullValidator = {
 				$(that.frm+' #mb_phone').focus();
 			} else if(valiStep1===true&&valiStep2===true){
 				$(that.frm).submit();						
-			}
-							
+			}				
+				
 		});
 	}
 };
 // 정규표현식으로 현재 컨트롤러 구분해서 nullValidator의 메서드 실행
 var nowUrl = location.href;
+// 회원가입
 if (/join.do/.exec(nowUrl) != null){
 	nullValidator.excute('#frmMemberJoin');
-} /*else if (/memberModi.do/.exec(location.href) != null){
-	nullValidator.excute('#frmMemberModi');
-}*/
+// 회원정보수정폼
+} else if (/memberModifyForm.do/.exec(location.href) != null){
+	nullValidator.excute('#frmMembermodi');
+}
 
 
 /* 로그인 */
@@ -163,11 +173,16 @@ var loginAjax = {
 				url: 'login.do',
 				data: {login_id : $("#login_id").val(), login_pw : $("#login_pw").val()},
 				success: function(member_id) {
-					alert(member_id+"님 환영합니다");
-					// ajax로 로그인 성공시 모달창 닫고 로그인 버튼 없애고 로그아웃 버튼 생성
-					$('#loginPopup').modal('hide');
-					$('#beforeLoginMenu').hide();
-					$('#ajaxLoginMenu').show();
+					if(member_id !== "FAIL") {
+						alert(member_id+"님 환영합니다");
+						// ajax로 로그인 성공시 모달창 닫고 로그인 버튼 없애고 로그아웃 버튼 생성
+						$('#loginPopup').modal('hide');
+						$('#beforeLoginMenu').hide();
+						$('#ajaxLoginMenu').show();	
+						$('#ajaxLoginId').text(member_id);
+					} else{
+						alert("일치하는 회원정보가 없습니다")
+					}
 				}
 			});
 		});
