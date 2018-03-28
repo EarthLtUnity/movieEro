@@ -18,6 +18,60 @@ var navMenu = {
 };
 navMenu.excute();
 
+/* Footer */
+var footer ={
+	$ipt_view : $('.ipt_view'),
+	$ipt_btn : $('.ipt_btn'),
+	excute : function() {
+		var that = this;
+		// 스르륵 움직이는 뉴스레터
+		$('.ipt_view input').on('click', function(){
+			that.$ipt_view.animate({'top':'-77px'},300);
+			that.$ipt_btn.animate({'top':'-52px'},300);
+			return false;
+		});	
+		$('#wrap').on('click', function(){
+			var $target = $('.ipt_wrap');
+
+			if(!$target.is(event.target) && $target.has(event.target).length === 0){
+				that.$ipt_view.animate({'top':'-26px'}, 300);
+				that.$ipt_btn.animate({'top':'0px'},300);
+			}
+		});	
+		// 뉴스레터 유효성 검사
+		$('#btnNewletter').on('click', function(){
+
+			var $email = $('.eNewsletter');
+			var $warningTxt = $('.ipt_view p');
+			var exptext = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+			var $postCode = $('.zipPost');
+
+			if( !$email.val() ) {
+
+				$warningTxt.css('visibility', 'visible');
+				$warningTxt.text('이메일을 입력해주세요');
+				$email.focus();
+				return false;
+
+			} else if(!exptext.test( $email.val() )){
+
+				$warningTxt.css('visibility', 'visible');
+				$warningTxt.text('유효하지 않은 이메일 양식입니다. 다시 입력해주세요');
+				$email.focus();
+				return false;
+
+			} else if( !$postCode.val() ) {
+				$warningTxt.text('우편번호를 입력해주세요');
+
+			} else{
+				$warningTxt.css('visibility', 'hidden');
+				$(this).submit();
+			}
+
+		});		
+	}
+};
+footer.excute();
 
 /* 회원가입 */
 // 셀렉트박스로 이메일 도메인 선택시 자동 입력
