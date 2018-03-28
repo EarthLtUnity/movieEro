@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="QnA">
+
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*) FROM RENTAL_MOVIE_BOARD
+	</select>
+
+	<select id="selectList" resultType="QnABoard">
+		SELECT * FROM RENTAL_MOVIE_BOARD ORDER BY RENTAL_BOARD_NO
+	</select>
+
+	<select id="selectBoard" resultType="QnABoard">
+		SELECT * FROM RENTAL_MOVIE_BOARD WHERE RENTAL_BOARD_NO = #{RENTAL_BOARD_NO}
+	</select>
+
+	<insert id="insertBoard" >
+				INSERT INTO RENTAL_MOVIE_BOARD VALUES (
+				#{RENTAL_BOARD_TITLE},SYSDATE,#{RENTAL_BOARD_CONTENT},rental_movie_board_sq.nextval,#{MB_ID}
+				)
+	</insert>
+
+
+	<update id="updateBoard">
+		UPDATE RENTAL_MOVIE_BOARD
+		SET RENTAL_BOARD_TITLE = #{RENTAL_BOARD_TITLE}, 
+		RENTAL_BOARD_CONTENT = #{RENTAL_BOARD_CONTENT}
+		WHERE RENTAL_BOARD_NO = #{RENTAL_BOARD_NO}
+	</update>
+
+		<delete id="deleteBoard">
+		DELETE FROM RENTAL_MOVIE_BOARD WHERE RENTAL_BOARD_NO = #{RENTAL_BOARD_NO}
+  	</delete> 
+</mapper>
