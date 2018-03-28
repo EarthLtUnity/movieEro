@@ -10,14 +10,14 @@
 	<typeAliases>		
 		<typeAlias type="com.army.movieEro.member.vo.MemberVO" alias="Member"/>
 		<typeAlias type="com.army.movieEro.jkNoticeBoard.vo.noticeVO" alias="noticeVO"/>
-<!-- 		<typeAlias type="org.kh.firstSpring.notice.model.vo.Notice" alias="Notice"/>
-		<typeAlias type="org.kh.firstSpring.board.model.vo.Board" alias="Board"/> -->
+		<typeAlias type="com.army.movieEro.rentalQnA.vo.RentalQnAVO" alias="QnABoard"/>
+		<typeAlias type="com.army.movieEro.rentalQnA.vo.RentalQnAReplyVO" alias="QnARelplyBoard"/>
 	</typeAliases>
 	
 	<mappers>
  		<mapper resource="mappers/member-mapper.xml"/>
  		<mapper resource="mappers/notice-mapper.xml"/>
-<!--		<mapper resource="mappers/notice-mapper.xml"/>
-		<mapper resource="mappers/board-mapper.xml"/> -->
+ 		<mapper resource="mappers/qnaBoard-mapper.xml"/>
+ 		<mapper resource="mappers/qnaReplyBoard-mapper.xml"/>
 	</mappers>
 </configuration>

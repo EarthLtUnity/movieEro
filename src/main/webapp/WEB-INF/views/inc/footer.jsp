@@ -148,6 +148,7 @@
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/packages.min.js"></script>
     <script type="text/javascript" src="js/scripts.min.js"></script>
-<!-- jQuery easing plugin -->
+	<!-- jQuery plugin -->
+	<script src="resources/api/ckeditor/ckeditor.js"></script>
 </body>
 </html>
