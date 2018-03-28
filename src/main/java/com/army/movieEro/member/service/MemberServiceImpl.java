@@ -1,5 +1,8 @@
 package com.army.movieEro.member.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +28,15 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO loginMember(String id, String passwd) {
 		return memberDao.loginMember(id, passwd);
+	}
+
+	@Override
+	public int updateMember(MemberVO memberVO) {
+		return memberDao.updateMember(memberVO);
+	}
+
+	@Override
+	public MemberVO selectMemberInfo(String loginId) {
+		return memberDao.selectMemberInfo(loginId);
 	}
 }
