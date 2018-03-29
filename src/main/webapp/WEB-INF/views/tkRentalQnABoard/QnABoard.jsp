@@ -37,7 +37,7 @@
 					<h3>문의 게시판</h3>
 					<div >
 					<ol>
-					<li>강남지점 강남지점 강남지점 강남지점 강남지점</li></ol>
+					<li 강남지점 강남지점 강남지점 강남지점>강남지점</li></ol>
 					</div>
 					<ul class="wpc-box-list">
 						<c:forEach var="b" items="${list}">

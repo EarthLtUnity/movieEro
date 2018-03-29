@@ -28,13 +28,13 @@ public class RentalQnAReplyServiceImpl implements RentalQnAReplyService {
 	@Override
 	public int updateBoard(RentalQnAReplyVO b) {
 		// TODO Auto-generated method stub
-		return 0;
+		return rentalQnAReplyDaoImpl.updateBoard(b);
 	}
 
 	@Override
 	public int deleteBoard(int boardNum) {
 		// TODO Auto-generated method stub
-		return 0;
+		return rentalQnAReplyDaoImpl.deleteBoard(boardNum);
 	}
 	public int getListCount(int boardNum) {
 		// TODO Auto-generated method stub

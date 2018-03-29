@@ -13,8 +13,17 @@ public class RentalQnAVO {
 	private int RENTAL_BOARD_NO;
 	private String MB_ID;
 	private int RENTAL_REPLY;
+	private String RENTAL_BOARD_POINT;
 	
 
+
+	public String getRENTAL_BOARD_POINT() {
+		return RENTAL_BOARD_POINT;
+	}
+
+	public void setRENTAL_BOARD_POINT(String rENTAL_BOARD_POINT) {
+		RENTAL_BOARD_POINT = rENTAL_BOARD_POINT;
+	}
 
 	public int getRENTAL_REPLY() {
 		return RENTAL_REPLY;

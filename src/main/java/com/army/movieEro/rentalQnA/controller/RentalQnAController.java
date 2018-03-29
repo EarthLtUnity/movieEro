@@ -5,28 +5,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -227,9 +217,10 @@ public class RentalQnAController {
 	    
 	    @RequestMapping("list.do") //댓글 리스트
 	    @ResponseBody
-	    private ArrayList<RentalQnAReplyVO> mCommentServiceList(Model model,@RequestParam("RENTAL_BOARD_RE_NO") int bno) throws Exception{
-	        ArrayList<RentalQnAReplyVO> list = rentalQnAReplyServiceImpl.selectList(bno);
-	        return list;
+	    private ArrayList<RentalQnAReplyVO> mCommentServiceList(ModelAndView mv,@RequestParam("RENTAL_BOARD_RE_NO") int bno) throws Exception{
+	    	System.out.println(bno);
+	    	ArrayList<RentalQnAReplyVO> replylist = rentalQnAReplyServiceImpl.selectList(bno);
+	        return replylist;
 	        
 	    }
 	    
@@ -244,20 +235,20 @@ public class RentalQnAController {
 	    
 	    @RequestMapping("update.do") //댓글 수정  
 	    @ResponseBody
-	    private int mCommentServiceUpdateProc(@RequestParam int cno, @RequestParam String content) throws Exception{
+	    private int mCommentServiceUpdateProc(@RequestParam("RENTAL_BOARD_REPLY_NO") int no, @RequestParam("RENTAL_BOARD_REPLY_CONTENT") String str) throws Exception{
 	        
 	    	RentalQnAReplyVO comment = new RentalQnAReplyVO();
-	        comment.setRENTAL_BOARD_REPLY_NO(cno);
-	        comment.setRENTAL_BOARD_REPLY_CONTENT(content);
+	        comment.setRENTAL_BOARD_REPLY_NO(no);
+	        comment.setRENTAL_BOARD_REPLY_CONTENT(str);
 	        
 	        return rentalQnAReplyServiceImpl.updateBoard(comment);
 	    }
 	    
-	    @RequestMapping("delete.do/{cno}") //댓글 삭제  
+	    @RequestMapping("delete.do") //댓글 삭제  
 	    @ResponseBody
-	    private int mCommentServiceDelete(@PathVariable int cno) throws Exception{
-	        
-	        return rentalQnAReplyServiceImpl.deleteBoard(cno);
+	    private int mCommentServiceDelete(@RequestParam("RENTAL_BOARD_REPLY_NO") int no) throws Exception{
+	        System.out.println(no+"여기까지오나?");
+	        return rentalQnAReplyServiceImpl.deleteBoard(no);
 	    }
 	    
 	}

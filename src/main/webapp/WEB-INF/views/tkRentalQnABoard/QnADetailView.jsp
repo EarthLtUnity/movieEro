@@ -20,8 +20,7 @@ var bno = '${board.RENTAL_BOARD_NO}'; //게시글 번호
 var bname = '${member}';
 $(function(){
 	$('[name=commentInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시 
-	    var insertData = $('#RENTAL_BOARD_REPLY_CONTENT').attr('content'); 
-	    console.log(insertData+"이거왜안나와");
+	    var insertData = $('#RENTAL_BOARD_REPLY_CONTENT').val();   
 	    commentInsert(insertData); //Insert 함수호출(아래)
 	});
 });
@@ -32,15 +31,16 @@ function commentList(){
         url : 'list.do',
         type : 'get',
         data : {RENTAL_BOARD_RE_NO:bno},
-        success : function(data){
+        success : function(replylist){
+        
             var a =''; 
-            for(var i = 0; i<data.length; i++){
+            for(var i = 0; i<replylist.length; i++){
                 a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-                a += '<div class="commentInfo'+data.RENTAL_BOARD_RE_NO+'">'+'댓글번호 : '+data.RENTAL_BOARD_RE_NO+' / 작성자 : '+data.MB_ID
-                     +' /작성일자:'+data.RENTAL_BOARD_REPLY_DATE;
-                a += '<a onclick="commentUpdate('+data.RENTAL_BOARD_RE_NO+',\''+data.RENTAL_BOARD_REPLY_CONTENT+'\');"> 수정 </a>';
-                a += '<a onclick="commentDelete('+data.RENTAL_BOARD_RE_NO+');"> 삭제 </a> </div>';
-                a += '<div class="commentContent'+data.RENTAL_BOARD_RE_NO+'"> <p> 내용 : '+data.RENTAL_BOARD_REPLY_CONTENT +'</p>';
+                a += '<div class="commentInfo'+replylist[i].rental_BOARD_REPLY_NO+'">'+'댓글번호 : '+replylist[i].rental_BOARD_REPLY_NO+' / 작성자 : '+replylist[i].mb_ID
+                     +' /작성일자:'+replylist[i].rental_BOARD_REPLY_DATE;
+                a += '<a onclick="commentUpdate('+replylist[i].rental_BOARD_REPLY_NO+',\''+replylist[i].rental_BOARD_REPLY_CONTENT+'\');"> 수정 </a>';
+                a += '<a onclick="commentDelete('+replylist[i].rental_BOARD_REPLY_NO+');"> 삭제 </a> </div>';
+                a += '<div class="commentContent'+replylist[i].rental_BOARD_REPLY_NO+'"> <p> 내용 : '+replylist[i].rental_BOARD_REPLY_CONTENT +'</p>';
                 a += '</div></div>';
             }
          
@@ -68,38 +68,45 @@ function commentInsert(insertData){
 }
  
 //댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
-function commentUpdate(cno, content){
+function commentUpdate(RENTAL_BOARD_REPLY_NO, RENTAL_BOARD_REPLY_CONTENT){
     var a ='';
     
     a += '<div class="input-group">';
-    a += '<input type="text" class="form-control" name="content_'+cno+'" value="'+content+'"/>';
-    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+cno+');">수정</button> </span>';
+    a += '<input type="text" class="form-control" name="content_'+RENTAL_BOARD_REPLY_NO+'" value="'+RENTAL_BOARD_REPLY_CONTENT+'"/>';
+    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+RENTAL_BOARD_REPLY_NO+');">수정</button> </span>';
     a += '</div>';
     
-    $('.commentContent'+cno).html(a);
+    $('.commentContent'+RENTAL_BOARD_REPLY_NO).html(a);
     
 }
 
 //댓글 수정
-function commentUpdateProc(cno){
-    var updateContent = $('[name=content_'+cno+']').val();
-    
+function commentUpdateProc(RENTAL_BOARD_REPLY_NO){
+	
+    var updateContent = $('[name=content_'+ RENTAL_BOARD_REPLY_NO+']').val();
+	console.log("이거출력이되나");
+	console.log(RENTAL_BOARD_REPLY_NO); 
+	console.log(updateContent);
     $.ajax({
         url : 'update.do',
         type : 'post',
-        data : {'content' : updateContent, 'cno' : cno},
+        data : {'RENTAL_BOARD_REPLY_CONTENT' : updateContent, 
+        	    'RENTAL_BOARD_REPLY_NO' : RENTAL_BOARD_REPLY_NO},
         success : function(data){
+        	alert("수정되었습니다.");
             if(data == 1) commentList(bno); //댓글 수정후 목록 출력 
         }
     });
 }
 
 //댓글 삭제 
-function commentDelete(cno){
+function commentDelete(RENTAL_BOARD_REPLY_NO){
     $.ajax({
-        url : 'delete.do/'+cno,
+        url : 'delete.do',
         type : 'post',
+        data : {'RENTAL_BOARD_REPLY_NO' : RENTAL_BOARD_REPLY_NO},
         success : function(data){
+        	alert("삭제되었습니다.");
             if(data == 1) commentList(bno); //댓글 삭제후 목록 출력 
         }
     });
