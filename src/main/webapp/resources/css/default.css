@@ -279,7 +279,7 @@ header#header .header_author a:hover {
   color: #fb802d;
 }
 header#header .header_author {
-  margin-left: 50px;
+  /*margin-left: 50px;*/
 }
 header#header .header_author:after {
   content: '|';
