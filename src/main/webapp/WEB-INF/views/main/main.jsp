@@ -349,7 +349,7 @@
     <div class="section-content service pvb0">
 		<div class="container">
 		
-			<article class="main_box3">
+			<article class="main_box3 col-sm-7">
 				<h1>NEWS</h1>
 				<div class="main_news">
 					<div class="ofs_box">
@@ -442,6 +442,25 @@
 					</div>
 				</div>
 			</article>		
+
+			<article id="chatBox" class="col-sm-4 pull-right">
+			    <h1 class="sr-only">채팅창</h1>
+			    <div class="frame">
+			        <ul id="asynMsg"></ul>
+			        <div>
+			            <div class="msj-rta macro">                        
+			                <div class="text text-r" style="background:whitesmoke !important">
+			                    <input id="iptText" class="mytext" placeholder="메세지를 입력해주세요"/>
+			                </div> 
+			
+			            </div>
+			            <div style="padding:10px;">
+			                <span id="btnMsgSend" class="glyphicon glyphicon-share-alt"></span>
+			            </div>                
+			        </div>
+			    </div>
+			</article>  
+
 		
 		</div>
     </div>        
