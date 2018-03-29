@@ -7,7 +7,7 @@
 	<!-- 게시글 등록 -->
 	<insert id="insertNoticeBoard" parameterType = "noticeVO">
 		INSERT INTO NOTICE_BOARD VALUES ( #{MB_ID}, #{NOTICE_BOARD_TITLE},
-		#{NOTICE_BOARD_CONTENT}, SYSDATE, null , 2,2)
+		#{NOTICE_BOARD_CONTENT}, SYSDATE, null , 2,NOTICE_BOARD_SEQ.NEXTVAL)
 	</insert>
 	<!-- null부분에 소스 수정후에 #{NOTICE_BOARD_PICTURE} 이것으로 변경  -->
 	<!-- 게시글 조회 (관리자 페이지) -->
@@ -36,8 +36,20 @@
 	</select>
 	
 	<update id="modifyNoticeBoard" parameterType = "noticeVO">
-		UPDATE BOARD_NOTICE SET NOTICE_BOARD_TITLE = #{NOTICE_BOARD_TITLE}, NOTICE_BOARD_CONTENT = #{NOTICE_BOARD_CONTENT} WHERE NOTICE_BOARD_NO = #{NOTICE_BOARD_NO}
+		UPDATE NOTICE_BOARD SET NOTICE_BOARD_TITLE = '${NOTICE_BOARD_TITLE}', NOTICE_BOARD_CONTENT = '${NOTICE_BOARD_CONTENT}' WHERE NOTICE_BOARD_NO = ${NOTICE_BOARD_NO}
 	</update>
+	
+	<delete id="deleteNoticeBoard" parameterType="_int">
+		DELETE FROM NOTICE_BOARD WHERE NOTICE_BOARD_NO = #{NOTICE_BOARD_NO}
+	</delete>
+	
+	<insert id="noticeReplyAdd" parameterType="noticeReplyVO">
+		INSERT INTO NOTICE_BOARD_REPLY VALUES ('${MB_ID}',${NOTICE_BOARD_NO},'${NOTICE_REPLY_CONTENT}',SYSDATE)
+	</insert>
+	
+	<select id="selectReplyDetail" parameterType = "_int" resultType = "noticeReplyVO">
+		SELECT * FROM NOTICE_BOARD_REPLY WHERE NOTICE_BOARD_NO = #{NOTICE_BOARD_NO}
+	</select>
 </mapper>
 
 

@@ -3,6 +3,7 @@ package com.army.movieEro.jkNoticeBoard.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.army.movieEro.jkNoticeBoard.vo.noticeReplyVO;
 import com.army.movieEro.jkNoticeBoard.vo.noticeVO;
 
 import java.util.ArrayList;
@@ -56,6 +57,24 @@ public class noticeDaoImpl implements noticeDao{
 	public int modifyNoticeBoard(noticeVO noticeVO) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("noticeVO.modifyNoticeBoard",noticeVO);
+	}
+
+	@Override
+	public int deleteNoticeBoard(int NOTICE_BOARD_NO) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("noticeVO.deleteNoticeBoard",NOTICE_BOARD_NO);
+	}
+
+	@Override
+	public int noticeReplyAdd(noticeReplyVO noticeReplyVO) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("noticeVO.noticeReplyAdd",noticeReplyVO);
+	}
+
+	@Override
+	public ArrayList<noticeReplyVO> selectReplyDetail(int NOTICE_BOARD_NO) {
+		// TODO Auto-generated method stub
+		return new ArrayList<noticeReplyVO>(sqlSession.selectList("noticeVO.selectReplyDetail",NOTICE_BOARD_NO));
 	}
 
 }

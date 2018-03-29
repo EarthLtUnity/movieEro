@@ -79,11 +79,11 @@
 			<div class="container wpc-boxoffice pv8"><!-- ㄴㄴ -->
 				<div class = "row">
 					<div class="col-sm-12 col-xs-12">
-						<h2 class = "board_title">중고거래 구매하기 게시판</h2>
-						<form action = "SearchListBuyService.uo" method = "post" class = "text-right">
+						<h2 class = "board_title">공지사항 관리자</h2>
+						<%-- <form action = "SearchListBuyService.uo" method = "post" class = "text-right">
 							<input type = "text" name = "searchList">
 							<input type = "submit" value = "검색" class="btn btn btn-info">
-						</form>
+						</form> --%>
 						<table class="table table-responsive mb50 table-bordered">
 						<caption class="sr-only">게시판 제목</caption>
 						<colgroup>

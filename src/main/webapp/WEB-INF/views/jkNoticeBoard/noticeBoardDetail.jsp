@@ -6,10 +6,10 @@
 <c:import url="../inc/head.jsp" />
 <c:import url="../inc/header.jsp" />
 
-
+<c:set var="rvo" value="${requestScope.noticeReplyVO}"/>
 <c:set var="nvo" value="${requestScope.noticeVO}"/>
 <c:set var="currentPage" value="${requestScope.currentPage}"/>
-
+<c:set var="ID" value="${sessionScope.member}"/>
 
 <section class="block_board" id="board">
 	<div class="Jaekyeom_wrap">
@@ -53,12 +53,47 @@
 							 </textarea>
 
 							</td>			
-						</tr>	
-						
+						</tr>
+						<c:if test="${!empty rvo}">
+							<c:forEach var="reply" items="${rvo}">
+							<tr>
+								<td>
+									${reply.MB_ID}
+								</td>
+								<td colspan = "2">
+									${reply.NOTICE_REPLY_CONTENT}
+								</td>
+								<td>
+								<c:if test="${reply.MB_ID eq ID}">
+									<button >삭제</button>
+								</c:if>
+								</td>
+							</tr>
+							</c:forEach>
+						</c:if>	
 			<%-- 답변, 수정, 삭제, 목록의 링크를 표시합니다. --%>
 					</tbody>
 				</table>
-				<a href="noticeModifyForm.do?NOTICE_BOARD_NO=${nvo.NOTICE_BOARD_NO}" class="btn btn-primary">수정</a>
+				<form action="./noticeReplyInsert.do" method="get" enctype="multipart/form-data">
+					<table>
+						<tr>
+							<td>
+								<div>댓글</div>
+							</td>
+							<td colspan="2">
+							<input type="hidden" name="NOTICE_BOARD_NO" value="${nvo.NOTICE_BOARD_NO}">
+							<input type="hidden" name="MB_ID" value="${nvo.MB_ID}">
+							<input Type="text" name="NOTICE_REPLY_CONTENT">
+							</td>
+							<td>
+							<input type="submit" value="등록">
+							</td>
+						</tr>
+					</table>
+				</form>
+		<a href="noticeModifyForm.do?NOTICE_BOARD_NO=${nvo.NOTICE_BOARD_NO}" class="btn btn-primary">수정</a>
+				<a href="noticeDeleteForm.do?NOTICE_BOARD_NO=${nvo.NOTICE_BOARD_NO}" class="btn btn-primary">삭제</a>
+				<a href="noticeAdmin.do" class="btn btn-primary">목록으로</a>
 	</div>
 </section>
 
