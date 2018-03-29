@@ -12,8 +12,17 @@ public class RentalQnAVO {
 	private String RENTAL_BOARD_CONTENT;
 	private int RENTAL_BOARD_NO;
 	private String MB_ID;
+	private int RENTAL_REPLY;
 	
 
+
+	public int getRENTAL_REPLY() {
+		return RENTAL_REPLY;
+	}
+
+	public void setRENTAL_REPLY(int rENTAL_REPLY) {
+		RENTAL_REPLY = rENTAL_REPLY;
+	}
 
 	public RentalQnAVO() {
 	}

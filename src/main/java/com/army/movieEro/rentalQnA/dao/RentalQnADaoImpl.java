@@ -55,4 +55,6 @@ public class RentalQnADaoImpl implements RentalQnADao {
 	}
 
 
+
+
 }

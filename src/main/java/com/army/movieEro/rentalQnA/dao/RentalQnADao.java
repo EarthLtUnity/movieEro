@@ -18,4 +18,7 @@ public interface RentalQnADao {
 	
 	public int deleteBoard(int boardNum);
 	
+
+	
+	
 }

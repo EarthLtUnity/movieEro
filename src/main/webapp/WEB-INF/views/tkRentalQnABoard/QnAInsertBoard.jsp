@@ -28,12 +28,11 @@
 							
 								<table align="center" id="tb">
 									<tr>
-										<td>제목</td>
-										<td><input type="text" name="RENTAL_BOARD_TITLE"></td>
+										<td>제목:</td>
+										<td><input type="text" name="RENTAL_BOARD_TITLE">
 									</tr>
 									<tr>
 										<td>작성자</td>
-										
 										<td><input type="text" readonly value="${member}" ></td>
 									</tr>
 							<!-- 		<tr>

@@ -19,4 +19,7 @@ public interface RentalQnAService {
 	
 	public int deleteBoard(int boardNum);
 	
+
+
+	
 }

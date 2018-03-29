@@ -13,5 +13,7 @@ public interface RentalQnAReplyDao {
 	
 	public int deleteBoard(int boardNum);
 	
-	public int getListCount();
+	public int getListCount(int boardNum);
+	
+	public RentalQnAReplyVO selectViewList(int bno); 
 }
