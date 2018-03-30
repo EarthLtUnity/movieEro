@@ -21,6 +21,7 @@
 <jsp:include page="../inc/header.jsp" flush="false" />
 
 
+
 <section class="section-content">
 
 	<div class="section-content pvb0 bg-cover"
@@ -34,6 +35,10 @@
 			<div class="row">
 				<div class="col-sm-12 col-xs-12">
 					<h3>문의 게시판</h3>
+					<div >
+					<ol>
+					<li 강남지점 강남지점 강남지점 강남지점>강남지점</li></ol>
+					</div>
 					<ul class="wpc-box-list">
 						<c:forEach var="b" items="${list}">
 							<li class="wpc-box-item">
@@ -52,10 +57,10 @@
 											${b.RENTAL_BOARD_TITLE}
 											</c:if>
 									</li>
-									<c:if test="${listReplyCount>0}">
-									<li class="bx-item-d">답변:${listReplyCount}</li>
+									<c:if test="${b.RENTAL_REPLY>0}">
+									<li class="bx-item-d">답변:${b.RENTAL_REPLY}</li>
 									</c:if>
-									<c:if test="${listReplyCount eq 0}">
+									<c:if test="${b.RENTAL_REPLY eq 0}">
 									<li class="bx-item-d">답변대기중</li>
 									</c:if>
 									<li class="bx-item-m">${b.RENTAL_BOARD_DATE }</li>

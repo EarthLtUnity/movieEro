@@ -4,6 +4,7 @@
  * last update : 18/03/20
  * */
 
+/****************** 메인 페이지 ******************/
 /* 네비게이션 메뉴 */
 var navMenu = {
 	depth1 : $('#headerNav>ul>li'),
@@ -17,6 +18,77 @@ var navMenu = {
 	}
 };
 navMenu.excute();
+
+/* 실시간 채팅 */
+var ClassChat ={
+    me : {},
+    you : {},
+    setImg : function() { // 내 이미지 상대이미지 세팅
+        this.me.avatar = "images/temp_kjm.png";
+        this.you.avatar = "http://via.placeholder.com/48x48";
+    },
+    formatAMPM : function(date) { // 채팅입력시간 저장 메서드
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes < 10 ? '0'+minutes : minutes;
+        var strTime = hours + ':' + minutes + ' ' + ampm;
+        return strTime;
+    },
+    insertChat : function(who, text, time){ // insertChat("주체", "메세지", 시간);
+        this.setImg();
+        if (time === undefined){
+                time = 0;
+            }
+            var control = "";
+            var date = this.formatAMPM(new Date());
+            
+            if (who == "me"){
+                control = '<li style="width:100%">' +
+                                '<div class="msj macro">' +
+                                '<div class="avatar"><img class="img-circle" style="width:100%;" src="'+ this.me.avatar +'" /></div>' +
+                                    '<div class="text text-l">' +
+                                        '<p>'+ text +'</p>' +
+                                        '<p><small>'+date+'</small></p>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</li>';                    
+            }else{
+                control = '<li style="width:100%;">' +
+                                '<div class="msj-rta macro">' +
+                                    '<div class="text text-r">' +
+                                        '<p>'+text+'</p>' +
+                                        '<p><small>'+date+'</small></p>' +
+                                    '</div>' +
+                                '<div class="avatar" style="padding:0px 0px 0px 10px !important"><img class="img-circle" style="width:100%;" src="'+this.you.avatar+'" /></div>' +                                
+                        '</li>';
+            }
+            setTimeout(
+                function(){                        
+                    $("#asynMsg").append(control).scrollTop($("ul").prop('scrollHeight'));
+                }, time);
+    },
+    excute : function() {
+        var that = this;
+        $("#iptText").on("keydown", function(e){
+            if (e.which == 13){
+                var text = $(this).val();
+                if (text !== ""){
+                    that.insertChat("me", text);              
+                    $(this).val('');
+                }
+            }
+        });
+
+        $("#btnMsgSend").on('click', function() {
+            $("#iptText").trigger({type: 'keydown', which: 13, keyCode: 13});
+        })
+    } // end of excute();    
+};
+ClassChat.excute();
+
 
 /* Footer */
 var footer ={
@@ -73,7 +145,8 @@ var footer ={
 };
 footer.excute();
 
-/* 회원가입 */
+
+/****************** 회원가입 ******************/
 // 셀렉트박스로 이메일 도메인 선택시 자동 입력
 var mailCopy = {
 	$selectMail : $('#mb_selectMail'),
@@ -215,8 +288,7 @@ if (/join.do/.exec(nowUrl) != null){
 	nullValidator.excute('#frmMembermodi');
 }
 
-
-/* 로그인 */
+/****************** 로그인 ******************/
 // 로그인 버튼 비동기 처리
 var loginAjax = {
 	$btnLogin : $('#btnLogin'),

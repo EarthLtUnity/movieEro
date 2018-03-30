@@ -15,44 +15,111 @@
 <c:set var="member" value="${sessionScope.member}" />
 <html>
 
-	 <c:url var="replyUpdate" value="RentalBoardDetail.do">
-	<c:param name="bnum" value="${b.RENTAL_BOARD_NO}"/>
-	</c:url>
-	<c:url var="replyDelete" value="RentalBoardDetail.do">
-	<c:param name="bnum" value="${b.RENTAL_BOARD_NO}"/>
-	</c:url>
-				<script>
-    $(document).ready(function(){
-    	listReply2();
-  
-				function listReply2(){
-        			$.ajax({
-         			   type: "get",
-         			   url: "RentalBoardReplyListJson.do?bno=${board.RENTAL_BOARD_NO}",
-         			   success: function(result){
-         		       console.log(result);
-           		        var output = "<ul class="wpc-box-list">";
-                			for(var i in result){
-                		    output += "<li class="wpc-box-item">";
-                		    output += "<ol>";
-		  					output +="<li class="bx-item-c">작성자 : "+result[i].MB_ID+"</li>";
-		   					output +="<li class="bx-item-title">내용:"+result[i].RENTAL_BOARD_TITLE+"</li>";
-		  				    output +="<li class="bx-item-d">"+result[i].RENTAL_BOARD_DATE+"</li>";
-		                    output +="<li class="bx-item-m">";	
-		    			if(result[i].MB_ID.equals(${member}){
-		   				    output +="<a href="${replyUpdate}">수정</a>&nbsp;&nbsp;";
-		   				    output +="<a href="${replyDelete}">삭제</a>";
-		   				 }	
-              			    output += "</ol>";
-                		    output += "</li>";
-                	}
-            			    output += "</ul>";
-                $("#listReply2").html(output);
+<script>
+var bno = '${board.RENTAL_BOARD_NO}'; //게시글 번호
+var bname = '${member}';
+$(function(){
+	$('[name=commentInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시 
+	    var insertData = $('#RENTAL_BOARD_REPLY_CONTENT').val();   
+	    commentInsert(insertData); //Insert 함수호출(아래)
+	});
+});
+
+//댓글 목록 
+function commentList(){
+    $.ajax({
+        url : 'list.do',
+        type : 'get',
+        data : {RENTAL_BOARD_RE_NO:bno},
+        success : function(replylist){
+        
+            var a =''; 
+            for(var i = 0; i<replylist.length; i++){
+                a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+                a += '<div class="commentInfo'+replylist[i].rental_BOARD_REPLY_NO+'">'+'댓글번호 : '+replylist[i].rental_BOARD_REPLY_NO+' / 작성자 : '+replylist[i].mb_ID
+                     +' /작성일자:'+replylist[i].rental_BOARD_REPLY_DATE;
+                a += '<a onclick="commentUpdate('+replylist[i].rental_BOARD_REPLY_NO+',\''+replylist[i].rental_BOARD_REPLY_CONTENT+'\');"> 수정 </a>';
+                a += '<a onclick="commentDelete('+replylist[i].rental_BOARD_REPLY_NO+');"> 삭제 </a> </div>';
+                a += '<div class="commentContent'+replylist[i].rental_BOARD_REPLY_NO+'"> <p> 내용 : '+replylist[i].rental_BOARD_REPLY_CONTENT +'</p>';
+                a += '</div></div>';
             }
-        });
-    }
-   }
+         
+            $(".commentList").html(a);
+        }
+    });
+}
+ 
+//댓글 등록
+function commentInsert(insertData){
+    $.ajax({
+        url : 'insert.do',
+        type : 'post',
+        data : {RENTAL_BOARD_REPLY_CONTENT : insertData,
+        	    RENTAL_BOARD_RE_NO: bno,
+        	    MB_ID : bname	
+        	},
+        success : function(data){
+            if(data == 1) {
+                commentList(); //댓글 작성 후 댓글 목록 reload
+                $('[name=content]').val('');
+            }
+        }
+    });
+}
+ 
+//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
+function commentUpdate(RENTAL_BOARD_REPLY_NO, RENTAL_BOARD_REPLY_CONTENT){
+    var a ='';
+    
+    a += '<div class="input-group">';
+    a += '<input type="text" class="form-control" name="content_'+RENTAL_BOARD_REPLY_NO+'" value="'+RENTAL_BOARD_REPLY_CONTENT+'"/>';
+    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+RENTAL_BOARD_REPLY_NO+');">수정</button> </span>';
+    a += '</div>';
+    
+    $('.commentContent'+RENTAL_BOARD_REPLY_NO).html(a);
+    
+}
+
+//댓글 수정
+function commentUpdateProc(RENTAL_BOARD_REPLY_NO){
+	
+    var updateContent = $('[name=content_'+ RENTAL_BOARD_REPLY_NO+']').val();
+	console.log("이거출력이되나");
+	console.log(RENTAL_BOARD_REPLY_NO); 
+	console.log(updateContent);
+    $.ajax({
+        url : 'update.do',
+        type : 'post',
+        data : {'RENTAL_BOARD_REPLY_CONTENT' : updateContent, 
+        	    'RENTAL_BOARD_REPLY_NO' : RENTAL_BOARD_REPLY_NO},
+        success : function(data){
+        	alert("수정되었습니다.");
+            if(data == 1) commentList(bno); //댓글 수정후 목록 출력 
+        }
+    });
+}
+
+//댓글 삭제 
+function commentDelete(RENTAL_BOARD_REPLY_NO){
+    $.ajax({
+        url : 'delete.do',
+        type : 'post',
+        data : {'RENTAL_BOARD_REPLY_NO' : RENTAL_BOARD_REPLY_NO},
+        success : function(data){
+        	alert("삭제되었습니다.");
+            if(data == 1) commentList(bno); //댓글 삭제후 목록 출력 
+        }
+    });
+}
+ 
+ 
+$(document).ready(function(){
+    commentList();
+});
+ 
+
 </script>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -117,12 +184,32 @@
 						</div>	
 					</div>
 				</form>
-				<div id = "listReply"></div>
+				    <div class="container">
+        <div class="commentList"></div>
+    </div>
+				    <div style="width:650px; text-align: center;">
+        <br>
+  	 		   <div class="container">
+     		   <label for="content">comment</label>
+      	 	   <form name="commentInsertForm">
+               <div class="input-group">
+               <input type="text" class="form-control" id="RENTAL_BOARD_REPLY_CONTENT" name="content" placeholder="내용을 입력하세요.">
+               <span class="input-group-btn">
+               <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
+               </span>
+              </div>
+        </form>
+    </div>
+    
 
-					
+</div>
+ 
+
+    </div>
+
+   			 </div>
 				</div>
-				</div>
-				</div>
+
 </section>
 <jsp:include page="../inc/footer.jsp" flush="false" />
 </body>

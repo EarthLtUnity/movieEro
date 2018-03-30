@@ -49,10 +49,18 @@ public class RentalQnADaoImpl implements RentalQnADao {
 	}
 
 	@Override
+	public int getListCount(String point) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("QnA.getPointListCount");
+	}
+
+	@Override
 	public int getListCount() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("QnA.getListCount");
 	}
+
+
 
 
 }

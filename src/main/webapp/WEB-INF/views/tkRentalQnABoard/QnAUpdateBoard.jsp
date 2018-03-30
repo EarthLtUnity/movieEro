@@ -65,7 +65,7 @@
 												
 											</c:url> 
 											
-											<a href="${RentalBoardList}"><input type="button" value="목록으로"></a></td>
+											<a href="${RentalBoardList}"><input type="button" value="취소하기"></a></td>
 									</tr>
 								</table>
 							</div>
