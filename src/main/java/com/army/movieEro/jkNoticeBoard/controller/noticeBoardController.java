@@ -84,6 +84,9 @@ public class noticeBoardController {
 		return mv;
 	}
 
+	
+	
+	
 	// 리스트에서 글쓰기위해 글쓰기 버튼 클릭시 작동하는 컨트롤러
 	@RequestMapping(value = "noticeInsertForm.do")
 	public String testInitInsertForm(Model model) {
