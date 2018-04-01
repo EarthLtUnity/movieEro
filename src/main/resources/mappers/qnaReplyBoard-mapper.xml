@@ -3,28 +3,37 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="QnAReply">
+<!-- <resultMap type="QnARelplyBoard" id="resultTest">
+ <id column="RENTAL_BOARD_REPLY_NO" property="RENTAL_BOARD_REPLY_NO"/>
+ <result column="RENTAL_BOARD_REPLY_CONTENT" property="RENTAL_BOARD_REPLY_CONTENT"/>
+ <result column="RENTAL_BOARD_RE_NO" property="RENTAL_BOARD_RE_NO"/>
+ <result column="MB_ID" property="MB_ID"/>
+ <result column="RENTAL_BOARD_REPLY_DATE" property="RENTAL_BOARD_REPLY_DATE"/>
+</resultMap> -->
 
 	<select id="selectCount " resultType="_int">
-		SELECT COUNT(*) FROM RENTAL_MOVIE_BOARD_REPLY
+		SELECT COUNT(*) FROM RENTAL_MOVIE_BOARD_REPLY WHERE RENTAL_BOARD_REPLY_NO = #{RENTAL_BOARD_REPLY_NO}
 	</select>
 	
-	<select id="selectList" resultType="QnARelplyBoard">
-		SELECT * FROM RENTAL_MOVIE_BOARD WHERE RENTAL_BOARD_NO = ${RENTAL_BOARD_NO} 
+	<select id="selectList" parameterType="_int" resultType="QnARelplyBoard">
+		SELECT * FROM RENTAL_MOVIE_BOARD_REPLY WHERE RENTAL_BOARD_RE_NO = #{RENTAL_BOARD_RE_NO}
+	</select>
+	
+	<select id="selectViewList">
+		SELECT * FROM RENTAL_MOVIE_BOARD_REPLY WHERE RENTAL_BOARD_REPLY_NO = #{RENTAL_BOARD_REPLY_NO}
 	</select>
 	
 	<delete id="deleteReply">
-		DELETE RENTAL_MOVIE_BOARD WHERE RENTAL_BOARD_REPLY_NO  = ${RENTAL_BOARD_REPLY_NO} 
+		DELETE RENTAL_MOVIE_BOARD_REPLY WHERE RENTAL_BOARD_REPLY_NO  = #{RENTAL_BOARD_REPLY_NO} 
 	</delete>
 	
-	<update id="updateReply">
-		UPDATE RENTAL_MOVIE_BOARD 
-		SET RENTAL_BOARD_REPLY_TITLE = ${RENTAL_BOARD_REPLY_TITLE} 
-		WHERE RENTAL_BOARD_NO = ${RENTAL_BOARD_NO}
+	<update id="updateReply" parameterType="QnARelplyBoard">
+		UPDATE RENTAL_MOVIE_BOARD_REPLY 
+		SET RENTAL_BOARD_REPLY_CONTENT = #{RENTAL_BOARD_REPLY_CONTENT} 
+		WHERE RENTAL_BOARD_REPLY_NO  = #{RENTAL_BOARD_REPLY_NO} 
 	</update>
 
-	<insert id="insertReply">
-		INSERT INTO RENTAL_MOVIE_BOARD
-		VALUES(${RENTAL_BOARD_REPLY_TITLE},rental_movie_replyboard_sq.nextval,
-		${RENTAL_BOARD_NO},${MB_ID},SYSDATE)
+	<insert id="insertReply" parameterType="QnARelplyBoard">
+		INSERT INTO RENTAL_MOVIE_BOARD_REPLY VALUES(#{RENTAL_BOARD_REPLY_CONTENT}, rental_movie_replyboard_sq.nextval, #{RENTAL_BOARD_RE_NO}, #{MB_ID}, SYSDATE)
 	</insert>
 </mapper>

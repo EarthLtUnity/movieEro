@@ -6,7 +6,7 @@ import com.army.movieEro.rentalQnA.vo.RentalQnAVO;
 
 public interface RentalQnADao {
 
-	public int getListCount();
+	public int getListCount(String point);
 	
 	public ArrayList<RentalQnAVO> selectList(int currentPage, int limit);
 	
@@ -17,5 +17,8 @@ public interface RentalQnADao {
 	public int updateBoard(RentalQnAVO b);
 	
 	public int deleteBoard(int boardNum);
+	
+	public int getListCount();
+	
 	
 }

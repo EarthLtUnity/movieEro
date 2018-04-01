@@ -15,9 +15,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -52,7 +51,7 @@ public class RentalQnAController {
 		// 전체 목록 갯수와 해당 페이지별 목록을 리턴
 		int listCount = rentalQnAServiceImpl.getListCount();
 		ArrayList<RentalQnAVO> list = rentalQnAServiceImpl.selectList(currentPage, limit);
-
+		
 		// 총 페이지수 계산 : 목록이 최소 1개일 때 1page로 처리하기
 		// 위해 0.9 더함
 		int maxPage = (int) ((double) listCount / limit + 0.9);
@@ -65,7 +64,7 @@ public class RentalQnAController {
 		int endPage = startPage + limit - 1;
 		if (maxPage < endPage)
 			endPage = maxPage;
-
+		
 		if (list != null && list.size() > 0) {
 			
 			mv.addObject("list", list).addObject("currentPage", currentPage).addObject("maxPage", maxPage)
@@ -208,21 +207,51 @@ public class RentalQnAController {
 		return mv;
 
 	}
-	@RequestMapping("RentalBoardReplyInsert.do")
-	public void insertReply(@ModelAttribute RentalQnAReplyVO board ,HttpSession session) {
-		String userId = (String)session.getAttribute("userId");
-		board.setMB_ID(userId);			
-		rentalQnAReplyServiceImpl.insertBoard(board);
+	
+/*	@RequestMapping("/comment")
+	public class CommentController {
+	 
+	    @Resource(name="com.example.demo.board.service.CommentService")
+	    CommentService mCommentService;*/
+	    
+	    
+	    @RequestMapping("list.do") //댓글 리스트
+	    @ResponseBody
+	    private ArrayList<RentalQnAReplyVO> mCommentServiceList(ModelAndView mv,@RequestParam("RENTAL_BOARD_RE_NO") int bno) throws Exception{
+	    	System.out.println(bno);
+	    	ArrayList<RentalQnAReplyVO> replylist = rentalQnAReplyServiceImpl.selectList(bno);
+	        return replylist;
+	        
+	    }
+	    
+	    @RequestMapping("insert.do") //댓글 작성 
+	    @ResponseBody
+	    private int mCommentServiceInsert(RentalQnAReplyVO rvo, HttpSession session) throws Exception{
+	    	System.out.println(rvo.getRENTAL_BOARD_RE_NO());
+	    	System.out.println(rvo.getMB_ID());
+	    	System.out.println(rvo.getRENTAL_BOARD_REPLY_CONTENT());
+	        return rentalQnAReplyServiceImpl.insertBoard(rvo);
+	    }
+	    
+	    @RequestMapping("update.do") //댓글 수정  
+	    @ResponseBody
+	    private int mCommentServiceUpdateProc(@RequestParam("RENTAL_BOARD_REPLY_NO") int no, @RequestParam("RENTAL_BOARD_REPLY_CONTENT") String str) throws Exception{
+	        
+	    	RentalQnAReplyVO comment = new RentalQnAReplyVO();
+	        comment.setRENTAL_BOARD_REPLY_NO(no);
+	        comment.setRENTAL_BOARD_REPLY_CONTENT(str);
+	        
+	        return rentalQnAReplyServiceImpl.updateBoard(comment);
+	    }
+	    
+	    @RequestMapping("delete.do") //댓글 삭제  
+	    @ResponseBody
+	    private int mCommentServiceDelete(@RequestParam("RENTAL_BOARD_REPLY_NO") int no) throws Exception{
+	        System.out.println(no+"여기까지오나?");
+	        return rentalQnAReplyServiceImpl.deleteBoard(no);
+	    }
+	    
 	}
-	@RequestMapping("RentalBoardReplyList.do")
-	public ModelAndView selectReply(@RequestParam int bno,ModelAndView mv) {
-		ArrayList<RentalQnAReplyVO> list = rentalQnAReplyServiceImpl.selectList(bno);
-		return mv;
-	}
-	@RequestMapping("RentalBoardReplyListJson.do")
-	@ResponseBody
-	public ArrayList<RentalQnAReplyVO>listJson(@RequestParam int bno){
-		ArrayList<RentalQnAReplyVO> list = rentalQnAReplyServiceImpl.selectList(bno);
-		return list;
-	}
-}
+
+
+
