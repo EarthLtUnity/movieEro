@@ -20,5 +20,7 @@ public interface RentalQnADao {
 	
 	public int getListCount();
 	
+	public ArrayList<RentalQnAVO> selectList(int currentPage, String point ,int limit);
+	
 	
 }

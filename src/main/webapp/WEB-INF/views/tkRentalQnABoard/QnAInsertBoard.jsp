@@ -18,18 +18,30 @@
 
 	<div class="fullscreen-section bg-black pvb0">
 		<div class="container wpc-boxoffice pv8">
-			<div class="row">
-				<form class="form-horizontal" role="form" id="editorForm" enctype="multipart/form-data" method="post" action="RentalBoardInsert.do" >
-					<div class="form-group">
-						<div class="form-group">
-							<div class="col-lg-12">
+			
+				<form style= "padding-top: 150px;"
+				class="form-horizontal" role="form" id="editorForm" enctype="multipart/form-data" method="post" action="RentalBoardInsert.do" >
 						
 							<input type="hidden" name="MB_ID" value= "${member}">
 							
-								<table align="center" id="tb">
+								<table>
 									<tr>
 										<td>제목:</td>
 										<td><input type="text" name="RENTAL_BOARD_TITLE">
+									</tr>
+									<tr>
+									<td>지점:</td>
+									<td>
+												<select name = "RENTAL_BOARD_POINT" id="RENTAL_BOARD_POINT" class="col-sm-3">
+													<option value="전체">지점 선택</option>
+													<option value="강남지점"> 강남 지점</option>
+													<option value="역삼지점"> 역삼 지점</option>
+													<option value="압구정지점"> 압구정 지점</option>
+													<option value="왕십리지점"> 왕십리 지점</option>
+													<option value="홍대지점"> 홍대 지점</option>
+													<option value="잠실지점"> 잠실 지점</option>
+												</select>
+									</td>
 									</tr>
 									<tr>
 										<td>작성자</td>
@@ -57,16 +69,20 @@
 											<a href="${RentalBoardList}"><input type="button" value="목록으로"></a></td>
 									</tr>
 								</table>
-							</div>
-						</div>	
-					</div>
 				</form>
 
+
+
+			</div>
+		</div>
+
+</section>
+<jsp:include page="../inc/footer.jsp" flush="false" />
 <script type="text/javascript">
 $(function() {
 
 	CKEDITOR.replace('ckeditor', {
-		width : '100%',
+		width : '1000px',
 		height : '400px',
 		filebrowserImageUploadUrl : 'RentalBoardImgInsert.do'
 	});
@@ -85,15 +101,10 @@ $(function() {
 	});
 
 });
+function memberchk(){
+	var bname = '${member}';
+    if(bname==""){
+    	alert("로그인을 해주시기 바랍니다");
+    }
+}
 </script>
-
-			</div>
-		</div>
-
-	</div>
-
-	<div class="fullscreen-section">
-		<!-- 뭐 넣을까?? -->
-	</div>
-</section>
-<jsp:include page="../inc/footer.jsp" flush="false" />

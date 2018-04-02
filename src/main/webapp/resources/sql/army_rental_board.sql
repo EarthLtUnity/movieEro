@@ -3,6 +3,7 @@ rental_board_title VARCHAR2(60),
 rental_board_date date,
 rental_board_content varchar2(500),
 rental_board_no number PRIMARY KEY,
+rental_board_point varchar2(30),
 MB_ID VARCHAR2(30) CONSTRAINT rental_board_writer references MEMBER(MB_ID)
 )
 

@@ -7,11 +7,15 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,47 +40,100 @@ public class RentalQnAController {
 	@Autowired
 	private RentalQnAReplyService rentalQnAReplyServiceImpl;
 
+	@RequestMapping("RentalPointList.do")
+	@ResponseBody
+	public Map<String, Object> boardPointList(@RequestParam(value = "page", required = false) Integer page,
+			   @RequestParam(value = "RENTAL_BOARD_POINT", required = false) String point,
+			   HttpServletResponse response) {
+				 
+				Map<String,Object>resultMap = new HashMap<String,Object>();
+			      // 페이지 값 처리용
+			      int currentPage = 1;
+			      // 한 페이지당 출력할 목록 갯수
+			      System.out.println(point);
+			      int limit = 10;
+			      System.out.println(point+"여기에뭐들어가냐");
+			      // 전달된 페이지값 추출
+			      if (page != null)
+			         currentPage = page;
+			      int listCount = 0;
+			      ArrayList<RentalQnAVO> list = null;
+			      
+			      if(point==null) {
+			    	  point="";
+			      }
+			      if(point.equals("전체")) {
+			    	point = "";
+			      }
+			      // 전체 목록 갯수와 해당 페이지별 목록을 리턴
+			      if(point.equals("")) {
+			      listCount = rentalQnAServiceImpl.getListCount();
+			      list = rentalQnAServiceImpl.selectList(currentPage, limit);
+			      }else if(!point.equals("")) {
+			      listCount = rentalQnAServiceImpl.getListCount(point);
+			      list = rentalQnAServiceImpl.selectList(currentPage,point,limit);   
+			      }
+			      // 총 페이지수 계산 : 목록이 최소 1개일 때 1page로 처리하기
+			      // 위해 0.9 더함
+			      int maxPage = (int) ((double) listCount / limit + 0.9);
+			      // 현재 페이지에 보여줄 시작 페이지수
+			      // (1, 11, 21, .......)
+			      // 현재 페이지가 13page 이면 시작페이지는 11page 가 되어야 함
+			      int startPage = (((int) ((double) currentPage / limit + 0.9)) - 1) * limit + 1;
+			      // 만약, 목록 아래에 보여질 페이지 갯수가 10개이면
+			      // 끝페이지수는 20페이지가 되어야 함
+			      int endPage = startPage + limit - 1;
+			      if (maxPage < endPage)
+			         endPage = maxPage;
+			      
+			      resultMap.put("maxPage", maxPage);
+			      resultMap.put("currentPage", currentPage);
+			      resultMap.put("startPage", startPage);
+			      resultMap.put("endPage", endPage);
+			      resultMap.put("listCount", listCount);
+			      resultMap.put("list", list);
+			      
+			    /*      JSONObject json = new JSONObject();
+			      JSONArray jArr = new JSONArray();*/
+			      
+			    /*  json.put("currentPage", currentPage);
+			      json.put("maxPage", maxPage);
+			      json.put("startPage", startPage);
+			      json.put("endPage", endPage);
+			      json.put("listCount", listCount);
+			      for(int i = 0 ; i < list.size(); i++) {
+			         JSONObject board = new JSONObject();
+			         board.put("MB_ID", list.get(i).getMB_ID());
+			         board.put("RENTAL_BOARD_CONTENT", list.get(i).getRENTAL_BOARD_CONTENT());
+			         board.put("RENTAL_BOARD_DATE", list.get(i).getRENTAL_BOARD_DATE());
+			         board.put("RENTAL_BOARD_NO", list.get(i).getRENTAL_BOARD_NO());
+			         board.put("RENTAL_BOARD_POINT", list.get(i).getRENTAL_BOARD_POINT());
+			         board.put("RENTAL_BOARD_TITLE", list.get(i).getRENTAL_BOARD_TITLE());
+			         board.put("RENTAL_REPLY", list.get(i).getRENTAL_REPLY()
+			               );
+			         
+			         jArr.add(board);
+			      }
+			      PrintWriter out = null;*/
+			/*      try {
+			         response.setContentType("application/json");
+			         json.put("list", jArr);
+			         out = response.getWriter();
+			         out.append(json.toJSONString());
+			      } catch (IOException e) {
+			         out.printf("list","ERROR");
+			         e.printStackTrace();
+			      }
+				return json;
+			      */
+			      return resultMap;
+			   }
+
 	@RequestMapping("RentalBoardList.do")
-	public ModelAndView boardList(ModelAndView mv, @RequestParam(value = "page", required = false) Integer page) {
-		// 페이지 값 처리용
-		int currentPage = 1;
-		// 한 페이지당 출력할 목록 갯수
-
-		int limit = 10;
-
-		// 전달된 페이지값 추출
-		if (page != null)
-			currentPage = page;
-
-		// 전체 목록 갯수와 해당 페이지별 목록을 리턴
-		int listCount = rentalQnAServiceImpl.getListCount();
-		ArrayList<RentalQnAVO> list = rentalQnAServiceImpl.selectList(currentPage, limit);
-		
-		// 총 페이지수 계산 : 목록이 최소 1개일 때 1page로 처리하기
-		// 위해 0.9 더함
-		int maxPage = (int) ((double) listCount / limit + 0.9);
-		// 현재 페이지에 보여줄 시작 페이지수
-		// (1, 11, 21, .......)
-		// 현재 페이지가 13page 이면 시작페이지는 11page 가 되어야 함
-		int startPage = (((int) ((double) currentPage / limit + 0.9)) - 1) * limit + 1;
-		// 만약, 목록 아래에 보여질 페이지 갯수가 10개이면
-		// 끝페이지수는 20페이지가 되어야 함
-		int endPage = startPage + limit - 1;
-		if (maxPage < endPage)
-			endPage = maxPage;
-		
-		if (list != null && list.size() > 0) {
-			
-			mv.addObject("list", list).addObject("currentPage", currentPage).addObject("maxPage", maxPage)
-					.addObject("startPage", startPage).addObject("endPage", endPage).addObject("listCount", listCount)
-					.setViewName("tkRentalQnABoard/QnABoard");
-		} else {
-			mv.addObject("error", "게시글 전체 조회 실패");
-			mv.setViewName("tkRentalQnABoard/QnABoard");
-		}
-		return mv;
+	public String boardList() {
+				return "tkRentalQnABoard/QnABoard";
 	}
-
+	
 	@RequestMapping("RentalBoardInsertView.do")
 	public String testCk(Model model) {
 		return "tkRentalQnABoard/QnAInsertBoard";
@@ -208,11 +265,7 @@ public class RentalQnAController {
 
 	}
 	
-/*	@RequestMapping("/comment")
-	public class CommentController {
-	 
-	    @Resource(name="com.example.demo.board.service.CommentService")
-	    CommentService mCommentService;*/
+
 	    
 	    
 	    @RequestMapping("list.do") //댓글 리스트

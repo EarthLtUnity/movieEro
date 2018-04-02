@@ -20,8 +20,14 @@ var bno = '${board.RENTAL_BOARD_NO}'; //게시글 번호
 var bname = '${member}';
 $(function(){
 	$('[name=commentInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시 
-	    var insertData = $('#RENTAL_BOARD_REPLY_CONTENT').val();   
+	
+	    var insertData = $('#RENTAL_BOARD_REPLY_CONTENT').val();
+		if(""==insertData){
+		alert("댓글을 입력해주세요");
+		}  
+		else{
 	    commentInsert(insertData); //Insert 함수호출(아래)
+		}
 	});
 });
 
@@ -136,7 +142,7 @@ $(document).ready(function(){
 	<div class="fullscreen-section bg-black pvb0">
 		<div class="container wpc-boxoffice pv8">
 			<div class="row">
-				<form class="form-horizontal" role="form" id="editorForm" enctype="multipart/form-data" method="post" action="" >
+				<form style= "padding-top: 150px;" class="form-horizontal" role="form" id="editorForm" enctype="multipart/form-data" method="post" action="" >
 					<div class="form-group">
 						<div class="form-group">
 							<div class="col-lg-12">
@@ -217,7 +223,7 @@ $(document).ready(function(){
 					$(function() {
 
 						CKEDITOR.replace('ckeditor', {
-							width : '100%',
+							width : '1000px',
 							height : '400px',
 							filebrowserImageUploadUrl : 'RentalBoardImgInsert.do'
 						});
