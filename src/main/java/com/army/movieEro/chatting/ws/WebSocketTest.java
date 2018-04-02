@@ -25,8 +25,8 @@ import com.army.movieEro.chatting.vo.UserInfoVO;
 
 
 
-
-@ServerEndpoint(value = "/alarm", 
+// @ServerEndpoint : 클라이언트에서 접속할 서버 주소
+@ServerEndpoint(value = "/chat", 
         configurator = GetHttpSessionConfigurator.class)
 public class WebSocketTest {	
 
@@ -36,6 +36,7 @@ public class WebSocketTest {
 	
 	private ObjectMapper mapper = new ObjectMapper();
 	
+	// @OnMessage : 클라이언트로부터 메시지가 도착했을 경우 처리
 	@OnMessage
 	public void onMessage(String text, Session session) throws IOException {
 
@@ -69,6 +70,7 @@ public class WebSocketTest {
 		return null;
 	}
 	
+	// @OnOpen : 클라이언트가 접속을 할 때
 	@OnOpen
 	public void onOpen(Session session, EndpointConfig config) {
 		System.out.println(session);
@@ -76,11 +78,14 @@ public class WebSocketTest {
                 .get(HttpSession.class.getName());
 		//로그인처리를 했다는 가정하에 로그인을 할경우
 		//http세션에 UserInfoVO를 저장한 후 웹소케세션을 매핑시킴.
-		final UserInfoVO uiv = (UserInfoVO)hs.getAttribute("userInfo");
-		final String userId = uiv.getUiId();
+		//final UserInfoVO uiv = (UserInfoVO)hs.getAttribute("userInfo");
+		//final String userId = uiv.getUiId();
+		final String userId = (String) hs.getAttribute("member");
+		
 		sessionMap.put(userId, session);
 	}
 
+	// @OnClose : 클라이언트와 접속이 끊어졌을 때
 	@OnClose
 	public void onClose(Session session) {
 		String key = getSessionKey(session);

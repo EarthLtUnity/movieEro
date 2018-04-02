@@ -35,4 +35,15 @@ public class TestController {
 	public String testview(MemberVO memberVO) {
 		return "template/board_view";
 	}	
+	
+	// 채팅 테스트1
+	@RequestMapping(value="testChat.do")
+	public String testChat(MemberVO memberVO) {
+		return "ws/chatExam";
+	}	
+	// 채팅 테스트2
+	@RequestMapping(value="testMainChat.do")
+	public String testChat2(MemberVO memberVO) {
+		return "chatting/testChat";
+	}	
 }

@@ -20,6 +20,7 @@ var navMenu = {
 navMenu.excute();
 
 /* 실시간 채팅 */
+/*
 var ClassChat ={
     me : {},
     you : {},
@@ -88,7 +89,7 @@ var ClassChat ={
     } // end of excute();    
 };
 ClassChat.excute();
-
+*/
 
 /* Footer */
 var footer ={
