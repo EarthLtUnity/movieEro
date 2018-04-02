@@ -126,6 +126,6 @@
 
 <!-- 윙배너 -->
 <div class="wing_banner_wrap" id="wingBannerWrap">
-<!-- CSS만들기 -->
+
 </div>
 <!--// 윙배너 -->

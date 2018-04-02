@@ -72,6 +72,8 @@ a{text-decoration: none;}
 /* 윙배너 */
 .wing_banner_wrap{position:fixed; top: 100px; right: 0; width: 80px; height: 300px; border: 3px solid #fb802d; z-index: 1000;}
 
+/* 채팅창 테스트*/
+
 /* 메인 채팅창 */
 #chatBox{margin-top: 56px; padding:0;}
 #chatBox .mytext{
