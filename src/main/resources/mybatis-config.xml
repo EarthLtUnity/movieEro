@@ -14,6 +14,7 @@
 		<typeAlias type="com.army.movieEro.rentalQnA.vo.RentalQnAVO" alias="QnABoard"/>
 		<typeAlias type="com.army.movieEro.rentalQnA.vo.RentalQnAReplyVO" alias="QnARelplyBoard"/>
 		<typeAlias type="com.army.movieEro.stCommunity.With_board.vo.WithBoard" alias="WithBoard"/>
+		<typeAlias type="com.army.movieEro.stCommunity.With_board.vo.WithBoard_sub" alias="WithBoardsub"/>
 	</typeAliases>
 	
 	<mappers>
