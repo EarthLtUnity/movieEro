@@ -19,7 +19,7 @@
 							<div class="col-sm-12">
 								<input type="text" class="form-control" name="MB_ID" placeholder="Title" value = "${nvo.MB_ID}">
 								<input type="text" class="form-control" name="NOTICE_BOARD_TITLE" placeholder="Title" value = "${nvo.NOTICE_BOARD_TITLE}">
-								<textarea class="form-control" name = "NOTICE_BOARD_CONTENT" placeholder="Content">${nvo.NOTICE_BOARD_CONTENT}</textarea>
+								<textarea style="margin: 0px; width: 600px; height: 600px;" class="form-control" name = "NOTICE_BOARD_CONTENT" placeholder="Content">${nvo.NOTICE_BOARD_CONTENT}</textarea>
 								<input type="hidden" name = "NOTICE_BOARD_NO" value = "${nvo.NOTICE_BOARD_NO}">
 							</div>
 							<div class="col-sm-12 ">

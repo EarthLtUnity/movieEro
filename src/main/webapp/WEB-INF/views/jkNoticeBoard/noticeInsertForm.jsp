@@ -8,30 +8,87 @@
 
 <c:import url="../inc/head.jsp" />
 <c:import url="../inc/header.jsp" />
-<section class="block_board" id="board">
-	<div class="Jaekyeom_wrap">
-		<div class="bl_brd_wrap">
-					<h1>      asd  </h1>
-					<h3 class="widget-title">공지사항 게시글 작성</h3>
-					<form action="./noticeInsert.do" method="get" enctype="multipart/form-data">
-						<div class="row">
-							<div class="col-sm-12">
-								<input type="hidden" name="MB_ID" value = "${ID}">
-								<input type="text" class="form-control" name="NOTICE_BOARD_TITLE" placeholder="Title">
-								<textarea class="form-control" name = "NOTICE_BOARD_CONTENT" placeholder="Content"></textarea>
-							</div>
-							<div class="col-sm-12 ">
-								<input type="submit" class="button fill rectangle" value="작성"/>
-							</div>
-					<h1>       asd </h1>
-						</div>
-					</form>
-					<div class="errorMessage"></div>
-		</div>
-	</div>
-</section>
+<section class="section-content">
 
-<c:import url="../inc/footer.jsp" />
+	<div class="section-content pvb0 bg-cover"
+		data-bg-image="images/coming-bg.jpg">
+		<div class="row"></div>
+	</div>
+
+	<div class="fullscreen-section bg-black pvb0">
+		<div class="container wpc-boxoffice pv8">
+			
+				<form style= "padding-top: 150px;"
+				class="form-horizontal" role="form" id="editorForm" enctype="multipart/form-data" method="get" action="noticeInsert.do" >
+						
+							<input type="hidden" name="MB_ID" value= "${ID}">
+							
+								<table>
+									<tr>
+										<td>제목:</td>
+										<td><input type="text" name="NOTICE_BOARD_TITLE">
+									</tr>
+							<!-- 		<tr>
+									
+										<td><input id ="passcheck" type="checkbox">비밀번호 설정여부</td>
+										<td><input name ="RENTAL_BOARD_PASS" type="password"></td>						
+									</tr> -->
+									<tr>
+										<td>내용</td>
+										<td><textarea cols="50" rows="7"
+												name="NOTICE_BOARD_CONTENT" id="ckeditor"></textarea></td>
+									</tr>
+									<tr>
+										<td colspan="2" align="center">
+										<input type="submit" value="등록하기"> &nbsp;
+											 <c:url var="notice"
+												value="/noticeList.do">
+												<c:param name="page" value="1" />
+												
+											</c:url> 
+											
+											<a href="notice.do"><input type="button" value="목록으로"></a></td>
+									</tr>
+								</table>
+				</form>
+
+
+
+			</div>
+		</div>
+
+</section>
+<jsp:include page="../inc/footer.jsp" flush="false" />
+<script type="text/javascript">
+$(function() {
+
+	CKEDITOR.replace('ckeditor', {
+		width : '1000px',
+		height : '400px',
+		filebrowserImageUploadUrl : 'RentalBoardImgInsert.do'
+	});
+
+	CKEDITOR.on('dialogDefinition', function(ev) {
+		var dialogName = ev.data.name;
+		var dialogDefinition = ev.data.definition;
+
+		switch (dialogName) {
+		case 'image': //Image Properties dialog
+			//dialogDefinition.removeContents('info');
+			dialogDefinition.removeContents('Link');
+			dialogDefinition.removeContents('advanced');
+			break;
+		}
+	});
+
+});
+function memberchk(){
+	var bname = '${member}';
+    if(bname==""){
+    	alert("로그인을 해주시기 바랍니다");
+    }
+}
+</script>
 
 
 

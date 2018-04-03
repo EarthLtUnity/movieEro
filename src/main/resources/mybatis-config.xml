@@ -10,7 +10,6 @@
 	<typeAliases>		
 		<typeAlias type="com.army.movieEro.member.vo.MemberVO" alias="Member"/>
 		<typeAlias type="com.army.movieEro.jkNoticeBoard.vo.noticeVO" alias="noticeVO"/>
-		<typeAlias type="com.army.movieEro.jkNoticeBoard.vo.noticeReplyVO" alias="noticeReplyVO"/>
 		<typeAlias type="com.army.movieEro.rentalQnA.vo.RentalQnAVO" alias="QnABoard"/>
 		<typeAlias type="com.army.movieEro.rentalQnA.vo.RentalQnAReplyVO" alias="QnARelplyBoard"/>
 		<typeAlias type="com.army.movieEro.stCommunity.With_board.vo.WithBoard" alias="WithBoard"/>

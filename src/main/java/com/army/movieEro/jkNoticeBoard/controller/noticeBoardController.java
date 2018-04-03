@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,11 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.army.movieEro.jkNoticeBoard.service.noticeService;
-import com.army.movieEro.jkNoticeBoard.vo.noticeReplyVO;
 import com.army.movieEro.jkNoticeBoard.vo.noticeVO;
 
 
@@ -27,13 +29,75 @@ public class noticeBoardController {
 	private noticeService NTService;
 
 	
-	//공지사항 메인화면으로 이동하기위한 컨트롤러
+	// 컨트롤러 페이지만 보여주기위한 컨트롤러(ajax)
 	@RequestMapping(value = "notice.do")
-	public String testInit(Model model) {
-		System.out.println("noticeBoardController 도착!!");
+	public String notice(Model model, @RequestParam(value = "page", required = false) Integer page) {
+		
+		int currentPage = 1;
 
+		int limit = 6;
+
+		if (page != null)
+			currentPage = page;
+
+		System.out.println("getListCount 도착전");
+		int listCount = NTService.getListCount();
+		System.out.println("getListCount 도착       "+listCount);
+
+		// 임시 listCount
+		// int listCount = 1;
+
+		int maxPage = (int) ((double) listCount / limit + 0.9);
+		int startPage = (((int) ((double) currentPage / limit + 0.9)) - 1) * limit + 1;
+		int endPage = startPage + limit - 1;
+		if (maxPage < endPage)
+			endPage = maxPage;
+		
+		System.out.println("selectListUser 도착전==="+currentPage);
+		ArrayList<noticeVO> list = NTService.selectListUser(currentPage, limit);
+		System.out.println("selectListUser 도착" + list);
+		
+		model.addAttribute("list", list);
 		return "jkNoticeBoard/noticeBoardListUser";
 	}
+		
+	//ajax데이터 불러오는 컨트롤러
+	@RequestMapping(value = "noticeMore.do")
+	@ResponseBody
+	public ArrayList<noticeVO> testInit(ModelAndView mv, @RequestParam(value = "page", required = false) Integer page) {
+		System.out.println("넘어온 page값 확인"+page);
+		
+		int currentPage = 1;
+
+		int limit = 3;
+
+		if (page != null)
+			currentPage = page;
+
+		System.out.println("getListCount 도착전");
+		int listCount = NTService.getListCount();
+		System.out.println("getListCount 도착       "+listCount);
+
+		// 임시 listCount
+		// int listCount = 1;
+
+		int maxPage = (int) ((double) listCount / limit + 0.9);
+		int startPage = (((int) ((double) currentPage / limit + 0.9)) - 1) * limit + 1;
+		int endPage = startPage + limit - 1;
+		if (maxPage < endPage)
+			endPage = maxPage;
+
+		System.out.println("selectListUser 도착전==="+currentPage);
+		ArrayList<noticeVO> list = NTService.selectListUser(currentPage, limit);
+		System.out.println("selectListUser 도착" + list);
+		
+		return list;
+	}
+	
+	
+	
+	
+	
 
 	// 공지사항 관리자페이지 리스트 불러오기
 	@RequestMapping(value = "noticeAdmin.do")
@@ -129,7 +193,7 @@ public class noticeBoardController {
 		System.out.println("insertNoticeBoard 실행 전");
 		if (NTService.insertNoticeBoard(noticeVO) > 0) {
 			System.out.println("insertNoticeBoard 실행 완료");
-			mv.setViewName("redirect:noticeAdmin.do");
+			mv.setViewName("redirect:notice.do");
 		} else {
 			System.out.println("insertNoticeBoard 실행 실패");
 			mv.addObject("error", "공지사항 글 작성 실패");
@@ -151,13 +215,10 @@ public class noticeBoardController {
 		
 		
 		noticeVO noticeVO = NTService.selectBoardDetail(NOTICE_BOARD_NO);
-		ArrayList<noticeReplyVO> noticeReplyVO = NTService.selectReplyDetail(NOTICE_BOARD_NO);
 		System.out.println("상세값 가져오기 성공" + noticeVO);
 		if(noticeVO != null ) {
 			System.out.println("상세값 가져오기 성공 뿌려주기 성공" + noticeVO);
-			System.out.println("댓글상세값 가져오기 성공 뿌려주기 성공" + noticeReplyVO);
 			mv.addObject("noticeVO",noticeVO)
-			.addObject("noticeReplyVO",noticeReplyVO)
 			.addObject("currentPage",currentPage)
 			.setViewName("jkNoticeBoard/noticeBoardDetail");
 		}else {
@@ -220,16 +281,5 @@ public class noticeBoardController {
 		return mv;
 	}
 	
-	//게시글내에서 댓글 등록 컨트롤러
-	@RequestMapping(value="noticeReplyInsert.do")
-	public ModelAndView noticeReplyAdd (HttpServletRequest request,
-			 ModelAndView mv,noticeReplyVO noticeReplyVO,@RequestParam("NOTICE_BOARD_NO") int NOTICE_BOARD_NO) {
-		if(NTService.noticeReplyAdd(noticeReplyVO)>0) {
-			mv.setViewName("redirect:noticeBoardDetail.do");
-		}else {
-			mv.setViewName("redirect:noticeBoardDetail.do");
-		}
-		return mv;
-	}
 
 }

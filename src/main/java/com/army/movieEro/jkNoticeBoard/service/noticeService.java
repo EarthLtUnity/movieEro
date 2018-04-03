@@ -2,7 +2,6 @@ package com.army.movieEro.jkNoticeBoard.service;
 
 import java.util.ArrayList;
 
-import com.army.movieEro.jkNoticeBoard.vo.noticeReplyVO;
 import com.army.movieEro.jkNoticeBoard.vo.noticeVO;
 
 public interface noticeService {
@@ -22,8 +21,8 @@ public interface noticeService {
 
 	public int deleteNoticeBoard(int NOTICE_BOARD_NO);
 
-	public int noticeReplyAdd(noticeReplyVO noticeReplyVO);
+	public ArrayList<noticeVO> selectListUser(int currentPage, int limit);
 
-	public  ArrayList<noticeReplyVO> selectReplyDetail(int NOTICE_BOARD_NO);
+
 
 }

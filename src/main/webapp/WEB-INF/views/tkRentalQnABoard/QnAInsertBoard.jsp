@@ -13,7 +13,6 @@
 	<div class="section-content pvb0 bg-cover"
 		data-bg-image="images/coming-bg.jpg">
 		<div class="row"></div>
-
 	</div>
 
 	<div class="fullscreen-section bg-black pvb0">

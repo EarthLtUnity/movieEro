@@ -1,15 +1,13 @@
 package com.army.movieEro.jkNoticeBoard.dao;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
-import com.army.movieEro.jkNoticeBoard.vo.noticeReplyVO;
-import com.army.movieEro.jkNoticeBoard.vo.noticeVO;
-
 import java.util.ArrayList;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.army.movieEro.jkNoticeBoard.vo.noticeVO;
 
 @Repository("NTDao")
 public class noticeDaoImpl implements noticeDao{
@@ -66,15 +64,12 @@ public class noticeDaoImpl implements noticeDao{
 	}
 
 	@Override
-	public int noticeReplyAdd(noticeReplyVO noticeReplyVO) {
+	public ArrayList<noticeVO> selectListUser(int currentPage, int limit) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert("noticeVO.noticeReplyAdd",noticeReplyVO);
+		int offset = (currentPage - 1) * limit;
+		RowBounds rows = new RowBounds(offset, limit);
+		return new ArrayList<noticeVO>(sqlSession.selectList("noticeVO.selectList",null,rows));
 	}
 
-	@Override
-	public ArrayList<noticeReplyVO> selectReplyDetail(int NOTICE_BOARD_NO) {
-		// TODO Auto-generated method stub
-		return new ArrayList<noticeReplyVO>(sqlSession.selectList("noticeVO.selectReplyDetail",NOTICE_BOARD_NO));
-	}
 
 }

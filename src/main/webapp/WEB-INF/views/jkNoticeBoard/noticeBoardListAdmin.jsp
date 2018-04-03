@@ -103,7 +103,7 @@
 						</tr>
 						</thead>
 						<tbody>
-						
+						<%-- 게시글 리스트 뽑아오기 for문 --%>
 						<c:forEach var="n" items="${list}">	
 						
 							<tr><td align="center">${n.NOTICE_BOARD_NO}</td>
