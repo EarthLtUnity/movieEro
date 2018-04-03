@@ -5,7 +5,7 @@
  * */
 
 /****************** 메인 페이지 ******************/
-/* 네비게이션 메뉴 */
+/*-- 네비게이션 메뉴 --*/
 var navMenu = {
 	depth1 : $('#headerNav>ul>li'),
 	excute : function(){
@@ -19,8 +19,8 @@ var navMenu = {
 };
 navMenu.excute();
 
-/* 실시간 채팅 */
-//웹소켓 생성
+/*-- 실시간 채팅 --*/
+// 웹소켓 생성
 var webSocket = new WebSocket('ws://192.168.25.29:8088/movieEro/chatSocket');
 //var webSocket = new WebSocket('ws://192.168.20.71:8088/movieEro/chatSocket'); // kh 내자리
 // 채팅 입력창
@@ -128,7 +128,7 @@ var ClassChat ={
 };
 ClassChat.excute();
 
-/* Footer */
+/*-- Footer --*/
 var footer ={
 	$ipt_view : $('.ipt_view'),
 	$ipt_btn : $('.ipt_btn'),
@@ -185,7 +185,7 @@ footer.excute();
 
 
 /****************** 회원가입 ******************/
-// 셀렉트박스로 이메일 도메인 선택시 자동 입력
+/*-- mailCopy : 셀렉트박스로 이메일 도메인 선택시 자동 입력 --*/
 var mailCopy = {
 	$selectMail : $('#mb_selectMail'),
 	excute : function() {
@@ -196,7 +196,7 @@ var mailCopy = {
 };
 mailCopy.excute();
 
-//asyncValidator : 비동기로 아이디 중복 검사
+/*-- asyncValidator : 비동기로 아이디 중복 검사 --*/
 var valiStep1 = false;
 var asyncValidator = {
 	$id : $('#frmMemberJoin #mb_id'),
@@ -232,7 +232,7 @@ var asyncValidator = {
 };
 asyncValidator.excute();
 
-// pwValidator : 비밀번호와 비번확인 일치여부 체크
+/*-- pwValidator : 비밀번호와 비번확인 일치여부 체크 --*/
 var valiStep2 = false;
 var pwValidator = {
 	excute : function() {
@@ -260,7 +260,7 @@ var pwValidator = {
 };
 pwValidator.excute();
 
-// nullValidator : null값 없는지 체크
+/*-- nullValidator : null값 없는지 체크 --*/
 var nullValidator = {
 	frm : '', // 파라미터를 유동적 타겟으로 설정
 	excute : function(frm) {
@@ -316,7 +316,8 @@ var nullValidator = {
 		});
 	}
 };
-// 정규표현식으로 현재 컨트롤러 구분해서 nullValidator의 메서드 실행
+
+/*-- 정규표현식으로 현재 컨트롤러 구분해서 nullValidator의 메서드 실행 --*/
 var nowUrl = location.href;
 // 회원가입
 if (/join.do/.exec(nowUrl) != null){
@@ -327,60 +328,42 @@ if (/join.do/.exec(nowUrl) != null){
 }
 
 /****************** 로그인 ******************/
-// 로그인 버튼 비동기 처리
+/*-- loginAjax : 로그인 버튼 비동기 처리 --*/
 var loginAjax = {
-	$btnLogin : $('#btnLogin'),
 	excute : function() {
-		this.$btnLogin.on('click', function() {
-			$.ajax({
-				type: 'POST',
-				url: 'login.do',
-				data: {login_id : $("#login_id").val(), login_pw : $("#login_pw").val()},
-				success: function(member_id) {
-					if(member_id !== "FAIL") {
-						alert(member_id+"님 환영합니다");
-						// ajax로 로그인 성공시 모달창 닫고 로그인 버튼 없애고 로그아웃 버튼 생성
-						$('#loginPopup').modal('hide');
-						$('#beforeLoginMenu').hide();
-						$('#ajaxLoginMenu').show();	
-						$('#ajaxLoginId').text(member_id);
-						
-						$('#beforeLoginChatIpt').hide();
-						$('#ajaxChatIpt').show();
-						$('#ajaxChatID').val(member_id);
-					} else{
-						alert("일치하는 회원정보가 없습니다")
-					}
-				}
-			});
+		// 클릭으로 로그인 가능
+		$('#btnLogin').on('click', function() {
+			$('#login_pw').trigger({type: 'keydown', which: 13, keyCode: 13});
 		});
+		
+		// 비밀번호 입력 후 엔터 치면 로그인 가능
+		$('#login_pw').on("keydown", function(e){		
+            if (e.which == 13){
+            	
+    			$.ajax({
+    				type: 'POST',
+    				url: 'login.do',
+    				data: {login_id : $("#login_id").val(), login_pw : $("#login_pw").val()},
+    				success: function(member_id) {
+    					if(member_id !== "FAIL") {
+    						alert(member_id+"님 환영합니다");
+    						// ajax로 로그인 성공시 모달창 닫고 로그인 버튼 없애고 로그아웃 버튼 생성
+    						$('#loginPopup').modal('hide');
+    						$('#beforeLoginMenu').hide();
+    						$('#ajaxLoginMenu').show();	
+    						$('#ajaxLoginId').text(member_id);
+    						
+    						$('#beforeLoginChatIpt').hide();
+    						$('#ajaxChatIpt').show();
+    						$('#ajaxChatID').val(member_id);
+    					} else{
+    						alert("일치하는 회원정보가 없습니다");
+    					}
+    				}
+    			}); // end of ajax
+            }			
+		});
+	
 	}
 }
 loginAjax.excute();
-
-
-// 로그인 유효성 검사후 비동기로 로그인해보기
-var modalValidator = {
-	$id       : $('#frmLoginModal #mb_id'),
-	$pw       : $('#frmLoginModal #mb_passwd'),
-	$btnLogin : $('#btnLogin'),
-	excute : function() {
-		var that = this;
-		$btnLogin.on('click', function() {
-			if(that.$id.val()==''){
-				alert('아이디를 입력해주세요');
-				that.id.focus();
-				return false;
-			} else if (that.pw.val()=='') {
-				alert('비밀번호를 입력해주세요');
-				that.$pw.focus();
-				return false;
-			} else{
-				$(that.frm).submit();	
-				return true;
-			}				
-		});
-	}
-};
-//아직 미구현
-//modalValidator.excute();
