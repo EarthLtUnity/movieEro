@@ -121,19 +121,21 @@ function point(point){
 				<div class="col-sm-12 col-xs-12" style= "padding-top: 150px;" >
 					<h3>문의 게시판</h3>
 					<select name = "point" id="point" class="col-sm-3"  onchange="point(this.options[this.selectedIndex].value)">
-													<option value="전체">모든 지점</option>
-													<option value="강남지점"> 강남 지점</option>
-													<option value="역삼지점"> 역삼 지점</option>
-													<option value="압구정지점"> 압구정 지점</option>
-													<option value="왕십리지점"> 왕십리 지점</option>
-													<option value="홍대지점"> 홍대 지점</option>
-													<option value="잠실지점"> 잠실 지점</option>
-												</select><br>
+					<option value="전체">모든 지점</option>
+					<option value="강남지점"> 강남 지점</option>
+					<option value="역삼지점"> 역삼 지점</option>
+					<option value="압구정지점"> 압구정 지점</option>
+					<option value="왕십리지점"> 왕십리 지점</option>
+					<option value="홍대지점"> 홍대 지점</option>
+					<option value="잠실지점"> 잠실 지점</option>
+					</select><br>
+					<ol>
 					<li style ="float: left; width:8%;text-align: center;">지점</li>
 					<li style ="float: left; width:10%;text-align: center;">작성자</li>		
 					<li style ="float: left; width:60%;text-align: center;" >제목</li>		
 					<li style ="float: left; width:11%; text-align: center;">작성일</li>		
 					<li style ="float: left; width:10%;text-align: center;">답변여부</li>
+					</ol>
 					<div class="BoardList">
 					
 						</div>
