@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.websocket.OnClose;
+import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
@@ -42,5 +43,12 @@ public class ChatSocket {
 	public void onClose(Session session) {
 		// Remove session from the connected sessions set
 		clients.remove(session);
+	}
+	
+	@OnError
+	public void onError(Session session, Throwable thr) {
+		System.err.println("org.apache.tomcat.websocket.pojo.PojoEndpointBase onError");
+		System.err.println("심각: No error handling configured for [com.army.movieEro.chatting.controller.ChatSocket] and the following error occurred\r\n" + 
+				"java.io.IOException: 현재 연결은 사용자의 호스트 시스템의 소프트웨어의 의해 중단되었습니다");
 	}
 }
