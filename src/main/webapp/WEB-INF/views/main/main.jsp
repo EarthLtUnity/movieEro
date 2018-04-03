@@ -443,25 +443,10 @@
 				</div>
 			</article>		
 
-			<article id="chatBox" class="col-sm-4 pull-right">
-			    <h1 class="sr-only">채팅창</h1>
-			    <div class="frame">
-			        <ul id="asynMsg"></ul>
-			        <div>
-			            <div class="msj-rta macro">                        
-			                <div class="text text-r" style="background:whitesmoke !important">
-			                    <input id="iptText" class="mytext" placeholder="메세지를 입력해주세요"/>
-			                </div> 
-			
-			            </div>
-			            <div style="padding:10px;">
-			                <span id="btnMsgSend" class="glyphicon glyphicon-share-alt"></span>
-			            </div>                
-			        </div>
-			    </div>
-			</article>  
+			<!-- 실시간 채팅 -->
+			<jsp:include page="../inc/chat.jsp" flush="false" />
+			<!--// 실시간 채팅 -->
 
-		
 		</div>
     </div>        
     <div class="fullscreen-section bg-black pvb0">

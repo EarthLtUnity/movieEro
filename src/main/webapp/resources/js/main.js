@@ -307,6 +307,9 @@ var loginAjax = {
 						$('#beforeLoginMenu').hide();
 						$('#ajaxLoginMenu').show();	
 						$('#ajaxLoginId').text(member_id);
+						
+						$('#beforeLoginChatIpt').hide();
+						$('#ajaxChatIpt').show();	
 					} else{
 						alert("일치하는 회원정보가 없습니다")
 					}

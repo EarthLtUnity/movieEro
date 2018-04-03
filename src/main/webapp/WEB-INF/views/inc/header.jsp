@@ -41,17 +41,17 @@
 			</div>
 			<div class="header_menu col-md-4 col-sm-6 col-xs-8 phl0">
 				<div class="header_author">
-					<c:set var="memberId" value="${member}" />
+					<c:set var="memberID" value="${memberID}" />
 					<%-- 로그인 여부로 보여지는 메뉴 --%>
 					<c:choose>
-						<c:when test="${empty memberId}">
+						<c:when test="${empty memberID}">
 							<span id="beforeLoginMenu">
 								<a href="#" data-target="#loginPopup" data-toggle="modal" id="signInUp">Sign in/up</a>
 							</span>
 						</c:when>
 						<c:otherwise>
 							<span id="afterLoginMenu">
-								<a href="mypage.do">${memberId}</a>
+								<a href="mypage.do">${memberID}</a>
 								<a href="signOut.do">Sign Out</a>
 								<img src="images/temp_user.jpg" class="user" alt="">
 							</span>

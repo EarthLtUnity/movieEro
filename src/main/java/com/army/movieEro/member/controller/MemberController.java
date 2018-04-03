@@ -74,7 +74,7 @@ public class MemberController {
 		try {
 			result = memberService.loginMember(id, pw);
 			if(result != null) { // 로그인 성공시 아이디를 화면에 내림
-				session.setAttribute("member", loginInfo.get("login_id"));
+				session.setAttribute("memberID", loginInfo.get("login_id"));
 				response.getWriter().write(id);
 				System.out.println(id+" 로그인 완료");
 			} else  {
