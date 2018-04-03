@@ -7,17 +7,20 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -37,47 +40,100 @@ public class RentalQnAController {
 	@Autowired
 	private RentalQnAReplyService rentalQnAReplyServiceImpl;
 
+	@RequestMapping("RentalPointList.do")
+	@ResponseBody
+	public Map<String, Object> boardPointList(@RequestParam(value = "page", required = false) Integer page,
+			   @RequestParam(value = "RENTAL_BOARD_POINT", required = false) String point,
+			   HttpServletResponse response) {
+				 
+				Map<String,Object>resultMap = new HashMap<String,Object>();
+			      // 페이지 값 처리용
+			      int currentPage = 1;
+			      // 한 페이지당 출력할 목록 갯수
+			      System.out.println(point);
+			      int limit = 10;
+			      System.out.println(point+"여기에뭐들어가냐");
+			      // 전달된 페이지값 추출
+			      if (page != null)
+			         currentPage = page;
+			      int listCount = 0;
+			      ArrayList<RentalQnAVO> list = null;
+			      
+			      if(point==null) {
+			    	  point="";
+			      }
+			      if(point.equals("전체")) {
+			    	point = "";
+			      }
+			      // 전체 목록 갯수와 해당 페이지별 목록을 리턴
+			      if(point.equals("")) {
+			      listCount = rentalQnAServiceImpl.getListCount();
+			      list = rentalQnAServiceImpl.selectList(currentPage, limit);
+			      }else if(!point.equals("")) {
+			      listCount = rentalQnAServiceImpl.getListCount(point);
+			      list = rentalQnAServiceImpl.selectList(currentPage,point,limit);   
+			      }
+			      // 총 페이지수 계산 : 목록이 최소 1개일 때 1page로 처리하기
+			      // 위해 0.9 더함
+			      int maxPage = (int) ((double) listCount / limit + 0.9);
+			      // 현재 페이지에 보여줄 시작 페이지수
+			      // (1, 11, 21, .......)
+			      // 현재 페이지가 13page 이면 시작페이지는 11page 가 되어야 함
+			      int startPage = (((int) ((double) currentPage / limit + 0.9)) - 1) * limit + 1;
+			      // 만약, 목록 아래에 보여질 페이지 갯수가 10개이면
+			      // 끝페이지수는 20페이지가 되어야 함
+			      int endPage = startPage + limit - 1;
+			      if (maxPage < endPage)
+			         endPage = maxPage;
+			      
+			      resultMap.put("maxPage", maxPage);
+			      resultMap.put("currentPage", currentPage);
+			      resultMap.put("startPage", startPage);
+			      resultMap.put("endPage", endPage);
+			      resultMap.put("listCount", listCount);
+			      resultMap.put("list", list);
+			      
+			    /*      JSONObject json = new JSONObject();
+			      JSONArray jArr = new JSONArray();*/
+			      
+			    /*  json.put("currentPage", currentPage);
+			      json.put("maxPage", maxPage);
+			      json.put("startPage", startPage);
+			      json.put("endPage", endPage);
+			      json.put("listCount", listCount);
+			      for(int i = 0 ; i < list.size(); i++) {
+			         JSONObject board = new JSONObject();
+			         board.put("MB_ID", list.get(i).getMB_ID());
+			         board.put("RENTAL_BOARD_CONTENT", list.get(i).getRENTAL_BOARD_CONTENT());
+			         board.put("RENTAL_BOARD_DATE", list.get(i).getRENTAL_BOARD_DATE());
+			         board.put("RENTAL_BOARD_NO", list.get(i).getRENTAL_BOARD_NO());
+			         board.put("RENTAL_BOARD_POINT", list.get(i).getRENTAL_BOARD_POINT());
+			         board.put("RENTAL_BOARD_TITLE", list.get(i).getRENTAL_BOARD_TITLE());
+			         board.put("RENTAL_REPLY", list.get(i).getRENTAL_REPLY()
+			               );
+			         
+			         jArr.add(board);
+			      }
+			      PrintWriter out = null;*/
+			/*      try {
+			         response.setContentType("application/json");
+			         json.put("list", jArr);
+			         out = response.getWriter();
+			         out.append(json.toJSONString());
+			      } catch (IOException e) {
+			         out.printf("list","ERROR");
+			         e.printStackTrace();
+			      }
+				return json;
+			      */
+			      return resultMap;
+			   }
+
 	@RequestMapping("RentalBoardList.do")
-	public ModelAndView boardList(ModelAndView mv, @RequestParam(value = "page", required = false) Integer page) {
-		// 페이지 값 처리용
-		int currentPage = 1;
-		// 한 페이지당 출력할 목록 갯수
-
-		int limit = 10;
-
-		// 전달된 페이지값 추출
-		if (page != null)
-			currentPage = page;
-
-		// 전체 목록 갯수와 해당 페이지별 목록을 리턴
-		int listCount = rentalQnAServiceImpl.getListCount();
-		ArrayList<RentalQnAVO> list = rentalQnAServiceImpl.selectList(currentPage, limit);
-
-		// 총 페이지수 계산 : 목록이 최소 1개일 때 1page로 처리하기
-		// 위해 0.9 더함
-		int maxPage = (int) ((double) listCount / limit + 0.9);
-		// 현재 페이지에 보여줄 시작 페이지수
-		// (1, 11, 21, .......)
-		// 현재 페이지가 13page 이면 시작페이지는 11page 가 되어야 함
-		int startPage = (((int) ((double) currentPage / limit + 0.9)) - 1) * limit + 1;
-		// 만약, 목록 아래에 보여질 페이지 갯수가 10개이면
-		// 끝페이지수는 20페이지가 되어야 함
-		int endPage = startPage + limit - 1;
-		if (maxPage < endPage)
-			endPage = maxPage;
-
-		if (list != null && list.size() > 0) {
-			
-			mv.addObject("list", list).addObject("currentPage", currentPage).addObject("maxPage", maxPage)
-					.addObject("startPage", startPage).addObject("endPage", endPage).addObject("listCount", listCount)
-					.setViewName("tkRentalQnABoard/QnABoard");
-		} else {
-			mv.addObject("error", "게시글 전체 조회 실패");
-			mv.setViewName("tkRentalQnABoard/QnABoard");
-		}
-		return mv;
+	public String boardList() {
+				return "tkRentalQnABoard/QnABoard";
 	}
-
+	
 	@RequestMapping("RentalBoardInsertView.do")
 	public String testCk(Model model) {
 		return "tkRentalQnABoard/QnAInsertBoard";
@@ -208,21 +264,47 @@ public class RentalQnAController {
 		return mv;
 
 	}
-	@RequestMapping("RentalBoardReplyInsert.do")
-	public void insertReply(@ModelAttribute RentalQnAReplyVO board ,HttpSession session) {
-		String userId = (String)session.getAttribute("userId");
-		board.setMB_ID(userId);			
-		rentalQnAReplyServiceImpl.insertBoard(board);
+	
+
+	    
+	    
+	    @RequestMapping("list.do") //댓글 리스트
+	    @ResponseBody
+	    private ArrayList<RentalQnAReplyVO> mCommentServiceList(ModelAndView mv,@RequestParam("RENTAL_BOARD_RE_NO") int bno) throws Exception{
+	    	System.out.println(bno);
+	    	ArrayList<RentalQnAReplyVO> replylist = rentalQnAReplyServiceImpl.selectList(bno);
+	        return replylist;
+	        
+	    }
+	    
+	    @RequestMapping("insert.do") //댓글 작성 
+	    @ResponseBody
+	    private int mCommentServiceInsert(RentalQnAReplyVO rvo, HttpSession session) throws Exception{
+	    	System.out.println(rvo.getRENTAL_BOARD_RE_NO());
+	    	System.out.println(rvo.getMB_ID());
+	    	System.out.println(rvo.getRENTAL_BOARD_REPLY_CONTENT());
+	        return rentalQnAReplyServiceImpl.insertBoard(rvo);
+	    }
+	    
+	    @RequestMapping("update.do") //댓글 수정  
+	    @ResponseBody
+	    private int mCommentServiceUpdateProc(@RequestParam("RENTAL_BOARD_REPLY_NO") int no, @RequestParam("RENTAL_BOARD_REPLY_CONTENT") String str) throws Exception{
+	        
+	    	RentalQnAReplyVO comment = new RentalQnAReplyVO();
+	        comment.setRENTAL_BOARD_REPLY_NO(no);
+	        comment.setRENTAL_BOARD_REPLY_CONTENT(str);
+	        
+	        return rentalQnAReplyServiceImpl.updateBoard(comment);
+	    }
+	    
+	    @RequestMapping("delete.do") //댓글 삭제  
+	    @ResponseBody
+	    private int mCommentServiceDelete(@RequestParam("RENTAL_BOARD_REPLY_NO") int no) throws Exception{
+	        System.out.println(no+"여기까지오나?");
+	        return rentalQnAReplyServiceImpl.deleteBoard(no);
+	    }
+	    
 	}
-	@RequestMapping("RentalBoardReplyList.do")
-	public ModelAndView selectReply(@RequestParam int bno,ModelAndView mv) {
-		ArrayList<RentalQnAReplyVO> list = rentalQnAReplyServiceImpl.selectList(bno);
-		return mv;
-	}
-	@RequestMapping("RentalBoardReplyListJson.do")
-	@ResponseBody
-	public ArrayList<RentalQnAReplyVO>listJson(@RequestParam int bno){
-		ArrayList<RentalQnAReplyVO> list = rentalQnAReplyServiceImpl.selectList(bno);
-		return list;
-	}
-}
+
+
+

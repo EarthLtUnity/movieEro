@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.army.movieEro.jkNoticeBoard.dao.noticeDao;
+import com.army.movieEro.jkNoticeBoard.vo.noticeReplyVO;
 import com.army.movieEro.jkNoticeBoard.vo.noticeVO;
 
 @Service("NTService")
@@ -50,6 +51,21 @@ public class noticeServiceImpl implements noticeService{
 	@Override
 	public int modifyNoticeBoard(noticeVO noticeVO) {
 		return NTDao.modifyNoticeBoard(noticeVO);
+	}
+
+	@Override
+	public int deleteNoticeBoard(int NOTICE_BOARD_NO) {
+		return NTDao.deleteNoticeBoard(NOTICE_BOARD_NO);
+	}
+
+	@Override
+	public int noticeReplyAdd(noticeReplyVO noticeReplyVO) {
+		return NTDao.noticeReplyAdd(noticeReplyVO);
+	}
+
+	@Override
+	public ArrayList<noticeReplyVO> selectReplyDetail(int NOTICE_BOARD_NO) {
+		return NTDao.selectReplyDetail(NOTICE_BOARD_NO);
 	}
 
 

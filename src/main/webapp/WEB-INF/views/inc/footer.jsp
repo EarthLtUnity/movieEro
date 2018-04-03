@@ -1,72 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-    <footer id="footer">
-        <div class="container footer-container">
-            <div class="row">
-                <div class="col-md-2 col-sm-6">
-                    <div class="widget">
-                        <h5 class="widget-title">Menu</h5>
-                        <ul class="menu">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Coming soon</a></li>
-                            <li><a href="#">Order</a></li>
-                            <li><a href="#">Terms of service</a></li>
-                            <li><a href="#">Pricing</a></li>
-                        </ul>
-                    </div>
-                    <div class="widget">
-                        <div class="social-links">
-                            <a href="javascript:;"><i class="fa fa-facebook"></i></a>
-                            <a href="javascript:;"><i class="fa fa-twitter"></i></a>
-                            <a href="javascript:;"><i class="fa fa-google-plus"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="widget">
-                        <h5 class="widget-title">Address information</h5>
-                        <p>
-                            California. AMC Dine-In Theatres Marina,
-                            Street 26, Distritc 543 #108
-                         </p> 
-                         <p>
-                            <i class="fa fa-mail"></i>Example@mail.com<br>
-                            <i class="fa fa-phone"></i> + 123 456 7890
-                         </p> 
-                    </div>
-                </div>
-                <div class="col-md-1"></div>
-                <div class="col-md-6">
-                    <div class="widget">
-                    <h5 class="widget-title">Leave a message</h5>
-                        <form class="contact_form transparent">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <input type="text" class="inputValidation" name="name" placeholder="Name *">
-                                </div>
-                                <div class="col-sm-12">
-                                    <input type="text" class="inputValidation" name="email" placeholder="Email *">
-                                </div>
-                                <div class="col-sm-12 ">
-                                    <textarea class="inputValidation" placeholder="Message *"></textarea>
-                                    <button type="submit" class="button fill rectangle">Send to us</button>
-                                </div>
-                            </div>
-                        </form>
-                        <div class="errorMessage"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="sub-footer">
-            <div class="container">
-                <div class="row copyright-text">
-                    <div class="col-sm-12 text-center">
-                        <p class="mv3 mvt0">&copy; Copyrights 2017 Tenguu. All rights reserved</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+	<footer id="footer" class="footer">
+		<div class="ft_top">
+			<div class="ft_newletter">
+				<div class="ipt_wrap">
+					<form action="" name="" method="post">
+						<div class="ipt_hide">
+							<input type="text" placeholder="우편번호" value="" class="zipPost">
+						</div>
+						<div class="ipt_view">
+							<p>Warning Text</p>
+							<input type="text" placeholder="뉴스레터를 구독할 이메일 기입란" value="" name="email" class="eNewsletter">
+						</div>
+						<div class="ipt_btn">
+							<input type="button" id="btnNewletter" value="" class="submit_newsletter">
+						</div>
+					</form>
+					
+				</div>
+			</div>
+			<div class="fnb_menu cf">
+				<div class="lft_fnb">
+					<p>서울시 강남구 도산대로 156 아르미(논현동)</p>
+					<p>대표자명 김종민 | 개인정보보호 책임자 서진</p>
+				</div>
+            				
+				<div class="rgh_fnb">
+					<p>ARS 1544-1234</p>
+					<p>사업자등록번호 123-45-6789</p>
+				</div>
+			</div>
+		</div>
+		<div class="ft_btm">
+			<div class="ft_4dx">
+				<a href="#"></a>
+			</div>
+			<div class="ft_copy">
+				<p class="copyright">Copyright(c) 아르미. All rights reserved.</p>
+			</div>
+			<div class="ft_cj">
+				<a href="#"></a>
+			</div>
+		</div>
+	</footer>
+
     </div>
     <!-- Overlay Search -->
     <div id="overlay-search">

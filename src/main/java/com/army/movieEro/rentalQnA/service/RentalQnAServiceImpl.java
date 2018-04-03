@@ -51,6 +51,19 @@ public class RentalQnAServiceImpl implements RentalQnAService {
 		return rentalQnADaoImpl.getListCount();
 	}
 
+	@Override
+	public ArrayList<RentalQnAVO> selectList(int currentPage, String point, int limit) {
+		// TODO Auto-generated method stub
+		return rentalQnADaoImpl.selectList(currentPage, point, limit);
+	}
+
+	@Override
+	public int getListCount(String point) {
+		// TODO Auto-generated method stub
+		return rentalQnADaoImpl.getListCount(point);
+	}
+
+
 
 
 }

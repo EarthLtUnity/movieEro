@@ -23,7 +23,7 @@
                                         <li>Science Fiction</li>
                                         <li>Adventure</li>
                                     </ul>
-                                    <div class="title" data-animation="animated bounceInRight" >Lord of the rings: The return of the kings <i>(2017)</i></div>
+                                    <div class="title" data-animation="animated bounceInRight" >The Dark Knight <i>(2008)</i></div>
                                     <div class="slide_right" data-animation="animated bounceInRight">
                                         <a href="javascript:;" class="btn-trailer">watch trailer</a> <a href="javascript:;" class="btn-ticket">buy ticket</a>
                                         <ul class="award-logo">
@@ -143,7 +143,7 @@
     </div>  
 </div>
 <!--// fullwidth-slider -->      
-<section class="section-content">
+<section class="section-content now_playing_sec">
     <div class="container-fluid pv11 ">
         <div class="row">
             <div class="col-sm-12">
@@ -347,41 +347,122 @@
         </div>
     </div>    
     <div class="section-content service pvb0">
-        <div class="container  pv12">
-            <div class="row">
-                <div class="col-sm-12">
-                 <h3 class="heading text-center mb9">Your experience is gonna be exquisite.</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4 ph0">
-                    <h2>IMAX®</h2>
-                    <p> IMAX® provides an exceptional movie experience with images of immersive size, striking clarity.</p>
-                </div>
-                <div class="col-sm-4 ph0">
-                    <h2>REALD™ 3D</h2>
-                    <p>RealD™ Digital 3D is the new generation of entertainment, with crisp, bright, ultra-realistic images.</p>
-                </div>
-                <div class="col-sm-4 ph0">
-                    <h2>Dolby®  Laboratories</h2>
-                    <p>(NYSE:DLB) is the global leader in technologies that are essential elements in the best entertainment.</p>
-                </div>
-            </div>
-            <div class="row mt8">
-                <div class="col-sm-4 ph0">
-                    <h2>Great Environment</h2>
-                    <p> IMAX® provides an exceptional movie experience with images of immersive size, striking clarity.</p>
-                </div>
-                <div class="col-sm-4 ph0">
-                    <h2>Entertainment Center</h2>
-                    <p>RealD™ Digital 3D is the new generation of entertainment, with crisp, bright, ultra-realistic images.</p>
-                </div>
-                <div class="col-sm-4 ph0">
-                    <h2> So Much More...</h2>
-                    <p>(NYSE:DLB) is the global leader in technologies that are essential elements in the best entertainment.</p>
-                </div>
-            </div>
-        </div>
+		<div class="container">
+		
+			<article class="main_box3 col-sm-7">
+				<h1>NEWS</h1>
+				<div class="main_news">
+					<div class="ofs_box">
+						<ul>
+							<li>
+								<a href="#">
+									<h2>KANTAR MILLWARD BROWN AND CJ 4DPLEX RESEARCH FINDS SIGNIFICANT GLOBAL PREFERENCE FOR 4DX TECHNOLOGY OVER TRADITIONAL MOVIE VIEWING</h2>
+									<em>Seoul, South Korea and Los Angeles, CA - July 6, 2017 </em>
+									<p>Kantar Millward Brown, a specialized consumer research firm, and CJ 4DPLEX, the world’s leading 4D cinema company, have announced the results of jointly conducted research entitled ‘Consumer Perception Trends of Global Cinema.’ ...</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<h2>4DX Develops “Wearable Motion” Concept To Enhance SPIDER-MAN: HOMECOMING</h2>
+									<em>Immersive Movie Experience - Including Moving Seats and Environmental Effects - Lets Moviegoers Suspend Reality and Feel Like They Are Wearing Spider-Man’s High-Tech Suit! </em>
+									<p>Hitting theatres beginning July 5, Spider-Man: Homecoming will be available in 4DX on 385 screens across 48 countries worldw...</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<h2>4DX And Nordisk Film Cinemas Strike Deal To Bring 9 Additional Screens To Scandinavia</h2>
+									<em>Barcelona, Spain and Los Angeles, CA</em>
+									<p>(June 21, 2017) - At CineEurope this week, CJ 4DPLEX, the company behind 4DX - the world’s first and leading 4D cinema technology for feature films, announced the expansion of apartnership with Nordisk Film Cinemas. CineEurope took place from June 18-22 in Barcelona, Spai...</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<h2>CJ 4DPLEX Expands 4DX Virtual Reality Experience by Launching "Racing" and "Sway &amp; Twist" Units</h2>
+									<em>Company Participates in AAE 2017 for the First Time since Merger with Simuline, Showcasing the Newest State-of-the-Art VR Attractions Products </em>
+									<p>Los Angeles, CA and Singapore (June 13, 2017) ? Immersive technology leader CJ 4DPLEX today announced that it would be attending the Asian Attractions Expo (AAE) for the first time, launching two new virtual reality (VR) units at the event. The company will be unveiling its new “4DX VR Racing” and “4DX VR Sway &amp; Twist” units at AAE, which takes place June...</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<h2>KANTAR MILLWARD BROWN AND CJ 4DPLEX RESEARCH FINDS SIGNIFICANT GLOBAL PREFERENCE FOR 4DX TECHNOLOGY OVER TRADITIONAL MOVIE VIEWING</h2>
+									<em>Seoul, South Korea and Los Angeles, CA - July 6, 2017 </em>
+									<p>Kantar Millward Brown, a specialized consumer research firm, and CJ 4DPLEX, the world’s leading 4D cinema company, have announced the results of jointly conducted research entitled ‘Consumer Perception Trends of Global Cinema.’ ...</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<h2>4DX Develops “Wearable Motion” Concept To Enhance SPIDER-MAN: HOMECOMING</h2>
+									<em>Immersive Movie Experience - Including Moving Seats and Environmental Effects - Lets Moviegoers Suspend Reality and Feel Like They Are Wearing Spider-Man’s High-Tech Suit! </em>
+									<p>Hitting theatres beginning July 5, Spider-Man: Homecoming will be available in 4DX on 385 screens across 48 countries worldw...</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<h2>4DX And Nordisk Film Cinemas Strike Deal To Bring 9 Additional Screens To Scandinavia</h2>
+									<em>Barcelona, Spain and Los Angeles, CA</em>
+									<p>(June 21, 2017) - At CineEurope this week, CJ 4DPLEX, the company behind 4DX - the world’s first and leading 4D cinema technology for feature films, announced the expansion of apartnership with Nordisk Film Cinemas. CineEurope took place from June 18-22 in Barcelona, Spai...</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<h2>CJ 4DPLEX Expands 4DX Virtual Reality Experience by Launching "Racing" and "Sway &amp; Twist" Units</h2>
+									<em>Company Participates in AAE 2017 for the First Time since Merger with Simuline, Showcasing the Newest State-of-the-Art VR Attractions Products </em>
+									<p>Los Angeles, CA and Singapore (June 13, 2017) ? Immersive technology leader CJ 4DPLEX today announced that it would be attending the Asian Attractions Expo (AAE) for the first time, launching two new virtual reality (VR) units at the event. The company will be unveiling its new “4DX VR Racing” and “4DX VR Sway &amp; Twist” units at AAE, which takes place June...</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<h2>KANTAR MILLWARD BROWN AND CJ 4DPLEX RESEARCH FINDS SIGNIFICANT GLOBAL PREFERENCE FOR 4DX TECHNOLOGY OVER TRADITIONAL MOVIE VIEWING</h2>
+									<em>Seoul, South Korea and Los Angeles, CA - July 6, 2017 </em>
+									<p>Kantar Millward Brown, a specialized consumer research firm, and CJ 4DPLEX, the world’s leading 4D cinema company, have announced the results of jointly conducted research entitled ‘Consumer Perception Trends of Global Cinema.’ ...</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<h2>4DX Develops “Wearable Motion” Concept To Enhance SPIDER-MAN: HOMECOMING</h2>
+									<em>Immersive Movie Experience - Including Moving Seats and Environmental Effects - Lets Moviegoers Suspend Reality and Feel Like They Are Wearing Spider-Man’s High-Tech Suit! </em>
+									<p>Hitting theatres beginning July 5, Spider-Man: Homecoming will be available in 4DX on 385 screens across 48 countries worldw...</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<h2>4DX And Nordisk Film Cinemas Strike Deal To Bring 9 Additional Screens To Scandinavia</h2>
+									<em>Barcelona, Spain and Los Angeles, CA</em>
+									<p>(June 21, 2017) - At CineEurope this week, CJ 4DPLEX, the company behind 4DX - the world’s first and leading 4D cinema technology for feature films, announced the expansion of apartnership with Nordisk Film Cinemas. CineEurope took place from June 18-22 in Barcelona, Spai...</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<h2>CJ 4DPLEX Expands 4DX Virtual Reality Experience by Launching "Racing" and "Sway &amp; Twist" Units</h2>
+									<em>Company Participates in AAE 2017 for the First Time since Merger with Simuline, Showcasing the Newest State-of-the-Art VR Attractions Products </em>
+									<p>Los Angeles, CA and Singapore (June 13, 2017) ? Immersive technology leader CJ 4DPLEX today announced that it would be attending the Asian Attractions Expo (AAE) for the first time, launching two new virtual reality (VR) units at the event. The company will be unveiling its new “4DX VR Racing” and “4DX VR Sway &amp; Twist” units at AAE, which takes place June...</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</article>		
+
+			<article id="chatBox" class="col-sm-4 pull-right">
+			    <h1 class="sr-only">채팅창</h1>
+			    <div class="frame">
+			        <ul id="asynMsg"></ul>
+			        <div>
+			            <div class="msj-rta macro">                        
+			                <div class="text text-r" style="background:whitesmoke !important">
+			                    <input id="iptText" class="mytext" placeholder="메세지를 입력해주세요"/>
+			                </div> 
+			
+			            </div>
+			            <div style="padding:10px;">
+			                <span id="btnMsgSend" class="glyphicon glyphicon-share-alt"></span>
+			            </div>                
+			        </div>
+			    </div>
+			</article>  
+
+		
+		</div>
     </div>        
     <div class="fullscreen-section bg-black pvb0">
         <div class="container wpc-boxoffice pv8">
@@ -523,8 +604,6 @@
     <div class="fullscreen-section">
 	<!-- 뭐 넣을까?? -->
     </div>
-    <script type="text/javascript" src="js/google-maps.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>
 </section>
 
 <jsp:include page="../inc/footer.jsp" flush="false" />

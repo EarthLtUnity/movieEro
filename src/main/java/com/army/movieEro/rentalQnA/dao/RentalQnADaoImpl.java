@@ -49,10 +49,26 @@ public class RentalQnADaoImpl implements RentalQnADao {
 	}
 
 	@Override
+	public int getListCount(String point) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("QnA.getPointListCount");
+	}
+
+	@Override
 	public int getListCount() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("QnA.getListCount");
 	}
+
+	@Override
+	public ArrayList<RentalQnAVO> selectList(int currentPage, String point, int limit) {
+		// TODO Auto-generated method stub
+		int offset = (currentPage - 1) * limit;
+		RowBounds rows = new RowBounds(offset, limit);
+		return new ArrayList<RentalQnAVO>(sqlSession.selectList("QnA.selectPointList", point, rows));
+	}
+
+
 
 
 }

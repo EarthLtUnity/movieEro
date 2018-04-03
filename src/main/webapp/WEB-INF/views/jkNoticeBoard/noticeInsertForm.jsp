@@ -4,6 +4,7 @@
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<c:set var="ID" value="${sessionScope.member}"/>
 
 <c:import url="../inc/head.jsp" />
 <c:import url="../inc/header.jsp" />
@@ -15,7 +16,7 @@
 					<form action="./noticeInsert.do" method="get" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-sm-12">
-								<input type="text" class="form-control" name="MB_ID" placeholder="Title">worua99
+								<input type="hidden" name="MB_ID" value = "${ID}">
 								<input type="text" class="form-control" name="NOTICE_BOARD_TITLE" placeholder="Title">
 								<textarea class="form-control" name = "NOTICE_BOARD_CONTENT" placeholder="Content"></textarea>
 							</div>

@@ -1,4 +1,6 @@
 @charset "UTF-8";
+.common_board_wrap{background: url(../images/bg/bg_violet_aurora01.jpg) 0 0 no-repeat;}
+.common_board_wrap .table{background-color: #fff;}
 /* 게시판 리스트 */
 .common_board_list th, .common_board_list td{text-align: center;}
 .common_board_list .tit{text-align: left;}

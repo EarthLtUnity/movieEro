@@ -22,23 +22,28 @@ public class RentalQnAReplyServiceImpl implements RentalQnAReplyService {
 	@Override
 	public int insertBoard(RentalQnAReplyVO b) {
 		// TODO Auto-generated method stub
-		return 0;
+		return rentalQnAReplyDaoImpl.insertBoard(b);
 	}
 
 	@Override
 	public int updateBoard(RentalQnAReplyVO b) {
 		// TODO Auto-generated method stub
-		return 0;
+		return rentalQnAReplyDaoImpl.updateBoard(b);
 	}
 
 	@Override
 	public int deleteBoard(int boardNum) {
 		// TODO Auto-generated method stub
-		return 0;
+		return rentalQnAReplyDaoImpl.deleteBoard(boardNum);
 	}
-	public int getListCount() {
+	public int getListCount(int boardNum) {
 		// TODO Auto-generated method stub
-		return rentalQnAReplyDaoImpl.getListCount();
+		return rentalQnAReplyDaoImpl.getListCount(boardNum);
 	}
+	@Override
+	public RentalQnAReplyVO selectViewList(int bno) {
+		// TODO Auto-generated method stub
+		return rentalQnAReplyDaoImpl.selectViewList(bno);
+		}
 
 }

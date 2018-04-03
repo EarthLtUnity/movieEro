@@ -16,6 +16,7 @@ import org.springframework.web.multipart.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.army.movieEro.jkNoticeBoard.service.noticeService;
+import com.army.movieEro.jkNoticeBoard.vo.noticeReplyVO;
 import com.army.movieEro.jkNoticeBoard.vo.noticeVO;
 
 
@@ -83,6 +84,9 @@ public class noticeBoardController {
 		return mv;
 	}
 
+	
+	
+	
 	// 리스트에서 글쓰기위해 글쓰기 버튼 클릭시 작동하는 컨트롤러
 	@RequestMapping(value = "noticeInsertForm.do")
 	public String testInitInsertForm(Model model) {
@@ -134,23 +138,26 @@ public class noticeBoardController {
 	}
 	
 	//상세보기 맵핑
-	@RequestMapping("noticeDetail.do")
+	@RequestMapping(value = "noticeDetail.do")
 	public ModelAndView noticeDetail(ModelAndView mv, @RequestParam("NOTICE_BOARD_NO") int NOTICE_BOARD_NO
 			,@RequestParam(value = "page", required = false) Integer page) {
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
 		}
-		
+
 		NTService.addReadCount(NOTICE_BOARD_NO);
 		System.out.println("조회수 업데이트 성공");
 		
 		
 		noticeVO noticeVO = NTService.selectBoardDetail(NOTICE_BOARD_NO);
+		ArrayList<noticeReplyVO> noticeReplyVO = NTService.selectReplyDetail(NOTICE_BOARD_NO);
 		System.out.println("상세값 가져오기 성공" + noticeVO);
-		if(noticeVO != null) {
+		if(noticeVO != null ) {
 			System.out.println("상세값 가져오기 성공 뿌려주기 성공" + noticeVO);
+			System.out.println("댓글상세값 가져오기 성공 뿌려주기 성공" + noticeReplyVO);
 			mv.addObject("noticeVO",noticeVO)
+			.addObject("noticeReplyVO",noticeReplyVO)
 			.addObject("currentPage",currentPage)
 			.setViewName("jkNoticeBoard/noticeBoardDetail");
 		}else {
@@ -162,7 +169,7 @@ public class noticeBoardController {
 	}
 	
 	//수정하기 페이지에 작성된 글을 가져가기위한 컨트롤러
-	@RequestMapping("noticeModifyForm.do")
+	@RequestMapping(value = "noticeModifyForm.do")
 	public ModelAndView noticeModifyForm(ModelAndView mv, @RequestParam("NOTICE_BOARD_NO") int NOTICE_BOARD_NO) {
 		System.out.println("noticeModifyForm.do 실행");
 		noticeVO noticeVO = NTService.selectBoardDetail(NOTICE_BOARD_NO);
@@ -182,18 +189,45 @@ public class noticeBoardController {
 	}
 	
 	//수정 작업을 수행하는 컨트롤러
-	@RequestMapping("noticeBoardModify.do")
+	@RequestMapping(value = "noticeBoardModify.do")
 	public ModelAndView noticeBoardModify(HttpServletRequest request,
 			 ModelAndView mv, noticeVO noticeVO, @RequestParam("NOTICE_BOARD_NO") int NOTICE_BOARD_NO) {
 		System.out.println("noticeBoardModify 도착");
 		
+		System.out.println(noticeVO.getNOTICE_BOARD_CONTENT());
 		
 		if(NTService.modifyNoticeBoard(noticeVO) > 0) {
 			System.out.println("noticeBoardModify 쿼리문 실행 완료");
 			System.out.println("수정 완료");
-			mv.setViewName("redirect:noticeBoardlistAdmin.do");
+			mv.setViewName("redirect:noticeAdmin.do");
 		}else {
-			mv.setViewName("redirect:noticeBoardlistAdmin.do");
+			mv.setViewName("redirect:noticeAdmin.do");
+		}
+		return mv;
+	}
+	
+	//삭제 작업을 수행하는 컨트롤러
+	@RequestMapping(value = "noticeDeleteForm.do")
+	public ModelAndView noticeBoardDelete(HttpServletRequest request,
+			 ModelAndView mv, noticeVO noticeVO, @RequestParam("NOTICE_BOARD_NO") int NOTICE_BOARD_NO) {
+		
+		
+		if(NTService.deleteNoticeBoard(NOTICE_BOARD_NO)>0) {
+			mv.setViewName("redirect:noticeAdmin.do");
+		}else {
+			mv.setViewName("redirect:noticeAdmin.do");
+		}
+		return mv;
+	}
+	
+	//게시글내에서 댓글 등록 컨트롤러
+	@RequestMapping(value="noticeReplyInsert.do")
+	public ModelAndView noticeReplyAdd (HttpServletRequest request,
+			 ModelAndView mv,noticeReplyVO noticeReplyVO,@RequestParam("NOTICE_BOARD_NO") int NOTICE_BOARD_NO) {
+		if(NTService.noticeReplyAdd(noticeReplyVO)>0) {
+			mv.setViewName("redirect:noticeBoardDetail.do");
+		}else {
+			mv.setViewName("redirect:noticeBoardDetail.do");
 		}
 		return mv;
 	}

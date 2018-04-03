@@ -19,4 +19,10 @@ public interface RentalQnAService {
 	
 	public int deleteBoard(int boardNum);
 	
+	public ArrayList<RentalQnAVO> selectList(int currentPage,String point, int limit);
+	
+	public int getListCount(String point);
+
+
+	
 }
