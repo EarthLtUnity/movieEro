@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- 로그인 아이디 세션 저장--%>
-<c:set var="memberID" value="${memberID}" scope="session"/>
-
-<%-- 로그인시 아이디 저장--%>
-<c:if test="${(memberID ne '') and !(empty memberID)}">
-    <input type="hidden" value='${memberID}' id='chatID' />
-</c:if>
+	<%-- 로그인시 아이디 저장--%>
+    <input type="hidden" value='' id='ajaxChatID' />
 
 	<article id="chatBox" class="col-sm-4">
 	    <h1 class="sr-only">채팅창</h1>
@@ -45,13 +40,11 @@
 	</article> 
 
 <script type="text/javascript">
-/** 스크립트 main.js에 옮기고 main.jsp로 html도 옮기기 **/
-
 // 웹소켓 생성
-var webSocket = new WebSocket('ws://192.168.20.71:8088/movieEro/chatSocket');
+var webSocket = new WebSocket('ws://192.168.25.29:8088/movieEro/chatSocket');
+//var webSocket = new WebSocket('ws://192.168.20.71:8088/movieEro/chatSocket'); // kh 내자리
 // 채팅 입력창
 var $iptText =$(".iptText");
-var senderID = '${memberID}';
 
 webSocket.onerror = function(event) {
 	onError(event)
@@ -72,8 +65,8 @@ function onOpen(event) {
 function onMessage(event) {
 	//console.log(event.data) => {"id":"admin","text":"ㅁㅁㅁㅁ"}
 	var jsonParseMsg = JSON.parse(event.data);
-	//console.log(jsonParseMsg.id)
-	//console.log(jsonParseMsg.text)
+	console.log(jsonParseMsg.id)
+	console.log(jsonParseMsg.text)
     ClassChat.insertChat("you", jsonParseMsg.text, 0, jsonParseMsg.id);
 }
 // 에러 발생 시
@@ -139,9 +132,12 @@ var ClassChat ={
             	
             	// 메세지의 보내는 사람 아이디와 메세지를 보관하는 객체
                 var msg = {
-                	id:   senderID,
+                	id:   $('#ajaxChatID').val(),
                 	text: $iptText.val()
-                };           	
+                };
+            	if(msg.id===''){
+            		alert("id가 비었어")
+            	}
 
                 var sendMsg = $(this).val();
                 if (sendMsg !== ""){
