@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:import url="../inc/head.jsp"/>
 <c:import url="../inc/header.jsp"/>
+
 <div class="row" style="margin-top:200px;height:800px">
 	<article id="chatBox" class="col-sm-4">
 	    <h1 class="sr-only">채팅창</h1>
@@ -24,8 +25,7 @@
 	</article> 
 </div>
 <script type="text/javascript">
-/** 스크립트 main.js에 옮기고 main.jsp로 html도 옮기기 **/
-
+/*
 // 웹소켓 생성
 var webSocket = new WebSocket('ws://192.168.20.71:8088/movieEro/chatSocket');
 // 채팅 입력창
@@ -126,6 +126,7 @@ var ClassChat ={
     } // end of excute();    
 };
 ClassChat.excute();
+*/
 </script>
 <!-- 
 <fieldset>
