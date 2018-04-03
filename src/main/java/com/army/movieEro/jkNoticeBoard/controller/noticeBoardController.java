@@ -266,7 +266,7 @@ public class noticeBoardController {
 		}
 		return mv;
 	}
-	
+	  
 	//삭제 작업을 수행하는 컨트롤러
 	@RequestMapping(value = "noticeDeleteForm.do")
 	public ModelAndView noticeBoardDelete(HttpServletRequest request,
