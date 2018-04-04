@@ -4,7 +4,7 @@
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<c:set var="ID" value="${sessionScope.member}"/>
+<c:set var="ID" value="${sessionScope.memberID}"/>
 
 <c:import url="../inc/head.jsp" />
 <c:import url="../inc/header.jsp" />
@@ -21,12 +21,13 @@
 				<form style= "padding-top: 150px;"
 				class="form-horizontal" role="form" id="editorForm" enctype="multipart/form-data" method="get" action="noticeInsert.do" >
 						
-							<input type="hidden" name="MB_ID" value= "${ID}">
+							<input type="hidden" name="MB_ID" value="${ID}">
 							
 								<table>
 									<tr>
 										<td>제목:</td>
 										<td><input type="text" name="NOTICE_BOARD_TITLE">
+										<input type = "text" value="${ID}" readOnly/>
 									</tr>
 							<!-- 		<tr>
 									

@@ -209,7 +209,7 @@ public class noticeBoardController {
 		if(page != null) {
 			currentPage = page;
 		}
-
+		System.out.println("받아온 게시글의 번호 >>>>>>>>" + NOTICE_BOARD_NO);
 		NTService.addReadCount(NOTICE_BOARD_NO);
 		System.out.println("조회수 업데이트 성공");
 		
@@ -224,7 +224,7 @@ public class noticeBoardController {
 		}else {
 			System.out.println("상세값 가져오기 성공 뿌려주기 실패" + noticeVO);
 			mv.addObject("error","상세조회 실패")
-			.setViewName("redirect:noticeBoardListAdmin");
+			.setViewName("redirect:noticeBoardListUser");
 		}
 		return mv;
 	}
@@ -274,9 +274,11 @@ public class noticeBoardController {
 		
 		
 		if(NTService.deleteNoticeBoard(NOTICE_BOARD_NO)>0) {
-			mv.setViewName("redirect:noticeAdmin.do");
+			System.out.println("삭제 성공");
+			mv.setViewName("redirect:noticeUser.do");
 		}else {
-			mv.setViewName("redirect:noticeAdmin.do");
+			System.out.println("삭제 실패");
+			mv.setViewName("redirect:noticeUser.do");
 		}
 		return mv;
 	}
