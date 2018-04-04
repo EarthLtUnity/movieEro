@@ -74,10 +74,10 @@ a{text-decoration: none;}
 
 /* 메인 채팅창 */
 #chatBox{margin-top: 56px; padding:0;}
-#chatBox .mytext{border:0;padding:10px;background:whitesmoke;}
+#chatBox .mytext{width: 100%; border:0;padding:10px;background:whitesmoke;}
 #chatBox .text{width:75%;display:flex;flex-direction:column;}
-#chatBox .text > p:first-of-type{width:100%;margin-top:0;margin-bottom:auto;line-height: 13px;font-size: 12px;}
-#chatBox .text > p:last-of-type{width:100%;text-align:right;color:silver;margin-bottom:-7px;margin-top:auto;}
+#chatBox .text > p:first-of-type{width:100%; text-align: left; margin-top:0; padding-right: 5px; line-height: 13px;font-size: 12px;}
+#chatBox .text > p:last-of-type{width:100%; text-align:right; color:silver;margin-bottom:-7px;margin-top:auto;}
 #chatBox .text-l{float:left;padding-right:10px;}        
 #chatBox .text-r{float:right;padding-left:10px;}
 

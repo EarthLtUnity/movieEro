@@ -11,24 +11,18 @@
                	<c:choose>
                		<c:when test="${memberID != null}">
 			            <div class="msj-rta macro">                        
-			                <div class="text text-l">
-			                    <input class="iptText mytext" placeholder="메세지를 입력해주세요"/>
-			                </div> 
+			            	<input class="iptText mytext" placeholder="메세지를 입력해주세요"/>
 			            </div>
 	            	</c:when>
                		<c:otherwise>
 			            <div class="msj-rta macro doNotLogin" id="beforeLoginChatIpt">                        
-			                <div class="text text-l">
-	    		                <input class="mytext doNotInput" readonly="readonly" value="로그인해주세요"/>		
-			                </div> 
+    		                <input class="mytext doNotInput" readonly="readonly" value="로그인해주세요"/>		
 			            </div>
                		</c:otherwise>
                	</c:choose>
 				<!-- ajax 로그인직후 채팅방 -->
 	            <div class="msj-rta macro" id="ajaxChatIpt">                        
-	                <div class="text text-l">
-	                    <input class="iptText mytext" placeholder="메세지를 입력해주세요"/>
-	                </div> 
+	            	<input class="iptText mytext" placeholder="메세지를 입력해주세요"/>
 	            </div>	
 				<!--// ajax 로그인직후 채팅방 -->
 				
