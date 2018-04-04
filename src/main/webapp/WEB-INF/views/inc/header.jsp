@@ -65,7 +65,7 @@
 					</span>
 				</div>
 				<div class="header_ticket">
-					<a href="#order" class="order_btn">My tickets</a>
+					<a href="#order" class="order_btn">Ticket</a>
 					<span>3</span>
 				</div>
 				<!-- <a href="javascript:;" id="header-search"></a> -->
@@ -79,9 +79,10 @@
 					<nav class="overlay-menu">
 						<ul>
 							<li ><a href="./">Home</a></li>
-							<li><a href="blog.html">Blog</a></li>
-							<li><a href="single.html">Single</a></li>
-							<li><a href="#order" class="order_btn">Order</a></li>
+							<li><a href="#">Movie</a></li>
+							<li><a href="#">Hall</a></li>
+							<li><a href="#">Community</a></li>
+							<li><a href="#order" class="order_btn">Ticket</a></li>
 						</ul>
 					</nav>
 				</div>            
