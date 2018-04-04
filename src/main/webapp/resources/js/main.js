@@ -19,10 +19,41 @@ var navMenu = {
 };
 navMenu.excute();
 
+/*-- 공지사항 게시판 리스트 출력 --*/
+var ClassNoticeList = {
+	printList: function(list) {
+		//console.log(list);
+		var row = '';
+		$.each(list, function(i, item) {
+			// console.log("제목: "+item.NOTICE_BOARD_TITLE);
+			// 본문내용 너무 길어 자름
+			var adjContent = item.NOTICE_BOARD_CONTENT.substring(0, 100);
+			row = '<li><a href="noticeDetail.do?NOTICE_BOARD_NO='+item.NOTICE_BOARD_NO+'"><h2>'+item.NOTICE_BOARD_TITLE+'<h2><em>'+item.NOTICE_BOARD_DATE+'</em><p>'+adjContent+'</p></a></li>';
+			$('.ofs_box>ul').append(row);
+		});
+		
+	},
+	excute: function() {
+		var that = this;
+		$.ajax({
+			type: 'POST',
+			url: './noticeView.do',
+			data: {},
+			success: function(notiBoardList) {
+				that.printList(notiBoardList);
+			},
+	        error:function(e){  
+	            alert(e.responseText);  
+	        }
+		});									
+	}
+}
+ClassNoticeList.excute();
+
 /*-- 실시간 채팅 --*/
 // 웹소켓 생성
-//var webSocket = new WebSocket('ws://192.168.25.29:8088/movieEro/chatSocket');
-var webSocket = new WebSocket('ws://192.168.20.71:8088/movieEro/chatSocket'); // kh 내자리
+var webSocket = new WebSocket('ws://192.168.25.29:8088/movieEro/chatSocket');
+//var webSocket = new WebSocket('ws://192.168.20.71:8088/movieEro/chatSocket'); // kh 내자리
 // 채팅 입력창
 var $iptText =$(".iptText");
 
@@ -74,7 +105,7 @@ var ClassChat ={
             if (who == "me"){
                 control = '<li class="other_msg_window">' +
                                 '<div class="msj macro">' +
-                                '<div class="avatar"><img class="img-circle" style="width:100%;" src="'+ this.me.avatar +'" /></div>' +
+                                '<div class="avatar"><img class="img-circle" src="'+ this.me.avatar +'" /></div>' +
                                     '<div class="text text-l">' +
                                         '<p>'+ msg +'</p>' +
                                         '<p><small>'+date+'</small></p>' +
@@ -88,12 +119,13 @@ var ClassChat ={
                                         '<p>'+ msg +'</p>' +
                                         '<p><strong>'+ tagetID +'</strong> <small>'+date+'</small></p>' +
                                     '</div>' +
-                                '<div class="avatar" style="padding:0px 0px 0px 10px !important"><img class="img-circle" style="width:100%;" src="'+this.you.avatar+'" /></div>' +                                
+                                '<div class="avatar"><img class="img-circle" src="'+this.you.avatar+'" /></div>' +                                
                         '</li>';
             }
             setTimeout(
-                function(){                        
-                    $("#asynMsg").append(control).scrollTop($("ul").prop('scrollHeight'));
+                function(){      
+                	// 스크롤 내려서 항상 최신글로
+                    $("#asynMsg").append(control).scrollTop($("#asynMsg").prop('scrollHeight'));
                 }, time);
     },
     excute : function() {
@@ -107,7 +139,7 @@ var ClassChat ={
                 	text: $iptText.val()
                 };
             	if(msg.id===''){
-            		alert("id가 비었어")
+            		console.log("전송자 id가 존재하지 않습니다");
             	}
 
                 var sendMsg = $(this).val();

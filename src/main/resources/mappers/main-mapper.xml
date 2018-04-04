@@ -5,7 +5,7 @@
 <mapper namespace="Main">
 
 <select id="selectNoticeList" parameterType="string" resultType="map">
-	SELECT NOTICE_BOARD_TITLE, NOTICE_BOARD_CONTENT from NOTICE_BOARD
+	SELECT NOTICE_BOARD_NO, NOTICE_BOARD_TITLE, NOTICE_BOARD_DATE, NOTICE_BOARD_CONTENT from NOTICE_BOARD
 </select>
 
 </mapper>

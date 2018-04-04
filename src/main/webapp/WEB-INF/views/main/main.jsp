@@ -355,18 +355,13 @@
 				<div class="main_news">
 					<div class="ofs_box">
 						<ul>
-							<li>
+ 							<!--<li>
 								<a href="#">
 									<h2>KANTAR MILLWARD BROWN AND CJ 4DPLEX RESEARCH FINDS SIGNIFICANT GLOBAL PREFERENCE FOR 4DX TECHNOLOGY OVER TRADITIONAL MOVIE VIEWING</h2>
 									<em>Seoul, South Korea and Los Angeles, CA - July 6, 2017 </em>
 									<p>Kantar Millward Brown, a specialized consumer research firm, and CJ 4DPLEX, the world’s leading 4D cinema company, have announced the results of jointly conducted research entitled ‘Consumer Perception Trends of Global Cinema.’ ...</p>
 								</a>
-							</li>
-							<%-- 							 
-							<c:forEach >
-							
-							</c:forEach>
-							  --%>
+							</li> -->
 						</ul>
 					</div>
 				</div>

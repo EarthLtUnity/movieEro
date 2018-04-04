@@ -29,14 +29,14 @@ public class MainController {
 	}
 	
 	// 비동기로 공지사항 출력
-	@RequestMapping(value="/noticeView.do", produces="application/json; charset=utf-8")
+	@RequestMapping(value="noticeView.do", produces="application/json; charset=utf-8")
 	@ResponseBody 		
-	public String ajaxNoticeView(@RequestParam String param) {
+	public String ajaxNoticeView(@RequestParam(value="param", required=false) String param) {
 		List<HashMap> notiBoardList = mainService.selectBoardList(param);
 		
-		for (HashMap hashMap : notiBoardList) {
-			System.out.println(hashMap);
-		}
+//		for (int i = 0; i < notiBoardList.size(); i++) {
+//			System.out.println(notiBoardList.get(i));
+//		}
 		
 		return JsonUtil.ListToJson(notiBoardList);
 	}	
