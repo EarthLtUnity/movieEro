@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../inc/head.jsp" flush="false" />
 <jsp:include page="../inc/header.jsp" flush="false" />
 
@@ -361,83 +362,11 @@
 									<p>Kantar Millward Brown, a specialized consumer research firm, and CJ 4DPLEX, the world’s leading 4D cinema company, have announced the results of jointly conducted research entitled ‘Consumer Perception Trends of Global Cinema.’ ...</p>
 								</a>
 							</li>
-							<li>
-								<a href="#">
-									<h2>4DX Develops “Wearable Motion” Concept To Enhance SPIDER-MAN: HOMECOMING</h2>
-									<em>Immersive Movie Experience - Including Moving Seats and Environmental Effects - Lets Moviegoers Suspend Reality and Feel Like They Are Wearing Spider-Man’s High-Tech Suit! </em>
-									<p>Hitting theatres beginning July 5, Spider-Man: Homecoming will be available in 4DX on 385 screens across 48 countries worldw...</p>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<h2>4DX And Nordisk Film Cinemas Strike Deal To Bring 9 Additional Screens To Scandinavia</h2>
-									<em>Barcelona, Spain and Los Angeles, CA</em>
-									<p>(June 21, 2017) - At CineEurope this week, CJ 4DPLEX, the company behind 4DX - the world’s first and leading 4D cinema technology for feature films, announced the expansion of apartnership with Nordisk Film Cinemas. CineEurope took place from June 18-22 in Barcelona, Spai...</p>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<h2>CJ 4DPLEX Expands 4DX Virtual Reality Experience by Launching "Racing" and "Sway &amp; Twist" Units</h2>
-									<em>Company Participates in AAE 2017 for the First Time since Merger with Simuline, Showcasing the Newest State-of-the-Art VR Attractions Products </em>
-									<p>Los Angeles, CA and Singapore (June 13, 2017) ? Immersive technology leader CJ 4DPLEX today announced that it would be attending the Asian Attractions Expo (AAE) for the first time, launching two new virtual reality (VR) units at the event. The company will be unveiling its new “4DX VR Racing” and “4DX VR Sway &amp; Twist” units at AAE, which takes place June...</p>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<h2>KANTAR MILLWARD BROWN AND CJ 4DPLEX RESEARCH FINDS SIGNIFICANT GLOBAL PREFERENCE FOR 4DX TECHNOLOGY OVER TRADITIONAL MOVIE VIEWING</h2>
-									<em>Seoul, South Korea and Los Angeles, CA - July 6, 2017 </em>
-									<p>Kantar Millward Brown, a specialized consumer research firm, and CJ 4DPLEX, the world’s leading 4D cinema company, have announced the results of jointly conducted research entitled ‘Consumer Perception Trends of Global Cinema.’ ...</p>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<h2>4DX Develops “Wearable Motion” Concept To Enhance SPIDER-MAN: HOMECOMING</h2>
-									<em>Immersive Movie Experience - Including Moving Seats and Environmental Effects - Lets Moviegoers Suspend Reality and Feel Like They Are Wearing Spider-Man’s High-Tech Suit! </em>
-									<p>Hitting theatres beginning July 5, Spider-Man: Homecoming will be available in 4DX on 385 screens across 48 countries worldw...</p>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<h2>4DX And Nordisk Film Cinemas Strike Deal To Bring 9 Additional Screens To Scandinavia</h2>
-									<em>Barcelona, Spain and Los Angeles, CA</em>
-									<p>(June 21, 2017) - At CineEurope this week, CJ 4DPLEX, the company behind 4DX - the world’s first and leading 4D cinema technology for feature films, announced the expansion of apartnership with Nordisk Film Cinemas. CineEurope took place from June 18-22 in Barcelona, Spai...</p>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<h2>CJ 4DPLEX Expands 4DX Virtual Reality Experience by Launching "Racing" and "Sway &amp; Twist" Units</h2>
-									<em>Company Participates in AAE 2017 for the First Time since Merger with Simuline, Showcasing the Newest State-of-the-Art VR Attractions Products </em>
-									<p>Los Angeles, CA and Singapore (June 13, 2017) ? Immersive technology leader CJ 4DPLEX today announced that it would be attending the Asian Attractions Expo (AAE) for the first time, launching two new virtual reality (VR) units at the event. The company will be unveiling its new “4DX VR Racing” and “4DX VR Sway &amp; Twist” units at AAE, which takes place June...</p>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<h2>KANTAR MILLWARD BROWN AND CJ 4DPLEX RESEARCH FINDS SIGNIFICANT GLOBAL PREFERENCE FOR 4DX TECHNOLOGY OVER TRADITIONAL MOVIE VIEWING</h2>
-									<em>Seoul, South Korea and Los Angeles, CA - July 6, 2017 </em>
-									<p>Kantar Millward Brown, a specialized consumer research firm, and CJ 4DPLEX, the world’s leading 4D cinema company, have announced the results of jointly conducted research entitled ‘Consumer Perception Trends of Global Cinema.’ ...</p>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<h2>4DX Develops “Wearable Motion” Concept To Enhance SPIDER-MAN: HOMECOMING</h2>
-									<em>Immersive Movie Experience - Including Moving Seats and Environmental Effects - Lets Moviegoers Suspend Reality and Feel Like They Are Wearing Spider-Man’s High-Tech Suit! </em>
-									<p>Hitting theatres beginning July 5, Spider-Man: Homecoming will be available in 4DX on 385 screens across 48 countries worldw...</p>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<h2>4DX And Nordisk Film Cinemas Strike Deal To Bring 9 Additional Screens To Scandinavia</h2>
-									<em>Barcelona, Spain and Los Angeles, CA</em>
-									<p>(June 21, 2017) - At CineEurope this week, CJ 4DPLEX, the company behind 4DX - the world’s first and leading 4D cinema technology for feature films, announced the expansion of apartnership with Nordisk Film Cinemas. CineEurope took place from June 18-22 in Barcelona, Spai...</p>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<h2>CJ 4DPLEX Expands 4DX Virtual Reality Experience by Launching "Racing" and "Sway &amp; Twist" Units</h2>
-									<em>Company Participates in AAE 2017 for the First Time since Merger with Simuline, Showcasing the Newest State-of-the-Art VR Attractions Products </em>
-									<p>Los Angeles, CA and Singapore (June 13, 2017) ? Immersive technology leader CJ 4DPLEX today announced that it would be attending the Asian Attractions Expo (AAE) for the first time, launching two new virtual reality (VR) units at the event. The company will be unveiling its new “4DX VR Racing” and “4DX VR Sway &amp; Twist” units at AAE, which takes place June...</p>
-								</a>
-							</li>
+							<%-- 							 
+							<c:forEach >
+							
+							</c:forEach>
+							  --%>
 						</ul>
 					</div>
 				</div>

@@ -22,5 +22,6 @@
  		<mapper resource="mappers/qnaBoard-mapper.xml"/>
  		<mapper resource="mappers/qnaReplyBoard-mapper.xml"/>
  		<mapper resource="mappers/kst-with-board-mapper.xml"/>
+ 		<mapper resource="mappers/main-mapper.xml"/>
 	</mappers>
 </configuration>
