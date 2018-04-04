@@ -43,33 +43,39 @@
 	        	for(var i = 0; i<list.length; i++){
 	        			console.log(list[i].mb_ID);
 	        			console.log(list[i].notice_BOARD_TITLE);
-	        			console.log(list[i].notice_BOARD_CONTENT);
 	        		var r = list[i].rnum;
 	        		console.log("test 1 : "+(r%3 == 1));
 	        		console.log("test 1 : "+(r%3 == 2));
 	        		console.log("test 1 : "+(r%3 == 0));
-	        		 if(r%3 == 1){ 
+	        			var CONTENTS = list[i].notice_BOARD_CONTENT;
+	        			CONTENTS = list[i].notice_BOARD_CONTENT.substring(0, 100);
+	        			
+	        			console.log(CONTENTS);
+	        		 if(r%3 == 1){
+	        			 console.log(list[i].notice_BOARD_NO);
 			        	add1 += '<div class="bl_brd_box"><h2>';
-			        	add1 += '<a href="noticeDetail.do?NOTICE_BOARD_NO=1" style="color:#ddd;">'+list[i].notice_BOARD_TITLE+'</a></h2>';
+			        	add1 += '<a href="noticeDetail.do?NOTICE_BOARD_NO='+ list[i].notice_BOARD_NO+ '" style="color:#ddd;">'+list[i].notice_BOARD_TITLE+'</a></h2>';
 			        	add1 += '<div class="bl_brd_img"> </div>';
-			        	add1 += '<p><a href="noticeDetail.do?NOTICE_BOARD_NO=1" style="color:#666;">'+list[i].notice_BOARD_CONTENT+'</a></p>';
-			        	add1 += '<a href="noticeDetail.do?NOTICE_BOARD_NO=1" class="bl_brd_more">MORE</a>';
+			        	add1 += '<p><a href="noticeDetail.do?NOTICE_BOARD_NO='+list[i].notice_BOARD_NO+ '" style="color:#666;">'+CONTENTS+'</a></p>';
+			        	add1 += '<a href="noticeDetail.do?NOTICE_BOARD_NO='+list[i].notice_BOARD_NO+ '" class="bl_brd_more">MORE</a>';
 			        	add1 += '</div>';
 			        	$(".firstLine").html($(".firstLine").html()+add1);
 	        		}else if(r%3 == 2){
+	        			console.log(list[i].notice_BOARD_NO);
 	        			add2 += '<div class="bl_brd_box"><h2>';
-	    	        	add2 += '<a href="noticeDetail.do?NOTICE_BOARD_NO=1" style="color:#ddd;">'+list[i].notice_BOARD_TITLE+'</a></h2>';
+	    	        	add2 += '<a href="noticeDetail.do?NOTICE_BOARD_NO='+list[i].notice_BOARD_NO+ '" style="color:#ddd;">'+list[i].notice_BOARD_TITLE+'</a></h2>';
 	    	        	add2 += '<div class="bl_brd_img"> </div>';
-	    	        	add2 += '<p><a href="noticeDetail.do?NOTICE_BOARD_NO=1" style="color:#666;">'+list[i].notice_BOARD_CONTENT+'</a></p>';
-	    	        	add2 += '<a href="noticeDetail.do?NOTICE_BOARD_NO = ${NOTICE_BOARD_NO}" class="bl_brd_more">MORE</a>';
+	    	        	add2 += '<p><a href="noticeDetail.do?NOTICE_BOARD_NO='+list[i].notice_BOARD_NO+ '" style="color:#666;">'+CONTENTS+'</a></p>';
+	    	        	add2 += '<a href="noticeDetail.do?NOTICE_BOARD_NO='+list[i].notice_BOARD_NO+ '" class="bl_brd_more">MORE</a>';
 	    	        	add2 += '</div>';
 	    	        	$(".secondLine").html($(".secondLine").html()+add2);
 	        		}else{
+	        			console.log(list[i].notice_BOARD_NO);
 	        			add3 += '<div class="bl_brd_box"><h2>';
-	    	        	add3 += '<a href="noticeDetail.do?NOTICE_BOARD_NO=1" style="color:#ddd;">'+list[i].notice_BOARD_TITLE+'</a></h2>';
+	    	        	add3 += '<a href="noticeDetail.do?NOTICE_BOARD_NO='+list[i].notice_BOARD_NO+ '" style="color:#ddd;">'+list[i].notice_BOARD_TITLE+'</a></h2>';
 	    	        	add3 += '<div class="bl_brd_img"> </div>';
-	    	        	add3 += '<p><a href="noticeDetail.do?NOTICE_BOARD_NO=1" style="color:#666;">'+list[i].notice_BOARD_CONTENT+'</a></p>';
-	    	        	add3 += '<a href="noticeDetail.do?NOTICE_BOARD_NO = ${NOTICE_BOARD_NO}" class="bl_brd_more">MORE</a>';
+	    	        	add3 += '<p><a href="noticeDetail.do?NOTICE_BOARD_NO='+list[i].notice_BOARD_NO+ '" style="color:#666;">'+CONTENTS+'</a></p>';
+	    	        	add3 += '<a href="noticeDetail.do?NOTICE_BOARD_NO='+list[i].notice_BOARD_NO+ '" class="bl_brd_more">MORE</a>';
 	    	        	add3 += '</div>';
 	    	        	$(".thirdLine").html($(".thirdLine").html()+add3);
 	        		}
@@ -98,19 +104,20 @@
 				
 				
 						<!-- ROWNUM을 사용해서 ROWNUM이 3으로 나누어서 나머지가 1인경우 첫번째 새로줄에 추가 -->
-						<li ><%-- 첫번째 새로 줄 --%>					
+						<li >		
 							<div class = "firstLine">
 								<c:forEach var="bb" items="${list}">
+								<c:set var="CONTENTS" value="${fn:substring(bb.NOTICE_BOARD_CONTENT,0,50)} ..."/>
 									<c:if test="${bb.RNUM%3 == 1}">
 										<div class="bl_brd_box"><h2>
-					        			<a href="noticeDetail.do?NOTICE_BOARD_NO=1" style="color:#ddd;">${bb.NOTICE_BOARD_TITLE }</a></h2>
+					        			<a href="noticeDetail.do?NOTICE_BOARD_NO=${bb.NOTICE_BOARD_NO}" style="color:#ddd;">${bb.NOTICE_BOARD_TITLE }</a></h2>
 					        			<div class="bl_brd_img"> </div>
-					        			<p><a href="noticeDetail.do?NOTICE_BOARD_NO=1" style="color:#666;">${bb.NOTICE_BOARD_CONTENT }</a></p>
-				    	    			<a href="noticeDetail.do?NOTICE_BOARD_NO=1" class="bl_brd_more">MORE</a>
+					        			<p><a href="noticeDetail.do?NOTICE_BOARD_NO=${bb.NOTICE_BOARD_NO}" style="color:#666;">${CONTENTS}</a></p>
+				    	    			<a href="noticeDetail.do?NOTICE_BOARD_NO=${bb.NOTICE_BOARD_NO}" class="bl_brd_more">MORE</a>
 				        			</div>
 									</c:if>
 								</c:forEach>
-							</div>
+							</div>			
 						</li>
 						<%-- 첫번째 새로줄 끝 --%>
 						
@@ -121,12 +128,13 @@
 						<li >		
 							<div class = "secondLine">
 								<c:forEach var="bb" items="${list}">
+								<c:set var="CONTENTS" value="${fn:substring(bb.NOTICE_BOARD_CONTENT,0,50)} ..."/>
 									<c:if test="${bb.RNUM%3 == 2}">
 										<div class="bl_brd_box"><h2>
-					        			<a href="noticeDetail.do?NOTICE_BOARD_NO=1" style="color:#ddd;">${bb.NOTICE_BOARD_TITLE }</a></h2>
+					        			<a href="noticeDetail.do?NOTICE_BOARD_NO=${bb.NOTICE_BOARD_NO}" style="color:#ddd;">${bb.NOTICE_BOARD_TITLE }</a></h2>
 					        			<div class="bl_brd_img"> </div>
-					        			<p><a href="noticeDetail.do?NOTICE_BOARD_NO=1" style="color:#666;">${bb.NOTICE_BOARD_CONTENT }</a></p>
-				    	    			<a href="noticeDetail.do?NOTICE_BOARD_NO=1" class="bl_brd_more">MORE</a>
+					        			<p><a href="noticeDetail.do?NOTICE_BOARD_NO=${bb.NOTICE_BOARD_NO}" style="color:#666;">${CONTENTS}</a></p>
+				    	    			<a href="noticeDetail.do?NOTICE_BOARD_NO=${bb.NOTICE_BOARD_NO}" class="bl_brd_more">MORE</a>
 				        			</div>
 									</c:if>
 								</c:forEach>
@@ -139,12 +147,13 @@
 						<li>	
 							<div class = "thirdLine">
 								<c:forEach var="bb" items="${list}">
+								<c:set var="CONTENTS" value="${fn:substring(bb.NOTICE_BOARD_CONTENT,0,50)} ..."/>
 									<c:if test="${bb.RNUM%3 == 0}">
 										<div class="bl_brd_box"><h2>
-					        			<a href="noticeDetail.do?NOTICE_BOARD_NO=1" style="color:#ddd;">${bb.NOTICE_BOARD_TITLE }</a></h2>
+					        			<a href="noticeDetail.do?NOTICE_BOARD_NO=${bb.NOTICE_BOARD_NO}" style="color:#ddd;">${bb.NOTICE_BOARD_TITLE }</a></h2>
 					        			<div class="bl_brd_img"> </div>
-					        			<p><a href="noticeDetail.do?NOTICE_BOARD_NO=1" style="color:#666;">${bb.NOTICE_BOARD_CONTENT }</a></p>
-				    	    			<a href="noticeDetail.do?NOTICE_BOARD_NO=1" class="bl_brd_more">MORE</a>
+					        			<p><a href="noticeDetail.do?NOTICE_BOARD_NO=${bb.NOTICE_BOARD_NO}" style="color:#666;">${CONTENTS}</a></p>
+				    	    			<a href="noticeDetail.do?NOTICE_BOARD_NO=${bb.NOTICE_BOARD_NO}" class="bl_brd_more">MORE</a>
 				        			</div>
 									</c:if>
 								</c:forEach>

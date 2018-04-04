@@ -9,7 +9,7 @@
 <%-- <c:set var="rvo" value="${requestScope.noticeReplyVO}"/> --%>
 <c:set var="nvo" value="${requestScope.noticeVO}"/>
 <c:set var="currentPage" value="${requestScope.currentPage}"/>
-<c:set var="ID" value="${sessionScope.member}"/>
+<c:set var="ID" value="${sessionScope.memberID}"/>
 
 <section class="section-content">
 
@@ -42,19 +42,19 @@
 												readonly  id="ckeditor">${nvo.NOTICE_BOARD_CONTENT}</textarea></td>
 									</tr>
 								<tr>
-										 <c:url var="RentalBoardList"
-												value="/RentalBoardList.do">
+										 <c:url var="notice"
+												value="/notice.do">
 												<c:param name="page" value="1" />
 							 	  	 </c:url> 
 									 <c:if test="${ID eq nvo.MB_ID}">
 									 
-								     	<c:url var="bupview" value="RentalBoardUpdateView.do">
-        			 					<c:param name="bnum" value="${nvo.NOTICE_BOARD_NO}"/>
+								     	<c:url var="noticeBoardModify" value="noticeBoardModify.do">
+        			 					<c:param name="NOTICE_BOARD_NO" value="${nvo.NOTICE_BOARD_NO}"/>
          								<c:param name="page" value="${currentPage}"/>
        							   	 	</c:url>
-        					    		<c:url var="bdelete" value="RentalBoardDelete.do">
-        						 		<c:param name="bnum" value="${nvo.NOTICE_BOARD_NO}"/>
-        						 		<c:param name="content" value ="${nvo.NOTICE_BOARD_CONTENT}"/>
+        					    		<c:url var="noticeDeleteForm" value="noticeDeleteForm.do">
+        						 		<c:param name="NOTICE_BOARD_NO" value="${nvo.NOTICE_BOARD_NO}"/>
+        						 			<c:param name="content" value ="${nvo.NOTICE_BOARD_CONTENT}"/>
         						    	</c:url>
         					            <td colspan="2" align="center"><a href="noticeModifyForm.do?NOTICE_BOARD_NO=${nvo.NOTICE_BOARD_NO}"> <input type= "button" value ="수정하기"></a>
           								<a href="noticeDeleteForm.do?NOTICE_BOARD_NO=${nvo.NOTICE_BOARD_NO}"> <input type= "button" value ="삭제하기"></a>
@@ -62,7 +62,7 @@
       								 	</c:if>
 									
 							 	  	 <c:if test="${ID ne nvo.MB_ID}">
-							 	  	<td colspan="2" align="center"><a href="${RentalBoardList}"><input type= "button" value ="목록으로"></a></td>
+							 	  	<td colspan="2" align="center"><a href="notice.do"><input type= "button" value ="목록으로"></a></td>
 							 	  	</c:if>
 							 	</tr>
 								</table>
@@ -74,7 +74,30 @@
    			 </div>
 				</div>
 </section>
+<script>
+					$(function() {
 
+						CKEDITOR.replace('ckeditor', {
+							width : '1000px',
+							height : '400px',
+							filebrowserImageUploadUrl : 'RentalBoardImgInsert.do'
+						});
+
+						CKEDITOR.on('dialogDefinition', function(ev) {
+							var dialogName = ev.data.name;
+							var dialogDefinition = ev.data.definition;
+
+							switch (dialogName) {
+							case 'image': //Image Properties dialog
+								//dialogDefinition.removeContents('info');
+								dialogDefinition.removeContents('Link');
+								dialogDefinition.removeContents('advanced');
+								break;
+							}
+						});
+
+					});
+</script>
 
 
 <c:import url="../inc/footer.jsp"/>
