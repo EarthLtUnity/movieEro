@@ -12,7 +12,7 @@
 <c:set var="currentPage" value="${requestScope.currentPage}"/>
 <c:set var="listCount" value="${requestScope.listCount}" />
 <c:set var="list" value="${requestScope.list}" />
-<c:set var="member" value="${sessionScope.member}" />
+<c:set var="member" value="${sessionScope.memberID}" />
 <html>
 
 <script>

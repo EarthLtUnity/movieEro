@@ -3,11 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<script type="text/javascript" src="resources/js/Tea-kyu.js"></script>
 <script src="resources/api/ckeditor/ckeditor.js"></script>
 <jsp:include page="../inc/head.jsp" flush="false" />
 <jsp:include page="../inc/header.jsp" flush="false" />
-
+<c:set var="member" value="${sessionScope.memberID}" />
 <section class="section-content">
 
 	<div class="section-content pvb0 bg-cover"
@@ -46,11 +45,6 @@
 										<td>작성자</td>
 										<td><input type="text" readonly value="${member}" ></td>
 									</tr>
-							<!-- 		<tr>
-									
-										<td><input id ="passcheck" type="checkbox">비밀번호 설정여부</td>
-										<td><input name ="RENTAL_BOARD_PASS" type="password"></td>						
-									</tr> -->
 									<tr>
 										<td>내용</td>
 										<td><textarea cols="50" rows="7"

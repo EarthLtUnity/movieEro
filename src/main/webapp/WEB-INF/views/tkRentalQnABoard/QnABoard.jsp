@@ -7,7 +7,7 @@
 
 <jsp:include page="../inc/head.jsp" flush="false" />
 <jsp:include page="../inc/header.jsp" flush="false" />
-<c:set var="member" value="${sessionScope.member}" />
+<c:set var="member" value="${sessionScope.memberID}" />
 <c:set var="point" value="${requestScope.point}" />
 
 
