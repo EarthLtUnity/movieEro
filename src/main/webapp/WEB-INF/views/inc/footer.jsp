@@ -62,9 +62,10 @@
   
   
     <!-- Include jQuery and Scripts -->
-    <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/packages.min.js"></script>
     <script type="text/javascript" src="js/scripts.min.js"></script>
+
+    <script type="text/javascript" src="js/main.js"></script>
 	<!-- jQuery plugin -->
 	<script src="resources/api/ckeditor/ckeditor.js"></script>
 </body>

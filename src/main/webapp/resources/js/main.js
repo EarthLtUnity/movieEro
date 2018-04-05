@@ -19,12 +19,55 @@ var navMenu = {
 };
 navMenu.excute();
 
+/*-- 현재 상영중인 영화 리스트 출력 --*/
+var ClassNowPlayingList = {
+	printList: function(nowPlayingList) {
+		//console.log(nowPlayingList);
+		var movie = '';
+		$.each(nowPlayingList, function(i, item) {
+			// console.log("제목: "+item.NOTICE_BOARD_TITLE);
+			
+			movie = '<div class="movie_list_repeater">';
+			movie += '<div class="bg_movie_poster" style="background-image: url('+item.MV_IMAGE+');">';
+			movie += '<div class="entry-hover">';
+			movie += '<div class="entry-actions">';
+			movie += '<a href="https://vimeo.com/38217880" class="btn-trailers video-player">예고편</a>';
+			movie += '<a href="#order" class="btn-ticket order_btn ">buy ticket</a>';
+			movie += '</div></div>';
+			movie += '<div class="entry-desc">';
+			movie += '<h3 class="entry-title">'+item.MV_TITLE+'</h3>';
+			movie += '<div class="rating">';
+			movie += '<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>';
+			movie += '</div>';			
+			$('#slick_movie_list').append(movie);
+		});
+	},
+	excute: function() {
+		var that = this;
+		$.ajax({
+			type: 'POST',
+			url: './nowPlayingView.do',
+			data: {},
+			success: function(list) {
+				console.log(list)
+				that.printList(list);
+			},
+	        error:function(e){  
+	            alert(e.responseText);  
+	        }
+		});									
+	}
+}
+ClassNowPlayingList.excute();
+
+  
+
 /*-- 공지사항 게시판 리스트 출력 --*/
 var ClassNoticeList = {
-	printList: function(list) {
-		//console.log(list);
+	printList: function(notiList) {
+		//console.log(notiList);
 		var row = '';
-		$.each(list, function(i, item) {
+		$.each(notiList, function(i, item) {
 			// console.log("제목: "+item.NOTICE_BOARD_TITLE);
 			// 본문내용 너무 길어 자름
 			var adjContent = item.NOTICE_BOARD_CONTENT.substring(0, 100);
@@ -39,8 +82,8 @@ var ClassNoticeList = {
 			type: 'POST',
 			url: './noticeView.do',
 			data: {},
-			success: function(notiBoardList) {
-				that.printList(notiBoardList);
+			success: function(list) {
+				that.printList(list);
 			},
 	        error:function(e){  
 	            alert(e.responseText);  
@@ -52,8 +95,8 @@ ClassNoticeList.excute();
 
 /*-- 실시간 채팅 --*/
 // 웹소켓 생성
-var webSocket = new WebSocket('ws://192.168.25.29:8088/movieEro/chatSocket');
-//var webSocket = new WebSocket('ws://192.168.20.71:8088/movieEro/chatSocket'); // kh 내자리
+//var webSocket = new WebSocket('ws://192.168.25.29:8088/movieEro/chatSocket');
+var webSocket = new WebSocket('ws://192.168.20.71:8088/movieEro/chatSocket'); // kh 내자리
 // 채팅 입력창
 var $iptText =$(".iptText");
 

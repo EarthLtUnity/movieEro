@@ -16,6 +16,11 @@ public class MainServiceImpl implements MainService {
 	private MainDao mainDao;
 	
 	@Override
+	public List<HashMap> selectNowPlayingList(String param) {
+		return mainDao.selectNowPlayingList(param);
+	}
+	
+	@Override
 	public List<HashMap> selectBoardList(String param) {
 		return mainDao.selectBoardList(param);
 	}

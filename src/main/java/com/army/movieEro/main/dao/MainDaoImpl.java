@@ -15,6 +15,11 @@ public class MainDaoImpl implements MainDao {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
+	public List<HashMap> selectNowPlayingList(String param) {
+		return sqlSession.selectList("Main.selectMovieList", param);
+	}
+
+	@Override
 	public List<HashMap> selectBoardList(String param) {
 		return sqlSession.selectList("Main.selectNoticeList", param);
 	}

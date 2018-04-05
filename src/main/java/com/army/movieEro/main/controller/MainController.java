@@ -27,6 +27,19 @@ public class MainController {
 		
 		return "main/main";
 	}
+
+	// 개봉한 영화목록 출력
+	@RequestMapping(value="nowPlayingView.do", produces="application/json; charset=utf-8")
+	@ResponseBody 		
+	public String ajaxNowPlayingView(@RequestParam(value="param", required=false) String param) {
+		List<HashMap> nowPlayingList = mainService.selectNowPlayingList(param);
+		
+		for (int i = 0; i < nowPlayingList.size(); i++) {
+			System.out.println(nowPlayingList.get(i));
+		}	
+		
+		return JsonUtil.ListToJson(nowPlayingList);
+	}	
 	
 	// 비동기로 공지사항 출력
 	@RequestMapping(value="noticeView.do", produces="application/json; charset=utf-8")
@@ -39,5 +52,6 @@ public class MainController {
 //		}
 		
 		return JsonUtil.ListToJson(notiBoardList);
-	}	
+	}
+
 }
