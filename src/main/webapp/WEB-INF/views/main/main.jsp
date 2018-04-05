@@ -150,255 +150,33 @@
             <div class="col-sm-12">
                 <h3 class="heading text-center">Now playing</h3>
                 <div class="playing_movie_box">
-                
                 	<div id="slick_movie_list">
-  <!--             	
-                		<div class="movie_list_repeater">
-                			<div class="bg_movie_poster" style="background-image: url(http://imgmovie.naver.com/mdi/mit110/0625/62586_P141_104552.jpg);">
-						        <div class="entry-hover">
-						            <div class="entry-actions">
-						                <a href="https://vimeo.com/38217880" class="btn-trailers video-player">watch trailer</a>
-						                <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
-						            </div>
-						        </div>                		
-						        <div class="entry-desc">
-						            <div class="rating">
-						            	<span>★</span>
-						            	<span>★</span>
-						            	<span>★</span>
-						            	<span>☆</span>
-						            	<span>☆</span>
-						            </div>
-						            <h3 class="entry-title">The Dark Night</h3>
-						        </div>
-							</div>              		
-                		</div>
-                	
-   --> 
-  
+               		
+                		<c:forEach items="${nowPlayingList}" var="nowPlayingList">
+	                		<div class="movie_list_repeater">
+	                			<div class="bg_movie_poster" style="background-image: url(<c:out value="${nowPlayingList.MV_IMAGE}"/>);">
+							        <div class="entry-hover">
+							            <div class="entry-actions">
+							                <a href="https://vimeo.com/38217880" class="btn-trailers video-player">watch trailer</a>
+							                <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
+							            </div>
+							        </div>                		
+							        <div class="entry-desc">
+							            <div class="rating">
+							            	<c:out value="${nowPlayingList.MV_USER_RATING}"/>
+							            	<span>★</span>
+							            	<span>★</span>
+							            	<span>★</span>
+							            	<span>☆</span>
+							            	<span>☆</span>
+							            </div>
+							            <h3 class="entry-title"><c:out value="${nowPlayingList.MV_TITLE}"/></h3>
+							        </div>
+								</div>              		
+	                		</div>                		
+                		</c:forEach>  
                 	</div>
-                    <script type="text/javascript" src="js/slick.js"></script>
-                	<script>
-                	$('#slick_movie_list').slick({
-                		slidesToShow: 5,
-                		autoplay: true,
-                		arrows: true,
-                		pauseOnHover: false,
-                		focusOnSelect: true,
-
-                		responsive: [
-                		   {
-                		     breakpoint: 640,
-                		     settings: { slidesToShow: 2 }
-                		   },
-                		   {
-                		     breakpoint: 480,
-                		     settings: { slidesToShow: 1 }
-                		   },
-                		 ]
-
-                	});                	
-                	
-                	</script>
                 </div>
-                <!--  
-                <div class="ticket-carousel pvt85">
-                    <div class="swiper-container carousel-container movie-images" data-col="5">
-                        <div class="swiper-wrapper">
-                        		<div class="swiper-slide">
-                                    <div class="movie-image" data-bg-image="images/carousel/movie-1.jpg">
-                                        <div class="entry-hover">
-                                            <div class="entry-actions">
-                                                <a href="https://vimeo.com/28177848" class="btn-trailers video-player">watch trailer</a>
-                                                <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
-                                            </div>
-                                        </div>
-                                        <div class="entry-desc">
-                                            <div class="rating">
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                            </div>
-                                            <h3 class="entry-title">X-Men:Apocalypse</h3>
-                                            <ul class="entry-date">
-                                                <li>11 :00</li>  
-                                                <li>13 :50</li>  
-                                                <li>14 :00</li>  
-                                                <li>18 :00</li>  
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="movie-image" data-bg-image="images/carousel/movie-2.jpg">
-                                        <div class="entry-hover">
-                                            <div class="entry-actions">
-                                                <a href="https://vimeo.com/28177848" class="btn-trailers video-player">watch trailer</a>
-                                                <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
-                                            </div>
-                                        </div>
-                                        <div class="entry-desc">
-                                            <div class="rating">
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                            </div>
-                                            <h3 class="entry-title">X-Men:Apocalypse</h3>
-                                            <ul class="entry-date">
-                                                <li>11 :00</li>  
-                                                <li>13 :50</li>  
-                                                <li>14 :00</li>  
-                                                <li>18 :00</li>  
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="movie-image" data-bg-image="images/carousel/movie-3.jpg">
-                                        <div class="entry-hover">
-                                            <div class="entry-actions">
-                                                <a href="https://vimeo.com/28177848" class="btn-trailers video-player">watch trailer</a>
-                                                <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
-                                            </div>
-                                        </div>
-                                        <div class="entry-desc">
-                                            <div class="rating">
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                            </div>
-                                            <h3 class="entry-title">X-Men:Apocalypse</h3>
-                                            <ul class="entry-date">
-                                                <li>11 :00</li>  
-                                                <li>13 :50</li>  
-                                                <li>14 :00</li>  
-                                                <li>18 :00</li>  
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="movie-image" data-bg-image="images/carousel/movie-4.jpg">
-                                        <div class="entry-hover">
-                                            <div class="entry-actions">
-                                                <a href="https://vimeo.com/28177848" class="btn-trailers video-player">watch trailer</a>
-                                                <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
-                                            </div>
-                                        </div>
-                                        <div class="entry-desc">
-                                            <div class="rating">
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                            </div>
-                                            <h3 class="entry-title">X-Men:Apocalypse</h3>
-                                            <ul class="entry-date">
-                                                <li>11 :00</li>  
-                                                <li>13 :50</li>  
-                                                <li>14 :00</li>  
-                                                <li>18 :00</li>  
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="movie-image" data-bg-image="images/carousel/movie-5.jpg">
-                                        <div class="entry-hover">
-                                            <div class="entry-actions">
-                                                <a href="https://vimeo.com/28177848" class="btn-trailers video-player">watch trailer</a>
-                                                <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
-                                            </div>
-                                        </div>
-                                        <div class="entry-desc">
-                                            <div class="rating">
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                            </div>
-                                            <h3 class="entry-title">X-Men:Apocalypse</h3>
-                                            <ul class="entry-date">
-                                                <li>11 :00</li>  
-                                                <li>13 :50</li>  
-                                                <li>14 :00</li>  
-                                                <li>18 :00</li>  
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="movie-image" data-bg-image="images/carousel/movie-6.jpg">
-                                        <div class="entry-hover">
-                                            <div class="entry-actions">
-                                                <a href="https://vimeo.com/28177848" class="btn-trailers video-player">watch trailer</a>
-                                                <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
-                                            </div>
-                                        </div>
-                                        <div class="entry-desc">
-                                            <div class="rating">
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                            </div>
-                                            <h3 class="entry-title">X-Men:Apocalypse</h3>
-                                            <ul class="entry-date">
-                                                <li>11 :00</li>  
-                                                <li>13 :50</li>  
-                                                <li>14 :00</li>  
-                                                <li>18 :00</li>  
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                          </div>
-                    </div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
-                </div>
-
-            </div>
-				-->
         </div>
     </div>    
     <div class="section-content service pvb0">

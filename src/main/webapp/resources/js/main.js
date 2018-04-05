@@ -57,10 +57,38 @@ var ClassNowPlayingList = {
 	        }
 		});									
 	}
-}
-ClassNowPlayingList.excute();
+};
+// 비동기로 할래니깐 slick이랑 싱크가 맞지 않음
+// ClassNowPlayingList.excute();
 
-  
+/*-- 메인 화면 슬릭 슬라이드 --*/
+var ClassMainSlick = {
+	excute: function() {
+		this.nowPlaying();
+	},
+	nowPlaying: function() { // 현재 상영중인 영화 리스트 출력
+    	$('#slick_movie_list').slick({
+    		slidesToShow: 5,
+    		autoplay: true,
+    		arrows: true,
+    		pauseOnHover: false,
+    		focusOnSelect: true,
+
+    		responsive: [
+    		   {
+    		     breakpoint: 640,
+    		     settings: { slidesToShow: 2 }
+    		   },
+    		   {
+    		     breakpoint: 480,
+    		     settings: { slidesToShow: 1 }
+    		   },
+    		 ]
+
+    	});			
+	}
+};
+ClassMainSlick.excute();
 
 /*-- 공지사항 게시판 리스트 출력 --*/
 var ClassNoticeList = {

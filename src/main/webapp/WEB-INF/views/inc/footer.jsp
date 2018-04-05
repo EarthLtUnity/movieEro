@@ -61,12 +61,13 @@
 	<jsp:include page="reserve.jsp"/>
   
   
-    <!-- Include jQuery and Scripts -->
+    <!-- Default Query plugin -->
     <script type="text/javascript" src="js/packages.min.js"></script>
     <script type="text/javascript" src="js/scripts.min.js"></script>
-
-    <script type="text/javascript" src="js/main.js"></script>
 	<!-- jQuery plugin -->
 	<script src="resources/api/ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="js/slick.js"></script>
+	<!-- main script -->    
+    <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

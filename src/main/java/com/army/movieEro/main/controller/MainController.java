@@ -22,8 +22,16 @@ public class MainController {
 	private MainService mainService;
 	
 	@RequestMapping(value="main.do")
-	public String goHome(Model model) {
+	public String goHome(@RequestParam(value="param", required=false) String param, Model model) {
 		System.out.println("MainController 도착!!");
+
+		List<HashMap> nowPlayingList = mainService.selectNowPlayingList(param);
+		
+		for (int i = 0; i < nowPlayingList.size(); i++) {
+			System.out.println(nowPlayingList.get(i));
+		}
+		
+		model.addAttribute("nowPlayingList", nowPlayingList);
 		
 		return "main/main";
 	}
