@@ -8,7 +8,7 @@ public class noticeVO {
 	private String NOTICE_BOARD_TITLE;
 	private String NOTICE_BOARD_CONTENT;
 	private Date NOTICE_BOARD_DATE;
-	private String NOTICE_BOARD_ORIGINFILENAME;
+	private String NOTICE_BOARD_ORIGINFILENAME; 
 	private int NOTICE_BOARD_READCNT;
 	private int NOTICE_BOARD_NO;
 	private String NOTICE_BOARD_RENAMEFILENAME;
