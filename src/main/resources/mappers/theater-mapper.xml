@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Thearter">
+
+<select id="SelectTheaterList">
+select * from rental_movie
+</select>
+
+<select id="SelectTheaterView">
+select * from rental_movie where RENTAL_SERVICE_NO = #{RENTAL_SERVICE_NO}
+</select>
+
+<select id="SelectTheaterIamge">
+select * from rental_movie_image where RENTAL_SERVICE_NO = #{RENTAL_SERVICE_NO}
+</select>
+
+</mapper>
