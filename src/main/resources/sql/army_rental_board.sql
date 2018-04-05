@@ -1,3 +1,4 @@
+drop table rental_movie_board
 create table rental_movie_board(
 rental_board_title VARCHAR2(60),
 rental_board_date date,
@@ -7,7 +8,7 @@ rental_board_point varchar2(30),
 MB_ID VARCHAR2(30) CONSTRAINT rental_board_writer references MEMBER(MB_ID)
 )
 
-
+drop table rental_movie_board_reply
 create table rental_movie_board_reply(
 RENTAL_BOARD_REPLY_CONTENT VARCHAR2(60),
 RENTAL_BOARD_REPLY_NO NUMBER PRIMARY KEY,
@@ -16,13 +17,14 @@ MB_ID VARCHAR2(30) CONSTRAINT RENTAL_BOARD_REPLY_WRITER references MEMBER(MB_ID)
 RENTAL_BOARD_REPLY_DATE DATE
 )
 
-
+drop SEQUENCE rental_movie_replyboard_sq
 CREATE SEQUENCE rental_movie_replyboard_sq
 START WITH 0 
 INCREMENT BY 1 
 MAXVALUE 100000
 MINVALUE 0;
 
+drop EQUENCE rental_movie_board_sq
 CREATE SEQUENCE rental_movie_board_sq
 START WITH 0 
 INCREMENT BY 1 
