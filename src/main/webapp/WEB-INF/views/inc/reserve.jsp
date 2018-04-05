@@ -9,21 +9,23 @@
 			<div class="col-sm-8 col-xs-12 seat_content ph0">
 				<h2>order a ticket</h2>
 				<div class="entry-order-content">
-					<form id="msform" name="msform" action="">\
+					<form class="msform" id="msform" name="msform" action="reserve.do">
 					<input type="hidden" name="userID" id="userID" value="${ID}"/>
 						<!-- action에 컨트롤러 태워서 db에 데이터 넣기 -->
 						<!-- fieldsets -->
 						<fieldset>
 							<div class="wpc-content">
 								<h3>location</h3>
-								<select name="location">
+								<select name="cinema_location" id="cinema_location">
+									<!-- 데이터 베이스에서 영화관 리스트만 뽑아와서 forEach로 뿌려주기 -->
 									<option>cgv 강남</option>
 									<option>megabox 강남</option>
 									<option>lotte cinema 신사역</option>
 									<option>cgv 수원역</option>
 								</select>
 								<h3 class="mt3">Movie</h3>
-								<select>
+								<select name="kindOfMovie" id="kindOfMovie">
+									<!-- 영화관 정보에 따라서 데이터베이스에서 영화목록만 받아와서 forEach로 뿌려주기 -->
 									<option>Dead pool</option>
 									<option>THE BATTLE OF ALGIERS (DI ALGERI)</option>
 									<option>LORD OF THE RINGS: THE RETURN OF THE KINGS</option>
@@ -33,42 +35,31 @@
 								<input type='date' class="datetime" />
 								<h3 class="mt3">TIME</h3>
 								<ul class="order-date">
-									<li><button name="" value="">
-											<i>11:50</i>
+								<!-- 이부분에 forEach문 써서 데이터베이스에서 영화관, 영화 제목으로 영화 시간대 데이터를 뽑아와서 button태그 추가할것 -->
+									<li><button type="button" class="btn_time" name="Time" value="t1">
+											11:50
 										</button></li>
-									<li><button name="" value="">
-											<i>13:40</i>
+									<li><button type="button" class="btn_time" name="Time" value="t2">
+											13:40
 										</button></li>
-									<li><button name="" value="">
-											<i>16:35</i>
-										</button></li>
-									<li><button name="" value="">
-											<i>17:30</i>
-										</button></li>
-									<li><button name="" value="">
-											<i>19:50</i>
-										</button></li>
-									<li><button name="" value="">
-											<i>21:10</i>
+									<li><button type="button" class="btn_time" name="Time" value="t3">
+											16:35
 										</button></li>
 								</ul>
 							</div>
-							<input type="button" name="next" class="next action-button"
-								value="Next" />
+							<input type="button" name="next" class="next action-button" value="Next" />
 						</fieldset>
 						<fieldset class="seat-content">
 							<div class="wpc-content">
-								<h3 class="seat_title">seat</h3>
+								<h3 class="seat_title">SCREEN</h3>
 								<div id="seat-map"></div>
 								<div id="legend"></div>
 							</div>
-							<input type="button" name="previous"
-								class="action-button previous" value="Previous" /> <input
-								type="button" name="submit" class="payment action-button"
-								value="Submit" />
+							<input type="button" name="previous" class="action-button previous" value="Previous" />
+							<input type="button" name="payment" id="payment" class="payment action-button" value="payment" />
 						</fieldset>
 
-						<input type="hidden" name="seatNum" id="seatNum" value="">
+						<input type="hidden" name="seatNum" id="seatNum" value="4_9">
 					</form>
 				</div>
 			</div>
@@ -85,7 +76,7 @@
 						Tickets: <span id="counter">0</span>
 					</div>
 					<div>
-						Total: <b>$<span id="total">0</#iv> 
+						Total: <b><span id="total">0</span></b> 
 					</div>
 					<a href="#" class="close-window"><i class="fa fa-times"></i></a>
 				</div>
@@ -98,7 +89,10 @@
 
 
 <script>
+
 	$(document).ready(function(){
+
+		
 		function aaa() {
 			var seatNum = 0;
 			$('.seatCharts-seat').click(function(){
@@ -111,39 +105,76 @@
 		}
 		aaa();
 		
-		$(".payment").click(function(event){
-			
-		var IMP = window.IMP;
-		IMP.init('imp68666223');
 		
-			IMP.request_pay({
-			    pg : 'html5_inicis',//필수
-			    pay_method : 'card',//필수
-			    merchant_uid : 'merchant_' + new Date().getTime(),//필수
-			    name : '주문명:결제테스트',//필수
-			    amount : 1000,//필수
-			    buyer_email : 'worua99@nate.com',//필수
-			    buyer_name : $('.userID').val(),//선택 id
-			    buyer_tel : '010-2030-1266',//필수
-			    buyer_addr : '경기도 화성시 병점동',//선택
-			    buyer_postcode : '123-456'//선택
-			}, function(rsp) {
-			    if ( rsp.success ) {
-			        var msg = '결제가 완료되었습니다.';
-			        msg += '고유ID : ' + rsp.imp_uid;
-			        msg += '상점 거래ID : ' + rsp.merchant_uid;
-			        msg += '결제 금액 : ' + rsp.paid_amount;
-			        msg += '카드 승인번호 : ' + rsp.apply_num;
-			        $("#msform").submit();
-			    } else {
-			        var msg = '결제에 실패하였습니다.';
-			        msg += '에러내용 : ' + rsp.error_msg;
-			    }
-	
-			    alert(msg);
-			});
+		$(".btn_time").on('click',function(){
+			return false;
 		});
-		location.this;
+		
+		/* $(".next").click(function(event){
+			
+			
+			
+		});
+		 */
+		 var IMP = window.IMP; 
+		 IMP.init("imp68666223");
+		 $(".payment").on('click',function(){
+			 alert($('#userID').val());
+			 IMP.request_pay({
+				    pg : 'inicis',
+				    pay_method : 'card',
+				    merchant_uid : 'merchant_' + new Date().getTime(),
+				    name : '주문명:결제테스트',
+				    amount : 1000,
+				    buyer_email : 'worua99@nate.com',
+				    buyer_name : '김재겸',
+				    buyer_tel : '010-2030-1266',
+				    buyer_addr : '서울특별시 강남구 삼성동',
+				    buyer_postcode : '123-456'
+				}, function(rsp) {
+				    if ( rsp.success ) {
+				    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+				    	jQuery.ajax({
+				    		url: "reserve.do", // 가맹점 서버
+				            method: "GET",
+				            headers: { "Content-Type": "application/json" },
+				            data: {
+				            	userID : $('.userID').val(),
+				            	cinema_location : $('.ciname_lication').val(),
+				            	kindOfMovie : $('.kindOfMovie').val(),
+				            	seatNum : $('.seatNum').val(),
+				            	Time : $('#Time').val()
+				            },
+				            success : function(result){
+				            	location.href="";//반환값 지정해서 페이지 리로딩
+				            }
+				    	}).done(function(data) {
+				    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+				    		if ( everythings_fine ) {
+				    			var msg = '결제가 완료되었습니다.';
+						        msg += '아이디 : ' + $('.userID').val();
+						        msg += '영화관 : ' + $('.ciname_lication').val();
+						        msg += '영화제목 : ' + $('.kindOfMovie').val();
+						        msg += '좌석 : ' + $('.seatNum').val();
+
+				    			alert(msg);
+				    			
+				       
+				        	} else {
+				    			//[3] 아직 제대로 결제가 되지 않았습니다.
+				    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+				    		}
+				    	});
+				    } else {
+				        var msg = '결제에 실패하였습니다.';
+				        msg += '에러내용 : ' + rsp.error_msg;
+
+				        alert(msg);
+				    }
+				});
+		 });
+		 
+			    		
+		location.href="#";
 	});
-	
 </script>

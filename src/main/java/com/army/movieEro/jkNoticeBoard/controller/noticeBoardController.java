@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.army.movieEro.jkNoticeBoard.service.noticeService;
 import com.army.movieEro.jkNoticeBoard.vo.noticeVO;
+import com.army.movieEro.jkNoticeBoard.vo.paymentVO;
 
 
 @Controller
@@ -64,7 +65,7 @@ public class noticeBoardController {
 	//ajax데이터 불러오는 컨트롤러
 	@RequestMapping(value = "noticeMore.do")
 	@ResponseBody
-	public ArrayList<noticeVO> testInit(ModelAndView mv, @RequestParam(value = "page", required = false) Integer page) {
+	public ArrayList<noticeVO> testInit(@RequestParam(value = "page", required = false) Integer page) {
 		System.out.println("넘어온 page값 확인"+page);
 		
 		int currentPage = 1;
@@ -283,5 +284,14 @@ public class noticeBoardController {
 		return mv;
 	}
 	
+	
+	@RequestMapping(value = "reserve.do")
+	@ResponseBody
+	public String reserveInsert(paymentVO paymentVO) {
+		System.out.println("여기까지 왔나만 한번 보자 제발 와라 제발!!");
+		
+		
+		return "main/main.do";
+	}
 
 }

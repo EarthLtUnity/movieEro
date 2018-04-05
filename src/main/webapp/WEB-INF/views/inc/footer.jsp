@@ -56,13 +56,12 @@
     </div>
 
 	<!-- 영화 결제 파트 -->
+	<!-- iamport.payment.js -->
+	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<jsp:include page="reserve.jsp"/>
   
   
     <!-- Include jQuery and Scripts -->
-	<!-- iamport.payment.js -->
-	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-    <script type="text/javascript" src="js/payment.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/packages.min.js"></script>
     <script type="text/javascript" src="js/scripts.min.js"></script>
