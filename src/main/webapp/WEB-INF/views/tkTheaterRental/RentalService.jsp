@@ -5,12 +5,15 @@
 <jsp:include page="../inc/head.jsp" flush="false" />
 <jsp:include page="../inc/header.jsp" flush="false" />
 <c:set var="member" value="${sessionScope.member}" />
+<c:set var="theaterImage" value="${requestScope.theaterImage}"></c:set>
 <script>
-function popupOpen(){
-	var popUrl = "ex.do";	//팝업창에 출력될 페이지 URL
-	var popOption = "width=700, height=500, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
-		window.open(popUrl,"",popOption);
-	}
+function popupOpen(bnum){
+	var popUrl = "RentalServiceView.do?bnum="+bnum;	
+	var popOption = "width=700, height=500, resizable=no, scrollbars=no, status=no;"; 
+	var title  = "testpop";
+		window.open(popUrl,'',popOption);
+
+		  }
 </script>
 
 <section class="section-content">
@@ -24,22 +27,24 @@ function popupOpen(){
 			<div class="row">
 				<div class="col-sm-12 col-xs-12" style= "padding-top: 150px;" >
                 <h3 class="heading text-center">영화관 대여서비스</h3>
-               
+             
                 <div class="ticket-carousel pvt85">
                     <div class="swiper-container carousel-container movie-images" data-col="3" style="width: 900px;">
                         <div class="swiper-wrapper">
                          <c:set var="theater" value="${requestScope.theater}"></c:set>
 							<c:forEach var="theaterlist" items="${theater}">
                                 <div class="swiper-slide">
-                                    <div class="movie-image" data-bg-image="image/bg/main_bg01.jpg">
+                                    <div class="movie-image" data-bg-image="images/bg/bg_space_light.jpg">
                                         <div class="entry-hover">
                                             <div class="entry-actions">
-                                            	<input type="hidden" value ="${theaterlist.RENTAL_SERVICE_NO}">
-                                            	<input type='button' onclick='popupOpen()' value='정보보기'/>
+                                        	    <form name="theaterview">
+                                            	<input type="hidden" name ="test1" value="${theaterlist.RENTAL_SERVICE_NO}"/>
+                                            	</form>
+                                            	<input type='button' onclick='popupOpen(${theaterlist.RENTAL_SERVICE_NO})' value='정보보기'/>
                                                 <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
                                             </div>
                                         </div>
-                                    </div>
+                                      </div>
                                 </div>
                                  </c:forEach>
                           </div>
@@ -51,7 +56,6 @@ function popupOpen(){
 
             </div>
         </div>
-    </div>  
     </div>  
     <div class="section-content service pvb0">
    

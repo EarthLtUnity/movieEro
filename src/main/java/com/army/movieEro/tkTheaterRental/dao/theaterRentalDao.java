@@ -10,7 +10,9 @@ public interface theaterRentalDao {
 
 	public ArrayList<theaterVO> selectList();
 	
-	public theaterVO selectBoard(int boardNum);
+	public theaterVO selectView(int bnum);
+	
+	public ArrayList<theaterImageVo> selectImageView(int bnum);
 	
 	public ArrayList<theaterImageVo> selectImage();
 	

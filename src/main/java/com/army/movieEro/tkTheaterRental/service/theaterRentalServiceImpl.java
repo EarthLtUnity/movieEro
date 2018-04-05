@@ -24,13 +24,13 @@ public class theaterRentalServiceImpl implements theaterRentalService {
 	@Override
 	public ArrayList<theaterImageVo> selectImage() {
 		// TODO Auto-generated method stub
-		return null;
+		return theaterRentalServiceImpl.selectImage();
 	}
 
 	@Override
-	public theaterVO selectBoard(int boardNum) {
+	public theaterVO selectView(int bnum) {
 		// TODO Auto-generated method stub
-		return null;
+		return theaterRentalServiceImpl.selectView(bnum);
 	}
 
 	@Override
@@ -61,6 +61,12 @@ public class theaterRentalServiceImpl implements theaterRentalService {
 	public int getListCount() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public ArrayList<theaterImageVo> selectImageView(int bnum) {
+		// TODO Auto-generated method stub
+		return theaterRentalServiceImpl.selectImageView(bnum);
 	}
 
 

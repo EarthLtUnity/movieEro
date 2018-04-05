@@ -8,11 +8,15 @@
 select * from rental_movie
 </select>
 
-<select id="SelectTheaterView">
+<select id="SelectTheaterView" resultType="Theater">
 select * from rental_movie where RENTAL_SERVICE_NO = #{RENTAL_SERVICE_NO}
 </select>
 
-<select id="SelectTheaterIamge">
+<select id="SelectTheaterIamge" resultType="TheaterImage">
+select * from rental_movie_image
+</select>
+
+<select id="SelectIamgeView" resultType="TheaterImage">
 select * from rental_movie_image where RENTAL_SERVICE_NO = #{RENTAL_SERVICE_NO}
 </select>
 

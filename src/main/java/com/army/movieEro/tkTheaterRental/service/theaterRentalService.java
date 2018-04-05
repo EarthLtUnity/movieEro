@@ -13,7 +13,9 @@ public interface theaterRentalService {
 		
 		public ArrayList<theaterImageVo> selectImage();
 		
-		public theaterVO selectBoard(int boardNum);
+		public ArrayList<theaterImageVo> selectImageView(int bnum);
+		
+		public theaterVO selectView(int bnum);
 		
 		public int insertBoard(theaterVO b);
 		

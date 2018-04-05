@@ -24,15 +24,15 @@ public class theaterRentalDaoImpl implements theaterRentalDao {
 	}
 
 	@Override
-	public theaterVO selectBoard(int boardNum) {
+	public theaterVO selectView(int bnum) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlsession.selectOne("Thearter.SelectTheaterView",bnum);
 	}
 
 	@Override
 	public ArrayList<theaterImageVo> selectImage() {
 		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<theaterImageVo>(sqlsession.selectList("Thearter.SelectTheaterIamge"));
 	}
 
 	@Override
@@ -63,6 +63,12 @@ public class theaterRentalDaoImpl implements theaterRentalDao {
 	public int getListCount() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public ArrayList<theaterImageVo> selectImageView(int bnum) {
+		// TODO Auto-generated method stub
+		return new ArrayList<theaterImageVo>(sqlsession.selectList("Thearter.SelectIamgeView"));
 	}
 
 

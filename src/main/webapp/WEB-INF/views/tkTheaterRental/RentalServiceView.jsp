@@ -3,6 +3,12 @@
 <html>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="http://malsup.github.com/jquery.cycle2.js"></script>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="f"  uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="theaterview" value="${requestScope.theaterview}"></c:set>
+<c:set var="address" value="${theaterview.RENTAL_SERVICE_POSITION}"></c:set>
+<c:set var="theaterImage" value="${requestScope.theaterImage}"></c:set>
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
@@ -41,7 +47,8 @@
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
  	<script type="text/javascript">
     function initialize() {
-     
+    	var chDate = '<c:out value="${address}"/>'; 
+
         var mapOptions = {
                             zoom: 18, // 지도를 띄웠을 때의 줌 크기
                             mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -62,7 +69,7 @@
                                                     new google.maps.Size(size_x, size_y));
          
         // Geocoding *****************************************************
-        var address = '서울 중랑구 중랑역로 72 (동구햇살아파트)'; // DB에서 주소 가져와서 검색하거나 왼쪽과 같이 주소를 바로 코딩.
+        var address = chDate; // DB에서 주소 가져와서 검색하거나 왼쪽과 같이 주소를 바로 코딩.
         var marker = null;
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode( { 'address': address}, function(results, status) {
@@ -97,28 +104,30 @@
     data-cycle-timeout=2000
 >
 	<div class="cycle-pager"></div>
+	<c:forEach var="theaterImg" items="${theaterImage}">
     <img src="images/theater/gnmovie1.jpg">
 	<img src="images/theater/gnmovie2.jpg">
 	<img src="images/theater/gnmovie3.jpg">
+	</c:forEach>
 	</div>
 	<div Style="height: 5%; ">
-	<H3>내용 </H3>
+	<H3>${theaterview.RENTAL_SERVICE_TITLE}</H3>
 	</div>
 	<div>
-	<H3>내용</H3>
+	<H3>${theaterview.RENTAL_SERVICE_POSITION}</H3>
 	</div>
 	<div>
-	<H3>13:00 15:00 17:00 19:00 21:00</H3>
+	<H3>${theaterview.RENTAL_SERVICE_POSITION }</H3>
 	</div>
 	<div>
-	<H3>내용</H3>
+	<H3>${theaterview.RENTAL_SERVICE_PRICE}</H3>
 	<p>내용</p>
 	</div>
 	<div>
-	<H3>가격 2500</H3>
+	<H3>${theaterview.RENTAL_SERVICE_PRICE}</H3>
 	</div>
 	<div>
-	<input type="button" value="ê²°ì íê¸°">
+	<input type="button" value="결제하기">
 	</div>
 	</div>
     <div id="map-canvas" style="width: 50%; height: 100%" title="도서관 위치입니다."></div>
