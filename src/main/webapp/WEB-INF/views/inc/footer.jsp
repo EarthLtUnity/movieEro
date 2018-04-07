@@ -67,6 +67,7 @@
 	<!-- jQuery plugin -->
 	<script src="resources/api/ckeditor/ckeditor.js"></script>
 	<script type="text/javascript" src="js/slick.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
 	<!-- main script -->    
     <script type="text/javascript" src="js/main.js"></script>
 </body>

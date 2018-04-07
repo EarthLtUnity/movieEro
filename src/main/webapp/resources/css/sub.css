@@ -70,7 +70,9 @@ a{text-decoration: none;}
 .mypage_wrap .mypage_grid .rgh_mypage_box li .rgh_btn_sec .btn_reserve_cl{}
 
 /* 윙배너 */
-.wing_banner_wrap{position:fixed; top: 100px; right: 0; width: 80px; height: 300px; border: 3px solid #fb802d; z-index: 1000;}
+.wing_banner_wrap{position:fixed; top: 100px; right: 0; width: 80px; height: 550px; border: 3px solid #fb802d; z-index: 1000;}
+.wing_banner_wrap h2{height: 14px;font-size: 12px;color: #fb802d;font-weight: bold;text-align: center;}
+.wing_banner_wrap img{width: 74px; height: 106px;}
 
 /* 메인 채팅창 */
 #chatBox{margin-top: 56px; padding:0;}

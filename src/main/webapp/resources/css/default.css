@@ -763,6 +763,7 @@ body.sticky-menu.stick #header.menu-top-left #header-search {
 #slick_movie_list .movie_list_repeater .entry-hover .entry-actions a{display: inline-block; width: 175px; height: 40px; line-height: 40px; font-size: 16px; text-decoration: none; text-align: center; color: #fff; border-radius: 20px; border: 1px solid #fb802d; transition: all 0.25s ease;}
 #slick_movie_list .movie_list_repeater .entry-hover .entry-actions a:hover{background-color: #fb8f46; border-color: #fb8f46;}
 #slick_movie_list .movie_list_repeater .entry-hover .entry-actions a.fill{line-height: 30px;}
+#slick_movie_list .movie_list_repeater .entry-hover .entry-actions .view_detail{margin-top: 10px;}
 #slick_movie_list .movie_list_repeater .entry-hover .entry-actions .btn-ticket{margin-top: 10px;}
 #slick_movie_list .movie_list_repeater .entry-hover .entry-actions .btn-ticket:before{content: '\f07a'; font-family: Fontawesome; color: #fb802d; margin-left: -5px; padding-right: 10px;}
 

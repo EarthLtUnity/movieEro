@@ -157,18 +157,16 @@
 	                			<div class="bg_movie_poster" style="background-image: url(<c:out value="${nowPlayingList.MV_IMAGE}"/>);">
 							        <div class="entry-hover">
 							            <div class="entry-actions">
-							                <a href="https://vimeo.com/38217880" class="btn-trailers video-player">watch trailer</a>
-							                <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
+							                <a href="https://vimeo.com/38217880" class="btn-trailers video-player">예고편</a>
+							                <!-- <a href="#order" class="btn-ticket order_btn ">buy ticket</a> -->
+							                <a href="#" class="view_detail">상세보기</a>
+							                <input type="hidden" value="<c:out value="${nowPlayingList.MV_IMAGE}"/>" />
 							            </div>
 							        </div>                		
 							        <div class="entry-desc">
 							            <div class="rating">
+							            	<span>★</span>
 							            	<c:out value="${nowPlayingList.MV_USER_RATING}"/>
-							            	<span>★</span>
-							            	<span>★</span>
-							            	<span>★</span>
-							            	<span>☆</span>
-							            	<span>☆</span>
 							            </div>
 							            <h3 class="entry-title"><c:out value="${nowPlayingList.MV_TITLE}"/></h3>
 							        </div>

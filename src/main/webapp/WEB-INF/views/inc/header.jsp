@@ -13,7 +13,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 col-sm-6 col-xs-4">
-				<a href="./" id="logo" title="Tenguu" class="logo-image" data-bg-image="images/common/logo.png">Tenguu</a>
+				<h1><a href="./" id="logo" title="Tenguu" class="logo-image" data-bg-image="images/common/logo.png">Movie愛路</a></h1>		
 				<nav class="nav" id="headerNav">
 					<ul class="cf">
 						<li><a href="#">Movie</a>
@@ -126,7 +126,9 @@
 <!--// 로그인 모달창 -->
 
 <!-- 윙배너 -->
-<div class="wing_banner_wrap" id="wingBannerWrap">
-
+<div class="wing_banner_wrap">
+	<h2>최근본 목록</h2>
+	<div id="wingBanner">	
+	</div>
 </div>
 <!--// 윙배너 -->

@@ -69,10 +69,9 @@ var ClassMainSlick = {
 	nowPlaying: function() { // 현재 상영중인 영화 리스트 출력
     	$('#slick_movie_list').slick({
     		slidesToShow: 5,
-    		autoplay: true,
+    		//autoplay: true,
     		arrows: true,
-    		pauseOnHover: false,
-    		focusOnSelect: true,
+    		pauseOnHover: true,
 
     		responsive: [
     		   {
@@ -89,6 +88,65 @@ var ClassMainSlick = {
 	}
 };
 ClassMainSlick.excute();
+
+var WingBanner = {
+	addImgFn : function() { // 윙배너 이미지 추가후 쿠키 생성
+		var that = this;
+		$('.entry-hover .view_detail').on('click', function(event){
+			var $wingBanner = $('#wingBanner');
+			var imgSrc = $(this).next('input').val();
+			var imgTag = "<img src='"+imgSrc+"' title='"+imgSrc+"'>"
+			var $imgs  = $wingBanner.children('img');
+			var dupChk = false;
+			var $dupTg = null;
+			var arrImg    = [];
+			
+			// 중복 체크
+			$imgs.each(function() {
+				if($(this).attr('title')==imgSrc){
+					dupChk = true;
+					$dupTg = $(this);
+				}			
+			});
+			
+			if(dupChk) { // 중복 제거
+				$dupTg.remove();
+			}else if($imgs.length >= 5){ // 이미지 최대 갯수는 5개
+				$imgs.last().remove();
+			}
+			
+			$wingBanner.prepend(imgTag);
+			
+			$wingBanner.children('img').each(function() {
+				arrImg.push($(this).attr('title'));
+			});
+			
+			// 쿠키 생성
+			$.cookie('wingBanner', arrImg);
+			
+			// a 태그 아직 링크 없어서 추가한것, 링크 걸고 나면 이거 빼기
+			event.preventDefault();
+		});		
+	},
+	cookieFn : function() { // 쿠키값 가져와 초기 이미지 세팅
+		var wingBanner = $.cookie('wingBanner');
+		
+		if(wingBanner !== null) {
+			var arrCookieImg = wingBanner.split(',');
+			
+			for (var i = 0; i < arrCookieImg.length; i++) {
+				var img = '';
+				img += "<img src='"+arrCookieImg[i]+"' title='"+arrCookieImg[i]+"'>";
+				$('#wingBanner').append(img);
+			}
+		}
+	},	
+	excute : function() {
+		this.addImgFn();
+		this.cookieFn();
+	}	
+}
+WingBanner.excute();
 
 /*-- 공지사항 게시판 리스트 출력 --*/
 var ClassNoticeList = {
@@ -123,8 +181,8 @@ ClassNoticeList.excute();
 
 /*-- 실시간 채팅 --*/
 // 웹소켓 생성
-//var webSocket = new WebSocket('ws://192.168.25.29:8088/movieEro/chatSocket');
-var webSocket = new WebSocket('ws://192.168.20.71:8088/movieEro/chatSocket'); // kh 내자리
+var webSocket = new WebSocket('ws://192.168.25.29:8088/movieEro/chatSocket');
+//var webSocket = new WebSocket('ws://192.168.20.71:8088/movieEro/chatSocket'); // kh 내자리
 // 채팅 입력창
 var $iptText =$(".iptText");
 
