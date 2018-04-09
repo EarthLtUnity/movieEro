@@ -18,22 +18,22 @@
 					<ul class="cf">
 						<li><a href="#">Movie</a>
 							<ul class="dep2">
-								<li><a href="#">평점</a></li>
-								<li><a href="#">영화 개요</a></li>
-								<li><a href="#">줄거리</a></li>
-								<li><a href="#">스틸컷</a></li>
+								<li><a href="summary.do">영화 개요</a></li>
+								<li><a href="review.do">리뷰</a></li>
+								<li><a href="trailer.do">트레일러</a></li>
 							</ul>
 						</li>
 						<li><a href="#">Hall</a>
 							<ul class="dep2">
-								<li><a href="#">상영관 대관</a></li>
-								<li><a href="#">대관 문의</a></li>
+								<li><a href="RentalService.do">상영관 대관</a></li>
+								<li><a href="RentalBoardList.do">대관 문의</a></li>
 							</ul>						
 						</li>
 						<li><a href="#">Community</a>
 							<ul class="dep2">
-								<li><a href="#">같이보기</a></li>
-								<li><a href="#">게시판</a></li>
+								<li><a href="notice.do">공지사항</a></li>
+								<li><a href="withBoadIntro.do">같이보기</a></li>
+								<li><a href="freeBoadList.do">자유게시판</a></li>
 							</ul>						
 						</li>
 					</ul>
