@@ -15,6 +15,10 @@
 		<typeAlias type="com.army.movieEro.stCommunity.With_board.vo.WithBoard" alias="WithBoard"/>
 		<typeAlias type="com.army.movieEro.tkTheaterRental.vo.theaterImageVo" alias = "TheaterImage"/>
 		<typeAlias type="com.army.movieEro.tkTheaterRental.vo.theaterVO" alias = "Theater"/>
+		<typeAlias type="com.army.movieEro.sjMovies.model.vo.MovieDetailVo" alias = "Detail"/>
+		<typeAlias type="com.army.movieEro.sjMovies.model.vo.MovieReviewVo" alias = "Review"/>
+		<typeAlias type="com.army.movieEro.sjMovies.model.vo.MovieVisualVo" alias = "Trailer"/>
+		<typeAlias type="com.army.movieEro.sjMovies.model.vo.MovieInfoVo" alias = "Info"/>
 		<!-- <typeAlias type="com.army.movieEro.stCommunity.With_board.vo.WithBoard_sub" alias="WithBoardsub"/> -->
 	</typeAliases>
 	
@@ -26,5 +30,6 @@
  		<mapper resource="mappers/qnaReplyBoard-mapper.xml"/>
  		<mapper resource="mappers/kst-with-board-mapper.xml"/>
  		<mapper resource="mappers/main-mapper.xml"/>
+ 		<mapper resource="mappers/movie-mapper.xml"/>
 	</mappers>
 </configuration>

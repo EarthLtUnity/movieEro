@@ -16,7 +16,7 @@
 				<h1><a href="./" id="logo" title="Tenguu" class="logo-image" data-bg-image="images/common/logo.png">Movie愛路</a></h1>		
 				<nav class="nav" id="headerNav">
 					<ul class="cf">
-						<li><a href="#">Movie</a>
+						<li><a href="loadMovie.do">Movie</a>
 							<ul class="dep2">
 								<li><a href="summary.do">영화 개요</a></li>
 								<li><a href="review.do">리뷰</a></li>
@@ -79,7 +79,7 @@
 					<nav class="overlay-menu">
 						<ul>
 							<li ><a href="./">Home</a></li>
-							<li><a href="#">Movie</a></li>
+							<li><a href="loadMovie.do">Movie</a></li>
 							<li><a href="#">Hall</a></li>
 							<li><a href="#">Community</a></li>
 							<li><a href="#order" class="order_btn">Ticket</a></li>

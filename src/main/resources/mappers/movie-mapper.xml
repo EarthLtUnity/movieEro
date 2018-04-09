@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Movie">
+	
+	<select id="loadMovie" resultType="Info">
+		SELECT * FROM MOVIE_INFO
+	</select>
+	
+	<select id="loadSummary" resultType="Detail">
+		SELECT * FROM MOVIE_INFO_DETAIL WHERE MV_INFO_SEQ = #{MVInfoSeq}
+	</select>
+	
+	<select id="loadTrailer" resultType="Trailer">
+		SELECT * FROM MOVIE_TRAILER WHERE MV_INFO_SEQ = #{MVInfoSeq}
+	</select>
+	
+	<select id="loadStillcut" resultType="Trailer">
+		SELECT * FROM MOVIE_STILLCUT WHERE MV_INFO_SEQ = #{MVInfoSeq}
+	</select>
+	
+	<select id="loadReview" resultType="Review">
+		SELECT * FROM MOVIE_REVIEW WHERE MV_INFO_SEQ = #{MVInfoSeq}
+	</select>
+
+</mapper>
