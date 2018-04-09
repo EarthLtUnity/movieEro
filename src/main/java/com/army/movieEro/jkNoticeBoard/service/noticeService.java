@@ -3,6 +3,8 @@ package com.army.movieEro.jkNoticeBoard.service;
 import java.util.ArrayList;
 
 import com.army.movieEro.jkNoticeBoard.vo.noticeVO;
+import com.army.movieEro.jkNoticeBoard.vo.paymentVO;
+
 
 public interface noticeService {
 	public int insertNoticeBoard(noticeVO noticeVO); 
@@ -22,6 +24,8 @@ public interface noticeService {
 	public int deleteNoticeBoard(int NOTICE_BOARD_NO);
 
 	public ArrayList<noticeVO> selectListUser(int currentPage, int limit);
+
+
 
 
 

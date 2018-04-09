@@ -9,43 +9,45 @@
 			<div class="col-sm-8 col-xs-12 seat_content ph0">
 				<h2>order a ticket</h2>
 				<div class="entry-order-content">
-					<form class="msform" id="msform" name="msform" action="reserve.do">
-					<input type="hidden" name="userID" id="userID" value="${ID}"/>
+					<form class="msform" id="msform" name="msform" action="reserve.do" method="get">
+					<!-- 로그인 아이디 -->
+					<input type="hidden" name="MB_ID" id="MB_ID" value="${ID}"/>
 						<!-- action에 컨트롤러 태워서 db에 데이터 넣기 -->
 						<!-- fieldsets -->
 						<fieldset>
 							<div class="wpc-content">
 								<h3>location</h3>
-								<select name="cinema_location" id="cinema_location">
+								<!-- 영화관 정보 -->
+								<select name="CINEMA_NAME" id="CINEMA_NAME">
 									<!-- 데이터 베이스에서 영화관 리스트만 뽑아와서 forEach로 뿌려주기 -->
-									<option>cgv 강남</option>
-									<option>megabox 강남</option>
-									<option>lotte cinema 신사역</option>
-									<option>cgv 수원역</option>
+									<option value="cgv 강남">cgv 강남</option>
+									<option value="megabox 강남">megabox 강남</option>
+									<option value="lotte cinema 신사역">lotte cinema 신사역</option>
+									<option value="cgv 수원역">cgv 수원역</option>
 								</select>
 								<h3 class="mt3">Movie</h3>
-								<select name="kindOfMovie" id="kindOfMovie">
+								<!-- 영화 종류 -->
+								<select name="CINEMA_MOVIE" id="CINEMA_MOVIE">
 									<!-- 영화관 정보에 따라서 데이터베이스에서 영화목록만 받아와서 forEach로 뿌려주기 -->
 									<option>Dead pool</option>
 									<option>THE BATTLE OF ALGIERS (DI ALGERI)</option>
 									<option>LORD OF THE RINGS: THE RETURN OF THE KINGS</option>
 									<option>어벤져스</option>
 								</select>
-								<h3 class="mt3">Date</h3>
-								<input type='date' class="datetime" />
 								<h3 class="mt3">TIME</h3>
-								<ul class="order-date">
-								<!-- 이부분에 forEach문 써서 데이터베이스에서 영화관, 영화 제목으로 영화 시간대 데이터를 뽑아와서 button태그 추가할것 -->
-									<li><button type="button" class="btn_time" name="Time" value="t1">
+								<!-- 상영시간 -->
+								<select name="CINEMA_MOVIE_TIME" id="CINEMA_MOVIE_TIME">
+									<option class="btn_time" value="11:50">
 											11:50
-										</button></li>
-									<li><button type="button" class="btn_time" name="Time" value="t2">
+									</option>
+									<option class="btn_time" value="13:40">
 											13:40
-										</button></li>
-									<li><button type="button" class="btn_time" name="Time" value="t3">
+									</option>
+									<option class="btn_time" value="16:35">
 											16:35
-										</button></li>
-								</ul>
+									</option>
+									
+								</select>
 							</div>
 							<input type="button" name="next" class="next action-button" value="Next" />
 						</fieldset>
@@ -59,7 +61,25 @@
 							<input type="button" name="payment" id="payment" class="payment action-button" value="payment" />
 						</fieldset>
 
-						<input type="hidden" name="seatNum" id="seatNum" value="4_9">
+<div id="seatIds">
+</div>
+<script>
+$('#seat-map > div > div').click(function(){
+	var seatId = $('this').attr('id');
+	if(seatId){
+		str ='"<input type="hidden" name="CINEMA_MOVIE_SEAT" value="'+seatId+'"/>';
+		$('#seatIds').appen(str)
+	}
+	
+	$.each('#seatIds input',function(i,val){
+		
+	})
+	
+});
+</script>
+
+						<!-- 좌석 정보 -->
+						<input type="hidden" name="CINEMA_MOVIE_SEAT" id="CINEMA_MOVIE_SEAT" value="4_9">
 					</form>
 				</div>
 			</div>
@@ -116,18 +136,23 @@
 			
 		});
 		 */
+		 
+		 
+		 /* 결제창 불러오고 실행하는 부분 */
 		 var IMP = window.IMP; 
 		 IMP.init("imp68666223");
+		 
+		 
 		 $(".payment").on('click',function(){
-			 alert($('#userID').val());
+			 alert($('#MB_ID').val());
 			 IMP.request_pay({
 				    pg : 'inicis',
 				    pay_method : 'card',
 				    merchant_uid : 'merchant_' + new Date().getTime(),
-				    name : '주문명:결제테스트',
+				    name : $('#CINEMA_MOVIE').val(),
 				    amount : 1000,
 				    buyer_email : 'worua99@nate.com',
-				    buyer_name : '김재겸',
+				    buyer_name : $('#MB_ID').val(),
 				    buyer_tel : '010-2030-1266',
 				    buyer_addr : '서울특별시 강남구 삼성동',
 				    buyer_postcode : '123-456'
@@ -139,31 +164,24 @@
 				            method: "GET",
 				            headers: { "Content-Type": "application/json" },
 				            data: {
-				            	userID : $('.userID').val(),
-				            	cinema_location : $('.ciname_lication').val(),
-				            	kindOfMovie : $('.kindOfMovie').val(),
-				            	seatNum : $('.seatNum').val(),
-				            	Time : $('#Time').val()
+				            	MB_ID : $('#MB_ID').val(),
+				            	CINEMA_NAME : $('#CINEMA_NAME').val(),
+				            	CINEMA_MOVIE : $('#CINEMA_MOVIE').val(),
+				            	CINEMA_MOVIE_SEAT : $('#CINEMA_MOVIE_SEAT').val(),
+				            	CINEMA_MOVIE_TIME : $('#CINEMA_MOVIE_TIME').val(),
+				            	CINEMA_SECTION : "임시 상영관"
 				            },
 				            success : function(result){
-				            	location.href="";//반환값 지정해서 페이지 리로딩
-				            }
-				    	}).done(function(data) {
-				    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-				    		if ( everythings_fine ) {
-				    			var msg = '결제가 완료되었습니다.';
-						        msg += '아이디 : ' + $('.userID').val();
-						        msg += '영화관 : ' + $('.ciname_lication').val();
-						        msg += '영화제목 : ' + $('.kindOfMovie').val();
-						        msg += '좌석 : ' + $('.seatNum').val();
+				            	var msg = '결제가 완료되었습니다.';
+						        msg += '아이디 : ' + $('#MB_ID').val();
+						        msg += '영화관 : ' + $('#CINEMA_NAME').val();
+						        msg += '영화제목 : ' + $('#CINEMA_MOVIE').val();
+						        msg += '좌석 : ' + $('#CINEMA_MOVIE_SEAT').val();
+						        msg += '시간 : ' + $('#CINEMA_MOVIE_TIME').val();
 
 				    			alert(msg);
-				    			
-				       
-				        	} else {
-				    			//[3] 아직 제대로 결제가 되지 않았습니다.
-				    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
-				    		}
+				            	location.href="";//반환값 지정해서 페이지 리로딩
+				            }
 				    	});
 				    } else {
 				        var msg = '결제에 실패하였습니다.';

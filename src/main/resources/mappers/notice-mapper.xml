@@ -6,8 +6,8 @@
 
 	<!-- 게시글 등록 -->
 	<insert id="insertNoticeBoard" parameterType = "noticeVO">
-		INSERT INTO NOTICE_BOARD VALUES ( ${MB_ID}, ${NOTICE_BOARD_TITLE},
-		${NOTICE_BOARD_CONTENT}, SYSDATE, null , 2,NOTICE_BOARD_SEQ.NEXTVAL,null)
+		INSERT INTO NOTICE_BOARD VALUES ( '${MB_ID}', '${NOTICE_BOARD_TITLE}',
+		'${NOTICE_BOARD_CONTENT}', SYSDATE, null , 0,NOTICE_BOARD_SEQ.NEXTVAL,null)
 	</insert>
 	<!-- null부분에 소스 수정후에 #{NOTICE_BOARD_ORIGINFILENAME} 이것으로 변경  -->
 	<!-- 게시글 조회 (관리자 페이지) -->
@@ -65,7 +65,6 @@
 	<delete id="deleteNoticeBoard" parameterType="_int">
 		DELETE FROM NOTICE_BOARD WHERE NOTICE_BOARD_NO = #{NOTICE_BOARD_NO}
 	</delete>
-	
 	
 </mapper>
 

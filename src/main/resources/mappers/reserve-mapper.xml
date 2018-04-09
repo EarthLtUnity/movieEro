@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="paymentVO">
+
+	
+	<insert id="reserveInsert" parameterType="paymentVO">
+		INSERT INTO CINEMA_RESERVE VALUES('${CINEMA_NAME}','${CINEMA_SECTION}','${CINEMA_MOVIE}','${CINEMA_MOVIE_TIME}','${CINEMA_MOVIE_SEAT}','${MB_ID}')
+		
+	</insert>
+</mapper>
+
+

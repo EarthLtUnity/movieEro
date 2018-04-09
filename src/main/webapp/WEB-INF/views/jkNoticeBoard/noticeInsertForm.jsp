@@ -26,7 +26,7 @@
 								<table>
 									<tr>
 										<td>제목:</td>
-										<td><input type="text" name="NOTICE_BOARD_TITLE">
+										<td><input type="text" name="NOTICE_BOARD_TITLE" class="ntTitle">
 										<input type = "text" value="${ID}" readOnly/>
 									</tr>
 							<!-- 		<tr>
@@ -37,7 +37,7 @@
 									<tr>
 										<td>내용</td>
 										<td><textarea cols="50" rows="7"
-												name="NOTICE_BOARD_CONTENT" id="ckeditor"></textarea></td>
+												name="NOTICE_BOARD_CONTENT" id="ckeditor" class="ntContent"></textarea></td>
 									</tr>
 									<tr>
 										<td colspan="2" align="center">
@@ -66,7 +66,7 @@ $(function() {
 	CKEDITOR.replace('ckeditor', {
 		width : '1000px',
 		height : '400px',
-		filebrowserImageUploadUrl : 'RentalBoardImgInsert.do'
+		filebrowserImageUploadUrl : 'noticeBoardImgInsert.do'
 	});
 
 	CKEDITOR.on('dialogDefinition', function(ev) {
@@ -81,11 +81,27 @@ $(function() {
 			break;
 		}
 	});
+	
+	$( "#target" ).submit(function( event ) {
+		  var userId = '${ID}';
+		  var bTitle = this.hasClass("ntTitle");
+		  var bContent = this.hasClass("ntContent");
+		  if(bTitle.val() == ""){
+			  alert("제목을 입력하지 않으셨습니다.");
+			  bTitle.focus();
+			  return false;
+		  }
+		  if(bContent.val() == ""){
+			  alert("본문을 입력하지 않으셨습니다.");
+			  bContent.focus();
+			  return false;
+		  }
+		});
 
 });
-function memberchk(){
-	var bname = '${member}';
-    if(bname==""){
+function membercheck(){
+	var userId = '${ID}';
+    if(userId==""){
     	alert("로그인을 해주시기 바랍니다");
     }
 }

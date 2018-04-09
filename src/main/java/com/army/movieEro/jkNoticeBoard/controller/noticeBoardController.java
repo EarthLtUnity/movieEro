@@ -1,13 +1,17 @@
 package com.army.movieEro.jkNoticeBoard.controller;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.army.movieEro.jkNoticeBoard.service.noticeService;
 import com.army.movieEro.jkNoticeBoard.vo.noticeVO;
 import com.army.movieEro.jkNoticeBoard.vo.paymentVO;
+import com.army.movieEro.rentalQnA.vo.RentalQnAVO;
 
 
 @Controller
@@ -284,14 +289,53 @@ public class noticeBoardController {
 		return mv;
 	}
 	
-	
-	@RequestMapping(value = "reserve.do")
-	@ResponseBody
-	public String reserveInsert(paymentVO paymentVO) {
-		System.out.println("여기까지 왔나만 한번 보자 제발 와라 제발!!");
+	@RequestMapping(value="noticeBoardImgInsert.do")
+	public void noticeBoardImgInsert(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam MultipartFile upload, ModelAndView mv, noticeVO noticeVO) {
 		
-		
-		return "main/main.do";
+		OutputStream out = null;
+		PrintWriter printWriter = null;
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+			String fileName = upload.getOriginalFilename();
+			String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
+					+ fileName.substring(fileName.lastIndexOf(".") + 1);
+
+			byte[] bytes = upload.getBytes();
+			String uploadPath = "D:\\springWorkspace\\movieEro\\src\\main\\webapp\\resources\\img\\ckeditor\\"
+					+ renameFileName;// 저장경로
+
+			out = new FileOutputStream(new File(uploadPath));
+			out.write(bytes);
+			String callback = request.getParameter("CKEditorFuncNum");
+
+			printWriter = response.getWriter();
+			String fileUrl = "resources/img/ckeditor/" + renameFileName;// url경로
+			System.out.println(fileUrl);
+
+			printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(" + callback
+					+ ",'" + fileUrl + "','이미지 업로드 완료.'" + ")</script>");
+			printWriter.flush();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (out != null) {
+					out.close();
+				}
+				if (printWriter != null) {
+					printWriter.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
+	
+	
+	
 
 }
