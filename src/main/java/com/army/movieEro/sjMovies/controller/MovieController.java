@@ -22,13 +22,35 @@ public class MovieController {
 	@Autowired
 	MovieService movieService;
 	
-	@RequestMapping("loadMovie.do")
+	@RequestMapping("movieList.do")
 	public ModelAndView loadList(ModelAndView mv) {
 		System.out.println("loadMovie.do 도착.......................");
 		List<MovieInfoVo> movieList = new ArrayList<MovieInfoVo>();
 		movieList = movieService.loadMovieList();
 		mv.addObject("movieList", movieList)
 		  .setViewName("sjDetail/movieList");
+		
+		return mv;
+	}
+	
+	@RequestMapping("movieRating.do")
+	public ModelAndView movieRating(ModelAndView mv) {
+		System.out.println("loadMovie.do 도착.......................");
+		List<MovieInfoVo> movieList = new ArrayList<MovieInfoVo>();
+		movieList = movieService.loadMovieRating();
+		mv.addObject("movieList", movieList)
+		.setViewName("sjDetail/movieList");
+		
+		return mv;
+	}
+	
+	@RequestMapping("movieRecnt.do")
+	public ModelAndView movieRecnt(ModelAndView mv) {
+		System.out.println("loadMovie.do 도착.......................");
+		List<MovieInfoVo> movieList = new ArrayList<MovieInfoVo>();
+		movieList = movieService.loadMovieLecnt();
+		mv.addObject("movieList", movieList)
+		.setViewName("sjDetail/movieList");
 		
 		return mv;
 	}
@@ -75,5 +97,10 @@ public class MovieController {
 		  .setViewName("sjDetail/review");
 		
 		return mv;
+	}
+	
+	@RequestMapping("seojin.do")
+	public String test() {
+		return "sjDetail/detailTemplate";
 	}
 }

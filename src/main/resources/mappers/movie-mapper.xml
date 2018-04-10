@@ -8,6 +8,14 @@
 		SELECT * FROM MOVIE_INFO
 	</select>
 	
+	<select id="loadMovieRating" resultType="Info">
+		SELECT * FROM MOVIE_INFO ORDER BY MV_USER_RATING DESC
+	</select>
+	
+	<select id="loadMovieLecnt" resultType="Info">
+		SELECT * FROM MOVIE_INFO ORDER BY MV_PUB_DATE DESC
+	</select>
+	
 	<select id="loadSummary" resultType="Detail">
 		SELECT * FROM MOVIE_INFO_DETAIL WHERE MV_INFO_SEQ = #{MVInfoSeq}
 	</select>

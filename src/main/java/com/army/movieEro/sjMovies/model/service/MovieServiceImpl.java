@@ -25,6 +25,22 @@ public class MovieServiceImpl implements MovieService {
 		movieList = movieDao.loadMovieList();
 		return movieList;
 	}
+
+	@Override
+	public List<MovieInfoVo> loadMovieRating() {
+		System.out.println("Service loadMovieRating 실행..........");
+		List<MovieInfoVo> movieList = new ArrayList<MovieInfoVo>();
+		movieList = movieDao.loadMovieRating();
+		return movieList;
+	}
+
+	@Override
+	public List<MovieInfoVo> loadMovieLecnt() {
+		System.out.println("Service loadMovieLecnt 실행..........");
+		List<MovieInfoVo> movieList = new ArrayList<MovieInfoVo>();
+		movieList = movieDao.loadMovieLecnt();
+		return movieList;
+	}
 	
 	@Override
 	public List<MovieDetailVo> loadSummary(String MVInfoSeq) {
@@ -57,5 +73,4 @@ public class MovieServiceImpl implements MovieService {
 		movieReview = movieDao.loadReview(MVInfoSeq);
 		return movieReview;
 	}
-
 }

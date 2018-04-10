@@ -25,6 +25,22 @@ public class MovieDaoImpl implements MovieDao {
 		movieList = sqlSession.selectList("Movie.loadMovie");
 		return movieList;
 	}
+
+	@Override
+	public List<MovieInfoVo> loadMovieRating() {
+		System.out.println("Dao loadMovieRating 실행..........");
+		List<MovieInfoVo> movieList = new ArrayList<MovieInfoVo>();
+		movieList = sqlSession.selectList("Movie.loadMovieRating");
+		return movieList;
+	}
+
+	@Override
+	public List<MovieInfoVo> loadMovieLecnt() {
+		System.out.println("Dao loadMovieLecnt 실행..........");
+		List<MovieInfoVo> movieList = new ArrayList<MovieInfoVo>();
+		movieList = sqlSession.selectList("Movie.loadMovieLecnt");
+		return movieList;
+	}
 	
 	@Override
 	public List<MovieDetailVo> loadSummary(String MVInfoSeq) {

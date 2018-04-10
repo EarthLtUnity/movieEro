@@ -10,6 +10,10 @@ import com.army.movieEro.sjMovies.model.vo.MovieVisualVo;
 public interface MovieService {
 	public List<MovieInfoVo> loadMovieList();
 	
+	public List<MovieInfoVo> loadMovieRating();
+	
+	public List<MovieInfoVo> loadMovieLecnt();
+	
 	public List<MovieDetailVo> loadSummary(String MVInfoSeq);
 	
 	public List<MovieVisualVo> loadTrailer(String MVInfoSeq);
