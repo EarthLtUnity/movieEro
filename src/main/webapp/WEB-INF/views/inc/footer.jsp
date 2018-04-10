@@ -63,7 +63,7 @@
   
     <!-- Default Query plugin -->
     <script type="text/javascript" src="js/packages.min.js"></script>
-    <script type="text/javascript" src="js/scripts.min.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
 	<!-- jQuery plugin -->
 	<script src="resources/api/ckeditor/ckeditor.js"></script>
 	<script type="text/javascript" src="js/slick.js"></script>
