@@ -18,13 +18,13 @@ public class TheaterPaymentDaoImpl implements TheaterPaymentDao {
 	@Override
 	public ArrayList<TheaterPayment> selectPayList(HashMap<String, String> visualMap) {
 		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<TheaterPayment>(sqlsession.selectList("tkPayment.theaterpayselect",visualMap));
 	}
 
 	@Override
-	public int insertPayment() {
+	public int insertPayment(TheaterPayment vo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlsession.insert("tkPayment.theaterpayinsert",vo);
 	}
 
 	@Override

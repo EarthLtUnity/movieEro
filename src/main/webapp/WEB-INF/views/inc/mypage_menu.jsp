@@ -11,5 +11,5 @@
 	<li><a href="mypage.do"><strong>1</strong><br>영화결제내역</a></li>
 	<li><a href="wishlist.do"><strong>2</strong><br>위시리스트</a></li>
 	<li><a href="#"><strong>3</strong><br>모임정보</a></li>
-	<li><a href="#"><strong>4</strong><br>대관정보</a></li>
+	<li><a href="myrentalinfo.do"><strong>4</strong><br>대관정보</a></li>
 </ul>

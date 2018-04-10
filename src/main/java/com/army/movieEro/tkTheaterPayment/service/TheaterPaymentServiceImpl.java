@@ -18,13 +18,13 @@ public class TheaterPaymentServiceImpl implements TheaterPaymentService {
 	@Override
 	public ArrayList<TheaterPayment> selectPayList(HashMap<String, String> visualMap) {
 		// TODO Auto-generated method stub
-		return null;
+		return theaterPaymentServiceImpl.selectPayList(visualMap);
 	}
 
 	@Override
-	public int insertPayment() {
+	public int insertPayment(TheaterPayment vo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return theaterPaymentServiceImpl.insertPayment(vo);
 	}
 
 	@Override

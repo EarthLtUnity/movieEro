@@ -1,12 +1,12 @@
 package com.army.movieEro.tkTheaterPayment.vo;
 
 public class TheaterPayment {
-		String	theater_pay_postion ;
-		String	theater_pay_date ;
-		String	theater_pay_time ;
-		int	theater_pay_price ;
-		String	mb_id ;
-		String theater_pay_case;
+		String	theater_pay_postion ; //지역
+		String	theater_pay_date ; //날짜
+		String	theater_pay_time ; //시간
+		int	theater_pay_price ; //가격
+		String	mb_id ; //결제자
+		String theater_pay_case; //결제여부
 		
 		public String getTheater_pay_case() {
 			return theater_pay_case;

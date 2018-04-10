@@ -11,12 +11,15 @@
 </style>
 
 <script>
+/////////////////////////정보보기///////////////////
 function popupOpen(bnum){
 	var popUrl = "RentalServiceView.do?bnum="+bnum;	
 	var popOption = "width=700, height=500, resizable=no, scrollbars=no, status=no;"; 
 	var title  = "testpop";
 		window.open(popUrl,'',popOption);
 		  }
+		  
+/////////////////////////////////결제///////////////////////		  
 $(document).ready(function(){
 	function theaterRental() {
 		var seatNum = 0;
@@ -95,19 +98,25 @@ $(document).ready(function(){
 function selectpoint(point) {
 $("#pointname").text(point);
 }
-function seletedata(data) {
-$("#datavalue").text(data);
+function seletedata(date) {
+$("#datavalue").text(date);
+/* function(){ 
+	var tkposition = $("#rental_loaction option:selected").val();
+    $.ajax({
+           url : 'tpaymentselet.do',
+           type : 'post',
+       	   data : {theater_pay_postion : "tkposition" ,
+        			theater_pay_date : "date"},
+       	   dataType : 'application/json;', 
+      	   success : function(list){
+        		 var a = "";
+        		 if(list.size()==null){
+        		 }
+        		} 
+   	 });
+	} */
 }
 
-/* function rentalbutton(){
-    $.ajax({
-        url : '',
-        type : 'post',
-        data : {RENTAL_BOARD_POINT : point,
-        		page : page},
-         dataType : 'application/json;', 
-        success : function(data){
-        	} */
         	
 </script>
 <section class="section-content">

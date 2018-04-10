@@ -10,7 +10,7 @@ public interface TheaterPaymentDao {
 
 	public ArrayList<TheaterPayment> selectPayList(HashMap<String, String> visualMap);
 	
-	public int insertPayment();
+	public int insertPayment(TheaterPayment vo);
 	
 	public int updatePayment();
 	

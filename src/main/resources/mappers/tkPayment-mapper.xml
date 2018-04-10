@@ -5,5 +5,21 @@
 
 <mapper namespace="tkPayment">
 
+<select id="theaterpayselect" resultType="theaterPayment">
+select * from theater_pay where theater_pay_postion = #{theater_pay_postion} and theater_pay_date = #{theater_pay_date}
+</select>
+
+<!-- <select id="" resultType="theaterPayment">
+select * from theater_pay where mb_id = #{mb_id}
+</select> -->
+
+<insert id="theaterpayinsert">
+insert into theater_pay value(#{theater_pay_postion},#{theater_pay_date},#{theater_pay_time},#{theater_pay_price},#{mb_id},#{theater_pay_case})
+</insert>
+
+<!-- <update id="">
+update theater_pay set theater_pay_case = false where mb_id = #{mb_id} and theater_pay_date = #{theater_pay_date} and
+theater_pay_postion = #{theater_pay_postion} and theater_pay_time = #{theater_pay_time}
+</update> -->
 
 </mapper>

@@ -16,7 +16,7 @@
     <title>Marker Labels</title>
 <style>
 .cycle-slideshow, .cycle-slideshow * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
-.cycle-slideshow { width: 100%;  height: 250px;  min-width: 200px; max-width: 500px; margin: 10px auto; padding: 0; position: relative;}
+.cycle-slideshow { width: 100%;  height: 100%;  min-width: 200px; max-width: 500px;  padding: 0; position: relative;}
 
 .cycle-slideshow div.slide { width: 100%; height: 100% }
 .cycle-slideshow img { 
@@ -99,7 +99,7 @@
 </script>
   </head>
   <body>
-<div Style="float :left; width : 50%;  height: 100%; ">
+<div Style="float :left; width : 50%;  height: 50%; ">
 <div class="cycle-slideshow"
     data-cycle-fx=scrollHorz
     data-cycle-timeout=2000
@@ -110,19 +110,16 @@
 	</c:forEach>
 	
 	</div>
-	<div Style="height: 10%; ">
+	</div>
+	    <div id="map-canvas" style="width: 50%; height: 50%" title="영화관 위치입니다."></div>
+	<div style="padding: 6px 6px 6px 6px; border: 8px solid #f2f2f2;">
 	<H2>영화관: ${theaterview.RENTAL_SERVICE_TITLE}</H2>
 	<hr>
-	</div>
 	<h4>주소:${theaterview.RENTAL_SERVICE_POSITION}</h4><hr>
 	<h4>정보:${theaterview.RENTAL_SERVICE_INFO}</h4><hr>
 	<h4>가격:${theaterview.RENTAL_SERVICE_PRICE}</h4><hr>
-	<span>시간 09:00</span>
-	<span>11:00</span>
-	<span>13:00</span>
-	
+	<h4>시간: 09:00  11:30  14:00</h4>
 	</div>
-    <div id="map-canvas" style="width: 50%; height: 100%" title="영화관 위치입니다."></div>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4VzFVpcw6-ypvRJGD5BcNnEs7JirI9Co&libraries=places&callback=initMap">
     </script>
