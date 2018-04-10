@@ -1,39 +1,38 @@
 --시퀀스 생성
+DROP TRIGGER TRG_WITH_BOARD_SUB;
 drop sequence ST_WITH_BOARD_SEQ;
+drop table ST_WITH_BOARD_SUB;
+drop table ST_WITH_BOARD;
+
 create sequence ST_WITH_BOARD_SEQ
 start with 1
 increment by 1
-maxvalue 9999
+maxvalue 9999;
 
 
 --WITH 게시판 
-drop table ST_WITH_BOARD;
-delete ST_WITH_BOARD;
 create table ST_WITH_BOARD (	
-	WITH_BOARD_NO NUMBER, --게시글번호
+	WITH_BOARD_NO NUMBER primary key, --게시글번호
 	WITH_BOARD_WRITER VARCHAR2(30 BYTE) NOT NULL ENABLE, --작성자 
 	WITH_BOARD_TITLE VARCHAR2(50 BYTE) NOT NULL ENABLE, --제목 
 	WITH_BOARD_CONTENT VARCHAR2(2000 BYTE) NOT NULL ENABLE, -- 내용
 	WITH_BOARD_COUPON VARCHAR2(100 BYTE), --쿠폰함
 	WITH_BOARD_APPLY_NO NUMBER, --모집인원 
 	WITH_BOARD_READCOUNT NUMBER, --게시글조회수 
-	WITH_BOARD_DATE DATE DEFAULT sysdate,  --날시날짜 
-	primary key (WITH_BOARD_NO));
+	WITH_BOARD_DATE DATE DEFAULT sysdate  --날시날짜 
+	);
 	
 --WITH_SUB 게시판
-drop table ST_WITH_BOARD_SUB;
-delete ST_WITH_BOARD_SUB;
 create table ST_WITH_BOARD_SUB (	
-	WITH_BOARD_NO NUMBER primary key, --게시글번호 
+	WITH_BOARD_NO NUMBER references ST_WITH_BOARD(WITH_BOARD_NO) on delete cascade, --게시글번호 
 	WITH_BOARD_NOW_ID VARCHAR2(400 BYTE) NOT NULL ENABLE, --현재 참여자ID
 	WITH_BOARD_NOW_NO NUMBER, --현재참여인원
-	WITH_BOARD_DATE DATE DEFAULT sysdate, --날시날짜 
-	foreign key (WITH_BOARD_NO) references ST_WITH_BOARD(WITH_BOARD_NO)); --외래키
+	WITH_BOARD_DATE DATE DEFAULT sysdate --날시날짜 
+	); --외래키
 
-	
 --TRIGGER
 --INSERT문 실행시 sub에 insert
-DROP TRIGGER TRG_WITH_BOARD_SUB;
+
 CREATE OR REPLACE TRIGGER TRG_WITH_BOARD_SUB
 AFTER INSERT
 ON ST_WITH_BOARD
@@ -43,11 +42,4 @@ BEGIN
    VALUES(:NEW.WITH_BOARD_NO, :NEW.WITH_BOARD_WRITER, 1, SYSDATE);
 END;
 /
-
-commit
-	
-
-
-
-
-
+commit;
