@@ -20,16 +20,16 @@
 	 			</div>
 				<div class="cinema-wrap">
 	            	<div class="row">
-	            	<c:set var="movies" value="${movieList}"/>
+	            	<c:set var="movies" value="${requestScope.movieList}"/>
 	            	<c:forEach var="forMovie" items="${movies}">
 	                	<div class="col-xs-6 col-sm-3 custom listPost cinema-item">
 	                    	<div class="cinema">
-	                        	<a href="#" class="cinema__images toDetailBtn">
+	                        	<button type="submit" class="cinema__images toDetailBtn">
 	                            	<img src="${forMovie.MV_IMAGE}">
 	                            	<span class="cinema-rating">${forMovie.MV_USER_RATING}</span>
-	                        	</a>
+	                        	</button>
 	                           	<a href="single-cinema.html" class="cinema-title">${forMovie.MV_TITLE}</a>
-	                           	<input type="hidden" value="${forMovie.MV_INFO_SEQ}"/>
+	                           	<input type="hidden" name="MVInfoSeq" value="${forMovie.MV_INFO_SEQ}"/>
 	                    	</div>
 						</div>
 					</c:forEach>

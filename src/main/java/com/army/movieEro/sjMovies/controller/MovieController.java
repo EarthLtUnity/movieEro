@@ -59,11 +59,19 @@ public class MovieController {
 	public ModelAndView loadSummary(ModelAndView mv, HttpServletRequest request) {
 		System.out.println("summary.do 도착...................");
 		String MVInfoSeq = request.getParameter("MVInfoSeq");
+		System.out.println("불러올 영화 시퀀스 : " + MVInfoSeq);
 		List<MovieDetailVo> movieSummary = new ArrayList<MovieDetailVo>();
+		List<MovieInfoVo> specInfo = new ArrayList<MovieInfoVo>();
 		movieSummary = movieService.loadSummary(MVInfoSeq);
+		specInfo = movieService.loadSpecInfo(MVInfoSeq);
+		
 		
 		mv.addObject("movieSummary", movieSummary)
+		  .addObject("specInfo", specInfo)
 		  .setViewName("sjDetail/summary");
+		
+		System.out.println(movieSummary.toString());
+		System.out.println(specInfo.toString());
 		
 		return mv;
 	}

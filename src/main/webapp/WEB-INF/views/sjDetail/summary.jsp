@@ -2,75 +2,37 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <jsp:include page="../inc/head.jsp" flush="false" />
 <jsp:include page="../inc/header.jsp" flush="false" />
-
-<style>
-.cf:after{display: block; content: ''; clear: both;}
-.tab_menu{margin: 10px 0 20px 0;}
-.tab_menu li{float: left; width: 33.333%; text-align: center; padding: 10px 0; background-color: #c1c1c1; list-style:none; border-radius: 5px;}
-.tab_menu li.on{background-color: #03a9f4}
-.tab_menu li a{display: block; color: #fff; font-weight: bold;}
-</style>
-<div class="container-fluid">
-	<div class="row-fluid">
-	    <!-- form -->
-		<form role="form">
-		 <!--/span-->
-			<div class="span9" id="content">
-				<div class="row-fluid">
-				   	<!-- block -->
-					<div class="block">
-					    <div class="navbar navbar-inner block-header">
-					        <div class="muted pull-left">메인화면 리스트</div>
-					    </div>
-					    <div class="tab_menu">
-					    	<ul class="cf">
-					    		<li class="on"><a href="summary.do">영화 개요</a></li>
-					    		<li><a href="trailer.do">트레일러</a></li>
-					    		<li><a href="review.do">영화 리뷰</a></li>
-					    	</ul>
-					    </div>
-						<div class="block-content collapse in">
-							<div class="span12">
-								<div class="table-toolbar" style="margin-bottom:14px;">
-									<div class="btn_board">
-										<!-- <a class="btn" href=""><i class="icon-eye-open"></i>목록</a> -->
-										<!-- <a class="btn btn-inverse" href=""><i class="icon-refresh icon-white"></i>수정</a> -->
-										<a class="btn btn-primary" href=""><i class="icon-pencil icon-white"></i>추가</a>
-										<!-- <a class="btn btn-danger" href=""><i class="icon-remove icon-white"></i>삭제</a> -->
-									</div>
-								</div>
-								<table id="movieListTable" border="0" class="table table-striped table-bordered">
-									<colgroup>
-										<col width="35%">
-										<col width="50%">
-										<col width="15%">
-									</colgroup>
-									<thead>
-										<tr>
-											<th>영화제목</th>
-											<th>이미지주소</th>
-											<th>등록여부</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr class="odd gradeX">
-									    	<td><a href="visualView.do">view페이지로 이동</a></td>
-									    	<td></td>
-									    	<td><input type="text" value="미등록" readOnly></td>
-										</tr>
-										<c:set var="movieListResult" value="${requestScope.movieList}" /> 
-										<c:forEach var="listMap" items="${movieListResult}">
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				<!-- /block -->
-				</div>
+<c:set var="summary" value="${requestScope.movieSummary}"/>
+<c:set var="specific" value="${requestScope.specInfo}"/>
+<section class="sub_content">
+	<div class="container">
+		<div class="col-sm-12">
+			<div class="movie">
+				<div class="movie__info">
+	                <div class="col-sm-4 col-md-3 movie-mobile">
+ 	                    <div class="movie__images">
+	                        <span class="movie__rating">${specific[0].MV_USER_RATING}</span>
+	                        <img src="${specific[0].MV_IMAGE}">
+	                    </div>
+	                </div>
+	                <div class="col-sm-8 col-md-9">
+	                    <p class="movie__time">${summary[0].MV_RUNTIME}</p>
+	                    <p class="movie__option"><strong>Country: </strong>${summary[0].MV_COUNTRY}</p>
+	                    <p class="movie__option"><strong>Year: </strong>${specific[0].MV_PUB_DATE}</p>
+	                    <p class="movie__option"><strong>Genre: </strong>${summary[0].MV_GENRE}</p>
+	                    <p class="movie__option"><strong>Release date: </strong>${summary[0].MV_RELEASE_DATE}</p>
+	                    <p class="movie__option"><strong>Director: </strong>${summary[0].MV_DIRECTOR}</p>
+	                    <p class="movie__option"><strong>Actors: </strong>${summary[0].MV_ACTOR}</p>
+	                    <p class="movie__option"><strong>Age restriction: </strong>${summary[0].MV_GRADE}</p>
+	                </div>
+            	</div>
+            	<!-- movie-info -->
+            	 <div class="clearfix"></div>
+            	 <h2 class="page-heading">줄거리</h2>
+            	 <p class="movie__describe">${summary[0].MV_STORY}</p>
 			</div>
-		</form>
+			<!-- div class=movie -->
+		</div>
 	</div>
-</div>
-
+</section>
 <jsp:include page="../inc/footer.jsp" flush="false" />

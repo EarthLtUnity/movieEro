@@ -49,6 +49,14 @@ public class MovieServiceImpl implements MovieService {
 		movieSummary = movieDao.loadSummary(MVInfoSeq);
 		return movieSummary;
 	}
+	
+	@Override
+	public List<MovieInfoVo> loadSpecInfo(String MVInfoSeq) {
+		System.out.println("Service loadSpecInfo 실행..........");
+		List<MovieInfoVo> specInfo = new ArrayList<MovieInfoVo>();
+		specInfo = movieDao.loadSpecInfo(MVInfoSeq);
+		return specInfo;
+	}
 
 	@Override
 	public List<MovieVisualVo> loadTrailer(String MVInfoSeq) {

@@ -20,6 +20,10 @@
 		SELECT * FROM MOVIE_INFO_DETAIL WHERE MV_INFO_SEQ = #{MVInfoSeq}
 	</select>
 	
+	<select id="loadSpecInfo" resultType="Info">
+		SELECT * FROM MOVIE_INFO WHERE MV_INFO_SEQ = #{MVInfoSeq}
+	</select>
+	
 	<select id="loadTrailer" resultType="Trailer">
 		SELECT * FROM MOVIE_TRAILER WHERE MV_INFO_SEQ = #{MVInfoSeq}
 	</select>

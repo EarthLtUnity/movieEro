@@ -16,6 +16,8 @@ public interface MovieDao {
 	
 	public List<MovieDetailVo> loadSummary(String MVInfoSeq);
 	
+	public List<MovieInfoVo> loadSpecInfo(String MVInfoSeq);
+	
 	public List<MovieVisualVo> loadTrailer(String MVInfoSeq);
 	
 	public List<MovieVisualVo> loadStillcut(String MVInfoSeq);

@@ -16,7 +16,7 @@
 				<h1><a href="./" id="logo" title="Tenguu" class="logo-image" data-bg-image="images/common/logo.png">Movie愛路</a></h1>		
 				<nav class="nav" id="headerNav">
 					<ul class="cf">
-						<li><a href="loadMovie.do">Movie</a>
+						<li><a href="movieList.do">Movie</a>
 							<ul class="dep2">
 								<li><a href="summary.do">영화 개요</a></li>
 								<li><a href="review.do">리뷰</a></li>

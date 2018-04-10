@@ -49,6 +49,15 @@ public class MovieDaoImpl implements MovieDao {
 		movieSummary = sqlSession.selectList("Movie.loadSummary", MVInfoSeq);
 		return movieSummary;
 	}
+	
+	@Override
+	public List<MovieInfoVo> loadSpecInfo(String MVInfoSeq) {
+		System.out.println("Dao loadSpecInfo 실행..........");
+		List<MovieInfoVo> specInfo = new ArrayList<MovieInfoVo>();
+		specInfo = sqlSession.selectList("Movie.loadSpecInfo", MVInfoSeq);
+		System.out.println("자료 출력 성공");
+		return specInfo;
+	}
 
 	@Override
 	public List<MovieVisualVo> loadTrailer(String MVInfoSeq) {
@@ -73,5 +82,4 @@ public class MovieDaoImpl implements MovieDao {
 		movieReview = sqlSession.selectList("Movie.loadReview", MVInfoSeq);
 		return movieReview;
 	}
-
 }
