@@ -4,18 +4,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="WithBoard">
 
-<!-- CREATE TABLE "FINAL"."ST_WITH_BOARD" 
-   (	"WHID_BOARD_NO" NUMBER, 
-	"WHID_BOARD_WRITER" VARCHAR2(30 BYTE) NOT NULL ENABLE, 
-	"WHID_BOARD_TITLE" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"WHID_BOARD_CONTENT" VARCHAR2(2000 BYTE) NOT NULL ENABLE, 
-	"WHID_BOARD_NOW_ID" VARCHAR2(400 BYTE) NOT NULL ENABLE, 
-	"WHID_BOARD_NOW_NO" NUMBER, 
-	"WHID_BOARD_APPLY_NO" NUMBER, 
-	"WHID_BOARD_READCOUNT" NUMBER, 
-	"WHID_BOARD_DATE" DATE DEFAULT sysdate)  -->
-
-
+	<!-- insert -->
 	<insert id="insertBoard" parameterType="WithBoard">
  		INSERT INTO ST_WITH_BOARD VALUES 
 		((SELECT MAX(BOARD_NUM) + 1 FROM ST_WITH_BOARD),
@@ -23,16 +12,20 @@
 			1, #{WHID_BOARD_APPLY_NO}, 0, SYSDATE)
   	</insert>
 	
+	<!-- WithList 숫자 가져오기-->
 	<select id="getListCount" resultType="_int">
 		SELECT COUNT(*) FROM ST_WITH_BOARD
 	</select>
 	
+	<!-- WithList 가져오기 -->
 	<select id="selectList" resultType="WithBoard">
-		SELECT * FROM ST_WITH_BOARD	
+		SELECT * FROM ST_WITH_BOARD	ORDER BY WITH_BOARD_NO DESC
 	</select>
 	
-	
-	
+	<!-- WithList 가져오기 -->
+	<select id="selectListsub" resultType="WithBoardsub">
+		SELECT * FROM ST_WITH_BOARD_SUB	ORDER BY WITH_BOARD_NO DESC
+	</select>
 
    	
   	
