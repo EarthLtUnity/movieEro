@@ -22,8 +22,8 @@ CREATE TABLE NOTICE_BOARD
    CACHE 20 NOORDER  
    NOCYCLE ;
    
-   insert into NOTICE_BOARD VALUES('admin','[공지] 백석지점 조조 영화관람 시간대 조정 안내','<table border="0" cellpadding="0" cellspacing="0" style="width: 611px;" width="611">
-			<p align="left">* 주중(월~목) 조조 시간대는 기존과 동일</p>
+   insert into NOTICE_BOARD VALUES('admin','[공지] 백석지점 조조 영화관람 시간대 조정 안내',
+		   '<p align="left">* 주중(월~목) 조조 시간대는 기존과 동일</p>
 			<p align="left"></p>
 			<p align="left">언제나 더 나은 서비스를 위해 최선을 다하는 메가박스가 되겠습니다.</p>
 			<p align="left"></p>
