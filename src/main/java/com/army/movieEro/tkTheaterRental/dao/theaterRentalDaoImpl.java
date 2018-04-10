@@ -36,40 +36,9 @@ public class theaterRentalDaoImpl implements theaterRentalDao {
 	}
 
 	@Override
-	public int insertBoard(theaterVO b) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int insertImage(theaterImageVo b) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int updateBoard(theaterVO b) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int deleteBoard(int boardNum) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getListCount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public ArrayList<theaterImageVo> selectImageView(int bnum) {
 		// TODO Auto-generated method stub
-		return new ArrayList<theaterImageVo>(sqlsession.selectList("Thearter.SelectIamgeView"));
+		return new ArrayList<theaterImageVo>(sqlsession.selectList("Thearter.SelectIamgeView",bnum));
 	}
-
 
 }

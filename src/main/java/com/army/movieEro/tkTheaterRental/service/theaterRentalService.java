@@ -17,13 +17,5 @@ public interface theaterRentalService {
 		
 		public theaterVO selectView(int bnum);
 		
-		public int insertBoard(theaterVO b);
 		
-		public int insertImage(theaterImageVo b);
-		
-		public int updateBoard(theaterVO b);
-		
-		public int deleteBoard(int boardNum);
-		
-		public int getListCount();
 }

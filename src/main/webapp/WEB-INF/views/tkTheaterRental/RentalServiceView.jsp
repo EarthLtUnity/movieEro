@@ -1,11 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 <html>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="http://malsup.github.com/jquery.cycle2.js"></script>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="f"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
+<jsp:include page="../inc/head.jsp" flush="false" />
 <c:set var="theaterview" value="${requestScope.theaterview}"></c:set>
 <c:set var="address" value="${theaterview.RENTAL_SERVICE_POSITION}"></c:set>
 <c:set var="theaterImage" value="${requestScope.theaterImage}"></c:set>
@@ -28,11 +29,11 @@
 .cycle-pager { 
     text-align: center; width: 100%; z-index: 500; position: absolute; top: 2px; overflow: hidden;
 }
-.cycle-pager span { 
+.cycle-pager h4 { 
     font-family: arial; font-size: 50px; width: 16px; height: 16px; 
     display: inline-block; color: #ddd; cursor: pointer; 
 }
-.cycle-pager span.cycle-pager-active { color: #D69746;}
+.cycle-pager h4.cycle-pager-active { color: #D69746;}
 .cycle-pager > * { cursor: pointer;}
 #map {
         height: 100%;
@@ -47,7 +48,7 @@
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
  	<script type="text/javascript">
     function initialize() {
-    	var chDate = '<c:out value="${address}"/>'; 
+    	var chDate = '<c:out value="${address}"/>'; 	
 
         var mapOptions = {
                             zoom: 18, // 지도를 띄웠을 때의 줌 크기
@@ -78,11 +79,11 @@
                 marker = new google.maps.Marker({
                                 map: map,
                                 icon: image, // 마커로 사용할 이미지(변수)
-                                title: '한밭도서관', // 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
+                                title: '<c:out value="${theaterview.RENTAL_SERVICE_TITLE}"/>', // 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
                                 position: results[0].geometry.location
                             });
  
-                var content = "한밭도서관<br/><br/>Tel: 042-580-4114"; // 말풍선 안에 들어갈 내용
+                var content ='<c:out value="${address}"/><br><c:out value="${theaterview.RENTAL_SERVICE_TITLE}"/>'; // 말풍선 안에 들어갈 내용
              
                 // 마커를 클릭했을 때의 이벤트. 말풍선 뿅~
                 var infowindow = new google.maps.InfoWindow({ content: content});
@@ -105,32 +106,23 @@
 >
 	<div class="cycle-pager"></div>
 	<c:forEach var="theaterImg" items="${theaterImage}">
-    <img src="images/theater/gnmovie1.jpg">
-	<img src="images/theater/gnmovie2.jpg">
-	<img src="images/theater/gnmovie3.jpg">
+    <img src="http://localhost:8088/adminMovieEro/resources/images/theater/${theaterImg.RENTAL_SERVICE_IMAGE}">
 	</c:forEach>
+	
 	</div>
-	<div Style="height: 5%; ">
-	<H3>${theaterview.RENTAL_SERVICE_TITLE}</H3>
+	<div Style="height: 10%; ">
+	<H2>영화관: ${theaterview.RENTAL_SERVICE_TITLE}</H2>
+	<hr>
 	</div>
-	<div>
-	<H3>${theaterview.RENTAL_SERVICE_POSITION}</H3>
+	<h4>주소:${theaterview.RENTAL_SERVICE_POSITION}</h4><hr>
+	<h4>정보:${theaterview.RENTAL_SERVICE_INFO}</h4><hr>
+	<h4>가격:${theaterview.RENTAL_SERVICE_PRICE}</h4><hr>
+	<span>시간 09:00</span>
+	<span>11:00</span>
+	<span>13:00</span>
+	
 	</div>
-	<div>
-	<H3>${theaterview.RENTAL_SERVICE_POSITION }</H3>
-	</div>
-	<div>
-	<H3>${theaterview.RENTAL_SERVICE_PRICE}</H3>
-	<p>내용</p>
-	</div>
-	<div>
-	<H3>${theaterview.RENTAL_SERVICE_PRICE}</H3>
-	</div>
-	<div>
-	<input type="button" value="결제하기">
-	</div>
-	</div>
-    <div id="map-canvas" style="width: 50%; height: 100%" title="도서관 위치입니다."></div>
+    <div id="map-canvas" style="width: 50%; height: 100%" title="영화관 위치입니다."></div>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4VzFVpcw6-ypvRJGD5BcNnEs7JirI9Co&libraries=places&callback=initMap">
     </script>
