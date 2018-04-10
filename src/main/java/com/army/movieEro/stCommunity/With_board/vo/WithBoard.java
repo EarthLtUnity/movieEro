@@ -9,130 +9,145 @@ public class WithBoard implements java.io.Serializable{
 	
 	private static final long serialVersionUID = 3000000L;
 	
-	private int WHID_BOARD_NO;
-	private String WHID_BOARD_WRITER;
-	private String WHID_BOARD_TITLE;
-	private String WHID_BOARD_CONTENT;
-	private String WHID_BOARD_NOW_ID;
-	private int WHID_BOARD_NOW_NO;
-	private int WHID_BOARD_APPLY_NO;
-	private int WHID_BOARD_READCOUNT;
-	private Date WHID_BOARD_DATE;
+	private int WITH_BOARD_NO;
+	private String WITH_BOARD_WRITER;
+	private String WITH_BOARD_TITLE;
+	private String WITH_BOARD_CONTENT;
+	private String WITH_BOARD_NOW_ID;
+	private int WITH_BOARD_NOW_NO;
+	private int WITH_BOARD_APPLY_NO;
+	private int WITH_BOARD_READCOUNT;
+	private Date WITH_BOARD_DATE;
 	
 	
 	public WithBoard() {}
+
+
 	
-	public WithBoard(int wHID_BOARD_NO, String wHID_BOARD_WRITER, String wHID_BOARD_TITLE, String wHID_BOARD_CONTENT,
-			String wHID_BOARD_NOW_ID, int wHID_BOARD_NOW_NO, int wHID_BOARD_APPLY_NO, int wHID_BOARD_READCOUNT,
-			Date wHID_BOARD_DATE) {
+	public WithBoard(int wITH_BOARD_NO, String wITH_BOARD_WRITER, String wITH_BOARD_TITLE, String wITH_BOARD_CONTENT,
+			String wITH_BOARD_NOW_ID, int wITH_BOARD_NOW_NO, int wITH_BOARD_APPLY_NO, int wITH_BOARD_READCOUNT,
+			Date wITH_BOARD_DATE) {
 		super();
-		WHID_BOARD_NO = wHID_BOARD_NO;
-		WHID_BOARD_WRITER = wHID_BOARD_WRITER;
-		WHID_BOARD_TITLE = wHID_BOARD_TITLE;
-		WHID_BOARD_CONTENT = wHID_BOARD_CONTENT;
-		WHID_BOARD_NOW_ID = wHID_BOARD_NOW_ID;
-		WHID_BOARD_NOW_NO = wHID_BOARD_NOW_NO;
-		WHID_BOARD_APPLY_NO = wHID_BOARD_APPLY_NO;
-		WHID_BOARD_READCOUNT = wHID_BOARD_READCOUNT;
-		WHID_BOARD_DATE = wHID_BOARD_DATE;
-		
-		System.out.println("11");
+		WITH_BOARD_NO = wITH_BOARD_NO;
+		WITH_BOARD_WRITER = wITH_BOARD_WRITER;
+		WITH_BOARD_TITLE = wITH_BOARD_TITLE;
+		WITH_BOARD_CONTENT = wITH_BOARD_CONTENT;
+		WITH_BOARD_NOW_ID = wITH_BOARD_NOW_ID;
+		WITH_BOARD_NOW_NO = wITH_BOARD_NOW_NO;
+		WITH_BOARD_APPLY_NO = wITH_BOARD_APPLY_NO;
+		WITH_BOARD_READCOUNT = wITH_BOARD_READCOUNT;
+		WITH_BOARD_DATE = wITH_BOARD_DATE;
 	}
 
-	public int getWHID_BOARD_NO() {
-		System.out.println("12");
-		return WHID_BOARD_NO;
+
+
+
+	@Override
+	public String toString() {
+		return "WithBoard [WITH_BOARD_NO=" + WITH_BOARD_NO + ", WITH_BOARD_WRITER=" + WITH_BOARD_WRITER
+				+ ", WITH_BOARD_TITLE=" + WITH_BOARD_TITLE + ", WITH_BOARD_CONTENT=" + WITH_BOARD_CONTENT
+				+ ", WITH_BOARD_NOW_ID=" + WITH_BOARD_NOW_ID + ", WITH_BOARD_NOW_NO=" + WITH_BOARD_NOW_NO
+				+ ", WITH_BOARD_APPLY_NO=" + WITH_BOARD_APPLY_NO + ", WITH_BOARD_READCOUNT=" + WITH_BOARD_READCOUNT
+				+ ", WITH_BOARD_DATE=" + WITH_BOARD_DATE + "]";
 	}
 
-	public void setWHID_BOARD_NO(int wHID_BOARD_NO) {
-		System.out.println("13");
-		WHID_BOARD_NO = wHID_BOARD_NO;
+
+
+	public int getWITH_BOARD_NO() {
+		return WITH_BOARD_NO;
 	}
 
-	public String getWHID_BOARD_WRITER() {
-		System.out.println("14");
-		return WHID_BOARD_WRITER;
+
+	public void setWITH_BOARD_NO(int wITH_BOARD_NO) {
+		WITH_BOARD_NO = wITH_BOARD_NO;
 	}
 
-	public void setWHID_BOARD_WRITER(String wHID_BOARD_WRITER) {
-		System.out.println("15");
-		WHID_BOARD_WRITER = wHID_BOARD_WRITER;
+
+	public String getWITH_BOARD_WRITER() {
+		return WITH_BOARD_WRITER;
 	}
 
-	public String getWHID_BOARD_TITLE() {
-		System.out.println("16");
-		return WHID_BOARD_TITLE;
+
+	public void setWITH_BOARD_WRITER(String wITH_BOARD_WRITER) {
+		WITH_BOARD_WRITER = wITH_BOARD_WRITER;
 	}
 
-	public void setWHID_BOARD_TITLE(String wHID_BOARD_TITLE) {
-		System.out.println("17");
-		WHID_BOARD_TITLE = wHID_BOARD_TITLE;
+
+	public String getWITH_BOARD_TITLE() {
+		return WITH_BOARD_TITLE;
 	}
 
-	public String getWHID_BOARD_CONTENT() {
-		System.out.println("18");
-		return WHID_BOARD_CONTENT;
+
+	public void setWITH_BOARD_TITLE(String wITH_BOARD_TITLE) {
+		WITH_BOARD_TITLE = wITH_BOARD_TITLE;
 	}
 
-	public void setWHID_BOARD_CONTENT(String wHID_BOARD_CONTENT) {
-		System.out.println("19");
-		WHID_BOARD_CONTENT = wHID_BOARD_CONTENT;
+
+	public String getWITH_BOARD_CONTENT() {
+		return WITH_BOARD_CONTENT;
 	}
 
-	public String getWHID_BOARD_NOW_ID() {
-		System.out.println("20");
-		return WHID_BOARD_NOW_ID;
+
+	public void setWITH_BOARD_CONTENT(String wITH_BOARD_CONTENT) {
+		WITH_BOARD_CONTENT = wITH_BOARD_CONTENT;
 	}
 
-	public void setWHID_BOARD_NOW_ID(String wHID_BOARD_NOW_ID) {
-		System.out.println("21");
-		WHID_BOARD_NOW_ID = wHID_BOARD_NOW_ID;
+
+	public String getWITH_BOARD_NOW_ID() {
+		return WITH_BOARD_NOW_ID;
 	}
 
-	public int getWHID_BOARD_NOW_NO() {
-		System.out.println("22");
-		return WHID_BOARD_NOW_NO;
+
+	public void setWITH_BOARD_NOW_ID(String wITH_BOARD_NOW_ID) {
+		WITH_BOARD_NOW_ID = wITH_BOARD_NOW_ID;
 	}
 
-	public void setWHID_BOARD_NOW_NO(int wHID_BOARD_NOW_NO) {
-		System.out.println("23");
-		WHID_BOARD_NOW_NO = wHID_BOARD_NOW_NO;
+
+	public int getWITH_BOARD_NOW_NO() {
+		return WITH_BOARD_NOW_NO;
 	}
 
-	public int getWHID_BOARD_APPLY_NO() {
-		System.out.println("24");
-		return WHID_BOARD_APPLY_NO;
+
+	public void setWITH_BOARD_NOW_NO(int wITH_BOARD_NOW_NO) {
+		WITH_BOARD_NOW_NO = wITH_BOARD_NOW_NO;
 	}
 
-	public void setWHID_BOARD_APPLY_NO(int wHID_BOARD_APPLY_NO) {
-		System.out.println("25");
-		WHID_BOARD_APPLY_NO = wHID_BOARD_APPLY_NO;
+
+	public int getWITH_BOARD_APPLY_NO() {
+		return WITH_BOARD_APPLY_NO;
 	}
 
-	public int getWHID_BOARD_READCOUNT() {
-		System.out.println("26");
-		return WHID_BOARD_READCOUNT;
+
+	public void setWITH_BOARD_APPLY_NO(int wITH_BOARD_APPLY_NO) {
+		WITH_BOARD_APPLY_NO = wITH_BOARD_APPLY_NO;
 	}
 
-	public void setWHID_BOARD_READCOUNT(int wHID_BOARD_READCOUNT) {
-		System.out.println("27");
-		WHID_BOARD_READCOUNT = wHID_BOARD_READCOUNT;
+
+	public int getWITH_BOARD_READCOUNT() {
+		return WITH_BOARD_READCOUNT;
 	}
 
-	public Date getWHID_BOARD_DATE() {
-		System.out.println("28");
-		return WHID_BOARD_DATE;
+
+	public void setWITH_BOARD_READCOUNT(int wITH_BOARD_READCOUNT) {
+		WITH_BOARD_READCOUNT = wITH_BOARD_READCOUNT;
 	}
 
-	public void setWHID_BOARD_DATE(Date wHID_BOARD_DATE) {
-		System.out.println("29");
-		WHID_BOARD_DATE = wHID_BOARD_DATE;
+
+	public Date getWITH_BOARD_DATE() {
+		return WITH_BOARD_DATE;
 	}
+
+
+	public void setWITH_BOARD_DATE(Date wITH_BOARD_DATE) {
+		WITH_BOARD_DATE = wITH_BOARD_DATE;
+	}
+
 
 	public static long getSerialversionuid() {
-		System.out.println("30");
 		return serialVersionUID;
 	}
+	
+	
 	
 	
 	

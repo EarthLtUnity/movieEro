@@ -11,11 +11,12 @@ public interface WithBoardService {
 	
 	public ArrayList<WithBoard> selectList(int currentPage, int limit);
 	
+	public ArrayList<WithBoard> selectListsub(int currentPage, int limit);
+
 	public WithBoard selectBoard(int boardNum);
 	
 	public int insertBoard(WithBoard b);
 
-	public void addReadCount(int boardNum);
 	
 
 }

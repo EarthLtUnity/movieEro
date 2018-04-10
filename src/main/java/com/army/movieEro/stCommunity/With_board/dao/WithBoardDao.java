@@ -14,6 +14,7 @@ public interface WithBoardDao {
 	
 	public int insertBoard(WithBoard b);
 
-	public int addReadCount(int boardNum);
+	public ArrayList<WithBoard> selectListsub(int currentPage, int limit);
+
 	
 }

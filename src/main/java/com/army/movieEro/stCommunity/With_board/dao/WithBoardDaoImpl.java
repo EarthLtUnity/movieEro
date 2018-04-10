@@ -22,12 +22,14 @@ public class WithBoardDaoImpl implements WithBoardDao {
 	@Override
 	public ArrayList<WithBoard> selectList(int currentPage, int limit) {
 		System.out.println("DAO Impl");
-		//int offset = (currentPage - 1) * limit;
-		//RowBounds rows = new RowBounds(offset, limit);
-		//return new ArrayList<WithBoard>(sqlSession.selectList("WithBoard.selectList", null, rows));
 		return new ArrayList<WithBoard>(sqlSession.selectList("WithBoard.selectList"));
 	}
 
+	@Override
+	public ArrayList<WithBoard> selectListsub(int currentPage, int limit) {
+		return new ArrayList<WithBoard>(sqlSession.selectList("WithBoard.selectListsub"));
+	}
+	
 	@Override
 	public WithBoard selectBoard(int boardNum) {
 		return sqlSession.selectOne("WithBoard.selectOne",boardNum);
@@ -38,10 +40,7 @@ public class WithBoardDaoImpl implements WithBoardDao {
 		return sqlSession.insert("WithBoard.insertBoard", b);
 	}
 
-	@Override
-	public int addReadCount(int boardNum) {
-		return sqlSession.update("Board.addReadCount", boardNum);
-	}
+
 	
 	
 }
