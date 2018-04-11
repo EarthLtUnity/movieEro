@@ -40,7 +40,7 @@ public class RentalQnAController {
 	@Autowired
 	private RentalQnAReplyService rentalQnAReplyServiceImpl;
 
-	@RequestMapping("RentalPointList.do")
+	@RequestMapping("RentalPointList.do")//셀렉트박스로 리스트뽑기
 	@ResponseBody
 	public Map<String, Object> boardPointList(@RequestParam(value = "page", required = false) Integer page,
 			   @RequestParam(value = "RENTAL_BOARD_POINT", required = false) String point,
@@ -129,17 +129,17 @@ public class RentalQnAController {
 			      return resultMap;
 			   }
 
-	@RequestMapping("RentalBoardList.do")
+	@RequestMapping("RentalBoardList.do") //전체리스트뽑기
 	public String boardList() {
 				return "tkRentalQnABoard/QnABoard";
 	}
 	
-	@RequestMapping("RentalBoardInsertView.do")
+	@RequestMapping("RentalBoardInsertView.do")//글쓰기 뷰로 이동
 	public String testCk(Model model) {
 		return "tkRentalQnABoard/QnAInsertBoard";
 	}
 
-	@RequestMapping("RentalBoardInsert.do")
+	@RequestMapping("RentalBoardInsert.do")//글쓰기 입력
 	public ModelAndView boardInsertMethod(HttpServletRequest request, ModelAndView mv, RentalQnAVO board)
 			throws IOException {
 
@@ -154,7 +154,7 @@ public class RentalQnAController {
 		return mv;
 	}
 
-	@RequestMapping("RentalBoardImgInsert.do")
+	@RequestMapping("RentalBoardImgInsert.do")//글쓰기 이미지 업로드
 	public void communityImageUpload(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam MultipartFile upload, ModelAndView mv, RentalQnAVO board) {
 
@@ -202,7 +202,7 @@ public class RentalQnAController {
 
 	}
 
-	@RequestMapping("RentalBoardDetail.do")
+	@RequestMapping("RentalBoardDetail.do") //게시판 글보기
 	public ModelAndView boardDetail(ModelAndView mv, @RequestParam("bnum") int bnum,
 			@RequestParam(value = "page", required = false) Integer page,@RequestParam(value = "replypage", required = false) Integer replypage) {
 		
@@ -218,7 +218,7 @@ public class RentalQnAController {
 		return mv;
 	}
 
-	@RequestMapping("RentalBoardDelete.do")
+	@RequestMapping("RentalBoardDelete.do")//게시글 삭제
 	public ModelAndView boardDelete(ModelAndView mv, HttpServletRequest request, @RequestParam("bnum") Integer boardNum,
 			@RequestParam("content") String boardcon) {
 
@@ -241,7 +241,7 @@ public class RentalQnAController {
 		return mv;
 	}
 
-	@RequestMapping("RentalBoardUpdateView.do")
+	@RequestMapping("RentalBoardUpdateView.do")//게시글 수정하기 뷰
 	public String boardUpdateView(Model model, @RequestParam("bnum") int boardNum, @RequestParam("page") Integer page) {
 
 		model.addAttribute("board", rentalQnAServiceImpl.selectBoard(boardNum)).addAttribute("currentPage", page);
@@ -250,7 +250,7 @@ public class RentalQnAController {
 
 	}
 
-	@RequestMapping("RentalBoardUpdate.do")
+	@RequestMapping("RentalBoardUpdate.do")//글쓰기 수정
 	public ModelAndView boardUpdateMethod(ModelAndView mv, HttpServletRequest request, RentalQnAVO board)
 			throws IllegalStateException, IOException {
 		

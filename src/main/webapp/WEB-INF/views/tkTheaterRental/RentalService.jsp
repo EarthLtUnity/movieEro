@@ -4,10 +4,13 @@
 <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 <jsp:include page="../inc/head.jsp" flush="false" />
 <jsp:include page="../inc/header.jsp" flush="false" />
-<c:set var="member" value="${sessionScope.member}" />
+<c:set var="member" value="${sessionScope.memberID}" />
 <c:set var="theaterImage" value="${requestScope.theaterImage}"></c:set>
 <style>
 #rentalreserve{display:none;}
+.tim[disabled]{
+	background: lightgray;
+}
 </style>
 
 <script>
@@ -20,101 +23,46 @@ function popupOpen(bnum){
 		  }
 		  
 /////////////////////////////////결제///////////////////////		  
-$(document).ready(function(){
-	function theaterRental() {
-		var seatNum = 0;
-		$('.seatCharts-seat').click(function(){
-			if($(this).hasClass('selected')){
-				seatNum =$(this).attr("id");
-				$('#seatNum').val(seatNum);
-			}
-		})			
-	}
-	theaterRental();
-	$(".btn_time").on('click',function(){
-		return false;
-	});
-	/* $(".next").click(function(event){
-	});
-	 */
-	 var IMP = window.IMP; 
-	 IMP.init("imp68666223");
-	 $(".rentalpayment").on('click',function(){
-		 alert($('#userID').val());
-		 IMP.request_pay({
-			    pg : 'inicis',
-			    pay_method : 'card',
-			    merchant_uid : 'merchant_' + new Date().getTime(),
-			    name : '주문명:결제테스트',
-			    amount : 1000,
-			    buyer_email : 'worua99@nate.com',
-			    buyer_name : '김재겸',
-			    buyer_tel : '010-2030-1266',
-			    buyer_addr : '서울특별시 강남구 삼성동',
-			    buyer_postcode : '123-456'
-			}, function(rsp) {
-			    if ( rsp.success ) {
-			    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-			    	jQuery.ajax({
-			    		url: "reserve.do", // 가맹점 서버
-			            method: "GET",
-			            headers: { "Content-Type": "application/json" },
-			            data: {
-			            	userID : $('.userID').val(),
-			            	cinema_location : $('.ciname_lication').val(),
-			            	kindOfMovie : $('.kindOfMovie').val(),
-			            	seatNum : $('.seatNum').val(),
-			            	Time : $('#Time').val()
-			            },
-			            success : function(result){
-			            	location.href="";//반환값 지정해서 페이지 리로딩
-			            }
-			    	}).done(function(data) {
-			    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-			    		if ( everythings_fine ) {
-			    			var msg = '결제가 완료되었습니다.';
-					        msg += '아이디 : ' + $('.userID').val();
-					        msg += '영화관 : ' + $('.ciname_lication').val();
-					        msg += '영화제목 : ' + $('.kindOfMovie').val();
-					        msg += '좌석 : ' + $('.seatNum').val();
-			    			alert(msg);
-			       
-			        	} else {
-			    			//[3] 아직 제대로 결제가 되지 않았습니다.
-			    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
-			    		}
-			    	});
-			    } else {
-			        var msg = '결제에 실패하였습니다.';
-			        msg += '에러내용 : ' + rsp.error_msg;
-			        alert(msg);
-			    }
-			});
-	 });
-	location.href="#";
-});
 
-//////////////////////////////////////////////화면에뿌려주기
+//////////////////////////////////////////////결제창화면에뿌려주기
+function seletetime(time) {
+	$("#datatime").text(time);
+}
 function selectpoint(point) {
 $("#pointname").text(point);
 }
+/////////////////////////////////결제창 이미 결제된거 버튼 비활성화 
 function seletedata(date) {
 $("#datavalue").text(date);
-/* function(){ 
+  
 	var tkposition = $("#rental_loaction option:selected").val();
     $.ajax({
            url : 'tpaymentselet.do',
            type : 'post',
-       	   data : {theater_pay_postion : "tkposition" ,
-        			theater_pay_date : "date"},
-       	   dataType : 'application/json;', 
+       	   data : {theater_pay_postion : tkposition ,
+        			theater_pay_date : date},
       	   success : function(list){
-        		 var a = "";
-        		 if(list.size()==null){
-        		 }
-        		} 
-   	 });
-	} */
+      		 console.log(list);
+      		  var str = JSON.stringify(list);
+      		  var newList = JSON.parse(str);
+      		   if(newList.length != 0){
+      			for(var i = 0 ; i < newList.length; i++){
+      				 var time = newList[i]['theater_pay_time'];
+      				 console.log(time);
+            		$('.tim').each(function(index){
+            			console.log(time+" = "+ $(this).val() + " : "+ index);
+            			console.log(time == $(this).val());
+            			if(time == $(this).val()) $(this).attr('disabled','disabled');
+            		});
+      			}
+      		   } else {
+      			 $('.tim').each(function(index){
+         			$(this).removeAttr('disabled');
+         		});
+      		   }
+      		   
+        		}
+    }); 
 }
 
         	
@@ -173,7 +121,7 @@ $("#datavalue").text(date);
 				  <div class="col-sm-8 col-xs-12 seat_content ph0">
 						<h2>영화관 대여 결제 시스템</h2><br>
 							<div class="entry-theater-content">
-								<form class="msform" id="mrform" name="mrform" action="">
+								<form class="msform" id="mrform" name="mrform" action="paymentinsert.do">
 								<input type="hidden" name="userID" id="rentalid" value="${ID}"/>
 								<!-- action에 컨트롤러 태워서 db에 데이터 넣기 -->
 									<fieldset>
@@ -190,9 +138,9 @@ $("#datavalue").text(date);
 											<h3 class="mt3">시간선택:</h3><br>
 												<ul class="order-date">
 											<!-- 이부분에 forEach문 써서 데이터베이스에서 영화관, 영화 제목으로 영화 시간대 데이터를 뽑아와서 button태그 추가할것 -->
-													<li><button type="button" style = "color:black" class="btn_time" name="Time" onclick="seletetime(this.value)" value="09:00~11:00">09:00~11:00</button></li>
-													<li><button type="button" style = "color:black" class="btn_time" name="Time" onclick="seletetime(this.value)" value="11:30~13:30">11:30~13:30</button></li>
-													<li><button type="button" style = "color:black" class="btn_time" name="Time" onclick="seletetime(this.value)" value="14:00~16:00">14:00~16:00</button></li>
+													<li><button type="button" style="color:black;" class="btn_time tim" name="Time" onclick="seletetime(this.value)" value="09:00~11:00">09:00~11:00</button></li>
+													<li><button type="button" style="color:black;" class="btn_time tim" name="Time" onclick="seletetime(this.value)" value="11:30~13:30">11:30~13:30</button></li>
+													<li><button type="button" style="color:black;" class="btn_time tim" name="Time" onclick="seletetime(this.value)" value="14:00~16:00">14:00~16:00</button></li>
 												</ul>
 										</div>
 									</fieldset>
@@ -201,17 +149,17 @@ $("#datavalue").text(date);
 							</div>
 					</div>
 							<div class="col-sm-4 col-xs-12 order_sidebar ph0">
-								<h2>결제정보</h2><br>
+									<h2>결제정보</h2><br>
 									<div class="order-details">
 										<span>영화관:</span>
-									<div id= "pointname" name="pointname"></div>
-										<span>시간:</span>
-									<div id="datavalue" name="datavalue"></div>
+									<div id= "pointname"></div>
+										<span>날짜:</span>
+									<div id="datavalue"></div>
 										<span>시간선택:</span>
 									<div id="datatime"></div>
 										<span>가격:</span>
-									<div></div><br>
-								<input type="button" name="rentalpayment" id="rentalpayment" style = "color:black" class="payment action-button" value="결제하기" />
+									<div hidden="">${member}</div><br>
+								<input type="button" name="rentalpayment" id="rentalpayment" style = "color:black" class="rentalpayment action-button" value="결제하기" />
 									</div>
 							</div>
 			</div>
@@ -219,12 +167,91 @@ $("#datavalue").text(date);
 	</div>
 </section>
 <script>
-$('.btn_rental').click(function() {
+	$('.btn_rental').click(function() {
 	$('#rentalreserve').show();		
+	});
+
+
+	$(document).ready(function(){
+ 	function theaterRental() {
+		 var seatNum = 0;
+		$('.seatCharts-seat').click(function(){
+			if($(this).hasClass('selected')){
+				seatNum =$(this).attr("id");
+				$('#seatNum').val(seatNum);
+			}
+		})			
+	} 
+	 theaterRental();
+	
+	 
+	 $(".btn_time").on('click',function(){
+		return false;
+	}); 
+	 
+	 
+	/* $(".next").click(function(event){
+	}); */
+
+	 var IMP = window.IMP; 
+	 IMP.init("imp64071802");
+	 $(".rentalpayment").on('click',function(){
+		 alert("결제시스템");
+		 alert($('#pointname').val());
+		 IMP.request_pay({
+			    pg : 'inicis',
+			    pay_method : 'card',
+			    merchant_uid : 'sdf',
+			    name : '주문명:결제테스트',
+			    amount : 1000,
+			    buyer_email : 'worua99@nate.com',
+			    buyer_name : '김재겸',
+			    buyer_tel : '010-2030-1266',
+			    buyer_addr : '서울특별시 강남구 삼성동',
+			    buyer_postcode : '123-456'
+			}, function(rsp) {
+			    if ( rsp.success ) {
+			    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+			    	jQuery.ajax({
+			    		url: "paymentinsert.do", // 가맹점 서버
+			            method: "post",
+			            /* headers: { "Content-Type": "application/json" }, */
+			            data: {
+			            	theater_pay_postion : $('#pointname').val(),
+			            	theater_pay_date : $('#datavalue').val(),
+			            	theater_pay_time : $('#datatime').val(),
+			            	theater_pay_price : $('.seatNum').val(),
+			            	mb_id : $(member).val(),
+			            	theater_pay_case: "true" 
+			            },
+			            success : function(result){
+			            	location.href="myrentalinfo.do";//반환값 지정해서 페이지 리로딩
+			            }
+			    	}).done(function(data) {
+			    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+			    		if ( everythings_fine ) {
+			    			var msg = '결제가 완료되었습니다.';
+					        msg += '아이디 : ' + $('.userID').val();
+					        msg += '영화관 : ' + $('.ciname_lication').val();
+					        msg += '영화제목 : ' + $('.kindOfMovie').val();
+					        msg += '좌석 : ' + $('.seatNum').val();
+			    			alert(msg);
+			       
+			        	} else {
+			    			//[3] 아직 제대로 결제가 되지 않았습니다.
+			    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+			    		}
+			    	});
+			    } else {
+			        var msg = '결제에 실패하였습니다.';
+			        msg += '에러내용 : ' + rsp.error_msg;
+			        alert(msg);
+			    }
+			});
+	 });
+	location.href="#";
 });
 
-function seletetime(time) {
-	$("#datatime").text(time);
-}
-</script>	
+</script>
+	
 <jsp:include page="../inc/footer.jsp" flush="false" />

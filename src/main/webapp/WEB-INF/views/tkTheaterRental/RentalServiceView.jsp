@@ -100,28 +100,23 @@
   </head>
   <body>
 <div Style="float :left; width : 50%;  height: 50%; ">
-<div class="cycle-slideshow"
+	<div class="cycle-slideshow"
     data-cycle-fx=scrollHorz
-    data-cycle-timeout=2000
->
-	<div class="cycle-pager"></div>
-	<c:forEach var="theaterImg" items="${theaterImage}">
-    <img src="http://localhost:8088/adminMovieEro/resources/images/theater/${theaterImg.RENTAL_SERVICE_IMAGE}">
-	</c:forEach>
-	
+    data-cycle-timeout=2000>
+		<div class="cycle-pager"></div>
+		<c:forEach var="theaterImg" items="${theaterImage}">
+   		 <img src="http://localhost:8088/adminMovieEro/resources/images/theater/${theaterImg.RENTAL_SERVICE_IMAGE}">
+		</c:forEach>
 	</div>
-	</div>
-	    <div id="map-canvas" style="width: 50%; height: 50%" title="영화관 위치입니다."></div>
-	<div style="padding: 6px 6px 6px 6px; border: 8px solid #f2f2f2;">
-	<H2>영화관: ${theaterview.RENTAL_SERVICE_TITLE}</H2>
-	<hr>
-	<h4>주소:${theaterview.RENTAL_SERVICE_POSITION}</h4><hr>
-	<h4>정보:${theaterview.RENTAL_SERVICE_INFO}</h4><hr>
-	<h4>가격:${theaterview.RENTAL_SERVICE_PRICE}</h4><hr>
-	<h4>시간: 09:00  11:30  14:00</h4>
-	</div>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4VzFVpcw6-ypvRJGD5BcNnEs7JirI9Co&libraries=places&callback=initMap">
-    </script>
+</div>
+	<div id="map-canvas" style="width: 50%; height: 50%" title="영화관 위치입니다."></div>
+		<div style="padding: 6px 6px 6px 6px; border: 8px solid #f2f2f2;">
+			<H2>영화관: ${theaterview.RENTAL_SERVICE_TITLE}</H2><hr>
+			<h4>주소:${theaterview.RENTAL_SERVICE_POSITION}</h4><hr>
+			<h4>정보:${theaterview.RENTAL_SERVICE_INFO}</h4><hr>
+			<h4>가격:${theaterview.RENTAL_SERVICE_PRICE}</h4><hr>
+			<h4>시간: 09:00  11:30  14:00</h4>
+		</div>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4VzFVpcw6-ypvRJGD5BcNnEs7JirI9Co&libraries=places&callback=initMap"></script>
   </body>
 </html>
