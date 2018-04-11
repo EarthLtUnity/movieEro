@@ -16,14 +16,4 @@ public interface theaterRentalDao {
 	
 	public ArrayList<theaterImageVo> selectImage();
 	
-	public int insertBoard(theaterVO b);
-	
-	public int insertImage(theaterImageVo b);
-	
-	public int updateBoard(theaterVO b);
-	
-	public int deleteBoard(int boardNum);
-	
-	public int getListCount();
-	
 }

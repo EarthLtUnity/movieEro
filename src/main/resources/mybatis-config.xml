@@ -20,7 +20,8 @@
 		<typeAlias type="com.army.movieEro.sjMovies.model.vo.MovieReviewVo" alias = "Review"/>
 		<typeAlias type="com.army.movieEro.sjMovies.model.vo.MovieVisualVo" alias = "Trailer"/>
 		<typeAlias type="com.army.movieEro.sjMovies.model.vo.MovieInfoVo" alias = "Info"/>
-		<!-- <typeAlias type="com.army.movieEro.stCommunity.With_board.vo.WithBoard_sub" alias="WithBoardsub"/> -->
+		<typeAlias type="com.army.movieEro.tkTheaterPayment.vo.TheaterPayment" alias="theaterPayment"/>
+		<typeAlias type="com.army.movieEro.stCommunity.With_board.vo.WithBoard_sub" alias="WithBoardsub"/>
 	</typeAliases>
 	
 	<mappers>
@@ -33,5 +34,6 @@
  		<mapper resource="mappers/kst-with-board-mapper.xml"/>
  		<mapper resource="mappers/main-mapper.xml"/>
  		<mapper resource="mappers/movie-mapper.xml"/>
+ 		<mapper resource="mappers/tkPayment-mapper.xml"/>
 	</mappers>
 </configuration>

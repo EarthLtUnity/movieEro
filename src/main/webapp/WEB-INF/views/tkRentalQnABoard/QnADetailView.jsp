@@ -142,10 +142,10 @@ $(document).ready(function(){
 	<div class="fullscreen-section bg-black pvb0">
 		<div class="container wpc-boxoffice pv8">
 			<div class="row">
-				<form style= "padding-top: 150px;" class="form-horizontal" role="form" id="editorForm" enctype="multipart/form-data" method="post" action="" >
+				<form style= "padding-top: 50px;" class="form-horizontal" role="form" id="editorForm" enctype="multipart/form-data" method="post" action="" >
 					<div class="form-group">
 						<div class="form-group">
-							<div class="col-lg-12">
+							<div class="col-lg-12" style= "padding-top: 150px;">
 								<table id="tb">
 									<tr>
 										<td>제목</td>

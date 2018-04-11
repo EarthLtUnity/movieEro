@@ -19,12 +19,17 @@ public class WithBoardServiceImpl implements WithBoardService {
 		return bDao.getListCount();
 	}
 
-	@Override
+	@Override //
 	public ArrayList<WithBoard> selectList(int currentPage, int limit) {
 		System.out.println("service Impl");
 		return bDao.selectList(currentPage, limit);
 	}
 
+	@Override
+	public ArrayList<WithBoard> selectListsub(int currentPage, int limit) {
+		return bDao.selectListsub(currentPage, limit);
+	}
+	
 	@Override
 	public WithBoard selectBoard(int boardNum) {
 		return bDao.selectBoard(boardNum);
@@ -35,10 +40,7 @@ public class WithBoardServiceImpl implements WithBoardService {
 		return bDao.insertBoard(b);
 	}
 
-	@Override
-	public void addReadCount(int boardNum) {
-		bDao.addReadCount(boardNum);
-	}
+
 
 	
 

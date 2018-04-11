@@ -12,7 +12,8 @@
 <c:set var="endPage" value="${requestScope.endPage}"/>
 <c:set var="maxPage" value="${requestScope.maxPage}"/>
 <c:set var="list" value="${requestScope.list}"/>
-<c:set var="member" value="${sessionScope.member}"/>
+<c:set var="listsub" value="${requestScope.listsub}"/>
+<c:set var="memberId" value="${sessionScope.memberID}"/>
 
 
 <jsp:include page="../inc/head.jsp" flush="false" />
@@ -33,29 +34,30 @@
 					<div class="row">
 
 						<div class="col-sm-7 col-xs-12">
-							<a href="with_blist.do" class="btn">리스트새로고침</a>
+							<a href="withBoardList.do" class="btn">리스트새로고침 ${memberId}</a>
 							<h3></h3>
 							<ul class="wpc-box-list">
-								<c:forEach var="boardOne" items="${list}">
-									<li class="wpc-box-item">
-										<ol class="cf" id="">
-											<li class="bx-item-c">${boardOne.WHID_BOARD_NO}</li>
-											<li class="bx-item-title kst_target"><a href="#target"
-												class="hello">${boardOne.WHID_BOARD_TITLE}</a>
-												<div>
-													<span>${boardOne.WHID_BOARD_NOW_ID}</span>
-												</div></li>
-											<li class="bx-item-d"><a href="#" class="join">join</a></li>
-											<li class="bx-item-m">${boardOne.WHID_BOARD_DATE}</li>
-											<!-- 등록일 -->
-											<li class="bx-item-m">${boardOne.WHID_BOARD_NOW_NO}/${boardOne.WHID_BOARD_APPLY_NO}</li>
-											<!-- 인원수 -->
-										</ol>
-										<div class="steve_panel">
-											<p>${boardOne.WHID_BOARD_CONTENT}</p>
-										</div>
-									</li>
-								</c:forEach>
+								<c:forEach var="boardmain" items="${list}"> <!-- boardList for문 -->
+									<c:forEach var="boardsub" items="${listsub}"> <!-- boardListsub for문 -->
+										<li class="wpc-box-item">
+											<ol class="cf">
+												<li class="bx-item-c">${boardmain.WITH_BOARD_NO}</li> <!-- 게시글 번호 -->
+												<li class="bx-item-title kst_target">
+													<a href="#target"class="hello">${boardmain.WITH_BOARD_TITLE}</a> <!-- 게시글 제목 -->
+													<div>
+														<span>${boardsub.WITH_BOARD_NOW_ID} </span> <!-- 현재 참여중인 ID -->
+													</div>
+												</li>
+												<li class="bx-item-d"><a href="#" class="join">join</a></li>
+												<li class="bx-item-m">${boardmain.WITH_BOARD_DATE}</li> <!-- 게시글 날짜 -->
+												<li class="bx-item-m">${boardsub.WITH_BOARD_NOW_NO}/${boardmain.WITH_BOARD_APPLY_NO}</li>  <!-- 현재참여자수 / 모집인원 -->
+											</ol>
+											<div class="steve_panel">
+												<p class="kstBoardContent">${boardmain.WITH_BOARD_CONTENT}</p>    <!-- 게시글 내용 -->
+											</div>
+										</li>
+									</c:forEach> <!-- boardList for문 end -->
+								</c:forEach> <!-- boardListsub for문 end -->
 
 
 
@@ -167,7 +169,7 @@
 					</div>
 					<br> <br> <br>
 					<div align="center">
-						<a href="with_binsertForm.do" class="btn apply">글쓰기</a>
+						<a href="withBoardinsertForm.do" class="btn apply">NEW</a>
 					</div>
 				</div>
 			</div>

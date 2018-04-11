@@ -36,7 +36,6 @@ public class theaterRentalController {
 		theaterVO theaterview = theaterRentalServiceImpl.selectView(bnum);
 		ArrayList<theaterImageVo> theaterImage =  theaterRentalServiceImpl.selectImageView(bnum);
 		mv.addObject("theaterview",theaterview).addObject("theaterImage",theaterImage).setViewName("tkTheaterRental/RentalServiceView");
-		
 		return mv;
 	}
 	

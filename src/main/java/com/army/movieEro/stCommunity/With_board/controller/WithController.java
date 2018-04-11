@@ -23,9 +23,10 @@ public class WithController {
 		@Autowired
 		private WithBoardService bService;
 
-		@RequestMapping("with_blist.do")
+		// withBoardlist 출력
+		@RequestMapping("withBoardList.do")
 		public ModelAndView boardList(ModelAndView mv, @RequestParam(value = "page", required = false) Integer page) {
-			System.out.println("with_blist_controller 도착");
+			System.out.println("withBoardlist_controller 도착");
 			// 페이지 값 처리용
 			int currentPage = 1;
 			// 한 페이지당 출력할 목록 갯수
@@ -38,10 +39,11 @@ public class WithController {
 			// 전체 목록 갯수와 해당 페이지별 목록을 리턴
 			int listCount = bService.getListCount();
 
-			System.out.println("1");
+			
 			ArrayList<WithBoard> list = bService.selectList(currentPage, limit);
 			System.out.println(list);
-			System.out.println("2");
+			ArrayList<WithBoard> listsub = bService.selectListsub(currentPage, limit);
+			System.out.println(listsub);
 			// 총 페이지수 계산 : 목록이 최소 1개일 때 1page로 처리하기
 			// 위해 0.9 더함
 			int maxPage = (int) ((double) listCount / limit + 0.9);
@@ -58,6 +60,7 @@ public class WithController {
 			if (list != null && list.size() > 0) {
 
 				mv.addObject("list", list)
+				.addObject("listsub", listsub)
 				.addObject("currentPage", currentPage)
 				.addObject("maxPage", maxPage)
 				.addObject("startPage", startPage)
@@ -66,7 +69,7 @@ public class WithController {
 				.setViewName("stCommunityBoard/boardList");
 			} else {
 				mv.addObject("error", "게시글 전체 조회 실패");
-				mv.setViewName("board/boardError");
+				mv.setViewName("stCommunityBoard/boardList");
 			}
 			return mv;
 		}
@@ -74,15 +77,15 @@ public class WithController {
 		
 		
 		
-
-		@RequestMapping("with_binsertForm.do")
+		// insertForm 이동
+		@RequestMapping("withBoardinsertForm.do")
 		public String boardInsertView(Model model) {
 			return "stCommunityBoard/boardInsertForm";
 		}
 		
 		
-
-		@RequestMapping("with_insertForm.do")
+		// insert 실행
+		@RequestMapping("withInsertForm.do")
 		public ModelAndView boardInsertMethod(HttpServletRequest request,
 				@RequestParam(value = "file", required = false) MultipartFile file, ModelAndView mv, WithBoard board)
 				throws IOException {
@@ -98,10 +101,10 @@ public class WithController {
 
 		
 
-
-		@RequestMapping("community.do")
-		public String WithBoardListView(Model model) {
-			return "stCommunityBoard/boardList";
+		// BoardIntro 페이지 띄어주기 
+		@RequestMapping("withBoadIntro.do")
+		public String WithBoardIntroView(Model model) {
+			return "stCommunityBoard/boardIntro";
 		}
 		
 		
