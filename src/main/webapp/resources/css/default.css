@@ -54,6 +54,7 @@ header#header {
   /*line-height: 90px;*/
   z-index: 999;
 }
+header#header h1{margin: 0; padding: 0;}
 header#header .button_container {
   position: absolute;
   top: 38%;

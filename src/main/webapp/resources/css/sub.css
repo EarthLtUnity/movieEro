@@ -11,7 +11,7 @@ a{text-decoration: none;}
 .cf:after{display: block; content: ''; clear: both;}
 .c_orange{color: #fb802d;}
 
-.sub_content{padding: 100px 50px;}
+.sub_content{padding: 120px 50px;}
 .sub_content input{color: #333;}
 .sub_content .form-control{margin: 0;}
 .sub_content .form-control[readonly] {border: none; background-color: #e6e6ee 6px;}
