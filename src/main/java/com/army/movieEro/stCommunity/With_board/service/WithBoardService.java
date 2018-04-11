@@ -17,6 +17,7 @@ public interface WithBoardService {
 	
 	public int insertBoard(WithBoard b);
 
+	public int withReserve(int bNo, String bNo_id);
 	
 
 }

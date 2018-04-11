@@ -13,8 +13,7 @@ public class WithBoard implements java.io.Serializable{
 	private String WITH_BOARD_WRITER;
 	private String WITH_BOARD_TITLE;
 	private String WITH_BOARD_CONTENT;
-	private String WITH_BOARD_NOW_ID;
-	private int WITH_BOARD_NOW_NO;
+	private String WITH_BOARD_COUPON;
 	private int WITH_BOARD_APPLY_NO;
 	private int WITH_BOARD_READCOUNT;
 	private Date WITH_BOARD_DATE;
@@ -23,34 +22,27 @@ public class WithBoard implements java.io.Serializable{
 	public WithBoard() {}
 
 
-	
 	public WithBoard(int wITH_BOARD_NO, String wITH_BOARD_WRITER, String wITH_BOARD_TITLE, String wITH_BOARD_CONTENT,
-			String wITH_BOARD_NOW_ID, int wITH_BOARD_NOW_NO, int wITH_BOARD_APPLY_NO, int wITH_BOARD_READCOUNT,
-			Date wITH_BOARD_DATE) {
+			String wITH_BOARD_COUPON, int wITH_BOARD_APPLY_NO, int wITH_BOARD_READCOUNT, Date wITH_BOARD_DATE) {
 		super();
 		WITH_BOARD_NO = wITH_BOARD_NO;
 		WITH_BOARD_WRITER = wITH_BOARD_WRITER;
 		WITH_BOARD_TITLE = wITH_BOARD_TITLE;
 		WITH_BOARD_CONTENT = wITH_BOARD_CONTENT;
-		WITH_BOARD_NOW_ID = wITH_BOARD_NOW_ID;
-		WITH_BOARD_NOW_NO = wITH_BOARD_NOW_NO;
+		WITH_BOARD_COUPON = wITH_BOARD_COUPON;
 		WITH_BOARD_APPLY_NO = wITH_BOARD_APPLY_NO;
 		WITH_BOARD_READCOUNT = wITH_BOARD_READCOUNT;
 		WITH_BOARD_DATE = wITH_BOARD_DATE;
 	}
 
 
-
-
 	@Override
 	public String toString() {
 		return "WithBoard [WITH_BOARD_NO=" + WITH_BOARD_NO + ", WITH_BOARD_WRITER=" + WITH_BOARD_WRITER
 				+ ", WITH_BOARD_TITLE=" + WITH_BOARD_TITLE + ", WITH_BOARD_CONTENT=" + WITH_BOARD_CONTENT
-				+ ", WITH_BOARD_NOW_ID=" + WITH_BOARD_NOW_ID + ", WITH_BOARD_NOW_NO=" + WITH_BOARD_NOW_NO
-				+ ", WITH_BOARD_APPLY_NO=" + WITH_BOARD_APPLY_NO + ", WITH_BOARD_READCOUNT=" + WITH_BOARD_READCOUNT
-				+ ", WITH_BOARD_DATE=" + WITH_BOARD_DATE + "]";
+				+ ", WITH_BOARD_COUPON=" + WITH_BOARD_COUPON + ", WITH_BOARD_APPLY_NO=" + WITH_BOARD_APPLY_NO
+				+ ", WITH_BOARD_READCOUNT=" + WITH_BOARD_READCOUNT + ", WITH_BOARD_DATE=" + WITH_BOARD_DATE + "]";
 	}
-
 
 
 	public int getWITH_BOARD_NO() {
@@ -93,23 +85,13 @@ public class WithBoard implements java.io.Serializable{
 	}
 
 
-	public String getWITH_BOARD_NOW_ID() {
-		return WITH_BOARD_NOW_ID;
+	public String getWITH_BOARD_COUPON() {
+		return WITH_BOARD_COUPON;
 	}
 
 
-	public void setWITH_BOARD_NOW_ID(String wITH_BOARD_NOW_ID) {
-		WITH_BOARD_NOW_ID = wITH_BOARD_NOW_ID;
-	}
-
-
-	public int getWITH_BOARD_NOW_NO() {
-		return WITH_BOARD_NOW_NO;
-	}
-
-
-	public void setWITH_BOARD_NOW_NO(int wITH_BOARD_NOW_NO) {
-		WITH_BOARD_NOW_NO = wITH_BOARD_NOW_NO;
+	public void setWITH_BOARD_COUPON(String wITH_BOARD_COUPON) {
+		WITH_BOARD_COUPON = wITH_BOARD_COUPON;
 	}
 
 
@@ -146,8 +128,9 @@ public class WithBoard implements java.io.Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
+
+
+
 	
 	
 	

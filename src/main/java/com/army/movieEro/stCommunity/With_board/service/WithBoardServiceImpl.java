@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.army.movieEro.stCommunity.With_board.dao.WithBoardDao;
 import com.army.movieEro.stCommunity.With_board.vo.WithBoard;
+import com.army.movieEro.stCommunity.With_board.vo.WithBoard_sub;
 
 @Service("bService")
 public class WithBoardServiceImpl implements WithBoardService {
@@ -40,8 +41,13 @@ public class WithBoardServiceImpl implements WithBoardService {
 		return bDao.insertBoard(b);
 	}
 
-
-
-	
-
+	@Override
+	public int withReserve(int bNo, String bNo_id) {
+		// 유효성 검증
+		WithBoard_sub wSub = new WithBoard_sub();
+		wSub.setWITH_BOARD_NO(bNo);
+		wSub.setWITH_BOARD_NOW_ID(bNo_id);
+		
+		return bDao.withReserve(wSub);		
+	}
 }
