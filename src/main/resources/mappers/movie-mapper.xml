@@ -35,5 +35,11 @@
 	<select id="loadReview" resultType="Review">
 		SELECT * FROM MOVIE_REVIEW WHERE MV_INFO_SEQ = #{MVInfoSeq}
 	</select>
+	
+	<select id="addReview" parameterType="map">
+		INSERT INTO MOVIE_REVIEW 
+		(MV_RV_SEQ, USER_ID, MV_INFO_SEQ, MV_TITLE, MV_RV_TITLE, MV_RV_CONTENTS)
+		VALUES(MOVIE_REVIEW_SEQ.NEXTVAL, #{userId}, #{MVInfoSeq}, #{MVTitle}, #{rvTitle}, #{rvContents})
+	</select>
 
 </mapper>

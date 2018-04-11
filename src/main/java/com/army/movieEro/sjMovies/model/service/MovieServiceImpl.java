@@ -2,6 +2,7 @@ package com.army.movieEro.sjMovies.model.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,17 +44,17 @@ public class MovieServiceImpl implements MovieService {
 	}
 	
 	@Override
-	public List<MovieDetailVo> loadSummary(String MVInfoSeq) {
+	public MovieDetailVo loadSummary(String MVInfoSeq) {
 		System.out.println("Service loadSummary 실행..............");
-		List<MovieDetailVo> movieSummary = new ArrayList<MovieDetailVo>();
+		MovieDetailVo movieSummary = new MovieDetailVo();
 		movieSummary = movieDao.loadSummary(MVInfoSeq);
 		return movieSummary;
 	}
 	
 	@Override
-	public List<MovieInfoVo> loadSpecInfo(String MVInfoSeq) {
+	public MovieInfoVo loadSpecInfo(String MVInfoSeq) {
 		System.out.println("Service loadSpecInfo 실행..........");
-		List<MovieInfoVo> specInfo = new ArrayList<MovieInfoVo>();
+		MovieInfoVo specInfo = new MovieInfoVo();
 		specInfo = movieDao.loadSpecInfo(MVInfoSeq);
 		return specInfo;
 	}
@@ -80,5 +81,11 @@ public class MovieServiceImpl implements MovieService {
 		List<MovieReviewVo> movieReview = new ArrayList<MovieReviewVo>();
 		movieReview = movieDao.loadReview(MVInfoSeq);
 		return movieReview;
+	}
+
+	@Override
+	public void addReview(Map<String, String> reviewInfo) {
+		System.out.println("Service addReview 실행..............");
+		movieDao.addReview(reviewInfo);
 	}
 }

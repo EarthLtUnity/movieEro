@@ -1,6 +1,7 @@
 package com.army.movieEro.sjMovies.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.army.movieEro.sjMovies.model.vo.MovieDetailVo;
 import com.army.movieEro.sjMovies.model.vo.MovieInfoVo;
@@ -14,13 +15,15 @@ public interface MovieDao {
 	
 	public List<MovieInfoVo> loadMovieLecnt();
 	
-	public List<MovieDetailVo> loadSummary(String MVInfoSeq);
+	public MovieDetailVo loadSummary(String MVInfoSeq);
 	
-	public List<MovieInfoVo> loadSpecInfo(String MVInfoSeq);
+	public MovieInfoVo loadSpecInfo(String MVInfoSeq);
 	
 	public List<MovieVisualVo> loadTrailer(String MVInfoSeq);
 	
 	public List<MovieVisualVo> loadStillcut(String MVInfoSeq);
 	
 	public List<MovieReviewVo> loadReview(String MVInfoSeq);
+	
+	public void addReview(Map<String, String> reviewInfo);
 }

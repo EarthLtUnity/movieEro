@@ -2,6 +2,7 @@ package com.army.movieEro.sjMovies.model.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,18 +44,18 @@ public class MovieDaoImpl implements MovieDao {
 	}
 	
 	@Override
-	public List<MovieDetailVo> loadSummary(String MVInfoSeq) {
+	public MovieDetailVo loadSummary(String MVInfoSeq) {
 		System.out.println("Dao loadSummary 실행......................");
-		List<MovieDetailVo> movieSummary = new ArrayList<MovieDetailVo>();
-		movieSummary = sqlSession.selectList("Movie.loadSummary", MVInfoSeq);
+		MovieDetailVo movieSummary = new MovieDetailVo();
+		movieSummary = sqlSession.selectOne("Movie.loadSummary", MVInfoSeq);
 		return movieSummary;
 	}
 	
 	@Override
-	public List<MovieInfoVo> loadSpecInfo(String MVInfoSeq) {
+	public MovieInfoVo loadSpecInfo(String MVInfoSeq) {
 		System.out.println("Dao loadSpecInfo 실행..........");
-		List<MovieInfoVo> specInfo = new ArrayList<MovieInfoVo>();
-		specInfo = sqlSession.selectList("Movie.loadSpecInfo", MVInfoSeq);
+		MovieInfoVo specInfo = new MovieInfoVo();
+		specInfo = sqlSession.selectOne("Movie.loadSpecInfo", MVInfoSeq);
 		System.out.println("자료 출력 성공");
 		return specInfo;
 	}
@@ -81,5 +82,11 @@ public class MovieDaoImpl implements MovieDao {
 		List<MovieReviewVo> movieReview = new ArrayList<MovieReviewVo>();
 		movieReview = sqlSession.selectList("Movie.loadReview", MVInfoSeq);
 		return movieReview;
+	}
+
+	@Override
+	public void addReview(Map<String, String> reviewInfo) {
+		System.out.println("Dao addReview 실행......................");
+		sqlSession.insert("Movie.addReview", reviewInfo);
 	}
 }

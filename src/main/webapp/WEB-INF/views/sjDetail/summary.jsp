@@ -5,31 +5,39 @@
 <c:set var="summary" value="${requestScope.movieSummary}"/>
 <c:set var="specific" value="${requestScope.specInfo}"/>
 <section class="sub_content">
-	<div class="container">
+	<div class="container ">
 		<div class="col-sm-12">
-			<div class="movie">
+			<div class="tab_menu">
+		    	<ul class="cf">
+		    		<li class="on"><a href="summary.do">영화 개요</a></li>
+		    		<li><a href="trailer.do">트레일러</a></li>
+		    		<li><a href="review.do">영화 리뷰</a></li>
+		    	</ul>
+			</div>
+			<div class="movie detailBorder">
 				<div class="movie__info">
+				<h2 class="page-heading">${specific.MV_TITLE}</h2>
 	                <div class="col-sm-4 col-md-3 movie-mobile">
  	                    <div class="movie__images">
-	                        <span class="movie__rating">${specific[0].MV_USER_RATING}</span>
-	                        <img src="${specific[0].MV_IMAGE}">
+	                        <span class="movie__rating">${specific.MV_USER_RATING}</span>
+	                        <img src="${specific.MV_IMAGE}">
 	                    </div>
 	                </div>
-	                <div class="col-sm-8 col-md-9">
-	                    <p class="movie__time">${summary[0].MV_RUNTIME}</p>
-	                    <p class="movie__option"><strong>Country: </strong>${summary[0].MV_COUNTRY}</p>
-	                    <p class="movie__option"><strong>Year: </strong>${specific[0].MV_PUB_DATE}</p>
-	                    <p class="movie__option"><strong>Genre: </strong>${summary[0].MV_GENRE}</p>
-	                    <p class="movie__option"><strong>Release date: </strong>${summary[0].MV_RELEASE_DATE}</p>
-	                    <p class="movie__option"><strong>Director: </strong>${summary[0].MV_DIRECTOR}</p>
-	                    <p class="movie__option"><strong>Actors: </strong>${summary[0].MV_ACTOR}</p>
-	                    <p class="movie__option"><strong>Age restriction: </strong>${summary[0].MV_GRADE}</p>
+	                <div class="col-sm-8 col-md-9">	
+	                    <p class="movie__time">${summary.MV_RUNTIME}</p>
+	                    <p class="movie__option"><strong>Country: </strong>${summary.MV_COUNTRY}</p>
+	                    <p class="movie__option"><strong>Year: </strong>${specific.MV_PUB_DATE}</p>
+	                    <p class="movie__option"><strong>Genre: </strong>${summary.MV_GENRE}</p>
+	                    <p class="movie__option"><strong>Release date: </strong>${summary.MV_RELEASE_DATE}</p>
+	                    <p class="movie__option"><strong>Director: </strong>${summary.MV_DIRECTOR}</p>
+	                    <p class="movie__option"><strong>Actors: </strong>${summary.MV_ACTOR}</p>
+	                    <p class="movie__option"><strong>Age restriction: </strong>${summary.MV_GRADE}</p>
 	                </div>
             	</div>
             	<!-- movie-info -->
             	 <div class="clearfix"></div>
             	 <h2 class="page-heading">줄거리</h2>
-            	 <p class="movie__describe">${summary[0].MV_STORY}</p>
+            	 <p class="movie__describe">${summary.MV_STORY}</p>
 			</div>
 			<!-- div class=movie -->
 		</div>
