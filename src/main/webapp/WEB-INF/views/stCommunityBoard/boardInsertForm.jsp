@@ -19,14 +19,16 @@
 							<div class="col-md-1"></div>
 							<div class="col-md-6">
 								<div class="widget" id="widget">
-									<h5 class="widget-title"></h5>
-									<form class="contact_form transparent" name="kst_insertForm" id="kst_insertForm" action="withBoardList.do" method="post">
+									<h5 class="widget-title">
+										<a href="withBoardList.do" class="btn">리스트새로고침</a>
+									</h5> 
+									<form class="contact_form transparent" name="kst_insertForm" id="kst_insertForm" action="withBoardInsert.do" method="post">
 										<div class="row">
 											<div class="col-sm-4">
 												<input type="text" class="inputValidation" id="WITH_BOARD_WRITER" name="WITH_BOARD_WRITER" value="${memberId}" readOnly="readonly">
 											</div>
 											<div id="select">
-												<select name="WITH_BOARD_APPLY_NO" id="select_1" class="col-sm-3">
+												<select name="WITH_BOARD_APPLY_NO" id="WITH_BOARD_APPLY_NO" class="col-sm-3">
 													<option >모집인원</option>
 													<option value="3"> 3  명</option>
 													<option value="4"> 4 명</option>
@@ -50,7 +52,7 @@
 										</div>
 									</form>
 								</div>
-								<br> <a href="withBoardList.do" class="btn">리스트새로고침</a>
+								<br>
 							</div>
 						</div>
 					</div>
