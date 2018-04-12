@@ -136,6 +136,7 @@ function point(point){
 					<li style ="float: left; width:11%; text-align: center;">작성일</li>		
 					<li style ="float: left; width:10%;text-align: center;">답변여부</li>
 					</ol>
+					<br>
 					<div class="BoardList">
 					
 						</div>
