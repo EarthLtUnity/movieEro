@@ -3,7 +3,9 @@ package com.army.movieEro.jkNoticeBoard.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import com.army.movieEro.jkNoticeBoard.vo.paymentVO;
@@ -23,10 +25,12 @@ public class reserveDaoImpl implements reserveDao{
 
 
 	@Override
-	public int reserveModify(String CINEMA_RESERVE_NO) {
+	public ArrayList<String> seatList(HashMap<String, String> map) {
 		// TODO Auto-generated method stub
-		return sqlSession.update("paymentVO.reserveModify",CINEMA_RESERVE_NO);
+		return new ArrayList<String>(sqlSession.selectList("paymentVO.seatList",map));
 	}
+
+
 
 
 

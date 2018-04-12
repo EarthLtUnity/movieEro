@@ -244,6 +244,7 @@
 
 		});
 	});
+	var test = '';
 	$('.entry-order-content').each(function(){
 		//jQuery time
 		var current_fs, next_fs, previous_fs; //fieldsets
@@ -251,6 +252,35 @@
 		var animating; //flag to prevent quick multi-click glitches
 
 		$(".next").on('click',function(){
+			jQuery.ajax({
+	    		url: "seatList.do", // 가맹점 서버
+	            method: "GET",
+	            headers: { "Content-Type": "application/json" },
+	            data: {CINEMA_NAME : $('#locationp').text(),
+	            	  CINEMA_MOVIE : $('#movieSeleted').text(),
+	            	  CINEMA_MOVIE_TIME : $('#datatime').text()
+	            },
+	            success : function(result){
+	            	
+	            	console.log("result123123 : " + result);
+	            	for(var i = 0; i < result.length; i++){
+		            	var add = '';
+	            		var seatNo = result[i];
+	            		console.log("seatNo : " + seatNo);
+	            		add += '<input type="hidden" id="soldSeat'+i+'" class="soldSeat" value="'+seatNo+'"/>';
+	            		$("#soldSeats").html($("#soldSeats").html()+add);
+	            		//test += seatNo+',';
+	            		var sc = $('#seat-map').seatCharts({
+		            	}); 
+		            	sc.get([seatNo]).status('unavailable');
+	            	}
+	            	
+	            }
+	    	}); 
+			
+			
+			
+			
 			if(animating) return false;
 			animating = true;
 			
@@ -401,13 +431,14 @@
 		});
 		//sold seat
 		//reserve.jsp에서 input타입 hidden으로 값을 초기화 해놓고 불러와서 사용.
-		sc.get(['1_10']).status('unavailable');
-			
+		console.log("test 확인 : "+test);
+		sc.get([test]).status('unavailable');
 	});
+	
 	//sum total money
 	function recalculateTotal(sc) {
 		var total = 0;
-		price = 10000;
+		price = 200;
 		sc.find('selected').each(function () {
 			total += price;
 		});

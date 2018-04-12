@@ -1,7 +1,9 @@
 package com.army.movieEro.jkNoticeBoard.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,5 +52,20 @@ public class reserveController {
 		}
 		
 		return "main/main.do";
+	}
+	
+	@RequestMapping(value = "seatList.do")
+	@ResponseBody
+	public ArrayList<String> seatList(ModelAndView mv,HttpServletRequest request,@RequestParam(value="CINEMA_MOVIE_TIME") String CINEMA_MOVIE_TIME
+			,@RequestParam(value="CINEMA_NAME") String CINEMA_NAME, @RequestParam(value="CINEMA_MOVIE") String CINEMA_MOVIE) {
+			
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put("CINEMA_MOVIE_TIME",CINEMA_MOVIE_TIME);
+		map.put("CINEMA_NAME",CINEMA_NAME);
+		map.put("CINEMA_MOVIE",CINEMA_MOVIE);
+		System.out.println("map : " + map.toString());
+		ArrayList<String> list = REService.seatList(map);
+		System.out.println("list : " + list.toString());
+		return list;
 	}
 }

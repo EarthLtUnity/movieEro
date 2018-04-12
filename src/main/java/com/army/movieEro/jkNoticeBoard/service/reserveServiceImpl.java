@@ -1,5 +1,6 @@
 package com.army.movieEro.jkNoticeBoard.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,10 @@ public class reserveServiceImpl implements reserveService{
 	}
 
 	@Override
-	public int reserveModify(String CINEMA_RESERVE_NO) {
-		return REDao.reserveModify(CINEMA_RESERVE_NO);
-		
+	public ArrayList<String> seatList(HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		return REDao.seatList(map);
 	}
+
 	
 }

@@ -74,6 +74,8 @@ function selectmovie(time) {
 
 <div id="seatIds">
 </div>
+<div id="soldSeats">
+</div>
 
 						<!-- 좌석 정보 -->
 					</form>
@@ -144,26 +146,38 @@ function selectmovie(time) {
 		});
 		
 		 $(".next").click(function(event){
-			
-			/*  jQuery.ajax({
+			  /*  jQuery.ajax({
 		    		url: "seatList.do", // 가맹점 서버
 		            method: "GET",
 		            headers: { "Content-Type": "application/json" },
-		            data: {data : data},
+		            data: {CINEMA_NAME : $('#locationp').text(),
+		            	  CINEMA_MOVIE : $('#movieSeleted').text(),
+		            	  CINEMA_MOVIE_TIME : $('#datatime').text()
+		            },
 		            success : function(result){
-		            	var msg = '결제가 완료되었습니다.';
-
-		    			alert(msg);
-		            	location.href="#";//반환값 지정해서 페이지 리로딩
+		            	console.log("result : " + result);
+		            	for(var i = 0; i < result.length; i++){
+			            	var add = '';
+		            		var seatNo = result[i];
+		            		console.log("seatNo : " + seatNo);
+		            		add += '<input type="hidden" id="soldSeat'+i+'" class="soldSeat" value="'+seatNo+'"/>';
+		            		$("#soldSeats").html($("#soldSeats").html()+add);
+		            		 sc.get([seatNo]).status('unavailable'); 
+		            	}
+		            	 var at = $('.soldSeat').val();
+		        		console.log(at)
+		        		$(at).attr('class', 'seatCharts-seat seatCharts-cell unavailable'); 
 		            }
-		    	}); */
-			
-		});
+		    	});   */
+			  return false;
+		}); 
 		 
 		 
 		 
 		 /* 결제창 불러오고 실행하는 부분 */
 		
+		 
+		 
 		 
 		 $(".payment").on('click',function(){
 			 var IMP = window.IMP; 
