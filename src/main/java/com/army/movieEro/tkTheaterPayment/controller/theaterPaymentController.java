@@ -31,7 +31,7 @@ public class theaterPaymentController {
 	@Autowired
 	private TheaterPaymentDaoImpl theaterPaymentServiceImpl;
 	@Autowired
-	theaterRentalDaoImpl theaterRentalServiceImpl;
+	private theaterRentalDaoImpl theaterRentalServiceImpl;
 
 
 	@RequestMapping("tpaymentselet.do")//영화 결제목록
@@ -62,6 +62,15 @@ public class theaterPaymentController {
 	return "redirect:myrentalinfo.do"; 
 	}
 	
+	@RequestMapping("myrentalprice.do") //가격 불러오기
+	@ResponseBody
+	public Object myrentalprice(@RequestParam("mypoint") String point) {
+		System.out.println(point+"이거안오냐?");
+		theaterVO vo = new theaterVO();
+		vo = theaterPaymentServiceImpl.selectpayposition(point);
+		System.out.println(vo.getRENTAL_SERVICE_TITLE());
+		return vo;
+	}
 	
 	@RequestMapping("paymentinsert.do")//결제시 DB 생성
 	@ResponseBody

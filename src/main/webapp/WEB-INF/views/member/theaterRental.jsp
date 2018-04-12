@@ -27,10 +27,10 @@
 							<div class="mdl_txt_sec">
 								<a href="#">
 									<ul>
-										<li><strong class="mypage_movie_tit">${myllist.theater_pay_postion}</strong></li>
-										<li class="mypage_movie_date">${myllist.theater_pay_date}</li>
-										<li class="mypage_movie_date">${myllist.theater_pay_time}</li>
-										<li class="mypage_movie_price">${myllist.theater_pay_price}</li>
+										<li><strong class="mypage_movie_tit">영화관:${myllist.theater_pay_postion}</strong></li>
+										<li class="mypage_movie_date">대여 날짜:${myllist.theater_pay_date}</li>
+										<li class="mypage_movie_date">대여 시간:${myllist.theater_pay_time}</li>
+										<li class="mypage_movie_price">가격:${myllist.theater_pay_price}</li>
 									</ul>
 								</a>
 							</div>

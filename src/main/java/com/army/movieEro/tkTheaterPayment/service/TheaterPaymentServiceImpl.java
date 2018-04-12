@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.army.movieEro.tkTheaterPayment.dao.TheaterPaymentDaoImpl;
 import com.army.movieEro.tkTheaterPayment.vo.TheaterPayment;
+import com.army.movieEro.tkTheaterRental.vo.theaterVO;
 
 @Service("theaterPaymentServiceImpl")
 public class TheaterPaymentServiceImpl implements TheaterPaymentService {
@@ -37,6 +38,12 @@ public class TheaterPaymentServiceImpl implements TheaterPaymentService {
 	public ArrayList<TheaterPayment> selectPayList(String MB_ID) {
 		// TODO Auto-generated method stub
 		return theaterPaymentServiceImpl.selectPayList(MB_ID);
+	}
+
+	@Override
+	public theaterVO selectpayposition(String position) {
+		// TODO Auto-generated method stub
+		return theaterPaymentServiceImpl.selectpayposition(position);
 	}
 
 }

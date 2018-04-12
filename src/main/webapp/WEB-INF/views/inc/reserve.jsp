@@ -22,13 +22,13 @@ function selectmovie(time) {
 				<div class="entry-order-content">
 					<form class="msform" id="msform" name="msform" action="reserve.do" method="get">
 					<!-- 로그인 아이디 -->
-					<input type="hidden" name="MB_ID" id="MB_ID" value="${ID}"/>
 						<!-- action에 컨트롤러 태워서 db에 데이터 넣기 -->
 						<!-- fieldsets -->
 						<fieldset>
 							<div class="wpc-content">
 								<h3>location</h3>
 								<!-- 영화관 정보 -->
+								<input type="hidden" name="MB_ID" id="MB_ID" value="${ID}"/>
 								<select name="CINEMA_NAME" id="CINEMA_NAME" onchange="selectlocation(this.value)">
 									<!-- 데이터 베이스에서 영화관 리스트만 뽑아와서 forEach로 뿌려주기 -->
 									<option value="cgv 강남">cgv 강남</option>
@@ -93,9 +93,9 @@ function selectmovie(time) {
 					<div>
 						Tickets: <span id="counter">0</span>
 					</div>
-					<div>
-						Total: <b><span id="total">0</span></b> 
-					</div>
+					<span>Total:</span>
+						 <div id="total"></div> 
+						 <input type="hidden" id="totalAmount" value=""/>
 					<a href="#" class="close-window"><i class="fa fa-times"></i></a>
 				</div>
 			</div>
@@ -143,22 +143,32 @@ function selectmovie(time) {
 			return false;
 		});
 		
-		/* $(".next").click(function(event){
+		 $(".next").click(function(event){
 			
-			
+			/*  jQuery.ajax({
+		    		url: "seatList.do", // 가맹점 서버
+		            method: "GET",
+		            headers: { "Content-Type": "application/json" },
+		            data: {data : data},
+		            success : function(result){
+		            	var msg = '결제가 완료되었습니다.';
+
+		    			alert(msg);
+		            	location.href="#";//반환값 지정해서 페이지 리로딩
+		            }
+		    	}); */
 			
 		});
-		 */
+		 
 		 
 		 
 		 /* 결제창 불러오고 실행하는 부분 */
-		 var IMP = window.IMP; 
-		 IMP.init("imp68666223");
+		
 		 
 		 $(".payment").on('click',function(){
-			 
+			 var IMP = window.IMP; 
+			 IMP.init("imp68666223");
 			 var cellCilckVal = [];
-			 
 			 var size = $("input[name='CINEMA_MOVIE_SEAT']").length;
 	         for(i=0;i<size;i++){
 	             console.log("type1: "+$("input[name='CINEMA_MOVIE_SEAT']").eq(i).attr("value"));
@@ -171,41 +181,13 @@ function selectmovie(time) {
 			 
 			console.log(cellCilckVal)
 			
-			var allData = { "CINEMA_NAME" : $('#CINEMA_NAME').val(),
-							"CINEMA_MOVIE" : $('#CINEMA_MOVIE').val(),
-							"CINEMA_MOVIE_SEAT" : $('#CINEMA_MOVIE_SEAT').val(),
-							"CINEMA_MOVIE_TIME" : $('#CINEMA_MOVIE_TIME').val(),
-							"CINEMA_SECTION" : "임시 상영관",
-							"CINEMA_MOVIE_SEAT_SEC": cellCilckVal
-						   };
-			
-			jQuery.ajax({
-				    		url: "reserve.do", // 가맹점 서버
-				            method: "GET",
-				            headers: { "Content-Type": "application/json" },
-				            data: allData,
-				            success : function(result){
-				            	var msg = '결제가 완료되었습니다.';
-						        msg += '아이디 : ' + $('#MB_ID').val();
-						        msg += '영화관 : ' + $('#CINEMA_NAME').val();
-						        msg += '영화제목 : ' + $('#CINEMA_MOVIE').val();
-						        msg += '좌석 : ' + $('#CINEMA_MOVIE_SEAT').val();
-						        msg += '시간 : ' + $('#CINEMA_MOVIE_TIME').val();
-
-				    			alert(msg);
-				            	location.href="";//반환값 지정해서 페이지 리로딩
-				            }
-				    	});
-			
-			
-		
-			 alert($('#MB_ID').val());
-			/*  IMP.request_pay({
+			 console.log($('#total').val());
+			  IMP.request_pay({
 				    pg : 'inicis',
 				    pay_method : 'card',
 				    merchant_uid : 'merchant_' + new Date().getTime(),
 				    name : $('#CINEMA_MOVIE').val(),
-				    amount : 1000,
+				    amount : $('#total').text(),
 				    buyer_email : 'worua99@nate.com',
 				    buyer_name : $('#MB_ID').val(),
 				    buyer_tel : '010-2030-1266',
@@ -214,38 +196,34 @@ function selectmovie(time) {
 				}, function(rsp) {
 				    if ( rsp.success ) {
 				    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-				    	jQuery.ajax({
-				    		url: "reserve.do", // 가맹점 서버
-				            method: "GET",
-				            headers: { "Content-Type": "application/json" },
-				            data: {
-				            	MB_ID : $('#MB_ID').val(),
-				            	CINEMA_NAME : $('#CINEMA_NAME').val(),
-				            	CINEMA_MOVIE : $('#CINEMA_MOVIE').val(),
-				            	CINEMA_MOVIE_SEAT : $('#CINEMA_MOVIE_SEAT').val(),
-				            	CINEMA_MOVIE_TIME : $('#CINEMA_MOVIE_TIME').val(),
-				            	CINEMA_SECTION : "임시 상영관",
-				            	CINEMA_MOVIE_SEAT_SEC : cellCilckVal
-				            },
-				            success : function(result){
-				            	var msg = '결제가 완료되었습니다.';
-						        msg += '아이디 : ' + $('#MB_ID').val();
-						        msg += '영화관 : ' + $('#CINEMA_NAME').val();
-						        msg += '영화제목 : ' + $('#CINEMA_MOVIE').val();
-						        msg += '좌석 : ' + $('#CINEMA_MOVIE_SEAT').val();
-						        msg += '시간 : ' + $('#CINEMA_MOVIE_TIME').val();
+				    	var allData = { "CINEMA_NAME" : $('#CINEMA_NAME').val(),
+								"CINEMA_MOVIE" : $('#CINEMA_MOVIE').val(),
+								"CINEMA_MOVIE_SEAT" : $('#CINEMA_MOVIE_SEAT').val(),
+								"CINEMA_MOVIE_TIME" : $('#CINEMA_MOVIE_TIME').val(),
+								"MB_ID" : $('#MB_ID').val(),
+								"CINEMA_SECTION" : "임시 상영관",
+								"CINEMA_MOVIE_SEAT_SEC": cellCilckVal
+							   };
+				
+								jQuery.ajax({
+					    		url: "reserve.do", // 가맹점 서버
+					            method: "GET",
+					            headers: { "Content-Type": "application/json" },
+					            data: allData,
+					            success : function(result){
+					            	var msg = '결제가 완료되었습니다.';
 
-				    			alert(msg);
-				            	location.href="";//반환값 지정해서 페이지 리로딩
-				            }
-				    	});
+					    			alert(msg);
+					            	location.href="#";//반환값 지정해서 페이지 리로딩
+					            }
+					    	});
 				    } else {
 				        var msg = '결제에 실패하였습니다.';
 				        msg += '에러내용 : ' + rsp.error_msg;
 
 				        alert(msg);
 				    }
-				}); */
+				}); 
 		 });
 		 
 			    		

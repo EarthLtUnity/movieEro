@@ -8,17 +8,21 @@
 <select id="theaterpayselect" resultType="theaterPayment">
 select * from theater_pay where theater_pay_postion = #{theater_pay_postion} and theater_pay_date = #{theater_pay_date}
 </select>
-
+	
 <select id="mypaymentselect" resultType="theaterPayment">
 select * from theater_pay where mb_id = #{mb_id} order by theater_pay_number DESC
 </select> 
 
 <insert id="theaterpayinsert">
-insert into theater_pay value(#{theater_pay_postion},#{theater_pay_date},#{theater_pay_time},#{theater_pay_price},#{mb_id},#{theater_pay_case},payment_sq.nextval)
+insert into theater_pay values(#{theater_pay_postion},#{theater_pay_date},#{theater_pay_time},#{theater_pay_price},#{mb_id},#{theater_pay_case},rental_payment_sq.nextval)
 </insert>
 
 <update id="theaterpayupdate">
 update theater_pay set theater_pay_case = 'false' where theater_pay_number = #{theater_pay_number}
 </update>
+
+<select id="myrentalposition" resultType="Theater">
+select * from rental_movie where RENTAL_SERVICE_TITLE = #{RENTAL_SERVICE_TITLE}
+</select>
 
 </mapper>

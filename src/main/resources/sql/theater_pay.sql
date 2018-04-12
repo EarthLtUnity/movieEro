@@ -12,7 +12,7 @@ primary key(theater_pay_number)
 );
 
 drop SEQUENCE rental_payment_sq;
-CREATE SEQUENCE payment_sq
+CREATE SEQUENCE rental_payment_sq
 START WITH 1 
 INCREMENT BY 1 
 MAXVALUE 100000

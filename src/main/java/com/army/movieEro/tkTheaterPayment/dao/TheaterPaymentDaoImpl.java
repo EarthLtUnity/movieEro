@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.army.movieEro.tkTheaterPayment.vo.TheaterPayment;
+import com.army.movieEro.tkTheaterRental.vo.theaterVO;
 
 @Repository("theaterPaymentDaoImpl")
 
@@ -37,6 +38,12 @@ public class TheaterPaymentDaoImpl implements TheaterPaymentDao {
 	public ArrayList<TheaterPayment> selectPayList(String MB_ID) {
 		// TODO Auto-generated method stub
 		return new ArrayList<TheaterPayment>(sqlsession.selectList("tkPayment.mypaymentselect",MB_ID));
+	}
+
+	@Override
+	public theaterVO selectpayposition(String position) {
+		// TODO Auto-generated method stub
+		return sqlsession.selectOne("tkPayment.myrentalposition",position);
 	}
 
 }
