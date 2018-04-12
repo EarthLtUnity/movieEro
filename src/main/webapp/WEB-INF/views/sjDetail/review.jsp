@@ -7,9 +7,9 @@
 		<div class="col-sm-12">
 			<div class="tab_menu">
 		    	<ul class="cf">
-		    		<li><a href="summary.do">영화 개요</a></li>
-		    		<li><a href="trailer.do">트레일러</a></li>
-		    		<li class="on"><a href="review.do">영화 리뷰</a></li>
+		    		<li><a id="toSummary" href="summary.do">영화 개요</a></li>
+		    		<li><a id="toTrailer" href="trailer.do">트레일러</a></li>
+		    		<li class="on"><a id="toReivew" href="review.do">영화 리뷰</a></li>
 		    	</ul>
 			</div>
 			<c:set var="savedReview" value="${requestScope.movieReview}"/>
@@ -40,6 +40,7 @@
 </section>
 <script>
 	$(document).ready(function(){
+		
 		$(".comment-form__btn").on('click', function(){
 			$("#comment-form").attr('action', 'addReview.do');
 			$("#comment-form").attr('method', 'get');

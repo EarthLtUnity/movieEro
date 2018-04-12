@@ -4,7 +4,7 @@
 <jsp:include page="../inc/header.jsp" flush="false" />
 
 <section class="sub_content">
-	<form role="form">
+	<form id="movie_list">
 		<div class="container seojin">
 			<div class="col-sm-12">
 				<h2 class="page-heading">cinemas</h2>
@@ -24,12 +24,12 @@
 	            	<c:forEach var="forMovie" items="${movies}">
 	                	<div class="col-xs-6 col-sm-3 custom listPost cinema-item">
 	                    	<div class="cinema">
-	                        	<button type="submit" class="cinema__images toDetailBtn">
+	                        	<a class="cinema__images" href="summary.do?MVInfoSeq=${forMovie.MV_INFO_SEQ}">
 	                            	<img src="${forMovie.MV_IMAGE}">
 	                            	<span class="cinema-rating">${forMovie.MV_USER_RATING}</span>
-	                        	</button>
+	                        	</a>
 	                           	<a href="single-cinema.html" class="cinema-title">${forMovie.MV_TITLE}</a>
-	                           	<input type="hidden" name="MVInfoSeq" value="${forMovie.MV_INFO_SEQ}"/>
+	                           <input type="hidden" name="MVInfoSeq" value="${forMovie.MV_INFO_SEQ}"/>
 	                    	</div>
 						</div>
 					</c:forEach>
@@ -43,23 +43,7 @@
 	</form>
 </section>
 <script>
-	$(document).ready(function(){
-		$(".toDetailBtn").on('click', function(){
-			$('form').attr('action', 'summary.do');
-			$('form').attr('method', 'get');
-			$('form').submit();
-		});
-		
-		$("#showMoreBtn").on('click',function(){
-			$.ajax({
-				url : '',
-				data : '',
-				success : '',
-				error : '',
-				complete : ''
-			});
-		});
-	})
+
 </script>
 <!-- 혼자만 사용할 Javascript 라이브러리 파일 위치(이 밑에 추가) -->
 <!-- <script type="text/javascript" src="js/파일명.js"></script> -->

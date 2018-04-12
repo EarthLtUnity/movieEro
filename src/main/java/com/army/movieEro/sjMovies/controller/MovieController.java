@@ -59,37 +59,41 @@ public class MovieController {
 	}
 	
 	@RequestMapping("summary.do")
-	public ModelAndView loadSummary(ModelAndView mv, HttpServletRequest request,
-			HttpSession storeSession) {
-		System.out.println("summary.do 도착...................");
-		if(storeSession.getAttribute("MVInfoSeq") == null) {
-			String MVInfoSeqPara = request.getParameter("MVInfoSeq");
-			storeSession.setAttribute("MVInfoSeq", MVInfoSeqPara);
-		}else {
-			String MVInfoSeq = (String)storeSession.getAttribute("MVInfoSeq");
-			System.out.println("불러올 영화 시퀀스 : " + MVInfoSeq);
+	public ModelAndView loadSummary(ModelAndView mv, HttpServletRequest request, 
+			HttpSession session) {
+		try {
+			System.out.println("summary.do 도착...................");
+			String MVInfoSeqParam = request.getParameter("MVInfoSeq");
+			if(session.getAttribute("MVInfoSeqParam") ==  null) {
+				session.setAttribute("MVInfoSeqParam", MVInfoSeqParam);
+			}
+			String MVInfoSeq = (String)session.getAttribute("MVInfoSeqParam");
 			MovieDetailVo movieSummary = new MovieDetailVo();
 			MovieInfoVo specInfo = new MovieInfoVo();
 			movieSummary = movieService.loadSummary(MVInfoSeq);
 			specInfo = movieService.loadSpecInfo(MVInfoSeq);
 			
+			System.out.println("영화 정보 확인 : "+movieSummary.toString());
+			System.out.println("영화 내용 확인 : "+specInfo.toString());
 			
 			mv.addObject("movieSummary", movieSummary)
 			  .addObject("specInfo", specInfo)
 			  .setViewName("sjDetail/summary");
 			
-			System.out.println(movieSummary.toString());
-			System.out.println(specInfo.toString());
-		
+		}catch(Exception e) {
+			System.out.println("summary.do 에러 : " + e.getLocalizedMessage());
+			mv.setViewName("sjDetail/movieError");
 		}
+			
 		return mv;
 	}
 	
 	@RequestMapping("trailer.do")
 	public ModelAndView loadTrailer(ModelAndView mv, HttpServletRequest request, 
-			HttpSession storedSession) {
+			HttpSession session) {
 		System.out.println("trailer.do 도착.....................");
-		String MVInfoSeq = (String)storedSession.getAttribute("MVInfoSeq");
+		String MVInfoSeq = (String)session.getAttribute("MVInfoSeqParam");
+		System.out.println("영화 시퀀스 확인 : "+MVInfoSeq);
 		List<MovieVisualVo> movieTrailer = new ArrayList<MovieVisualVo>();
 		List<MovieVisualVo> movieStillcut = new ArrayList<MovieVisualVo>();
 		
@@ -105,13 +109,13 @@ public class MovieController {
 	
 	@RequestMapping("review.do")
 	public ModelAndView loadReview(ModelAndView mv, HttpServletRequest request, 
-			HttpSession storedSession) {
+			HttpSession session) {
 		System.out.println("review.do 도착.....................");
-		String MVInfoSeq = (String)storedSession.getAttribute("MVInfoSeq");
+		String MVInfoSeq = (String)session.getAttribute("MVInfoSeqParam");
+		System.out.println("영화 시퀀스 확인 : "+MVInfoSeq);
 		List<MovieReviewVo> movieReview = new ArrayList<MovieReviewVo>();
 		
 		movieReview = movieService.loadReview(MVInfoSeq);
-		System.out.println(movieReview.get(0).toString());
 		
 		mv.addObject("movieReview", movieReview)
 		  .setViewName("sjDetail/review");
@@ -121,10 +125,11 @@ public class MovieController {
 	
 	@RequestMapping("addReview.do")
 	public ModelAndView addReview(ModelAndView mv, HttpServletRequest request, 
-			HttpSession storedSession) {
+			HttpSession session) {
 		System.out.println("addReview.do 도착.....................");
-		String MVInfoSeq = (String)storedSession.getAttribute("MVInfoSeq");
-		String userId = (String) storedSession.getAttribute("memberID");
+		String MVInfoSeq = (String)session.getAttribute("MVInfoSeqParam");
+		System.out.println("영화 시퀀스 확인 : "+MVInfoSeq);
+		String userId = (String) session.getAttribute("memberID");
 		MovieInfoVo specInfo = new MovieInfoVo();
 		specInfo = movieService.loadSpecInfo(MVInfoSeq);
 		String rvContents = request.getParameter("commentContents");
@@ -140,14 +145,8 @@ public class MovieController {
 		
 		movieService.addReview(reviewInfo);
 		
-		
 		mv.setViewName("redirect:review.do");
 		
 		return mv;
-	}
-	
-	@RequestMapping("seojin.do")
-	public String test() {
-		return "sjDetail/detailTemplate";
 	}
 }

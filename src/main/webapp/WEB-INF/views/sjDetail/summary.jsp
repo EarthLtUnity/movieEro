@@ -9,9 +9,9 @@
 		<div class="col-sm-12">
 			<div class="tab_menu">
 		    	<ul class="cf">
-		    		<li class="on"><a href="summary.do">영화 개요</a></li>
-		    		<li><a href="trailer.do">트레일러</a></li>
-		    		<li><a href="review.do">영화 리뷰</a></li>
+		    		<li class="on"><a id="toSummary" href="summary.do">영화 개요</a></li>
+		    		<li><a id="toTrailer" href="trailer.do">트레일러</a></li>
+		    		<li><a id="toReview" href="review.do">영화 리뷰</a></li>
 		    	</ul>
 			</div>
 			<div class="movie detailBorder">
@@ -43,4 +43,8 @@
 		</div>
 	</div>
 </section>
+<script>
+$(document).ready(function(){
+})
+</script>
 <jsp:include page="../inc/footer.jsp" flush="false" />
