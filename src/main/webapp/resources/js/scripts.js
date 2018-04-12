@@ -333,13 +333,13 @@
 	        } 
 	    }
 	});
-
+//좌석 선택 관련 체크포인트 (worua99)
 	var price = 13; //price
 	$(document).ready(function() {
 		var $cart = $('#selected-seats'), //Sitting Area
 		$counter = $('#counter'), //Votes
-		$total = $('#total'); //Total money
-		
+		$total = $('#total'), //Total money
+		$seatIds = $('#seatIds');
 		var sc = $('#seat-map').seatCharts({
 			map: [  //Seating chart
 				'aaaaaaa_aaaaaaa_aaaaaaa',
@@ -368,17 +368,26 @@
 						.attr('id', 'cart-item-'+this.settings.id)
 						.data('seatId', this.settings.id)
 						.appendTo($cart);
-
+					console.log(this.settings.id);
+					console.log('선택 가능한좌석 선택함');
+					var seatId = this.settings.id;
+					var cnt=1;
+					console.log(seatId);
+					var str ='<input type="hidden" id="'+seatId+'s'+'" name="CINEMA_MOVIE_SEAT" value="'+seatId+'"/>';
+					$seatIds.append(str);
 					$counter.text(sc.find('selected').length+1);
 					$total.text(recalculateTotal(sc)+price);
-								
+					
 					return 'selected';
 				} else if (this.status() == 'selected') { //Checked
 						//Update Number
 						$counter.text(sc.find('selected').length-1);
 						//update totalnum
 						$total.text(recalculateTotal(sc)-price);
-							
+						var seatId = '#'+this.settings.id+'s';
+						$(seatId).remove();//선택되어있던 좌석을 다시 루를때 input태그를 제거하는 작업.
+						console.log('#'+this.settings.id)
+						console.log(this.settings.id);
 						//Delete reservation
 						$('#cart-item-'+this.settings.id).remove();
 						//optional
@@ -391,7 +400,8 @@
 			}
 		});
 		//sold seat
-		sc.get(['2_9', '2_11', '2_12','2_13','2_14','2_15','2_10','3_11','3_12','3_13',]).status('unavailable');
+		//reserve.jsp에서 input타입 hidden으로 값을 초기화 해놓고 불러와서 사용.
+		sc.get(['2_9',]).status('unavailable');
 			
 	});
 	//sum total money
