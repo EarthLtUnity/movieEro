@@ -1,9 +1,8 @@
 package com.army.movieEro.jkNoticeBoard.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Spliterator;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -35,11 +34,20 @@ public class reserveController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHH");
 		String CINEMA_RESERVE_NO = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
 				+ seats[0] + seats.length;
+		
+		
 		for(int i = 0; i<seats.length; i++) {
 			System.out.println(seats[i]);
-			
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("CINEMA_NAME",paymentVO.getCINEMA_NAME());
+			map.put("CINEMA_SECTION",paymentVO.getCINEMA_SECTION());
+			map.put("CINEMA_MOVIE",paymentVO.getCINEMA_MOVIE());
+			map.put("CINEMA_MOVIE_TIME",paymentVO.getCINEMA_MOVIE_TIME());
+			map.put("MB_ID",paymentVO.getMB_ID());
+			map.put("CINEMA_RESERVE_NO",CINEMA_RESERVE_NO);
+			map.put("CINEMA_MOVIE_SEAT", seats[i]);
+			REService.reserveInsert(map);
 		}
-		//REService.reserveInsert(paymentVO);
 		
 		return "main/main.do";
 	}

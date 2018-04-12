@@ -334,7 +334,7 @@
 	    }
 	});
 //좌석 선택 관련 체크포인트 (worua99)
-	var price = 13; //price
+	var price = 0; //price
 	$(document).ready(function() {
 		var $cart = $('#selected-seats'), //Sitting Area
 		$counter = $('#counter'), //Votes
@@ -401,12 +401,13 @@
 		});
 		//sold seat
 		//reserve.jsp에서 input타입 hidden으로 값을 초기화 해놓고 불러와서 사용.
-		sc.get(['2_9',]).status('unavailable');
+		sc.get(['1_10']).status('unavailable');
 			
 	});
 	//sum total money
 	function recalculateTotal(sc) {
 		var total = 0;
+		price = 10000;
 		sc.find('selected').each(function () {
 			total += price;
 		});
