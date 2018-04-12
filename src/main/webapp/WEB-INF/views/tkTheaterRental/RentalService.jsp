@@ -68,11 +68,12 @@ $("#datavalue").val(date);
       		   if(newList.length != 0){
       			for(var i = 0 ; i < newList.length; i++){
       				 var time = newList[i]['theater_pay_time'];
+      				 var check = newList[i]['theater_pay_case'];
       				 console.log(time);
             		$('.tim').each(function(index){
             			console.log(time+" = "+ $(this).val() + " : "+ index);
             			console.log(time == $(this).val());
-            			if(time == $(this).val()) $(this).attr('disabled','disabled');
+            			if(time == $(this).val()&&check=="true") $(this).attr('disabled','disabled');
             		});
       			}
       		   } else {
