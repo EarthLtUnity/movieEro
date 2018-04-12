@@ -3,7 +3,7 @@
 <jsp:include page="../inc/head.jsp" flush="false" />
 <jsp:include page="../inc/header.jsp" flush="false" />
 
-<section class="sub_content">
+<section class="sub_content seojin-background">
 	<form id="movie_list">
 		<div class="container seojin">
 			<div class="col-sm-12">
@@ -34,9 +34,6 @@
 						</div>
 					</c:forEach>
 					</div>
-				</div>
-				<div class="pagination paginatioon--full">
-					<button id="showMoreBtn"><i class="icon-circle-arrow-down icon-white"></i>더 보기</button>
 				</div>
 			</div>
 		</div>

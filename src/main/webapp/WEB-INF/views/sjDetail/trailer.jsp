@@ -3,7 +3,7 @@
 <jsp:include page="../inc/head.jsp" flush="false" />
 <jsp:include page="../inc/header.jsp" flush="false" />
 <script type="text/javascript" src="js/seo-jin.js"></script>
-<section class="sub_content">
+<section class="sub_content seojin-background">
 	<div class="container seojin">
 		<div class="col-sm-12">
 			<div class="tab_menu">

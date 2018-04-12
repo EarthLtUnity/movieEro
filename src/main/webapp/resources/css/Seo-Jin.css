@@ -12,6 +12,8 @@
 /* 서진 커스텀 */
 .seojin{background:blue-sky}
 
+.seojin-background{background-color:lightgray;}
+
 /* 영화 리스트 tags */
 .tags-area {
   border-top: 1px solid #dbdee1;

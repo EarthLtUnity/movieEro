@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <jsp:include page="../inc/head.jsp" flush="false" />
 <jsp:include page="../inc/header.jsp" flush="false" />
-<section class="sub_content">
+<section class="sub_content seojin-background">
 	<div class="container ">
 		<div class="col-sm-12">
 			<div class="tab_menu">

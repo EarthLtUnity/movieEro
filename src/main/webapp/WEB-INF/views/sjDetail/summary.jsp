@@ -4,8 +4,8 @@
 <jsp:include page="../inc/header.jsp" flush="false" />
 <c:set var="summary" value="${requestScope.movieSummary}"/>
 <c:set var="specific" value="${requestScope.specInfo}"/>
-<section class="sub_content">
-	<div class="container ">
+<section class="sub_content seojin-background">
+	<div class="container">
 		<div class="col-sm-12">
 			<div class="tab_menu">
 		    	<ul class="cf">
@@ -18,19 +18,19 @@
 				<div class="movie__info">
 				<h2 class="page-heading">${specific.MV_TITLE}</h2>
 	                <div class="col-sm-4 col-md-3 movie-mobile">
- 	                    <div class="movie__images">
+ 	                    <div style="text-align:center;">
 	                        <span class="movie__rating">${specific.MV_USER_RATING}</span>
-	                        <img src="${specific.MV_IMAGE}">
+	                        <img style="width:90%; height:90%;" src="${specific.MV_IMAGE}">
 	                    </div>
 	                </div>
 	                <div class="col-sm-8 col-md-9">	
 	                    <p class="movie__time">${summary.MV_RUNTIME}</p>
-	                    <p class="movie__option"><strong>Country: </strong>${summary.MV_COUNTRY}</p>
-	                    <p class="movie__option"><strong>Year: </strong>${specific.MV_PUB_DATE}</p>
-	                    <p class="movie__option"><strong>Genre: </strong>${summary.MV_GENRE}</p>
-	                    <p class="movie__option"><strong>Release date: </strong>${summary.MV_RELEASE_DATE}</p>
 	                    <p class="movie__option"><strong>Director: </strong>${summary.MV_DIRECTOR}</p>
 	                    <p class="movie__option"><strong>Actors: </strong>${summary.MV_ACTOR}</p>
+	                    <p class="movie__option"><strong>Genre: </strong>${summary.MV_GENRE}</p>
+	                    <p class="movie__option"><strong>Year: </strong>${specific.MV_PUB_DATE}</p>
+	                    <p class="movie__option"><strong>Release date: </strong>${summary.MV_RELEASE_DATE}</p>
+	                    <p class="movie__option"><strong>Country: </strong>${summary.MV_COUNTRY}</p>
 	                    <p class="movie__option"><strong>Age restriction: </strong>${summary.MV_GRADE}</p>
 	                </div>
             	</div>
