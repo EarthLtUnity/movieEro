@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.army.movieEro.tkTheaterPayment.vo.TheaterPayment;
+import com.army.movieEro.tkTheaterRental.vo.theaterVO;
 
 public interface TheaterPaymentService {
 	
@@ -14,4 +15,6 @@ public interface TheaterPaymentService {
 	public int updatePayment(int bnum);
 	
 	public ArrayList<TheaterPayment> selectPayList(String MB_ID);
+	
+	public theaterVO selectpayposition(String position);
 }

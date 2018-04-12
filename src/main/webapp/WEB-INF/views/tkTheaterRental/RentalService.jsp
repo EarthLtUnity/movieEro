@@ -27,13 +27,29 @@ function popupOpen(bnum){
 //////////////////////////////////////////////결제창화면에뿌려주기
 function seletetime(time) {
 	$("#datatime").text(time);
+	$("#datatime").val(time);
 }
 function selectpoint(point) {
 $("#pointname").text(point);
-}
+$("#pointname").val(point);
+	$.ajax({
+		url:'myrentalprice.do',
+		type:'post',
+		data:{mypoint : point},
+		success: function(data){
+			//var theater_info = JSON.parse(data);
+			console.log(data);
+			console.log(data.rental_SERVICE_INFO);
+			$("#myselectprice").text("가격:"+data.rental_SERVICE_PRICE+"원");
+			$("#pricemv").val(data.rental_SERVICE_PRICE);
+			$("#pricemv").text(data.rental_SERVICE_PRICE); 
+		}
+	})
+} 
 /////////////////////////////////결제창 이미 결제된거 버튼 비활성화 
 function seletedata(date) {
 $("#datavalue").text(date);
+$("#datavalue").val(date);
   
 	var tkposition = $("#rental_loaction option:selected").val();
     $.ajax({
@@ -88,8 +104,9 @@ $("#datavalue").text(date);
                                         	    	<form name="theaterview">
                                             			<input type="hidden" name ="test1" value="${theaterlist.RENTAL_SERVICE_NO}"/>
                                             		</form>
-                                            		<input type='button' onclick='popupOpen(${theaterlist.RENTAL_SERVICE_NO})' value='정보 보기'/>
-                                                	<a href="#rentalreserve" class="btn_rental order_btn">영화관예매하기</a>
+                                            		<input type='button' onclick='popupOpen(${theaterlist.RENTAL_SERVICE_NO})' value='정보 보기'/> 
+                                                	<c:if test="${!empty member}"><a href="#rentalreserve" class="btn_rental order_btn">영화관예매하기</a></c:if>
+                                                	<c:if test="${empty member}"><a href="" onclick="nomember()">영화관예매하기</a></c:if>
                                                </div>
                                            </div>
                                        </div>
@@ -126,16 +143,17 @@ $("#datavalue").text(date);
 								<!-- action에 컨트롤러 태워서 db에 데이터 넣기 -->
 									<fieldset>
 										<div class="wpc-content">
-											<h3>영화관 선택:</h3><br>
+											<h3>영화관 선택:</h3>
 												<select name="cinema_location" id="rental_loaction" onchange="selectpoint(this.value)" style="height: 40px;">
 												<!-- 데이터 베이스에서 영화관 리스트만 뽑아와서 forEach로 뿌려주기 -->
 												<c:forEach var="theaterlist" items="${theater}">
 												<option>${theaterlist.RENTAL_SERVICE_TITLE}</option>
 												</c:forEach>
 												</select>
-											<h3 class="mt3">날짜선택:</h3><br>
+											<h3 class="mt3">날짜선택:</h3>
 											<input type='date' onchange="seletedata(this.value)"/>
-											<h3 class="mt3">시간선택:</h3><br>
+											<h3 class="mt3"><div id="myselectprice">가격:</div></h3>
+											<h3 class="mt3">시간선택:</h3>
 												<ul class="order-date">
 											<!-- 이부분에 forEach문 써서 데이터베이스에서 영화관, 영화 제목으로 영화 시간대 데이터를 뽑아와서 button태그 추가할것 -->
 													<li><button type="button" style="color:black;" class="btn_time tim" name="Time" onclick="seletetime(this.value)" value="09:00~11:00">09:00~11:00</button></li>
@@ -151,14 +169,15 @@ $("#datavalue").text(date);
 							<div class="col-sm-4 col-xs-12 order_sidebar ph0">
 									<h2>결제정보</h2><br>
 									<div class="order-details">
-										<span>영화관:</span>
-									<div id= "pointname"></div>
-										<span>날짜:</span>
-									<div id="datavalue"></div>
-										<span>시간선택:</span>
-									<div id="datatime"></div>
-										<span>가격:</span>
-									<div hidden="">${member}</div><br>
+										<span style="color: #000;font-family: 'Montserrat-light', serif;font-size: 16px; margin: 0; padding: 0;font-weight: 500; text-transform: uppercase;">영화관:</span>
+									<div id= "pointname" class="pointname"></div>
+										<span style="color: #000;font-family: 'Montserrat-light', serif;font-size: 16px; margin: 0; padding: 0;font-weight: 500; text-transform: uppercase;">날짜:</span>
+									<div id="datavalue" class="datavalue"></div>
+										<span style="color: #000;font-family: 'Montserrat-light', serif;font-size: 16px; margin: 0; padding: 0;font-weight: 500; text-transform: uppercase;">시간선택:</span>
+									<div id="datatime" class="datavalue"></div>
+									<span style="color: #000;font-family: 'Montserrat-light', serif;font-size: 16px; margin: 0; padding: 0;font-weight: 500; text-transform: uppercase;">가격:</span>
+									<div id="pricemv" class="pricemv"></div>
+									<input type="hidden" class ="paymentid" id="paymentid" value="${member}"></div><br>
 								<input type="button" name="rentalpayment" id="rentalpayment" style = "color:black" class="rentalpayment action-button" value="결제하기" />
 									</div>
 							</div>
@@ -193,17 +212,28 @@ $("#datavalue").text(date);
 	/* $(".next").click(function(event){
 	}); */
 
+
+ 	
 	 var IMP = window.IMP; 
 	 IMP.init("imp64071802");
 	 $(".rentalpayment").on('click',function(){
+		 if($('#pointname').val()==""){
+			 alert("영화관을 선택해주세요");
+		 }
+		 else if($('#datavalue').val()==""){
+			 alert("날짜를 선택해주세요"); 
+		 }
+		 else if($('#datatime').val()==""){
+			 alert("시간을 선택해주세요"); 
+		 }
+		 else{
 		 alert("결제시스템");
-		 alert($('#pointname').val());
 		 IMP.request_pay({
 			    pg : 'inicis',
 			    pay_method : 'card',
-			    merchant_uid : 'sdf',
-			    name : '주문명:결제테스트',
-			    amount : 1000,
+			    merchant_uid : 'asda',
+			    name : $('#pointname').val(),
+			    amount :$('#pricemv').val(),
 			    buyer_email : 'worua99@nate.com',
 			    buyer_name : '김재겸',
 			    buyer_tel : '010-2030-1266',
@@ -211,6 +241,7 @@ $("#datavalue").text(date);
 			    buyer_postcode : '123-456'
 			}, function(rsp) {
 			    if ( rsp.success ) {
+			    	console.log("일단 이건 오는건가?")
 			    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 			    	jQuery.ajax({
 			    		url: "paymentinsert.do", // 가맹점 서버
@@ -220,8 +251,8 @@ $("#datavalue").text(date);
 			            	theater_pay_postion : $('#pointname').val(),
 			            	theater_pay_date : $('#datavalue').val(),
 			            	theater_pay_time : $('#datatime').val(),
-			            	theater_pay_price : $('.seatNum').val(),
-			            	mb_id : $(member).val(),
+			            	theater_pay_price : $('#pricemv').val(),
+			            	mb_id : "${member}",
 			            	theater_pay_case: "true" 
 			            },
 			            success : function(result){
@@ -231,10 +262,6 @@ $("#datavalue").text(date);
 			    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
 			    		if ( everythings_fine ) {
 			    			var msg = '결제가 완료되었습니다.';
-					        msg += '아이디 : ' + $('.userID').val();
-					        msg += '영화관 : ' + $('.ciname_lication').val();
-					        msg += '영화제목 : ' + $('.kindOfMovie').val();
-					        msg += '좌석 : ' + $('.seatNum').val();
 			    			alert(msg);
 			       
 			        	} else {
@@ -248,10 +275,13 @@ $("#datavalue").text(date);
 			        alert(msg);
 			    }
 			});
-	 });
+		 }});
 	location.href="#";
-});
+}); 
 
+	function nomember(){
+		alert("로그인 후 이용할 수 있습니다.");
+	}
 </script>
 	
 <jsp:include page="../inc/footer.jsp" flush="false" />
