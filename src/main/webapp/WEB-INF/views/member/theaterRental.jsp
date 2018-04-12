@@ -20,7 +20,7 @@
 						<c:forEach var="myllist" items="${myrentallist}">
 							<li class="cf li_mypage_list">
 								<c:forEach var="tImage" items="${theater}">
-									<c:if test="${tImage.RENTAL_SERVICE_INFO eq myllist.theater_pay_postion}">
+									<c:if test="${tImage.RENTAL_SERVICE_TITLE eq myllist.theater_pay_postion}">
 										<div class="lft_img_sec"><img src="http://localhost:8088/adminMovieEro/resources/images/theater/${tImage.RENTAL_SERVICE_IMAGE}" style ="max-width: 200px;"></div>
 									</c:if>
 								</c:forEach>

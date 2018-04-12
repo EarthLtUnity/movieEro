@@ -7,6 +7,20 @@
 <jsp:include page="../inc/head.jsp" flush="false" />
 <jsp:include page="../inc/header.jsp" flush="false" />
 <c:set var="member" value="${sessionScope.memberID}" />
+<script>
+function checknull(){
+	if($('.rbtitle').val()==""){
+		alert("제목을 작성해주세요");
+		return false;
+		}
+	else if($('#ckeditor').val()==""){
+		alert("내용을 입력해주세요.");
+		return false;
+	}
+		return true;
+}
+
+</script>
 <section class="section-content">
 
 	<div class="section-content pvb0 bg-cover"
@@ -18,14 +32,14 @@
 		<div class="container wpc-boxoffice pv8">
 			
 				<form style= "padding-top: 150px;"
-				class="form-horizontal" role="form" id="editorForm" enctype="multipart/form-data" method="post" action="RentalBoardInsert.do" >
+				class="form-horizontal" role="form" id="editorForm" onsubmit="return checknull()" enctype="multipart/form-data" method="post" action="RentalBoardInsert.do" >
 						
 							<input type="hidden" name="MB_ID" value= "${member}">
 							
 								<table>
 									<tr>
 										<td>제목:</td>
-										<td><input type="text" name="RENTAL_BOARD_TITLE">
+										<td><input type="text" class ="rbtitle"name="RENTAL_BOARD_TITLE">
 									</tr>
 									<tr>
 									<td>지점:</td>
@@ -52,11 +66,10 @@
 									</tr>
 									<tr>
 										<td colspan="2" align="center">
-										<input type="submit" value="등록하기"> &nbsp;
+										<input type="submit" id= "insertsubmit" class ="insertsubmit" value="등록하기"> &nbsp;
 											 <c:url var="RentalBoardList"
 												value="/RentalBoardList.do">
 												<c:param name="page" value="1" />
-												
 											</c:url> 
 											
 											<a href="${RentalBoardList}"><input type="button" value="목록으로"></a></td>
@@ -72,6 +85,8 @@
 </section>
 <jsp:include page="../inc/footer.jsp" flush="false" />
 <script type="text/javascript">
+
+
 $(function() {
 
 	CKEDITOR.replace('ckeditor', {
@@ -100,4 +115,5 @@ function memberchk(){
     	alert("로그인을 해주시기 바랍니다");
     }
 }
+
 </script>

@@ -29,9 +29,9 @@
 	<div class="fullscreen-section bg-black pvb0">
 		<div class="container wpc-boxoffice pv8">
 			<div class="row">
-				<form class="form-horizontal" role="form" id="editorForm" enctype="multipart/form-data" method="post" action="RentalBoardUpdate.do" >
+				<form class="form-horizontal" role="form"  id="editorForm" enctype="multipart/form-data" method="post" action="RentalBoardUpdate.do" >
 					<div class="form-group">
-						<div class="form-group">
+						<div class="form-group" style= "padding-top: 150px;">
 							<div class="col-lg-12">
 
 							<input type="hidden" name="MB_ID" value= "${b.MB_ID}">
@@ -79,7 +79,7 @@
 $(function() {
 
 	CKEDITOR.replace('ckeditor', {
-		width : '100%',
+		width : '1000px',
 		height : '400px',
 		filebrowserImageUploadUrl : 'RentalBoardImgInsert.do'
 	});

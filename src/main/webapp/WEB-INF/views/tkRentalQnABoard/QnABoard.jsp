@@ -12,6 +12,9 @@
 
 
 <script>
+$('#btnLogin').click(function(){
+	 location.reload();
+})
 
 function memberchk(){
 	var bname = '${member}';

@@ -14,6 +14,10 @@
 </style>
 
 <script>
+
+$('#btnLogin').click(function(){
+	 location.reload();
+});
 /////////////////////////정보보기///////////////////
 function popupOpen(bnum){
 	var popUrl = "RentalServiceView.do?bnum="+bnum;	
@@ -146,6 +150,7 @@ $("#datavalue").val(date);
 											<h3>영화관 선택:</h3>
 												<select name="cinema_location" id="rental_loaction" onchange="selectpoint(this.value)" style="height: 40px;">
 												<!-- 데이터 베이스에서 영화관 리스트만 뽑아와서 forEach로 뿌려주기 -->
+												<option selected disabled>영화관 선택</option>
 												<c:forEach var="theaterlist" items="${theater}">
 												<option>${theaterlist.RENTAL_SERVICE_TITLE}</option>
 												</c:forEach>
@@ -231,7 +236,7 @@ $("#datavalue").val(date);
 		 IMP.request_pay({
 			    pg : 'inicis',
 			    pay_method : 'card',
-			    merchant_uid : 'asda',
+			    merchant_uid : 'merchant_' + new Date().getTime(),
 			    name : $('#pointname').val(),
 			    amount :$('#pricemv').val(),
 			    buyer_email : 'worua99@nate.com',
