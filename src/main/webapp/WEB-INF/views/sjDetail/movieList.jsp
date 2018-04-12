@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../inc/head.jsp" flush="false" />
 <jsp:include page="../inc/header.jsp" flush="false" />
-
+<script type="text/javascript" src="js/seo-jin.js"></script>
 <section class="sub_content seojin-background">
 	<form id="movie_list">
 		<div class="container seojin">

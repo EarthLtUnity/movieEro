@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <jsp:include page="../inc/head.jsp" flush="false" />
 <jsp:include page="../inc/header.jsp" flush="false" />
+<script type="text/javascript" src="js/seo-jin.js"></script>
 <c:set var="summary" value="${requestScope.movieSummary}"/>
 <c:set var="specific" value="${requestScope.specInfo}"/>
 <section class="sub_content seojin-background">
