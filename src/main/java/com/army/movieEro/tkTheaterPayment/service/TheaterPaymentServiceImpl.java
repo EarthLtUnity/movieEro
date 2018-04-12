@@ -28,15 +28,15 @@ public class TheaterPaymentServiceImpl implements TheaterPaymentService {
 	}
 
 	@Override
-	public int updatePayment() {
+	public int updatePayment(int bnum) {
 		// TODO Auto-generated method stub
-		return 0;
+		return theaterPaymentServiceImpl.updatePayment(bnum);
 	}
 
 	@Override
 	public ArrayList<TheaterPayment> selectPayList(String MB_ID) {
 		// TODO Auto-generated method stub
-		return null;
+		return theaterPaymentServiceImpl.selectPayList(MB_ID);
 	}
 
 }

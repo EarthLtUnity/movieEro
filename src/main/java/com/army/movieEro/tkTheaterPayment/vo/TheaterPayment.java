@@ -7,6 +7,7 @@ public class TheaterPayment {
 		int	theater_pay_price ; //가격
 		String	mb_id ; //결제자
 		String theater_pay_case; //결제여부
+		int theater_pay_number;
 		
 		public String getTheater_pay_case() {
 			return theater_pay_case;
@@ -43,6 +44,19 @@ public class TheaterPayment {
 		}
 		public void setMb_id(String mb_id) {
 			this.mb_id = mb_id;
+		}
+		
+		public int getTheater_pay_number() {
+			return theater_pay_number;
+		}
+		public void setTheater_pay_number(int theater_pay_number) {
+			this.theater_pay_number = theater_pay_number;
+		}
+		@Override
+		public String toString() {
+			return "TheaterPayment [theater_pay_postion=" + theater_pay_postion + ", theater_pay_date="
+					+ theater_pay_date + ", theater_pay_time=" + theater_pay_time + ", theater_pay_price="
+					+ theater_pay_price + ", mb_id=" + mb_id + ", theater_pay_case=" + theater_pay_case + "]";
 		}
 		
 }

@@ -7,9 +7,11 @@
 	<!-- insert -->
 	<insert id="insertBoard" parameterType="WithBoard">
  		INSERT INTO ST_WITH_BOARD VALUES 
-		((SELECT MAX(BOARD_NUM) + 1 FROM ST_WITH_BOARD),
-			#{WHID_BOARD_WRITER}, #{WHID_BOARD_TITLE}, #{WHID_BOARD_CONTENT}, #{WHID_BOARD_WRITER},
-			1, #{WHID_BOARD_APPLY_NO}, 0, SYSDATE)
+		(ST_WITH_BOARD_SEQ.NEXTVAL, #{WITH_BOARD_WRITER},
+		  #{WITH_BOARD_TITLE}, #{WITH_BOARD_CONTENT},
+		  TO_CHAR(SYSDATE,'RR-MM-DD')||'-'||#{WITH_BOARD_APPLY_NO}||'-'||
+		  LTRIM(TO_CHAR(ROUND(DBMS_RANDOM.VALUE(0, 999)),'000')),
+		  #{WITH_BOARD_APPLY_NO}, 1, SYSDATE)
   	</insert>
 	
 	<!-- WithList 숫자 가져오기-->
@@ -27,6 +29,16 @@
 		SELECT * FROM ST_WITH_BOARD_SUB	ORDER BY WITH_BOARD_NO DESC
 	</select>
 
+
+	<!-- withReserve 로 현재 참여중인 ID + 참여중인 인원 수 update-->
+	<update id="withReserve" parameterType="WithBoardsub">
+		UPDATE ST_WITH_BOARD_SUB
+		SET
+			WITH_BOARD_NOW_ID = #{WITH_BOARD_NOW_ID},
+			WITH_BOARD_NOW_NO = WITH_BOARD_NOW_NO + 1,
+			WITH_BOARD_DATE = SYSDATE
+		WHERE WITH_BOARD_NO = #{WITH_BOARD_NO}
+	</update>
    	
   	
 

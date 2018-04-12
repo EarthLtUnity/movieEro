@@ -11,7 +11,7 @@ public interface TheaterPaymentService {
 	
 	public int insertPayment(TheaterPayment vo);
 	
-	public int updatePayment();
+	public int updatePayment(int bnum);
 	
 	public ArrayList<TheaterPayment> selectPayList(String MB_ID);
 }

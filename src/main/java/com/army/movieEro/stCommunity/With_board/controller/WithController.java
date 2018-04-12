@@ -1,9 +1,11 @@
 package com.army.movieEro.stCommunity.With_board.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -85,13 +87,12 @@ public class WithController {
 		
 		
 		// insert 실행
-		@RequestMapping("withInsertForm.do")
-		public ModelAndView boardInsertMethod(HttpServletRequest request,
-				@RequestParam(value = "file", required = false) MultipartFile file, ModelAndView mv, WithBoard board)
+		@RequestMapping("withBoardInsert.do")
+		public ModelAndView boardInsertMethod(ModelAndView mv, WithBoard board)
 				throws IOException {
 
 			if (bService.insertBoard(board) > 0) {
-				mv.setViewName("redirect:boardList.do");
+				mv.setViewName("redirect:withBoardList.do");
 			} else {
 				mv.addObject("error", "게시 원글 등록 서비스 실패!");
 				mv.setViewName("board/boardError");
@@ -108,6 +109,24 @@ public class WithController {
 		}
 		
 		
+		// BoardUpdate (join버튼 + 결제 )
+		@RequestMapping("withReserve.do")
+		public void withReserve(HttpServletResponse response,
+				@RequestParam("WITH_BOARD_NO") int bNo,
+				@RequestParam("WITH_BOARD_NOW_ID") String bNo_id) {
+			
+			bService.withReserve(bNo, bNo_id);
+			
+			 response.setContentType("text/html;charset=utf-8");
+			PrintWriter out = null;
+			try {
+				out = response.getWriter();
+				out.append("ok");
+			} catch (IOException e) {
+			}
+			out.flush();
+			out.close();
+		}
 		
 		
 

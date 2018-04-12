@@ -167,7 +167,7 @@
 				<button name="showMoreNotice" class="btn_brd_prev" value = "MORE">더보기</button>
 			</div>
 
-			<<!-- div class="paging_wrap">
+			<!-- <div class="paging_wrap">
 				<div class="paging">
 					<ol>
 						<li><a class="active">1</a></li>

@@ -28,15 +28,15 @@ public class TheaterPaymentDaoImpl implements TheaterPaymentDao {
 	}
 
 	@Override
-	public int updatePayment() {
+	public int updatePayment(int bnum) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlsession.update("tkPayment.theaterpayupdate",bnum);
 	}
 
 	@Override
 	public ArrayList<TheaterPayment> selectPayList(String MB_ID) {
 		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<TheaterPayment>(sqlsession.selectList("tkPayment.mypaymentselect",MB_ID));
 	}
 
 }

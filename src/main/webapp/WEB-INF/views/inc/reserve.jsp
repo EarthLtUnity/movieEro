@@ -3,6 +3,17 @@
 
 <c:set var="ID" value="${sessionScope.memberID}"/>
 
+<script>
+function selecttime(time) {
+	$("#datatime").text(time);
+}
+function selectlocation(location) {
+	$("#locationp").text(location);
+}
+function selectmovie(time) {
+	$("#movieSeleted").text(time);
+}
+</script>
 <div id="order">
 	<div class="container">
 		<div class="row order-content">
@@ -18,7 +29,7 @@
 							<div class="wpc-content">
 								<h3>location</h3>
 								<!-- 영화관 정보 -->
-								<select name="CINEMA_NAME" id="CINEMA_NAME">
+								<select name="CINEMA_NAME" id="CINEMA_NAME" onchange="selectlocation(this.value)">
 									<!-- 데이터 베이스에서 영화관 리스트만 뽑아와서 forEach로 뿌려주기 -->
 									<option value="cgv 강남">cgv 강남</option>
 									<option value="megabox 강남">megabox 강남</option>
@@ -27,7 +38,7 @@
 								</select>
 								<h3 class="mt3">Movie</h3>
 								<!-- 영화 종류 -->
-								<select name="CINEMA_MOVIE" id="CINEMA_MOVIE">
+								<select name="CINEMA_MOVIE" id="CINEMA_MOVIE" onchange="selectmovie(this.value)">
 									<!-- 영화관 정보에 따라서 데이터베이스에서 영화목록만 받아와서 forEach로 뿌려주기 -->
 									<option>Dead pool</option>
 									<option>THE BATTLE OF ALGIERS (DI ALGERI)</option>
@@ -36,7 +47,7 @@
 								</select>
 								<h3 class="mt3">TIME</h3>
 								<!-- 상영시간 -->
-								<select name="CINEMA_MOVIE_TIME" id="CINEMA_MOVIE_TIME">
+								<select name="CINEMA_MOVIE_TIME" id="CINEMA_MOVIE_TIME" onchange="selecttime(this.value)">
 									<option class="btn_time" value="11:50">
 											11:50
 									</option>
@@ -63,23 +74,8 @@
 
 <div id="seatIds">
 </div>
-<script>
-$('#seat-map > div > div').click(function(){
-	var seatId = $('this').attr('id');
-	if(seatId){
-		str ='"<input type="hidden" name="CINEMA_MOVIE_SEAT" value="'+seatId+'"/>';
-		$('#seatIds').appen(str)
-	}
-	
-	$.each('#seatIds input',function(i,val){
-		
-	})
-	
-});
-</script>
 
 						<!-- 좌석 정보 -->
-						<input type="hidden" name="CINEMA_MOVIE_SEAT" id="CINEMA_MOVIE_SEAT" value="4_9">
 					</form>
 				</div>
 			</div>
@@ -87,9 +83,11 @@ $('#seat-map > div > div').click(function(){
 				<h2>Your Information</h2>
 				<div class="order-details">
 					<span> Location:</span>
-					<p id="locationp">Tenguu Cinema Tysons corner</p>
+					<div id="locationp">cgv 강남</div>
+					<span>Movie:</span>
+					<div id="movieSeleted">Dead pool</div>
 					<span>Time:</span>
-					<p>2016.3.8 18:30</p>
+					<div id="datatime">11:50</div>
 					<span>Seat: </span>
 					<ul id="selected-seats"></ul>
 					<div>
@@ -111,9 +109,25 @@ $('#seat-map > div > div').click(function(){
 <script>
 
 	$(document).ready(function(){
-
 		
-		function aaa() {
+		
+		
+		$('#seat-map > div > div').click(function(){
+			var seatId = $('this').attr('id');
+			if($('this').status() == 'selected'){
+				str ='"<input type="hidden" name="CINEMA_MOVIE_SEAT" value="'+seatId+'"/>';
+				$('#seatIds').append(str);
+			}
+			
+			$('#seatIds input').each(function(i,val){
+				
+			});
+			
+			
+			
+		});
+		
+		function seatClick() {
 			var seatNum = 0;
 			$('.seatCharts-seat').click(function(){
 				if($(this).hasClass('selected')){
@@ -121,9 +135,8 @@ $('#seat-map > div > div').click(function(){
 					$('#seatNum').val(seatNum);
 				}
 			})			
-			
 		}
-		aaa();
+		seatClick();
 		
 		
 		$(".btn_time").on('click',function(){
@@ -142,10 +155,52 @@ $('#seat-map > div > div').click(function(){
 		 var IMP = window.IMP; 
 		 IMP.init("imp68666223");
 		 
-		 
 		 $(".payment").on('click',function(){
+			 
+			 var cellCilckVal = [];
+			 
+			 var size = $("input[name='CINEMA_MOVIE_SEAT']").length;
+	         for(i=0;i<size;i++){
+	             console.log("type1: "+$("input[name='CINEMA_MOVIE_SEAT']").eq(i).attr("value"));
+	         }
+			 
+			 $("input[name='CINEMA_MOVIE_SEAT']").each(function (i) {
+				console.log("type2: "+$("input[name='CINEMA_MOVIE_SEAT']").eq(i).val());
+				cellCilckVal.push($("input[name='CINEMA_MOVIE_SEAT']").eq(i).val())
+			});
+			 
+			console.log(cellCilckVal)
+			
+			var allData = { "CINEMA_NAME" : $('#CINEMA_NAME').val(),
+							"CINEMA_MOVIE" : $('#CINEMA_MOVIE').val(),
+							"CINEMA_MOVIE_SEAT" : $('#CINEMA_MOVIE_SEAT').val(),
+							"CINEMA_MOVIE_TIME" : $('#CINEMA_MOVIE_TIME').val(),
+							"CINEMA_SECTION" : "임시 상영관",
+							"CINEMA_MOVIE_SEAT_SEC": cellCilckVal
+						   };
+			
+			jQuery.ajax({
+				    		url: "reserve.do", // 가맹점 서버
+				            method: "GET",
+				            headers: { "Content-Type": "application/json" },
+				            data: allData,
+				            success : function(result){
+				            	var msg = '결제가 완료되었습니다.';
+						        msg += '아이디 : ' + $('#MB_ID').val();
+						        msg += '영화관 : ' + $('#CINEMA_NAME').val();
+						        msg += '영화제목 : ' + $('#CINEMA_MOVIE').val();
+						        msg += '좌석 : ' + $('#CINEMA_MOVIE_SEAT').val();
+						        msg += '시간 : ' + $('#CINEMA_MOVIE_TIME').val();
+
+				    			alert(msg);
+				            	location.href="";//반환값 지정해서 페이지 리로딩
+				            }
+				    	});
+			
+			
+		
 			 alert($('#MB_ID').val());
-			 IMP.request_pay({
+			/*  IMP.request_pay({
 				    pg : 'inicis',
 				    pay_method : 'card',
 				    merchant_uid : 'merchant_' + new Date().getTime(),
@@ -169,7 +224,8 @@ $('#seat-map > div > div').click(function(){
 				            	CINEMA_MOVIE : $('#CINEMA_MOVIE').val(),
 				            	CINEMA_MOVIE_SEAT : $('#CINEMA_MOVIE_SEAT').val(),
 				            	CINEMA_MOVIE_TIME : $('#CINEMA_MOVIE_TIME').val(),
-				            	CINEMA_SECTION : "임시 상영관"
+				            	CINEMA_SECTION : "임시 상영관",
+				            	CINEMA_MOVIE_SEAT_SEC : cellCilckVal
 				            },
 				            success : function(result){
 				            	var msg = '결제가 완료되었습니다.';
@@ -189,7 +245,7 @@ $('#seat-map > div > div').click(function(){
 
 				        alert(msg);
 				    }
-				});
+				}); */
 		 });
 		 
 			    		

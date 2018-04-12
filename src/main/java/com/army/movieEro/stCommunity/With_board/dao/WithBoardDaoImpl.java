@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.army.movieEro.stCommunity.With_board.vo.WithBoard;
+import com.army.movieEro.stCommunity.With_board.vo.WithBoard_sub;
 
 @Repository("bDao")
 public class WithBoardDaoImpl implements WithBoardDao {
@@ -38,6 +39,11 @@ public class WithBoardDaoImpl implements WithBoardDao {
 	@Override
 	public int insertBoard(WithBoard b) {
 		return sqlSession.insert("WithBoard.insertBoard", b);
+	}
+
+	@Override
+	public int withReserve(WithBoard_sub wSub) {
+		return sqlSession.update("WithBoard.withReserve", wSub);
 	}
 
 
