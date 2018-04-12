@@ -18,9 +18,7 @@
 					<ul class="cf">
 						<li><a href="movieList.do">Movie</a>
 							<ul class="dep2">
-								<li><a href="summary.do">영화 개요</a></li>
-								<li><a href="review.do">리뷰</a></li>
-								<li><a href="trailer.do">트레일러</a></li>
+								<li><a href="movieList.do">영화 목록</a></li>
 							</ul>
 						</li>
 						<li><a href="#">Hall</a>
