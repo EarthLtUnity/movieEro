@@ -26,7 +26,7 @@ public class MovieController {
 	MovieService movieService;
 	
 	@RequestMapping("movieList.do")
-	public ModelAndView loadList(ModelAndView mv) {
+	public ModelAndView loadList(ModelAndView mv, HttpSession sessionMVInfo) {
 		try {
 			System.out.println("loadMovie.do 도착.......................");
 			List<MovieInfoVo> movieList = new ArrayList<MovieInfoVo>();
@@ -74,28 +74,32 @@ public class MovieController {
 	
 	@RequestMapping("summary.do")
 	public ModelAndView loadSummary(ModelAndView mv, HttpServletRequest request, 
-			HttpSession session) {
+			HttpSession sessionMVInfo) {
 		try {
 			System.out.println("summary.do 도착...................");
-			String MVInfoSeqParam = request.getParameter("MVInfoSeq");
-			if(session.getAttribute("MVInfoSeqParam") ==  null) {
-				session.setAttribute("MVInfoSeqParam", MVInfoSeqParam);
+			if(sessionMVInfo.getAttribute("MVInfoSeqParam") ==  null) {
+				String MVInfoSeqParam = request.getParameter("MVInfoSeq");
+				System.out.println("if - session값 : "+ sessionMVInfo.getAttribute(MVInfoSeqParam));
+				sessionMVInfo.setAttribute("MVInfoSeqParam", MVInfoSeqParam);
 			}
-			String MVInfoSeq = (String)session.getAttribute("MVInfoSeqParam");
+			String MVInfoSeqParam = request.getParameter("MVInfoSeq");
+			sessionMVInfo.setAttribute("MVInfoSeqParam", MVInfoSeqParam);
+			String MVInfoSeq = (String)sessionMVInfo.getAttribute("MVInfoSeqParam");
+			System.out.println("else - session 값 : " + MVInfoSeq);
 			MovieDetailVo movieSummary = new MovieDetailVo();
 			MovieInfoVo specInfo = new MovieInfoVo();
 			movieSummary = movieService.loadSummary(MVInfoSeq);
 			specInfo = movieService.loadSpecInfo(MVInfoSeq);
 			
-			System.out.println("영화 정보 확인 : "+movieSummary.toString());
-			System.out.println("영화 내용 확인 : "+specInfo.toString());
+			/*System.out.println("영화 정보 확인 : "+movieSummary.toString());
+			System.out.println("영화 내용 확인 : "+specInfo.toString());*/
 			
 			mv.addObject("movieSummary", movieSummary)
 			  .addObject("specInfo", specInfo)
 			  .setViewName("sjDetail/summary");
 			
 		}catch(Exception e) {
-			System.out.println("summary.do 에러 : " + e.getLocalizedMessage());
+			System.out.println("summary.do 에러 : " + e.getStackTrace());
 			mv.setViewName("sjDetail/movieError");
 		}
 		return mv;
@@ -103,10 +107,10 @@ public class MovieController {
 	
 	@RequestMapping("trailer.do")
 	public ModelAndView loadTrailer(ModelAndView mv, HttpServletRequest request, 
-			HttpSession session) {
+			HttpSession sessionMVInfo) {
 		try {
 			System.out.println("trailer.do 도착.....................");
-			String MVInfoSeq = (String)session.getAttribute("MVInfoSeqParam");
+			String MVInfoSeq = (String)sessionMVInfo.getAttribute("MVInfoSeqParam");
 			System.out.println("영화 시퀀스 확인 : "+MVInfoSeq);
 			List<MovieVisualVo> movieTrailer = new ArrayList<MovieVisualVo>();
 			List<MovieVisualVo> movieStillcut = new ArrayList<MovieVisualVo>();
@@ -126,10 +130,10 @@ public class MovieController {
 	
 	@RequestMapping("review.do")
 	public ModelAndView loadReview(ModelAndView mv, HttpServletRequest request, 
-			HttpSession session) {
+			HttpSession sessionMVInfo) {
 		try {
 			System.out.println("review.do 도착.....................");
-			String MVInfoSeq = (String)session.getAttribute("MVInfoSeqParam");
+			String MVInfoSeq = (String)sessionMVInfo.getAttribute("MVInfoSeqParam");
 			System.out.println("영화 시퀀스 확인 : "+MVInfoSeq);
 			List<MovieReviewVo> movieReview = new ArrayList<MovieReviewVo>();
 			
@@ -146,12 +150,12 @@ public class MovieController {
 	
 	@RequestMapping("addReview.do")
 	public ModelAndView addReview(ModelAndView mv, HttpServletRequest request, 
-			HttpSession session) {
+			HttpSession sessionMVInfo) {
 		try {
 			System.out.println("addReview.do 도착.....................");
-			String MVInfoSeq = (String)session.getAttribute("MVInfoSeqParam");
+			String MVInfoSeq = (String)sessionMVInfo.getAttribute("MVInfoSeqParam");
 			System.out.println("영화 시퀀스 확인 : "+MVInfoSeq);
-			String userId = (String) session.getAttribute("memberID");
+			String userId = (String) sessionMVInfo.getAttribute("memberID");
 			MovieInfoVo specInfo = new MovieInfoVo();
 			specInfo = movieService.loadSpecInfo(MVInfoSeq);
 			String rvContents = request.getParameter("commentContents");

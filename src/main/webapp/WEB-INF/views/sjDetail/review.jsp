@@ -17,10 +17,18 @@
 			<div class="movie detailBorder">
 			<!-- comments -->
 			<div class="comment-wrapper">
+				<c:if test="${empty sessionScope.memberID}">
+				<form id="comment-form" class="comment-form" method="post">
+				    <textarea name="commentContents" class="comment-form__text" disabled placeholder="로그인해주세요"></textarea>
+				    <button type="submit" id="nonSession" class="btn btn-md btn--danger comment-form__btn">로그인</button>
+				</form>
+				</c:if>
+				<c:if test="${not empty sessionScope.memberID}">
 				<form id="comment-form" class="comment-form" method="post">
 				    <textarea name="commentContents" class="comment-form__text" placeholder="영화를 보신 후기를 남겨주세요"></textarea>
-				    <button type="submit" class="btn btn-md btn--danger comment-form__btn">후기 남기기</button>
+				    <button type="submit" id="hasSession" class="btn btn-md btn--danger comment-form__btn">후기 남기기</button>
 				</form>
+				</c:if>
 				<br>
 				<div class="comment-sets">
 				<c:forEach var="rv" items="${savedReview}">
@@ -40,9 +48,14 @@
 </section>
 <script>
 	$(document).ready(function(){
-		
-		$(".comment-form__btn").on('click', function(){
+		$("#hasSession").on('click', function(){
 			$("#comment-form").attr('action', 'addReview.do');
+			$("#comment-form").attr('method', 'get');
+			$("#comment-form").submit();
+		});
+		
+		$("#nonSession").on('click', function(){
+			$("#comment-form").attr('action', './');
 			$("#comment-form").attr('method', 'get');
 			$("#comment-form").submit();
 		});
