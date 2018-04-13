@@ -7,6 +7,7 @@
 <jsp:include page="../inc/head.jsp" flush="false" />
 <jsp:include page="../inc/header.jsp" flush="false" />
 <c:set var="member" value="${sessionScope.memberID}" />
+ <c:set var="theater" value="${requestScope.theater}"></c:set>
 <script>
 function checknull(){
 	if($('.rbtitle').val()==""){
@@ -46,11 +47,9 @@ function checknull(){
 									<td>
 												<select name = "RENTAL_BOARD_POINT" id="RENTAL_BOARD_POINT" class="col-sm-3">
 													<option value="전체">지점 선택</option>
-													<option value="수원지점"> 강남 지점</option>
-													<option value="중랑지점"> 역삼 지점</option>
-													<option value="포천지점"> 압구정 지점</option>
-													<option value="의왕지점"> 왕십리 지점</option>
-													<option value="목동지점"> 홍대 지점</option>
+													<c:forEach var="ttlist" items="${theater}">
+													<option value="${ttlist.RENTAL_SERVICE_TITLE}">${ttlist.RENTAL_SERVICE_TITLE}</option>
+													</c:forEach>
 												</select>
 									</td>
 									</tr>

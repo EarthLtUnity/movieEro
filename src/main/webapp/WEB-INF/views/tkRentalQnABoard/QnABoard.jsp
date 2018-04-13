@@ -9,7 +9,7 @@
 <jsp:include page="../inc/header.jsp" flush="false" />
 <c:set var="member" value="${sessionScope.memberID}" />
 <c:set var="point" value="${requestScope.point}" />
-
+ <c:set var="theater" value="${requestScope.theater}"></c:set>
 
 <script>
 $('#btnLogin').click(function(){
@@ -57,9 +57,9 @@ function point(point){
             }
             a+="<li class='wpc-box-item'>";
             a+="<ol>";   
-            a+="<li class='bx-item-' style='width:9%;'>"+data.list[i].rental_BOARD_POINT+"</li>";
+            a+="<li class='bx-item-' style='width:15%;'>"+data.list[i].rental_BOARD_POINT+"</li>";
             a+="<li class='bx-item-c' style='width:10%;'>"+data.list[i].mb_ID+"</li>";
-            a+="<li class='bx-item-title' style='width:60%;'>";
+            a+="<li class='bx-item-title' style='width:53%;'>";
            
            
             a+=data.list[i].rental_BOARD_TITLE
@@ -123,17 +123,14 @@ function point(point){
 					<h3>문의 게시판</h3>
 					<select name = "point" id="point" class="col-sm-3"  onchange="point(this.options[this.selectedIndex].value)">
 					<option value="전체">모든 지점</option>
-					<option value="강남지점"> 강남 지점</option>
-					<option value="역삼지점"> 역삼 지점</option>
-					<option value="압구정지점"> 압구정 지점</option>
-					<option value="왕십리지점"> 왕십리 지점</option>
-					<option value="홍대지점"> 홍대 지점</option>
-					<option value="잠실지점"> 잠실 지점</option>
+					<c:forEach var="ttlist" items="${theater}">
+					<option value="${ttlist.RENTAL_SERVICE_TITLE}">${ttlist.RENTAL_SERVICE_TITLE}</option>
+					</c:forEach>
 					</select><br>
 					<ol>
-					<li style ="float: left; width:8%;text-align: center;">지점</li>
+					<li style ="float: left; width:15%;text-align: center;">지점</li>
 					<li style ="float: left; width:10%;text-align: center;">작성자</li>		
-					<li style ="float: left; width:60%;text-align: center;" >제목</li>		
+					<li style ="float: left; width:53%;text-align: center;" >제목</li>		
 					<li style ="float: left; width:11%; text-align: center;">작성일</li>		
 					<li style ="float: left; width:10%;text-align: center;">답변여부</li>
 					</ol>

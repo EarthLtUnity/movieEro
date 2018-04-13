@@ -115,7 +115,7 @@
 			<h4>주소:${theaterview.RENTAL_SERVICE_POSITION}</h4><hr>
 			<h4>정보:${theaterview.RENTAL_SERVICE_INFO}</h4><hr>
 			<h4>가격:${theaterview.RENTAL_SERVICE_PRICE}</h4><hr>
-			<h4>시간: 09:00  11:30  14:00</h4>
+			<h4>시간: 09:00~11:00  11:30~13:30  14:00~16:00</h4>
 		</div>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4VzFVpcw6-ypvRJGD5BcNnEs7JirI9Co&libraries=places&callback=initMap"></script>
   </body>

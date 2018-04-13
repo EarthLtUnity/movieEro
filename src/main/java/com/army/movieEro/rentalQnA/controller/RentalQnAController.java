@@ -14,12 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,6 +27,8 @@ import com.army.movieEro.rentalQnA.service.RentalQnAReplyService;
 import com.army.movieEro.rentalQnA.service.RentalQnAService;
 import com.army.movieEro.rentalQnA.vo.RentalQnAReplyVO;
 import com.army.movieEro.rentalQnA.vo.RentalQnAVO;
+import com.army.movieEro.tkTheaterRental.dao.theaterRentalDaoImpl;
+import com.army.movieEro.tkTheaterRental.vo.theaterVO;
 
 @Controller
 public class RentalQnAController {
@@ -40,6 +39,8 @@ public class RentalQnAController {
 	@Autowired
 	private RentalQnAReplyService rentalQnAReplyServiceImpl;
 
+	@Autowired
+	theaterRentalDaoImpl theaterRentalServiceImpl;
 	@RequestMapping("RentalPointList.do")//셀렉트박스로 리스트뽑기
 	@ResponseBody
 	public Map<String, Object> boardPointList(@RequestParam(value = "page", required = false) Integer page,
@@ -130,13 +131,19 @@ public class RentalQnAController {
 			   }
 
 	@RequestMapping("RentalBoardList.do") //전체리스트뽑기
-	public String boardList() {
-				return "tkRentalQnABoard/QnABoard";
+	public ModelAndView boardList(ModelAndView mv) {
+		ArrayList<theaterVO> theater = theaterRentalServiceImpl.selectList();
+		System.out.println(theater.get(0).getRENTAL_SERVICE_TITLE());
+		mv.addObject("theater",theater).setViewName("tkRentalQnABoard/QnABoard");
+		return mv;
 	}
 	
 	@RequestMapping("RentalBoardInsertView.do")//글쓰기 뷰로 이동
-	public String testCk(Model model) {
-		return "tkRentalQnABoard/QnAInsertBoard";
+	public ModelAndView testCk(ModelAndView mv) {
+		ArrayList<theaterVO> theater = theaterRentalServiceImpl.selectList();
+		System.out.println(theater.get(0).getRENTAL_SERVICE_TITLE());
+		mv.addObject("theater",theater).setViewName("tkRentalQnABoard/QnAInsertBoard");
+		return mv;
 	}
 
 	@RequestMapping("RentalBoardInsert.do")//글쓰기 입력
