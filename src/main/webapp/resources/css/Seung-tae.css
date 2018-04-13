@@ -10,6 +10,7 @@
 *
 ** 담당 페이지명 :  boardList.jsp
 ** 담당 페이지명 :  boardInsertForm.jsp
+** 담당 페이지명 :  boardIntro.jsp
 
 <font>
 'noto Sans KR'
@@ -26,7 +27,7 @@
 
 .Seungtae_BoardList .block_board{background: black; word-break:keep-all;}
 .Seungtae_BoardList .bg_pale{background:rgba(14, 34, 33, 0.7)}
-.Seungtae_BoardList .col-sm-7{width:80%;}
+.Seungtae_BoardList .col-sm-7{width:100%;}
 .Seungtae_BoardList .title{color:white}
 
 /* 게시판 정보 스크롤이동 */
@@ -71,6 +72,7 @@
   border: none;
   border-radius: 15px;
   box-shadow: 0 5px #999;
+  font-weight: bold;
 }
 
 /* 게시판 join 비활성화 버튼 */
@@ -87,7 +89,7 @@
   box-shadow: 0 5px #999;
   pointer-events: none;
   cursor: default;
-  
+   font-weight: bold;
 }
 
 .Seungtae_BoardList .kst_join:hover {
@@ -126,7 +128,6 @@
 .Seungtae_BoardList p {
 	margin:20px;
 	text-align: center;
-	
 }
 
 .Seungtae_BoardList .show{
@@ -142,6 +143,11 @@
 .Seungtae_BoardList .kstBoardContent{
 	font-size:18px;
 }
+ 
+ 
+ 
+ 
+ 
  
  
  
@@ -223,6 +229,49 @@
  
  
  
+  /***********************
+   boardList.jsp
+   Search filter 
+  ***********************/
+.Seungtae_BoardList 
+
+.Seungtae_BoardList  * {
+    box-sizing: border-box;
+}
+
+form.example input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+}
+
+form.example button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #337ab7;
+    color: white;
+    font-size: 13px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+    border-radius: 0px;
+}
+
+form.example button:hover {
+    background: #0b7dda;
+}
+
+form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+ 
+     
  
  
  
@@ -230,13 +279,7 @@
  
  
  
- 
- 
- 
- 
- 
- 
- 
+
  
  
  
@@ -290,19 +333,28 @@
 
 /* 폼 버튼 */
 .Seungtae_insertForm #kst_insertBoard .kst_btn{
-	float:right;
+	
 	color:white;
 }
 
- 
+.Seungtae_insertForm #kst_insertBoard .btn{
+	float:left;
+	margin: 0px;
+	line-height:30px;
+}
+
+.Seungtae_insertForm #kst_insertBoard .btn_submit{
+	float:right;
+}
 
 
 
 
+/**********************
+  boardIntro.jsp
+  **********************/
 
-
-
-
+.boardIntro 
 
 
 

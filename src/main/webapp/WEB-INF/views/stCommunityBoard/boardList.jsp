@@ -15,16 +15,24 @@
 <c:set var="listsub" value="${requestScope.listsub}"/>
 <c:set var="memberId" value="${sessionScope.memberID}"/>
 
-
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-x.y.z.js"></script>
 <jsp:include page="../inc/head.jsp" flush="false" />
 <jsp:include page="../inc/header.jsp" flush="false" />
 
 <script>
 $(document).ready(function(){
+	
+	setTimeout(function() {
+		 modal.style.display = "block"; 
+	}, 1000);
+	
+	
+	
+	
 
 	//결제는 맨위에 설정
-	 var IMP = window.IMP; 
-	 IMP.init("imp68666223");
+	  var IMP = window.IMP; 
+	 IMP.init("imp68666223"); 
 	
 		//유효성
 		$(".kst_join").on('click', function() {
@@ -52,57 +60,33 @@ $(document).ready(function(){
 			// 4. 로그인 ok, 게시판 참여한적 없고, 모집인원이 아직 남았다면 진행	
 			} else{
 				// 3. 모두 정상이라면 가입이 가능해야 한다.
-					$.ajax({
-			    		url: "withReserve.do", // 가맹점 서버
-			            method: "GET",
-			            data: {
-			            	WITH_BOARD_NO : bno,
-			            	WITH_BOARD_NOW_ID : memberList+", "+userId
-			            },
-			            success : function(result){
-			            	var msg = '결제가 완료되었습니다.';
-			    			alert(msg);
-			            	location.href="withBoardList.do";//반환값 지정해서 페이지 리로딩
-			            }
-			    	});
-					
 				//결제창
-				 /* IMP.request_pay({
+				console.log("bno  : "+bno +", userId"+ userId);
+				  IMP.request_pay({
 					    pg : 'inicis',
 					    pay_method : 'card',
 					    merchant_uid : 'merchant_' + new Date().getTime(),
-					    name : $('#CINEMA_MOVIE').val(),
+					    name : '아무거나',
 					    amount : 1000,
 					    buyer_email : 'worua99@nate.com',
-					    buyer_name : $('#MB_ID').val(),
+					    buyer_name : '${memberId}',
 					    buyer_tel : '010-2030-1266',
 					    buyer_addr : '서울특별시 강남구 삼성동',
 					    buyer_postcode : '123-456'
 					}, function(rsp) {
 					    if ( rsp.success ) {
 					    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-					    	jQuery.ajax({
-					    		url: "reserve.do", // 가맹점 서버
+					    	$.ajax({
+					    		url: "withReserve.do", // 가맹점 서버
 					            method: "GET",
-					            headers: { "Content-Type": "application/json" },
 					            data: {
-					            	MB_ID : $('#MB_ID').val(),
-					            	CINEMA_NAME : $('#CINEMA_NAME').val(),
-					            	CINEMA_MOVIE : $('#CINEMA_MOVIE').val(),
-					            	CINEMA_MOVIE_SEAT : $('#CINEMA_MOVIE_SEAT').val(),
-					            	CINEMA_MOVIE_TIME : $('#CINEMA_MOVIE_TIME').val(),
-					            	CINEMA_SECTION : "임시 상영관"
+					            	WITH_BOARD_NO : bno,
+					            	WITH_BOARD_NOW_ID : memberList+", "+userId
 					            },
 					            success : function(result){
 					            	var msg = '결제가 완료되었습니다.';
-							        msg += '아이디 : ' + $('#MB_ID').val();
-							        msg += '영화관 : ' + $('#CINEMA_NAME').val();
-							        msg += '영화제목 : ' + $('#CINEMA_MOVIE').val();
-							        msg += '좌석 : ' + $('#CINEMA_MOVIE_SEAT').val();
-							        msg += '시간 : ' + $('#CINEMA_MOVIE_TIME').val();
-		
 					    			alert(msg);
-					            	location.href="";//반환값 지정해서 페이지 리로딩
+					            	location.href="withBoardList.do";//반환값 지정해서 페이지 리로딩
 					            }
 					    	});
 					    } else {
@@ -111,7 +95,7 @@ $(document).ready(function(){
 		
 					        alert(msg);
 					    }
-				});*/
+				});
 			} 
 		});
 		
@@ -120,47 +104,59 @@ $(document).ready(function(){
 	 	var modal = document.getElementById('myModal');
 	 
 		$(document).on('click','.getCoupon',function(){
+			//쿠폰번호 찾아서 저장
 			var coupon = $(this).parent().parent().find('.kstBoardCoupon').val();
-			$(modal).find('.modal-body-coupon').html(coupon);
+			//modal창에 쿠폰 번호 저장한 값 붙이기
+			$(modal).find('.modal-body-couponNo').html(coupon);
+			$(modal).find('.modal-body-couponMessage').html("쿠폰 사용은 발급일로 부터 1주일 이내 유효합니다.");
+			//modal창 열기
 			 modal.style.display = "block"; 
 		})
+		
 	 	$(document).on('click','.modal',function(){
 	 		modal.style.display = "none";
 		})
-		/* $(document).on('click','.close',function(){
-			if (event.target == modal) {
-				modal.style.display = "none";
-			}
-		}) */
+		
+		
+		//게시글 만들기 전에 alert창 
+		$('.new').on('click',function(){
+			alert('영화 예매 목적 이외의 내용과, 광고성 글, 도배 게시글은 \n 관리자에 의해 임의로 삭제 될 수 있으니 참고 바랍니다');
+		})
 		
 		
 		
 		
 	});
 	
-	
-	
 </script>
 
 <section class="sub_common_sec block_board">
 	<div class="bl_brd_wrap Seungtae_BoardList">
-		<br> <b></b>
+		<br><br><br><br><br>
 		<h1 id="news02">With Me</h1>
 		<br>
 		<section class="section-content ">
-
 			<!-- BoardList 투명 창  -->
 			<div class="fullscreen-section bg_pale pvb0">
-				<div class="container wpc-boxoffice pv8">
+			<div class="container wpc-boxoffice pv8">
 					<div class="row">
-
+					
+					<!-- 검색창 -->
+						<form class="example" action="withSearch.do" method="get" style="margin: auto; max-width: 300px">
+							<input type="text" placeholder="Search.." name="WITH_BOARD_SEARCH_WORD">
+							<button type="submit">
+								<i class="fa fa-search"></i>
+							</button>
+						</form>
+						
+						
 						<div class="col-sm-7 col-xs-12">
-							<a href="withBoardList.do" class="btn">리스트새로고침 ${memberId}</a>
-							<h3></h3>
+							<a href="withBoardList.do" class="btn">ALL_Reflesh / ${memberId}</a>
+							<br><br>
 							<ul class="wpc-box-list">
 								<c:forEach var="boardmain" items="${list}"> <!-- boardList for문 -->
 									<c:forEach var="boardsub" items="${listsub}"> <!-- boardListsub for문 -->
-									<c:if test="${boardmain.WITH_BOARD_NO == boardsub.WITH_BOARD_NO}">
+									<c:if test="${boardmain.WITH_BOARD_NO == boardsub.WITH_BOARD_NO}">   <!-- 메인게시글 번호와 서브게시글 번호 비교-->
 										<li class="wpc-box-item">
 											<ol class="cf">
 												<li class="bx-item-c">${boardmain.WITH_BOARD_NO}</li> <!-- 게시글 번호 -->
@@ -174,13 +170,12 @@ $(document).ready(function(){
 													
 													<!-- 모집 인원이 차지 않았을 경우 버튼 활성화 -->
 													<c:if test="${boardmain.WITH_BOARD_APPLY_NO - boardsub.WITH_BOARD_NOW_NO ne 0}">
-														<a href="#" class="kst_join">join</a>
+														<a href="#" class="kst_join">Join</a>
 													</c:if>
 													<!-- 모집인원이 다 찼을 경우 버튼 비활성화 -->
 													<c:if test="${boardmain.WITH_BOARD_APPLY_NO - boardsub.WITH_BOARD_NOW_NO eq 0}">
 														<a class="kst_end">End</a>
 													</c:if>
-													
 												</li>
 												<li class="bx-item-m">${boardmain.WITH_BOARD_DATE}</li> <!-- 게시글 날짜 -->
 												<li class="bx-item-m">${boardsub.WITH_BOARD_NOW_NO}/${boardmain.WITH_BOARD_APPLY_NO}</li>  <!-- 현재참여자수 / 모집인원 -->
@@ -188,21 +183,26 @@ $(document).ready(function(){
 												<input type="hidden" class="applyCount" value="${boardmain.WITH_BOARD_APPLY_NO - boardsub.WITH_BOARD_NOW_NO}">
 												<input type="hidden" class="bno" value="${boardmain.WITH_BOARD_NO}">
 											</ol>
-											<div class="steve_panel">
+											<div class="steve_panel">  <!-- 게시글 내용 범위 -->
 												<p class="kstBoardContent">${boardmain.WITH_BOARD_CONTENT}</p>    <!-- 게시글 내용 -->
 												<div class="myCoupon">
 												
+													<!-- 로그인 접속 유효성 -->
+													<c:if test="${memberId ne null}">
 													<!-- 모집인원이 다 찼을 경우 모달 창 띄우는 버튼 활성화 -->
 													<c:if test="${boardmain.WITH_BOARD_APPLY_NO - boardsub.WITH_BOARD_NOW_NO eq 0}">
-														<button id="getCoupon" class="getCoupon">Coupon</button>
+													<!-- 현재 참여 중인 ID에 내가 있다면 coupon 버튼 보기 -->
+													<c:if test="${fn:contains(boardsub.WITH_BOARD_NOW_ID, memberId)}">
+															<button id="getCoupon" class="getCoupon">Coupon</button>
+															</c:if>
 													</c:if>
 													
 													<input type="hidden" class="kstBoardCoupon" value="${boardmain.WITH_BOARD_COUPON}">
-													
+													</c:if>
 												</div>
-											</div>
+											</div>  <!-- 게시글 내용 범위끝 -->
 										</li>
-										</c:if>
+										</c:if>  <!-- boardmain.WITH_BOARD_NO == boardsub.WITH_BOARD_NO 비교문-->
 									</c:forEach> <!-- boardList for문 end -->
 								</c:forEach> <!-- boardListsub for문 end -->
 
@@ -211,96 +211,24 @@ $(document).ready(function(){
 
 								
 
-								<!-- The Modal -->
+								<!-- 쿠폰 Modal창 -->
 								<div id="myModal" class="modal">
 									<!-- Modal content -->
 									<div class="modal-content">
 										<div class="modal-header">
 											<span class="close">&times;</span>
-											<h2>즐거운 관람 되세요</h2>
+											<h2 align="center">즐거운 관람 되세요</h2>
 										</div>
 										<div class="modal-body">
-											<p class="modal-body-coupon">Some text in the Modal Body</p>
-											<p>Some other text...</p>
+											<p class="modal-body-couponNo">Some text in the Modal Body</p>
+											<p class="modal-body-couponMessage">Some other text...</p>
 										</div>
 									</div>
 								</div>
 
 
 
-
-
-
-
-
-								<!-- 스크롤에 따라 움직이게 감쌈 -->
-								<div class="floating">
-
-									<!-- 디테일 & 광고 -->
-									<div class="wpc-testimonails">
-										<div class="swiper-container carousel-container">
-											<div class="swiper-wrapper">
-												<div class="swiper-slide">
-													<div class="testimonial">
-														<div class="entry-meta">
-															<h4>Shela Mathews</h4>
-														</div>
-														<p>Enthusiastically monetize plug-and-play scenarios
-															through quality manufactured products. Monotonectally
-															streamline standardized portals after proactive
-															innovation. Energistically promote market positioning.</p>
-													</div>
-												</div>
-												<div class="swiper-slide">
-													<div class="testimonial">
-														<div class="entry-meta">
-															<h4>Shela Mathews</h4>
-														</div>
-														<p>Enthusiastically monetize plug-and-play scenarios
-															through quality manufactured products. Monotonectally
-															streamline standardized portals after proactive
-															innovation. Energistically promote market positioning.</p>
-													</div>
-												</div>
-												<div class="swiper-slide">
-													<div class="testimonial">
-														<div class="entry-meta">
-															<h4>Shela Mathews</h4>
-														</div>
-														<p>Enthusiastically monetize plug-and-play scenarios
-															through quality manufactured products. Monotonectally
-															streamline standardized portals after proactive
-															innovation. Energistically promote market positioning.</p>
-													</div>
-												</div>
-												<div class="swiper-slide">
-													<div class="testimonial">
-														<div class="entry-meta">
-															<h4>Shela Mathews</h4>
-														</div>
-														<p>Enthusiastically monetize plug-and-play scenarios
-															through quality manufactured products. Monotonectally
-															streamline standardized portals after proactive
-															innovation. Energistically promote market positioning.</p>
-													</div>
-												</div>
-												<div class="swiper-slide">
-													<div class="testimonial">
-														<div class="entry-meta">
-															<h4>Shela Mathews</h4>
-														</div>
-														<p>Enthusiastically monetize plug-and-play scenarios
-															through quality manufactured products. Monotonectally
-															streamline standardized portals after proactive
-															innovation. Energistically promote market positioning.</p>
-													</div>
-												</div>
-											</div>
-											<div class="swiper-pagination"></div>
-										</div>
-									</div>
-								</div>
-								<!-- 스크롤 마침 -->
+								
 						</div>
 						<!-- row -->
 					</div>

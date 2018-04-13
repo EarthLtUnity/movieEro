@@ -19,6 +19,12 @@ public class WithBoardDaoImpl implements WithBoardDao {
 	public int getListCount() {
 		return sqlSession.selectOne("WithBoard.getListCount");
 	}
+	
+	@Override
+	public int getListCountSearch(String keyword) {
+		System.out.println(keyword+" 도착!! ");
+		return sqlSession.selectOne("WithBoard.getSearchListCount", keyword);
+	}
 
 	@Override
 	public ArrayList<WithBoard> selectList(int currentPage, int limit) {
@@ -27,15 +33,10 @@ public class WithBoardDaoImpl implements WithBoardDao {
 	}
 
 	@Override
-	public ArrayList<WithBoard> selectListsub(int currentPage, int limit) {
-		return new ArrayList<WithBoard>(sqlSession.selectList("WithBoard.selectListsub"));
+	public ArrayList<WithBoard_sub> selectListsub(int currentPage, int limit) {
+		return new ArrayList<WithBoard_sub>(sqlSession.selectList("WithBoard.selectListsub"));
 	}
 	
-	@Override
-	public WithBoard selectBoard(int boardNum) {
-		return sqlSession.selectOne("WithBoard.selectOne",boardNum);
-	}
-
 	@Override
 	public int insertBoard(WithBoard b) {
 		return sqlSession.insert("WithBoard.insertBoard", b);
@@ -44,6 +45,16 @@ public class WithBoardDaoImpl implements WithBoardDao {
 	@Override
 	public int withReserve(WithBoard_sub wSub) {
 		return sqlSession.update("WithBoard.withReserve", wSub);
+	}
+
+	@Override
+	public ArrayList<WithBoard> searchList(int currentPage, int limit, String word) {
+		return new ArrayList<WithBoard>(sqlSession.selectList("WithBoard.searchList", word));
+	}
+
+	@Override
+	public ArrayList<WithBoard> searchListsub(int currentPage, int limit, String word) {
+		return new ArrayList<WithBoard>(sqlSession.selectList("WithBoard.searchListsub"));
 	}
 
 

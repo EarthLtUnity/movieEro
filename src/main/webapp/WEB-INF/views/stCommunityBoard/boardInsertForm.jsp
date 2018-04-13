@@ -20,7 +20,7 @@
 							<div class="col-md-6">
 								<div class="widget" id="widget">
 									<h5 class="widget-title">
-										<a href="withBoardList.do" class="btn">리스트새로고침</a>
+										
 									</h5> 
 									<form class="contact_form transparent" name="kst_insertForm" id="kst_insertForm" action="withBoardInsert.do" method="post">
 										<div class="row">
@@ -46,6 +46,7 @@
 											<div class="col-sm-12 ">
 												<textarea class="inputValidation" name="WITH_BOARD_CONTENT" id="WITH_BOARD_CONTENT" placeholder="CONTENT (자세히 작성해주세요) " style="resize: none"></textarea>
 												<div class="kst_btn">
+													<a href="withBoardList.do" class="btn">Go List</a> 
 													<button type="submit" class="btn_submit">submit</button>
 												</div>
 											</div>

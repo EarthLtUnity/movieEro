@@ -30,6 +30,25 @@
 	</select>
 
 
+	<!-- Search 전용 -->
+	<!-- searchList 가져오기 -->
+	<!-- WithList 숫자 가져오기-->
+	<select id="getSearchListCount" parameterType="string" resultType="_int">
+		SELECT COUNT(*) FROM ST_WITH_BOARD
+			WHERE WITH_BOARD_CONTENT LIKE '%' || #{keyword} || '%'
+			OR WITH_BOARD_TITLE LIKE '%' || #{keyword} || '%'
+	</select>
+	
+	<select id="searchList" parameterType="string" resultType="WithBoard">
+		select * from ST_WITH_BOARD
+		where WITH_BOARD_CONTENT like '%'||#{word}||'%'
+		OR WITH_BOARD_TITLE LIKE '%' || #{word} || '%' order by WITH_BOARD_NO desc 
+	</select>
+<!-- 
+	<select id="searchListsub" parameterType="string">
+		select * from ST_WITH_BOARD_SUB where WITH_BOARD_CONTENT like '%'||#{word}||'%' order by WITH_BOARD_NO desc
+	</select> -->
+
 	<!-- withReserve 로 현재 참여중인 ID + 참여중인 인원 수 update-->
 	<update id="withReserve" parameterType="WithBoardsub">
 		UPDATE ST_WITH_BOARD_SUB

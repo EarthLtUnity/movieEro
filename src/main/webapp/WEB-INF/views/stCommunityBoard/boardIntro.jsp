@@ -64,10 +64,17 @@
   top:50%;
   left:47%;
   margin:-50px 0 0 -50px;
-}  
-    </style>
+}
+
+
+
+  
+</style>
 </head>
 <body>
+
+
+
 
 <p class="type_text" style="text-align:center; color:#d5d4f7; font-size:18pt;"></p> 
 
@@ -86,6 +93,8 @@
   <script type="text/javascript" src="resources/js/typeit.min.js"></script>
   <script async src="https://www.youtube.com/iframe_api"></script>
   <script type="text/javascript">
+  
+  
   var player;
   function onYouTubePlayerAPIReady() {
     player = new YT.Player('muteYouTubeVideoPlayer', {
@@ -113,6 +122,11 @@
     		}
     });
   }
+  
+  
+  
+  
+  
   </script>
 </body>
 </html>
