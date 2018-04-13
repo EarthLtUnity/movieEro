@@ -23,7 +23,6 @@ public class theaterRentalController {
 		System.out.println("컨트롤러");
 		ArrayList<theaterVO> theater = theaterRentalServiceImpl.selectList();
 		ArrayList<theaterImageVo> theaterImage =  theaterRentalServiceImpl.selectImage();
-		
 		mv.addObject("theater",theater).addObject("theaterImage",theaterImage).setViewName("tkTheaterRental/RentalService");
 		
 		return mv;

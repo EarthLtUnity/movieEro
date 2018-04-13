@@ -53,7 +53,8 @@ public class theaterPaymentController {
 		String MB_ID = (String) session.getAttribute("memberID");
 		ArrayList<TheaterPayment> list = theaterPaymentServiceImpl.selectPayList(MB_ID);
 		ArrayList<theaterVO> theater = theaterRentalServiceImpl.selectList();
-		mv.addObject("myrentallist", list).addObject("theaterImage",theater).setViewName("member/theaterRental");
+		int listcount = theaterPaymentServiceImpl.countselect(MB_ID);
+		mv.addObject("myrentallist", list).addObject("theaterImage",theater).addObject("listcount",listcount).setViewName("member/theaterRental");
 		return mv;
 	}
 	

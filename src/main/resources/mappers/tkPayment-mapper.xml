@@ -21,6 +21,10 @@ insert into theater_pay values(#{theater_pay_postion},#{theater_pay_date},#{thea
 update theater_pay set theater_pay_case = 'false' where theater_pay_number = #{theater_pay_number}
 </update>
 
+<select id="paymentlist" resultType="_int">
+SELECT COUNT(*) FROM theater_pay where mb_id = #{mb_id}
+</select>
+
 <select id="myrentalposition" resultType="Theater">
 select * from rental_movie where RENTAL_SERVICE_TITLE = #{RENTAL_SERVICE_TITLE}
 </select>

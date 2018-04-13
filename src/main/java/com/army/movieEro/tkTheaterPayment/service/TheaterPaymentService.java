@@ -17,4 +17,6 @@ public interface TheaterPaymentService {
 	public ArrayList<TheaterPayment> selectPayList(String MB_ID);
 	
 	public theaterVO selectpayposition(String position);
+	
+	public int countselect (String id);
 }

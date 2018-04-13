@@ -19,4 +19,6 @@ public interface TheaterPaymentDao {
 	
 	public theaterVO selectpayposition(String position);
 	
+	public int countselect (String id);
+	
 }

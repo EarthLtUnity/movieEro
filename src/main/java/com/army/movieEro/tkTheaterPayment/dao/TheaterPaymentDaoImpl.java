@@ -46,4 +46,10 @@ public class TheaterPaymentDaoImpl implements TheaterPaymentDao {
 		return sqlsession.selectOne("tkPayment.myrentalposition",position);
 	}
 
+	@Override
+	public int countselect(String id) {
+		// TODO Auto-generated method stub
+		return sqlsession.selectOne("tkPayment.paymentlist",id);
+	}
+
 }

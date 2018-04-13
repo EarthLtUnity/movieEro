@@ -46,4 +46,10 @@ public class TheaterPaymentServiceImpl implements TheaterPaymentService {
 		return TheaterPaymentdaoImpl.selectpayposition(position);
 	}
 
+	@Override
+	public int countselect(String id) {
+		// TODO Auto-generated method stub
+		return TheaterPaymentdaoImpl.countselect(id);
+	}
+
 }
