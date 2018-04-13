@@ -10,4 +10,8 @@ public interface reserveService {
 
 	public ArrayList<String> seatList(HashMap<String, String> map);
 
+	public ArrayList<paymentVO> selectMypage(String MB_ID);
+
+	public ArrayList<paymentVO> selectMypageAt(String mB_ID);
+
 }

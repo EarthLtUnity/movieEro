@@ -31,6 +31,19 @@ public class reserveDaoImpl implements reserveDao{
 	}
 
 
+	@Override
+	public ArrayList<paymentVO> selectMypage(String MB_ID) {
+		return new ArrayList<paymentVO>(sqlSession.selectList("paymentVO.selectMypage",MB_ID));
+	}
+
+
+	@Override
+	public ArrayList<paymentVO> selectMypageAt(String MB_ID) {
+		// TODO Auto-generated method stub
+		return new ArrayList<paymentVO>(sqlSession.selectList("paymentVO.selectMypageAt",MB_ID));
+	}
+
+
 
 
 

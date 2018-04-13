@@ -29,7 +29,7 @@ public class paymentVO {
 		this.MB_ID = MB_ID;
 		this.CINEMA_RESERVE_NO = CINEMA_RESERVE_NO;
 	}
-	public paymentVO(String CINEMA_NAME, String CINEMA_SECTION, String CINEMA_MOVIE, String CINEMA_MOVIE_TIME,
+	/*public paymentVO(String CINEMA_NAME, String CINEMA_SECTION, String CINEMA_MOVIE, String CINEMA_MOVIE_TIME,
 			String CINEMA_MOVIE_SEAT, String MB_ID) {
 		super();
 		this.CINEMA_NAME = CINEMA_NAME;
@@ -38,7 +38,18 @@ public class paymentVO {
 		this.CINEMA_MOVIE_TIME = CINEMA_MOVIE_TIME;
 		this.CINEMA_MOVIE_SEAT = CINEMA_MOVIE_SEAT;
 		this.MB_ID = MB_ID;
+	}*/
+	public paymentVO(String CINEMA_NAME, String CINEMA_SECTION, String CINEMA_MOVIE, String CINEMA_MOVIE_TIME,
+			 String MB_ID, String CINEMA_RESERVE_NO) {
+		super();
+		this.CINEMA_NAME = CINEMA_NAME;
+		this.CINEMA_SECTION = CINEMA_SECTION;
+		this.CINEMA_MOVIE = CINEMA_MOVIE;
+		this.CINEMA_MOVIE_TIME = CINEMA_MOVIE_TIME;
+		this.MB_ID = MB_ID;
+		this.CINEMA_RESERVE_NO = CINEMA_RESERVE_NO;
 	}
+	
 
 
 

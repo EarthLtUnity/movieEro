@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -67,5 +69,21 @@ public class reserveController {
 		ArrayList<String> list = REService.seatList(map);
 		System.out.println("list : " + list.toString());
 		return list;
+	}
+	
+	@RequestMapping(value="mypage.do")
+	@ResponseBody
+	public ModelAndView mypageLoading(ModelAndView mv,HttpServletRequest request,HttpSession session ,paymentVO paymentVO){
+
+		String MB_ID = (String) session.getAttribute("memberID");
+		ArrayList<paymentVO> list = REService.selectMypage(MB_ID);
+		ArrayList<paymentVO> listAt = REService.selectMypageAt(MB_ID);
+		System.out.println("list : "+list.toString());
+		System.out.println("list : "+listAt.toString());
+		
+		mv.addObject("list",list)
+		  .addObject("listAt",listAt)
+		  .setViewName("member/mypage");
+		return mv;
 	}
 }

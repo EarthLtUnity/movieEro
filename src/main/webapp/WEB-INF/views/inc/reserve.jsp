@@ -31,18 +31,19 @@ function selectmovie(time) {
 								<input type="hidden" name="MB_ID" id="MB_ID" value="${ID}"/>
 								<select name="CINEMA_NAME" id="CINEMA_NAME" onchange="selectlocation(this.value)">
 									<!-- 데이터 베이스에서 영화관 리스트만 뽑아와서 forEach로 뿌려주기 -->
-									<option value="cgv 강남">cgv 강남</option>
-									<option value="megabox 강남">megabox 강남</option>
-									<option value="lotte cinema 신사역">lotte cinema 신사역</option>
-									<option value="cgv 수원역">cgv 수원역</option>
+									<option value="sj 김포">sj 김포</option>
+									<option value="kjk 수원">kjk 수원</option>
+									<option value="ktk 중랑">ktk 중랑</option>
+									<option value="kjm 의왕">kjm 의왕</option>
+									<option value="kst 목동">kst 목동</option>
 								</select>
 								<h3 class="mt3">Movie</h3>
 								<!-- 영화 종류 -->
 								<select name="CINEMA_MOVIE" id="CINEMA_MOVIE" onchange="selectmovie(this.value)">
 									<!-- 영화관 정보에 따라서 데이터베이스에서 영화목록만 받아와서 forEach로 뿌려주기 -->
 									<option>Dead pool</option>
-									<option>THE BATTLE OF ALGIERS (DI ALGERI)</option>
-									<option>LORD OF THE RINGS: THE RETURN OF THE KINGS</option>
+									<option>곤지암</option>
+									<option>아이언맨</option>
 									<option>어벤져스</option>
 								</select>
 								<h3 class="mt3">TIME</h3>
@@ -56,6 +57,15 @@ function selectmovie(time) {
 									</option>
 									<option class="btn_time" value="16:35">
 											16:35
+									</option>
+									<option class="btn_time" value="18:50">
+											18:50
+									</option>
+									<option class="btn_time" value="20:05">
+											20:05
+									</option>
+									<option class="btn_time" value="22:40">
+											22:40
 									</option>
 									
 								</select>
@@ -228,7 +238,7 @@ function selectmovie(time) {
 					            	var msg = '결제가 완료되었습니다.';
 
 					    			alert(msg);
-					            	location.href="#";//반환값 지정해서 페이지 리로딩
+					            	location.href="/movieEro/mypage.do";//반환값 지정해서 페이지 리로딩
 					            }
 					    	});
 				    } else {

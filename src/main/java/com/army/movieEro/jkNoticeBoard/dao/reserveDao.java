@@ -11,4 +11,8 @@ public interface reserveDao {
 
 	public ArrayList<String> seatList(HashMap<String, String> map);
 
+	public ArrayList<paymentVO> selectMypage(String MB_ID);
+
+	public ArrayList<paymentVO> selectMypageAt(String MB_ID);
+
 }

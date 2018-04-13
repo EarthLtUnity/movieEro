@@ -6,7 +6,10 @@
 
 	
 	<insert id="reserveInsert" parameterType="paymentVO">
-		INSERT INTO CINEMA_RESERVE VALUES('${CINEMA_NAME}','${CINEMA_SECTION}','${CINEMA_MOVIE}','${CINEMA_MOVIE_TIME}','${CINEMA_MOVIE_SEAT}','${MB_ID}','${CINEMA_RESERVE_NO}')
+		INSERT INTO CINEMA_RESERVE 
+		VALUES('${CINEMA_NAME}','${CINEMA_SECTION}','${CINEMA_MOVIE}',
+			   '${CINEMA_MOVIE_TIME}','${CINEMA_MOVIE_SEAT}','${MB_ID}',
+			   '${CINEMA_RESERVE_NO}')
 		
 	</insert>
 	
@@ -17,6 +20,24 @@
 		   AND CINEMA_MOVIE=#{CINEMA_MOVIE}
 		   AND CINEMA_MOVIE_TIME=#{CINEMA_MOVIE_TIME}
 		 <!-- '${CINEMA_NAME}' AND CINEMA_MOVIE='${CINEMA_MOVIE}' AND CINEMA_MOVIE_TIME='${CINEMA_MOVIE_TIME}' -->
+	</select>
+	
+	<select id="selectMypage" resultType="paymentVO" parameterType="String">
+		SELECT *
+		  FROM CINEMA_RESERVE
+		 WHERE MB_ID=#{MB_ID}
+		 ORDER BY CINEMA_RESERVE_NO
+	</select>
+	<select id="selectMypageAt" resultType="paymentVO" parameterType="String">
+		SELECT CINEMA_NAME,CINEMA_SECTION,
+			   CINEMA_MOVIE,CINEMA_MOVIE_TIME,
+			   MB_ID,CINEMA_RESERVE_NO
+		  FROM CINEMA_RESERVE
+		 WHERE MB_ID=#{MB_ID}
+		 group by CINEMA_NAME,CINEMA_SECTION,
+		          CINEMA_MOVIE,CINEMA_MOVIE_TIME,
+		          MB_ID,CINEMA_RESERVE_NO
+      
 	</select>
 </mapper>
 

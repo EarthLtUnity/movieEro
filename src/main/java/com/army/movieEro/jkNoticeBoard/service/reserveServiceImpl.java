@@ -28,5 +28,16 @@ public class reserveServiceImpl implements reserveService{
 		return REDao.seatList(map);
 	}
 
+	@Override
+	public ArrayList<paymentVO> selectMypage(String MB_ID) {
+		return REDao.selectMypage(MB_ID);
+	}
+
+	@Override
+	public ArrayList<paymentVO> selectMypageAt(String MB_ID) {
+		// TODO Auto-generated method stub
+		return REDao.selectMypageAt(MB_ID);
+	}
+
 	
 }

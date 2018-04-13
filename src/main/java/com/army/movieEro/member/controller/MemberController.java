@@ -94,11 +94,11 @@ public class MemberController {
 		return "redirect:./";
 	}
 	
-	// 마이페이지
+	/*// 마이페이지
 	@RequestMapping(value="mypage.do")
 	public String memberPage() {
 		return "member/mypage";
-	}
+	}*/
 
 	// 회원정보 수정폼 이동
 	@RequestMapping(value="memberModifyForm.do")
