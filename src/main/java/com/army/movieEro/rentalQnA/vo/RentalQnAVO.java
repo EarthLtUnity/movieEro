@@ -12,9 +12,8 @@ public class RentalQnAVO {
 	private String RENTAL_BOARD_CONTENT; //내용
 	private int RENTAL_BOARD_NO; //게시글 번호
 	private String MB_ID; //작성자
-	private int RENTAL_REPLY; //리플 갯수
 	private String RENTAL_BOARD_POINT; //지역선택
-	
+	private int RENTAL_REPLY; //리플 갯수
 
 
 	public String getRENTAL_BOARD_POINT() {

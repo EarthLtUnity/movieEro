@@ -142,7 +142,10 @@ public class RentalQnAController {
 	@RequestMapping("RentalBoardInsert.do")//글쓰기 입력
 	public ModelAndView boardInsertMethod(HttpServletRequest request, ModelAndView mv, RentalQnAVO board)
 			throws IOException {
-
+		System.out.println(board.getRENTAL_BOARD_CONTENT()+"이거왜이러지");
+		System.out.println(board.getMB_ID());
+		System.out.println(board.getRENTAL_BOARD_TITLE());
+		System.out.println(board.getRENTAL_BOARD_POINT());
 		if (rentalQnAServiceImpl.insertBoard(board) > 0) {
 			mv.setViewName("redirect:RentalBoardList.do");
 

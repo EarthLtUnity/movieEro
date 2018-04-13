@@ -13,11 +13,11 @@ function checknull(){
 		alert("제목을 작성해주세요");
 		return false;
 		}
-	else if($('#ckeditor').val()==""){
+/* 	else if($('#ckeditor').val()==""){
 		alert("내용을 입력해주세요.");
 		return false;
 	}
-		return true;
+ */		return true;
 }
 
 </script>
@@ -46,12 +46,11 @@ function checknull(){
 									<td>
 												<select name = "RENTAL_BOARD_POINT" id="RENTAL_BOARD_POINT" class="col-sm-3">
 													<option value="전체">지점 선택</option>
-													<option value="강남지점"> 강남 지점</option>
-													<option value="역삼지점"> 역삼 지점</option>
-													<option value="압구정지점"> 압구정 지점</option>
-													<option value="왕십리지점"> 왕십리 지점</option>
-													<option value="홍대지점"> 홍대 지점</option>
-													<option value="잠실지점"> 잠실 지점</option>
+													<option value="수원지점"> 강남 지점</option>
+													<option value="중랑지점"> 역삼 지점</option>
+													<option value="포천지점"> 압구정 지점</option>
+													<option value="의왕지점"> 왕십리 지점</option>
+													<option value="목동지점"> 홍대 지점</option>
 												</select>
 									</td>
 									</tr>

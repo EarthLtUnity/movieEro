@@ -2,6 +2,7 @@
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="f"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="../inc/head.jsp" flush="false" />
 <jsp:include page="../inc/header.jsp" flush="false" />
 <c:set var="member" value="${sessionScope.memberID}" />
@@ -14,6 +15,8 @@
 </style>
 
 <script>
+
+/////////////////////////////로그인시 새로고침//////////
 
 $('#btnLogin').click(function(){
 	 location.reload();
@@ -155,7 +158,8 @@ $("#datavalue").val(date);
 												</c:forEach>
 												</select>
 											<h3 class="mt3">날짜선택:</h3>
-											<input type='date' onchange="seletedata(this.value)"/>
+											<c:set var="sysYear"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></c:set> 
+											<input type='date' class ="checkdate" min ='${sysYear}' onchange="seletedata(this.value)"/>
 											<h3 class="mt3"><div id="myselectprice">가격:</div></h3>
 											<h3 class="mt3">시간선택:</h3>
 												<ul class="order-date">
@@ -246,7 +250,6 @@ $("#datavalue").val(date);
 			    buyer_postcode : '123-456'
 			}, function(rsp) {
 			    if ( rsp.success ) {
-			    	console.log("일단 이건 오는건가?")
 			    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 			    	jQuery.ajax({
 			    		url: "paymentinsert.do", // 가맹점 서버
@@ -287,6 +290,9 @@ $("#datavalue").val(date);
 	function nomember(){
 		alert("로그인 후 이용할 수 있습니다.");
 	}
+	
+
+	
 </script>
 	
 <jsp:include page="../inc/footer.jsp" flush="false" />

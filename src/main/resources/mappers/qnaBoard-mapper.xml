@@ -33,8 +33,8 @@
 
 	<insert id="insertBoard" >
 				INSERT INTO RENTAL_MOVIE_BOARD VALUES (
-				#{RENTAL_BOARD_TITLE},SYSDATE,#{RENTAL_BOARD_CONTENT},rental_movie_board_sq.nextval,#{MB_ID},#{RENTAL_BOARD_POINT}
-				)
+				#{RENTAL_BOARD_TITLE},SYSDATE,#{RENTAL_BOARD_CONTENT},rental_movie_board_sq.nextval,#{RENTAL_BOARD_POINT},#{MB_ID})
+				
 	</insert>
 
 
