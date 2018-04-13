@@ -181,8 +181,8 @@ ClassNoticeList.excute();
 
 /*-- 실시간 채팅 --*/
 // 웹소켓 생성
-var webSocket = new WebSocket('ws://192.168.25.29:8088/movieEro/chatSocket');
-//var webSocket = new WebSocket('ws://192.168.20.71:8088/movieEro/chatSocket'); // kh 내자리
+//var webSocket = new WebSocket('ws://192.168.25.29:8088/movieEro/chatSocket');
+var webSocket = new WebSocket('ws://192.168.20.71:8088/movieEro/chatSocket'); // kh 내자리
 // 채팅 입력창
 var $iptText =$(".iptText");
 
@@ -202,7 +202,8 @@ webSocket.onmessage = function(event) {
 };
 // 에러 발생 시
 webSocket.onerror = function(event) {
-	console.log("웹소켓 생성 에러: "+event.data);	
+	console.log("웹소켓 생성 에러: "+event.data);
+	//webSocket.onclose();
 };
 
 var ClassChat ={
