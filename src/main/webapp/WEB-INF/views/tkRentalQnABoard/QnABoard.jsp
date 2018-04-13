@@ -111,11 +111,9 @@ function point(point){
  });
 </script>
 <section class="section-content">
-
 	<div class="section-content pvb0 bg-cover"
 		data-bg-image="images/coming-bg.jpg">
 		<div class="row"></div>
-
 	</div>
 
 	<div class="fullscreen-section bg-black pvb0">
@@ -140,24 +138,17 @@ function point(point){
 					<li style ="float: left; width:10%;text-align: center;">답변여부</li>
 					</ol>
 					<br>
-					<div class="BoardList">
-					
-						</div>
-
-						<div>
+					<div class="BoardList"></div>
+					<div>
 						<c:if test=	"${!empty member}">
-  						<c:url var="inserview" value="RentalBoardInsertView.do"></c:url>
+  							<c:url var="inserview" value="RentalBoardInsertView.do"></c:url>
    						</c:if>
 						<a href="${inserview}" onclick="memberchk();" ><button>글쓰기</button></a>
-						</div>
-
 					</div>
 				</div>
 			</div>
 		</div>
-
-
-
+	</div>
 	<div class="fullscreen-section">
 		<!-- 뭐 넣을까?? -->
 	</div>

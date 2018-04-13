@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.army.movieEro.tkTheaterPayment.dao.TheaterPaymentDaoImpl;
+import com.army.movieEro.tkTheaterPayment.service.TheaterPaymentServiceImpl;
 import com.army.movieEro.tkTheaterPayment.vo.TheaterPayment;
 import com.army.movieEro.tkTheaterRental.dao.theaterRentalDaoImpl;
 import com.army.movieEro.tkTheaterRental.service.theaterRentalServiceImpl;
@@ -29,7 +30,7 @@ import com.army.movieEro.tkTheaterRental.vo.theaterVO;
 public class theaterPaymentController {
 	
 	@Autowired
-	private TheaterPaymentDaoImpl theaterPaymentServiceImpl;
+	private TheaterPaymentServiceImpl theaterPaymentServiceImpl;
 	@Autowired
 	private theaterRentalDaoImpl theaterRentalServiceImpl;
 

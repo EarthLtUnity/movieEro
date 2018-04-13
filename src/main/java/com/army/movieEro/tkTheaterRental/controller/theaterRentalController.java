@@ -18,7 +18,7 @@ public class theaterRentalController {
 	@Autowired
 	theaterRentalDaoImpl theaterRentalServiceImpl;
 	
-	@RequestMapping("RentalService.do")
+	@RequestMapping("RentalService.do") //정보보기 리스트
 	public ModelAndView moviex(ModelAndView mv, theaterVO board) {
 		System.out.println("컨트롤러");
 		ArrayList<theaterVO> theater = theaterRentalServiceImpl.selectList();
@@ -30,7 +30,7 @@ public class theaterRentalController {
 		
 	}
 	
-	@RequestMapping("RentalServiceView.do")
+	@RequestMapping("RentalServiceView.do") //정보보기 디테잉
 	public ModelAndView moviex2(ModelAndView mv, @RequestParam("bnum") int bnum ) {
 		
 		theaterVO theaterview = theaterRentalServiceImpl.selectView(bnum);

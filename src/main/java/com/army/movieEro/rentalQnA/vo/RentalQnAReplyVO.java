@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class RentalQnAReplyVO {
 
-	private String RENTAL_BOARD_REPLY_CONTENT;
-	private int RENTAL_BOARD_REPLY_NO;
-	private int RENTAL_BOARD_RE_NO;
-	private String MB_ID;
-	private Date RENTAL_BOARD_REPLY_DATE;
+	private String RENTAL_BOARD_REPLY_CONTENT; //리플내용
+	private int RENTAL_BOARD_REPLY_NO;  //리플 번호
+	private int RENTAL_BOARD_RE_NO; // 게시글 번호
+	private String MB_ID; //작성자
+	private Date RENTAL_BOARD_REPLY_DATE; //작성일
 	
 	public RentalQnAReplyVO() {
 	}

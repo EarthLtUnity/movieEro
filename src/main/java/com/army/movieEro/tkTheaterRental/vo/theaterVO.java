@@ -2,12 +2,12 @@ package com.army.movieEro.tkTheaterRental.vo;
 
 public class theaterVO {
 
-	String RENTAL_SERVICE_INFO; 
-	String RENTAL_SERVICE_POSITION ;
-	String RENTAL_SERVICE_PRICE ;
-	String RENTAL_SERVICE_TITLE ;
-	String RENTAL_SERVICE_IMAGE;
-	String RENTAL_SERVICE_OIMAGE;
+	String RENTAL_SERVICE_INFO; //영화관정보
+	String RENTAL_SERVICE_POSITION ; //영화관주소
+	String RENTAL_SERVICE_PRICE ; //영화관 가격
+	String RENTAL_SERVICE_TITLE ; //영화관명
+	String RENTAL_SERVICE_IMAGE; //영화관 이미지
+	String RENTAL_SERVICE_OIMAGE; //영화관 이미지 원래이름
 	
 	public String getRENTAL_SERVICE_IMAGE() {
 		return RENTAL_SERVICE_IMAGE;

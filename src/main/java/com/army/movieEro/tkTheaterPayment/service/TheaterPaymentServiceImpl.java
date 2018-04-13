@@ -14,36 +14,36 @@ import com.army.movieEro.tkTheaterRental.vo.theaterVO;
 public class TheaterPaymentServiceImpl implements TheaterPaymentService {
 
 	@Autowired
-	private TheaterPaymentDaoImpl theaterPaymentServiceImpl;
+	private TheaterPaymentDaoImpl TheaterPaymentdaoImpl;
 	
 	@Override
 	public ArrayList<TheaterPayment> selectPayList(HashMap<String, String> visualMap) {
 		// TODO Auto-generated method stub
-		return theaterPaymentServiceImpl.selectPayList(visualMap);
+		return TheaterPaymentdaoImpl.selectPayList(visualMap);
 	}
 
 	@Override
 	public int insertPayment(TheaterPayment vo) {
 		// TODO Auto-generated method stub
-		return theaterPaymentServiceImpl.insertPayment(vo);
+		return TheaterPaymentdaoImpl.insertPayment(vo);
 	}
 
 	@Override
 	public int updatePayment(int bnum) {
 		// TODO Auto-generated method stub
-		return theaterPaymentServiceImpl.updatePayment(bnum);
+		return TheaterPaymentdaoImpl.updatePayment(bnum);
 	}
 
 	@Override
 	public ArrayList<TheaterPayment> selectPayList(String MB_ID) {
 		// TODO Auto-generated method stub
-		return theaterPaymentServiceImpl.selectPayList(MB_ID);
+		return TheaterPaymentdaoImpl.selectPayList(MB_ID);
 	}
 
 	@Override
 	public theaterVO selectpayposition(String position) {
 		// TODO Auto-generated method stub
-		return theaterPaymentServiceImpl.selectpayposition(position);
+		return TheaterPaymentdaoImpl.selectpayposition(position);
 	}
 
 }

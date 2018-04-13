@@ -43,14 +43,8 @@
 									</tr>
 									<tr>
 										<td>작성자</td>
-										
 										<td><input type="text" readonly value="${b.MB_ID}"></td>
 									</tr>
-							<!-- 		<tr>
-									
-										<td><input id ="passcheck" type="checkbox">비밀번호 설정여부</td>
-										<td><input name ="RENTAL_BOARD_PASS" type="password"></td>						
-									</tr> -->
 									<tr>
 										<td>내용</td>
 										<td><textarea cols="50" rows="7"
@@ -62,9 +56,7 @@
 											 <c:url var="RentalBoardList"
 												value="/RentalBoardList.do">
 												<c:param name="page" value="1" />
-												
 											</c:url> 
-											
 											<a href="${RentalBoardList}"><input type="button" value="취소하기"></a></td>
 									</tr>
 								</table>

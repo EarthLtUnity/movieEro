@@ -26,9 +26,7 @@ function popupOpen(bnum){
 		window.open(popUrl,'',popOption);
 		  }
 		  
-/////////////////////////////////결제///////////////////////		  
-
-//////////////////////////////////////////////결제창화면에뿌려주기
+//////////////////////////////////////////////결제창화면에 선택값 뿌려주기
 function seletetime(time) {
 	$("#datatime").text(time);
 	$("#datatime").val(time);
@@ -192,6 +190,7 @@ $("#datavalue").val(date);
 	</div>
 </section>
 <script>
+////////////////////////결제시스탬//////////////////////////
 	$('.btn_rental').click(function() {
 	$('#rentalreserve').show();		
 	});
@@ -284,7 +283,7 @@ $("#datavalue").val(date);
 		 }});
 	location.href="#";
 }); 
-
+/////////////////////////로그인 아닐시 창///////////////////
 	function nomember(){
 		alert("로그인 후 이용할 수 있습니다.");
 	}

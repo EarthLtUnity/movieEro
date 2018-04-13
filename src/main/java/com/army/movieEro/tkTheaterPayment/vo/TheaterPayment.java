@@ -7,7 +7,7 @@ public class TheaterPayment {
 		int	theater_pay_price ; //가격
 		String	mb_id ; //결제자
 		String theater_pay_case; //결제여부
-		int theater_pay_number;
+		int theater_pay_number; //결제 번호
 		
 		public String getTheater_pay_case() {
 			return theater_pay_case;

@@ -169,52 +169,45 @@ $(document).ready(function(){
 									 <c:if test="${member eq board.MB_ID}">
 									 
 								     	<c:url var="bupview" value="RentalBoardUpdateView.do">
-        			 					<c:param name="bnum" value="${board.RENTAL_BOARD_NO}"/>
-         								<c:param name="page" value="${currentPage}"/>
+        			 						<c:param name="bnum" value="${board.RENTAL_BOARD_NO}"/>
+         									<c:param name="page" value="${currentPage}"/>
        							   	 	</c:url>
         					    		<c:url var="bdelete" value="RentalBoardDelete.do">
-        						 		<c:param name="bnum" value="${board.RENTAL_BOARD_NO}"/>
-        						 		<c:param name="content" value ="${board.RENTAL_BOARD_CONTENT}"/>
+        						 			<c:param name="bnum" value="${board.RENTAL_BOARD_NO}"/>
+        						 			<c:param name="content" value ="${board.RENTAL_BOARD_CONTENT}"/>
         						    	</c:url>
-        					            <td colspan="2" align="center"><a href="${bupview}"> <input type= "button" value ="수정하기"></a>
-          								<a href="${bdelete}"> <input type= "button" value ="삭제하기"></a>
-          								<a href="${RentalBoardList}"><input type= "button" value ="목록으로"></a></td>
+        					           	 <td colspan="2" align="center"><a href="${bupview}"> <input type= "button" value ="수정하기"></a>
+          									<a href="${bdelete}"> <input type= "button" value ="삭제하기"></a>
+          									<a href="${RentalBoardList}"><input type= "button" value ="목록으로"></a></td>
       								 	</c:if>
-									
 							 	  	 <c:if test="${member ne board.MB_ID}">
-							 	  	<td colspan="2" align="center"><a href="${RentalBoardList}"><input type= "button" value ="목록으로"></a></td>
+							 	  		<td colspan="2" align="center"><a href="${RentalBoardList}"><input type= "button" value ="목록으로"></a></td>
 							 	  	</c:if>
 							 	</tr>
-								</table>
-							</div>
-						</div>	
-					</div>
-				</form>
-				    <div class="container">
+							</table>
+						</div>
+					</div>	
+				</div>
+			</form>
+	 <div class="container">
         <div class="commentList"></div>
     </div>
-				    <div style="width:650px; text-align: center;">
-        <br>
-  	 		   <div class="container">
-     		   <label for="content">comment</label>
-      	 	   <form name="commentInsertForm">
-               <div class="input-group">
-               <input type="text" class="form-control" id="RENTAL_BOARD_REPLY_CONTENT" name="content" placeholder="내용을 입력하세요.">
-               <span class="input-group-btn">
-               <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
-               </span>
-              </div>
-        </form>
-    </div>
-    
-
+  		<div style="width:650px; text-align: center;"><br>
+  			 <div class="container">
+     			   <label for="content">comment</label>
+      		     <form name="commentInsertForm">
+           	    	 <div class="input-group">
+           	    		 <input type="text" class="form-control" id="RENTAL_BOARD_REPLY_CONTENT" name="content" placeholder="내용을 입력하세요.">
+             	 		 <span class="input-group-btn">
+              				 <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
+             	 		 </span>
+         		 	 </div>
+        		</form>
+   		    </div>
+  		 </div>
+	 </div>
+   </div>
 </div>
- 
-
-    </div>
-
-   			 </div>
-				</div>
 
 </section>
 <jsp:include page="../inc/footer.jsp" flush="false" />

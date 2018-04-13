@@ -1,9 +1,9 @@
 package com.army.movieEro.tkTheaterRental.vo;
 
 public class theaterImageVo {
-	int RENTAL_SERVICE_NO; 
-	String RENTAL_SERVICE_IMAGE;
-	String RENTAL_SERVICE_OIMAGE;
+	int RENTAL_SERVICE_NO; //정보글
+	String RENTAL_SERVICE_IMAGE; //정보 이미지
+	String RENTAL_SERVICE_OIMAGE; //원래 이름
 	
 	public int getRENTAL_SERVICE_NO() {
 		return RENTAL_SERVICE_NO;

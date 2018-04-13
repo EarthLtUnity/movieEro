@@ -13,30 +13,30 @@ import com.army.movieEro.tkTheaterRental.vo.theaterVO;
 public class theaterRentalServiceImpl implements theaterRentalService {
 
 	@Autowired 
-	theaterRentalDaoImpl theaterRentalServiceImpl;
+	private theaterRentalDaoImpl theaterRentalDaoImpl;
 	
 	@Override
 	public ArrayList<theaterVO> selectList() {
 		// TODO Auto-generated method stub
-		return theaterRentalServiceImpl.selectList();
+		return theaterRentalDaoImpl.selectList();
 	}
 
 	@Override
 	public ArrayList<theaterImageVo> selectImage() {
 		// TODO Auto-generated method stub
-		return theaterRentalServiceImpl.selectImage();
+		return theaterRentalDaoImpl.selectImage();
 	}
 
 	@Override
 	public theaterVO selectView(int bnum) {
 		// TODO Auto-generated method stub
-		return theaterRentalServiceImpl.selectView(bnum);
+		return theaterRentalDaoImpl.selectView(bnum);
 	}
 
 	@Override
 	public ArrayList<theaterImageVo> selectImageView(int bnum) {
 		// TODO Auto-generated method stub
-		return theaterRentalServiceImpl.selectImageView(bnum);
+		return theaterRentalDaoImpl.selectImageView(bnum);
 	}
 
 
