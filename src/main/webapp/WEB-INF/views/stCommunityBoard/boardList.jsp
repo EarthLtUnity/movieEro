@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-x.y.z.js"></script>
 
 <c:set var="listCount" value="${requestScope.listCount}"/>
 <c:set var="currentPage" value="${requestScope.currentPage}"/>
@@ -13,7 +12,11 @@
 <c:set var="maxPage" value="${requestScope.maxPage}"/>
 <c:set var="list" value="${requestScope.list}"/>
 <c:set var="listsub" value="${requestScope.listsub}"/>
+<%-- <c:set var="writerNo" value="${requestScope.writerNo}"/> --%>
+
 <c:set var="memberId" value="${sessionScope.memberID}"/>
+
+
 
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-x.y.z.js"></script>
 <jsp:include page="../inc/head.jsp" flush="false" />
@@ -45,24 +48,52 @@ $(document).ready(function(){
 			var mCount = $(this).parent().parent().find('.applyCount').val();
 			var bno = $(this).parent().parent().find('.bno').val();
 			
+			
+			// 2-1. 해당 계시판에 참여했는지 조사하기
+			// 먼저 가져온 값들을 하나씩 분리하여 배열을 생성
+			var memberListToArray = memberList.split(', ');
+			// 만약 일치한다면 이 값을 true로 변경하여 중복이 있다고 판단.
+			var dupChk = false;
+			
+			// 값들을 하나 하나 현재 아이디와 비교
+			for(var i in memberListToArray){
+				// 만약 중복이 존재한다면 dupChk 를 true로 바꾸어 줍
+				//여기 있었군요!! ㅇㅋ 알겠습니다^^ 
+				if(userId == memberListToArray[i]) dupChk = true;
+			}
+			
 			// 1. 로그인 
 			if(userId == "" || userId == null){
 				alert('Sorry, Login Please ~');
 				
 			// 2. 해당 게시판에 쳠여 이력 	
-			} else if(memberList.indexOf(userId) >= 0){
+			} else if(dupChk){ // 중복이 존재한다면 true일 테니 여기서 조건이 확인 
 				alert("이미 가입한 회원입니다.");
 				
 			// 3. 모집인원이 다 찼는지 	
 			} else if(mCount == 0){
-				alert("이미 만석입니다.<br>다음 기회를 이용해 주세요."); 
+				alert("이미 만석입니다. \n다음 기회를 이용해 주세요."); 
 				
 			// 4. 로그인 ok, 게시판 참여한적 없고, 모집인원이 아직 남았다면 진행	
 			} else{
 				// 3. 모두 정상이라면 가입이 가능해야 한다.
 				//결제창
-				console.log("bno  : "+bno +", userId"+ userId);
-				  IMP.request_pay({
+				
+					$.ajax({
+					    		url: "withReserve.do", // 가맹점 서버
+					            method: "GET",
+					            data: {
+					            	WITH_BOARD_NO : bno,
+					            	WITH_BOARD_NOW_ID : memberList+", "+userId
+					            },
+					            success : function(result){
+					            	var msg = '결제가 완료되었습니다.';
+					    			alert(msg);
+					            	location.href="withBoardList.do";//반환값 지정해서 페이지 리로딩
+					            }
+					    	});
+				
+				 /*  IMP.request_pay({
 					    pg : 'inicis',
 					    pay_method : 'card',
 					    merchant_uid : 'merchant_' + new Date().getTime(),
@@ -95,24 +126,66 @@ $(document).ready(function(){
 		
 					        alert(msg);
 					    }
-				});
-			} 
-		});
+				}); */
+			} /* else ENd */
+		}); /* click function ENd */
 		
 		
 		// 쿠폰 보여주는 modal창
 	 	var modal = document.getElementById('myModal');
-	 
+	 	// 쿠폰 버튼 눌렀을 때
 		$(document).on('click','.getCoupon',function(){
 			//쿠폰번호 찾아서 저장
 			var coupon = $(this).parent().parent().find('.kstBoardCoupon').val();
 			//modal창에 쿠폰 번호 저장한 값 붙이기
+			$(modal).find('.modal-body-couponTitle').html("즐거운 관람 되세요");
 			$(modal).find('.modal-body-couponNo').html(coupon);
-			$(modal).find('.modal-body-couponMessage').html("쿠폰 사용은 발급일로 부터 1주일 이내 유효합니다.");
+			$(modal).find('.modal-body-couponMessage').html("쿠폰 사용은 발급일로 부터 1주일 이내 유효합니다");
+			$(modal).find('.modal-body-writerPhoneNo').html("게시자(모임주최자)의 연락처는 버튼을 통해 확인 하시기 바랍니다")
 			//modal창 열기
 			 modal.style.display = "block"; 
 		})
 		
+		// 폰 번호 버튼 눌렀을 때 
+		$(document).on('click','.getPhoneNo',function(){
+			
+			var applyingId = $(this).parent().parent().parent().find('#mList').text();
+			/* var writer = applyingId.split(', ',1);
+			console.log("확인 : " + writer); */
+			
+			// 먼저 현재 버튼의 정보를 가져옵니다.
+			var getPhoneBtn = $(this);
+			
+			$.ajax({
+	    		url: "writerPhoneNumber.do", // 가맹점 서버
+	            method: "GET",
+	            data: {
+	            	WITH_BOARD_WRITER : applyingId
+	            },
+	            success : function(result){
+	            	// TEST 한번 해주세요
+	    			//alert("예약 정보 및 동석을 위하여,\n다음 번호로 연락 주세요.\ntel : "+result);
+	            	//setTimeout(function(){
+	            	// 요즘엔 함수형 인터페이스라고 해서
+	            	// 저 function조차도 축약합니다.
+	            	// 이클립스는 오류라고 하네요 ;;;
+	            	
+	            	//처음엔 값을 전화번호로 변경하고
+	            	$(getPhoneBtn).text(result);
+	            	
+	            	// 5초 뒤에 원래 이름으로 변경해봅시다.
+	            	 setTimeout(function(){
+	            		 $(getPhoneBtn).text('PHONE.NO');  
+					}, 5000);
+	            }
+	    	});
+			
+
+		})
+		
+		
+		
+		// Dynamic 버튼에 모두 적용
 	 	$(document).on('click','.modal',function(){
 	 		modal.style.display = "none";
 		})
@@ -120,7 +193,15 @@ $(document).ready(function(){
 		
 		//게시글 만들기 전에 alert창 
 		$('.new').on('click',function(){
-			alert('영화 예매 목적 이외의 내용과, 광고성 글, 도배 게시글은 \n 관리자에 의해 임의로 삭제 될 수 있으니 참고 바랍니다');
+			var userId = '${memberId}';
+			
+			if(userId == "" || userId == null){
+				alert('Sorry, Login Please ~');
+				return location.href="withBoardList.do";
+			}else{
+			alert('영화 예매 목적 외 내용이나, 광고성 글, 도배 게시글은 \n 관리자에 의해 임의로 삭제 될 수 있으니 참고 바랍니다');
+				
+			}
 		})
 		
 		
@@ -133,7 +214,7 @@ $(document).ready(function(){
 <section class="sub_common_sec block_board">
 	<div class="bl_brd_wrap Seungtae_BoardList">
 		<br><br><br><br><br>
-		<h1 id="news02">With Me</h1>
+		<h1 id="news02">With Me / ${writerNo}</h1>
 		<br>
 		<section class="section-content ">
 			<!-- BoardList 투명 창  -->
@@ -194,6 +275,7 @@ $(document).ready(function(){
 													<!-- 현재 참여 중인 ID에 내가 있다면 coupon 버튼 보기 -->
 													<c:if test="${fn:contains(boardsub.WITH_BOARD_NOW_ID, memberId)}">
 															<button id="getCoupon" class="getCoupon">Coupon</button>
+															<button id="getPhoneNo" class="getPhoneNo">Writer's Phone.No</button>
 															</c:if>
 													</c:if>
 													
@@ -217,11 +299,12 @@ $(document).ready(function(){
 									<div class="modal-content">
 										<div class="modal-header">
 											<span class="close">&times;</span>
-											<h2 align="center">즐거운 관람 되세요</h2>
+											<h2 align="center" class="modal-body-couponTitle">HELLO~</h2>
 										</div>
 										<div class="modal-body">
 											<p class="modal-body-couponNo">Some text in the Modal Body</p>
 											<p class="modal-body-couponMessage">Some other text...</p>
+											<p class="modal-body-writerPhoneNo">Some other text...</p>
 										</div>
 									</div>
 								</div>
@@ -237,31 +320,44 @@ $(document).ready(function(){
 
 					<!-- 페이지 처리 -->
 					<div class="page" align="center">
-						<td colspan="6"><c:if test="${currentPage <= 1}"> « &nbsp; </c:if>
+						<td colspan="6">
+							<c:if test="${currentPage <= 1}">
+								[이전] &nbsp;
+							</c:if>
 							<c:if test="${currentPage > 1}">
-								<c:url var="blistst" value="/with_blist.do">
-									<c:param name="page" value="${currentPage-1}" />
+								<c:url var="blistst" value="/withBoardList.do">
+									<c:param name="page" value="${currentPage-1}"/>
 								</c:url>
-								<a href="${blistst}"> « </a> &nbsp;
-						</c:if> <!-- 페이지 숫자 보여주기 --> <c:forEach var="p" begin="${startPage}"
-								end="${endPage}">
-								<c:if test="${p eq currentPage}">
-									<font color="red" size="4"><b>[${p}]</b></font>
-								</c:if>
-								<c:if test="${p ne currentPage}">
-									<c:url var="blistchk" value="/with_blist.do">
-										<c:param name="page" value="${p}" />
-									</c:url>
-									<a href="${blistchk}">${p}</a>
-								</c:if>
-							</c:forEach> <c:if test="${currentPage >= maxPage}">&nbsp; » </c:if> <c:if
-								test="${currentPage < maxPage}">
-								<c:url var="blistEND" value="/with_blist.do">
-									<c:param name="page" value="${currentPage+1}" />
-								</c:url>
-								<a href="${blistEND}">&nbsp;»</a>
-							</c:if></td>
+								<a href="${blistst}">[이전]</a> &nbsp;
+							</c:if>
+	
+	
+					<!-- 페이지 숫자 보여주기 -->
+					<c:forEach var="p" begin="${startPage}" end="${endPage}">
+						<c:if test="${p eq currentPage}">
+							<font color="red" size="4"><b>[${p}]</b></font>
+						</c:if>
+						<c:if test="${p ne currentPage}">
+							<c:url var="blistchk" value="/withBoardList.do">
+								<c:param name="page" value="${p}"/>
+							</c:url>
+						<a href="${blistchk}">${p}</a>
+						</c:if>
+					</c:forEach>
+	
+					<c:if test="${currentPage >= maxPage}">
+						[다음]
+					</c:if>
+					<c:if test="${currentPage < maxPage}">
+						<c:url var="blistEND" value="/withBoardList.do">
+							<c:param name="page" value="${currentPage+1}"/>
+						</c:url>
+					<a href="${blistEND}">[다음]</a>
+					</c:if>
+					</td>
 					</div>
+					
+					
 					<br> <br> <br>
 					<div align="center">
 						<input onclick="javascript:location.href='withBoardinsertForm.do';" type="button" class="new" value="NEW">

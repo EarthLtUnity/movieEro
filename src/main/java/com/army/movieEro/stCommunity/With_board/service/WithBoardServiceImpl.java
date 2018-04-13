@@ -16,43 +16,49 @@ public class WithBoardServiceImpl implements WithBoardService {
 	@Autowired
 	WithBoardDao bDao;
 	
+	// 리스트 갯수 가져오기
 	@Override
 	public int getListCount() {
 		return bDao.getListCount();
 	}
 
-	@Override
-	public int getListCountSearch(String keyword) {
-		return bDao.getListCountSearch(keyword);
-	}
-	
-	@Override //
+	// 메인 Table 전체 출력
+	@Override 
 	public ArrayList<WithBoard> selectList(int currentPage, int limit) {
 		System.out.println("service Impl");
 		return bDao.selectList(currentPage, limit);
 	}
 
+	// 서브 Table 전체 출력
 	@Override
 	public ArrayList<WithBoard_sub> selectListsub(int currentPage, int limit) {
 		return bDao.selectListsub(currentPage, limit);
 	}
 	
-
+	// 게시판 추가
 	@Override
 	public int insertBoard(WithBoard b) {
 		return bDao.insertBoard(b);
 	}
 
+	// 결제 & 참여
 	@Override
 	public int withReserve(int bNo, String bNo_id) {
 		// 유효성 검증
 		WithBoard_sub wSub = new WithBoard_sub();
 		wSub.setWITH_BOARD_NO(bNo);
 		wSub.setWITH_BOARD_NOW_ID(bNo_id);
-		
 		return bDao.withReserve(wSub);		
 	}
 
+	// Search
+	// searchListCount
+	@Override
+	public int getListCountSearch(String keyword) {
+		return bDao.getListCountSearch(keyword);
+	}
+	
+	// searchList
 	@Override
 	public HashMap<String, Object> searchList(int currentPage, int limit, String word) {
 		
@@ -82,5 +88,12 @@ public class WithBoardServiceImpl implements WithBoardService {
 		map.put("searchSubList", sub_result);
 		
 		return map;
+	}
+
+	@Override
+	public int writerPhoneNumber(String writerId) {
+		System.out.println("22"+writerId);
+		return bDao.writerPhoneNumber(writerId);
+		
 	}
 }

@@ -24,30 +24,10 @@
 		SELECT * FROM ST_WITH_BOARD	ORDER BY WITH_BOARD_NO DESC
 	</select>
 	
-	<!-- WithList 가져오기 -->
+	<!-- WithBoardsub 가져오기 -->
 	<select id="selectListsub" resultType="WithBoardsub">
 		SELECT * FROM ST_WITH_BOARD_SUB	ORDER BY WITH_BOARD_NO DESC
 	</select>
-
-
-	<!-- Search 전용 -->
-	<!-- searchList 가져오기 -->
-	<!-- WithList 숫자 가져오기-->
-	<select id="getSearchListCount" parameterType="string" resultType="_int">
-		SELECT COUNT(*) FROM ST_WITH_BOARD
-			WHERE WITH_BOARD_CONTENT LIKE '%' || #{keyword} || '%'
-			OR WITH_BOARD_TITLE LIKE '%' || #{keyword} || '%'
-	</select>
-	
-	<select id="searchList" parameterType="string" resultType="WithBoard">
-		select * from ST_WITH_BOARD
-		where WITH_BOARD_CONTENT like '%'||#{word}||'%'
-		OR WITH_BOARD_TITLE LIKE '%' || #{word} || '%' order by WITH_BOARD_NO desc 
-	</select>
-<!-- 
-	<select id="searchListsub" parameterType="string">
-		select * from ST_WITH_BOARD_SUB where WITH_BOARD_CONTENT like '%'||#{word}||'%' order by WITH_BOARD_NO desc
-	</select> -->
 
 	<!-- withReserve 로 현재 참여중인 ID + 참여중인 인원 수 update-->
 	<update id="withReserve" parameterType="WithBoardsub">
@@ -58,10 +38,30 @@
 			WITH_BOARD_DATE = SYSDATE
 		WHERE WITH_BOARD_NO = #{WITH_BOARD_NO}
 	</update>
-   	
-  	
 
+	<!-- 해당 번호 가져오기 -->
+	<select id="writerPhoneNumber" parameterType="string" resultType="_int">
+		select MB_PHONE from MEMBER where MB_ID = #{writerId}
+	</select>
+
+
+
+
+	<!-- Search 전용 -->
 	
+	<!-- WithList 숫자 가져오기-->
+	<select id="getSearchListCount" parameterType="string" resultType="_int">
+		SELECT COUNT(*) FROM ST_WITH_BOARD
+			WHERE WITH_BOARD_CONTENT LIKE '%' || #{keyword} || '%'
+			OR WITH_BOARD_TITLE LIKE '%' || #{keyword} || '%'
+	</select>
+	
+	<!-- SearchList 가져오기 -->
+	<select id="searchList" parameterType="string" resultType="WithBoard">
+		select * from ST_WITH_BOARD
+		where WITH_BOARD_CONTENT like '%'||#{word}||'%'
+		OR WITH_BOARD_TITLE LIKE '%' || #{word} || '%' order by WITH_BOARD_NO desc 
+	</select>
 
 	
 </mapper>

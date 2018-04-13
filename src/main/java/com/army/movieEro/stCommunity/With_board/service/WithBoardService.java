@@ -10,8 +10,6 @@ import com.army.movieEro.stCommunity.With_board.vo.WithBoard_sub;
 public interface WithBoardService {
 	// 리스트 갯수 가져오기
 	public int getListCount();
-	public int getListCountSearch(String keyword);
-	
 	
 	// 메인 Table 전체 출력
 	public ArrayList<WithBoard> selectList(int currentPage, int limit);
@@ -25,6 +23,13 @@ public interface WithBoardService {
 	// 결제 & 참여
 	public int withReserve(int bNo, String bNo_id);
 
+	// Search
+	// searchListCount
+	public int getListCountSearch(String keyword);
+	
+	// searchList
 	public HashMap<String, Object> searchList(int currentPage, int limit, String word);
+
+	public int writerPhoneNumber(String writerId);
 
 }

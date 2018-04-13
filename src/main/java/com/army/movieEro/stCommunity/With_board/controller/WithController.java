@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -187,8 +188,101 @@ public class WithController {
 			}
 			return mv;
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+			// BoardIntro 페이지 띄어주기 
+				@RequestMapping("writerPhoneNumber.do")
+				@ResponseBody // 이 어노테이션을 사용하면
+				              // 자바에서 넘겨주는 값을 jsp에서 JSON 형식으로 읽습니다.
+				              // 종민씨가 잘 찾으셨더군요 ㅎㅎ
+					// 그럼 현재 String이 JSP에서도 String으로 넘어 오겠죠?
+				public String writerPhoneNumber(
+						@RequestParam("WITH_BOARD_WRITER") String writer
+					) {
+					System.out.println("writerPhoneNumber_controller 도착");
+					String[] aa = writer.split(", ");	
+					String writerId = aa[0];
+					System.out.println("writerId : " + writerId);
+					
+					// 받은 숫자를 이렇게 문자로 바꿔 버립니다. 요기!
+					String writerNo = "0"+String.valueOf(bService.writerPhoneNumber(writerId));
+					// 끝
+					/*
+					질문 있습니다!
+					그럼 여기서0 이 지워지는 시점은 int로 들어간 지금  요기 시점에서
+					사라지는 건가요? 아니면
+					중간에 int로 값을 받으면서
+					이미 없어져서 여기에 도착하는 건가요? <--- Correct!
+					중간에 값을 int로 받기 시작한 시점부터 0을 버리고 옵니다.
+					감사합니다! 주어다 주셨군요!!
+					오다 주웠습니다 ^_^
+					
+					그럼 이것도 해결 된건가요?
+					네! 감사합니다! 마지막으로
+					다시한번 보여드리면
+					
+					
+					
+					
+					*/// 보통 정수는 010 이라는 값을
+					// 010 으로 인식할까요,
+					// 10으로 인식 할까요? <- 이거요!
+					// 지금 변수를 만들어서 받았는데, int로 받았죠?
+					// 그럼 얘는 앞의 0을 없는 번호로 취급합니다.
+					// 이게 귀찮아서
+					// 국가 번호로 개발자들이 개발을 자주 하죠
+					// +82 10 1234 1234 이런 식으로 ㅋㅋㅋ
+					// 이건 여담입니다만 ㅋㅋㅋㅋ
+					// ㅋㅋㅋ 재밌었습니다!
+					// 아이러니 하게도 우리나라는 지역 번호든, 평생 전화(0505) 든,
+					// 인터넷 전화(070)든 휴대폰 번호든
+					// 모두 앞자리가 0으로 시작합니다.
+					// 그럼 0을 붙이시면 됩니다.
+					 
+					System.out.println("cont : "+ writerNo);
+					/*
+					mv.addObject("writerNo", writerNo)
+					.setViewName("stCommunityBoard/boardList");*/
+					
+					// 계산한 writerNo를 그대로 넘겨줍시다.
+					return writerNo;
+					
+					/*
+					
+					저는 받아온 아까 번호를 리퀘스트 스코프에 담기는 것처럼 쓰는것인지
+					아니면
+					비동기니까
+					바로바로
+					화면에 뿌려주는 걸로 알고있는데 
+					어떻게 설정해야하는지 궁금합니다
+					
+					일단 저렇게도 추가는 해봤는데 저거는 아닌거 같고;; 
+					
+					비동기란 서버에서 준 값을 새로운 창이 아닌 현재 창에서 값을
+					보내주는 방식으로
+					말씀하신 부분에 대한 내용은 String이나 일반 void 로 처리하는 게 맞습니다.
+					각 게시글에 각각의 전화번호가 연결되어야 하는데
+					처음부터 값을 다 가지고 있으면 서버가 힘들어 하겠죠?
+					사용자는 그 중에 클릭한 것만 받을 생각일 텐데 말이죠 ㅋㅋ
+					네네
+					
+					이 경우엔 String으로 처리하여
+					서버로 부터 넘어온 값을 View 단(jsp) 에서
+					alert() 로 표현해 보는 걸 해봅시다.
+					
+					먼저 반환 자료형을 바꿉니다.
+					
+					
+					*/
+				}
 				
-				
+
 				
 				
 				
