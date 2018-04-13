@@ -41,7 +41,7 @@ function selectmovie(time) {
 								<!-- 영화 종류 -->
 								<select name="CINEMA_MOVIE" id="CINEMA_MOVIE" onchange="selectmovie(this.value)">
 									<!-- 영화관 정보에 따라서 데이터베이스에서 영화목록만 받아와서 forEach로 뿌려주기 -->
-									<option>Dead pool</option>
+									<option>데드풀</option>
 									<option>곤지암</option>
 									<option>아이언맨</option>
 									<option>어벤져스</option>

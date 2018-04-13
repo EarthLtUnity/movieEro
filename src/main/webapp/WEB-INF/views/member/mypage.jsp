@@ -26,7 +26,7 @@
 					<ul>
 					<c:forEach var="pm" items="${pmVOAt}">
 						<li class="cf li_mypage_list">
-							<div class="lft_img_sec"><img src="images/poster/mypage_thor.jpg" alt="" /></div>
+							<div class="lft_img_sec"><img src="images/poster/${pm.CINEMA_MOVIE}.jpg" alt="" /></div>
 							<div class="mdl_txt_sec">
 								<a href="#">
 									<ul>
