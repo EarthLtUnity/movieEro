@@ -313,6 +313,9 @@
 		});
 
 		$(".previous").on('click',function(){
+			
+			
+			
 			if(animating) return false;
 			animating = true;
 			
@@ -342,6 +345,32 @@
 				//this comes from the custom easing plugin
 				easing: 'easeInOutBack'
 			});
+			
+			jQuery.ajax({
+	    		url: "seatList.do", // 가맹점 서버
+	            method: "GET",
+	            headers: { "Content-Type": "application/json" },
+	            data: {CINEMA_NAME : $('#locationp').text(),
+	            	  CINEMA_MOVIE : $('#movieSeleted').text(),
+	            	  CINEMA_MOVIE_TIME : $('#datatime').text()
+	            },
+	            success : function(result){
+	            	
+	            	console.log("result123123 : " + result);
+	            	for(var i = 0; i < result.length; i++){
+		            	var add = '';
+	            		var seatNo = result[i];
+	            		console.log("seatNo : " + seatNo);
+	            		add += '<input type="hidden" id="soldSeat'+i+'" class="soldSeat" value="'+seatNo+'"/>';
+	            		$("#soldSeats").html($("#soldSeats").html()+add);
+	            		//test += seatNo+',';
+	            		var sc = $('#seat-map').seatCharts({
+		            	}); 
+		            	sc.get([seatNo]).status('available');
+	            	}
+	            	
+	            }
+	    	}); 
 		});
 
 		$(".submit").on('click',function(){
