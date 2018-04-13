@@ -51,7 +51,7 @@ $(document).ready(function(){
 	$('.hello').on('click',function(){
 		var boardListContent = $(this).parent().parent().parent().find('.steve_panel');
 		boardListContent.toggleClass('on')
-		isShow = !isShow;
+		/*isShow = !isShow;*/
 	})	
 	
 	
