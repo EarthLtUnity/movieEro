@@ -19,11 +19,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.army.movieEro.jkNoticeBoard.service.reserveService;
 import com.army.movieEro.jkNoticeBoard.vo.paymentVO;
+import com.army.movieEro.tkTheaterPayment.service.TheaterPaymentServiceImpl;
 
 @Controller
 public class reserveController {
 
 
+	@Autowired
+	private TheaterPaymentServiceImpl theaterPaymentServiceImpl;
+	
 	@Autowired
 	private reserveService REService;//reserveService로 변경
 	
@@ -79,10 +83,12 @@ public class reserveController {
 		ArrayList<paymentVO> list = REService.selectMypage(MB_ID);
 		ArrayList<paymentVO> listAt = REService.selectMypageAt(MB_ID);
 		int reserveCnt = REService.selectReserveCnt(MB_ID);
+		int listcount = theaterPaymentServiceImpl.countselect(MB_ID);
 		System.out.println("list : "+list.toString());
 		System.out.println("list : "+listAt.toString());
 		
 		mv.addObject("list",list)
+		  .addObject("listcount",listcount)
 		  .addObject("listAt",listAt)
 		  .addObject("reserveCnt",reserveCnt)
 		  .setViewName("member/mypage");
