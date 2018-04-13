@@ -44,6 +44,13 @@ public class reserveDaoImpl implements reserveDao{
 	}
 
 
+	@Override
+	public int selectReserveCnt(String MB_ID) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("paymentVO.selectReserveCnt",MB_ID);
+	}
+
+
 
 
 

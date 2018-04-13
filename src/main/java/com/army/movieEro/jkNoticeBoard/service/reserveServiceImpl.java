@@ -39,5 +39,11 @@ public class reserveServiceImpl implements reserveService{
 		return REDao.selectMypageAt(MB_ID);
 	}
 
+	@Override
+	public int selectReserveCnt(String MB_ID) {
+		// TODO Auto-generated method stub
+		return REDao.selectReserveCnt(MB_ID);
+	}
+
 	
 }

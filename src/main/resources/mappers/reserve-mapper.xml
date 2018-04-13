@@ -39,6 +39,17 @@
 		          MB_ID,CINEMA_RESERVE_NO
       
 	</select>
+	<select id="selectReserveCnt" resultType="_int" parameterType="String">
+		SELECT COUNT(CINEMA_RESERVE_NO) FROM (
+			SELECT CINEMA_NAME,CINEMA_SECTION,
+			       CINEMA_MOVIE,CINEMA_MOVIE_TIME,
+			       MB_ID,CINEMA_RESERVE_NO
+		 	  FROM CINEMA_RESERVE
+		     WHERE MB_ID=#{MB_ID}
+		     group by CINEMA_NAME,CINEMA_SECTION,
+		              CINEMA_MOVIE,CINEMA_MOVIE_TIME,
+		              MB_ID,CINEMA_RESERVE_NO)
+	</select>
 </mapper>
 
 

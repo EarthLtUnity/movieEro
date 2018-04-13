@@ -14,4 +14,6 @@ public interface reserveService {
 
 	public ArrayList<paymentVO> selectMypageAt(String mB_ID);
 
+	public int selectReserveCnt(String mB_ID);
+
 }

@@ -78,11 +78,13 @@ public class reserveController {
 		String MB_ID = (String) session.getAttribute("memberID");
 		ArrayList<paymentVO> list = REService.selectMypage(MB_ID);
 		ArrayList<paymentVO> listAt = REService.selectMypageAt(MB_ID);
+		int reserveCnt = REService.selectReserveCnt(MB_ID);
 		System.out.println("list : "+list.toString());
 		System.out.println("list : "+listAt.toString());
 		
 		mv.addObject("list",list)
 		  .addObject("listAt",listAt)
+		  .addObject("reserveCnt",reserveCnt)
 		  .setViewName("member/mypage");
 		return mv;
 	}

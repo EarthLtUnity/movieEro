@@ -15,4 +15,6 @@ public interface reserveDao {
 
 	public ArrayList<paymentVO> selectMypageAt(String MB_ID);
 
+	public int selectReserveCnt(String MB_ID);
+
 }
