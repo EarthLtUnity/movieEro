@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <jsp:include page="../inc/head.jsp" flush="false" />
 <jsp:include page="../inc/header.jsp" flush="false" />
-<script type="text/javascript" src="js/seo-jin.js"></script>
+<link rel="stylesheet" type="text/css" href="css/Seo-Jin.css">
 <c:set var="summary" value="${requestScope.movieSummary}"/>
 <c:set var="specific" value="${requestScope.specInfo}"/>
 <section class="sub_content seojin-background">
@@ -10,7 +10,7 @@
 		<div class="col-sm-12">
 			<div class="tab_menu">
 		    	<ul class="cf">
-		    		<li class="on"><a id="toSummary" href="summary.do">영화 개요</a></li>
+		    		<li class="on"><a id="toSummary" href="reSummary.do">영화 개요</a></li>
 		    		<li><a id="toTrailer" href="trailer.do">트레일러</a></li>
 		    		<li><a id="toReview" href="review.do">영화 리뷰</a></li>
 		    	</ul>

@@ -105,6 +105,31 @@ public class MovieController {
 		return mv;
 	}
 	
+	@RequestMapping("reSummary.do")
+	public ModelAndView reloadSummary(ModelAndView mv, HttpServletRequest request, 
+			HttpSession sessionMVInfo) {
+		try {
+			System.out.println("summary.do 도착...................");
+			String MVInfoSeq = (String)sessionMVInfo.getAttribute("MVInfoSeqParam");
+			MovieDetailVo movieSummary = new MovieDetailVo();
+			MovieInfoVo specInfo = new MovieInfoVo();
+			movieSummary = movieService.loadSummary(MVInfoSeq);
+			specInfo = movieService.loadSpecInfo(MVInfoSeq);
+			
+			/*System.out.println("영화 정보 확인 : "+movieSummary.toString());
+			System.out.println("영화 내용 확인 : "+specInfo.toString());*/
+			
+			mv.addObject("movieSummary", movieSummary)
+			  .addObject("specInfo", specInfo)
+			  .setViewName("sjDetail/summary");
+			
+		}catch(Exception e) {
+			System.out.println("summary.do 에러 : " + e.getStackTrace());
+			mv.setViewName("sjDetail/movieError");
+		}
+		return mv;
+	}
+	
 	@RequestMapping("trailer.do")
 	public ModelAndView loadTrailer(ModelAndView mv, HttpServletRequest request, 
 			HttpSession sessionMVInfo) {

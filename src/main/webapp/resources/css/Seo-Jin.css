@@ -327,8 +327,17 @@ h2 {
 
 /* 영화 디테일 movie */
 .detailBorder{
-	border:solid thin #fb802d;
-	padding:15px;
+	border: solid thin #fb802d;
+    padding: 15px;
+}
+.trailerDiv{
+	height:160px;
+}
+.detailDesc{
+	margin: 5px 10px;
+    border: none;
+    text-align: center;
+    background: lightgray;
 }
 
 .movie .movie__info {
