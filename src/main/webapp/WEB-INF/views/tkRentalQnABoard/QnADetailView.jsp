@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -19,16 +19,16 @@
 var bno = '${board.RENTAL_BOARD_NO}'; //게시글 번호
 var bname = '${member}';
 $(function(){
-	$('[name=commentInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시 
-	
-	    var insertData = $('#RENTAL_BOARD_REPLY_CONTENT').val();
-		if(""==insertData){
-		alert("댓글을 입력해주세요");
-		}  
-		else{
-	    commentInsert(insertData); //Insert 함수호출(아래)
-		}
-	});
+   $('[name=commentInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시 
+   
+       var insertData = $('#RENTAL_BOARD_REPLY_CONTENT').val();
+      if(""==insertData){
+      alert("댓글을 입력해주세요");
+      }  
+      else{
+       commentInsert(insertData); //Insert 함수호출(아래)
+      }
+   });
 });
 
 //댓글 목록 
@@ -61,9 +61,9 @@ function commentInsert(insertData){
         url : 'insert.do',
         type : 'post',
         data : {RENTAL_BOARD_REPLY_CONTENT : insertData,
-        	    RENTAL_BOARD_RE_NO: bno,
-        	    MB_ID : bname	
-        	},
+               RENTAL_BOARD_RE_NO: bno,
+               MB_ID : bname   
+           },
         success : function(data){
             if(data == 1) {
                 commentList(); //댓글 작성 후 댓글 목록 reload
@@ -88,18 +88,18 @@ function commentUpdate(RENTAL_BOARD_REPLY_NO, RENTAL_BOARD_REPLY_CONTENT){
 
 //댓글 수정
 function commentUpdateProc(RENTAL_BOARD_REPLY_NO){
-	
+   
     var updateContent = $('[name=content_'+ RENTAL_BOARD_REPLY_NO+']').val();
-	console.log("이거출력이되나");
-	console.log(RENTAL_BOARD_REPLY_NO); 
-	console.log(updateContent);
+   console.log("이거출력이되나");
+   console.log(RENTAL_BOARD_REPLY_NO); 
+   console.log(updateContent);
     $.ajax({
         url : 'update.do',
         type : 'post',
         data : {'RENTAL_BOARD_REPLY_CONTENT' : updateContent, 
-        	    'RENTAL_BOARD_REPLY_NO' : RENTAL_BOARD_REPLY_NO},
+               'RENTAL_BOARD_REPLY_NO' : RENTAL_BOARD_REPLY_NO},
         success : function(data){
-        	alert("수정되었습니다.");
+           alert("수정되었습니다.");
             if(data == 1) commentList(bno); //댓글 수정후 목록 출력 
         }
     });
@@ -112,7 +112,7 @@ function commentDelete(RENTAL_BOARD_REPLY_NO){
         type : 'post',
         data : {'RENTAL_BOARD_REPLY_NO' : RENTAL_BOARD_REPLY_NO},
         success : function(data){
-        	alert("삭제되었습니다.");
+           alert("삭제되었습니다.");
             if(data == 1) commentList(bno); //댓글 삭제후 목록 출력 
         }
     });
@@ -133,107 +133,109 @@ $(document).ready(function(){
 <body>
 <section class="section-content">
 
-	<div class="section-content pvb0 bg-cover"
-		data-bg-image="images/coming-bg.jpg">
-		<div class="row"></div>
+   <div class="section-content pvb0 bg-cover"
+      data-bg-image="images/coming-bg.jpg">
+      <div class="row"></div>
 
-	</div>
+   </div>
 
-	<div class="fullscreen-section bg-black pvb0">
-		<div class="container wpc-boxoffice pv8">
-			<div class="row" >
-				<form  class="form-horizontal" role="form" id="editorForm" enctype="multipart/form-data" method="post" action="" >
-					<div class="form-group">
-						<div class="form-group" style= "padding-top: 150px;">
-							<div class="col-lg-12">
-								<table id="tb">
-									<tr>
-										<td>제목</td>
-										<td><input type="text" readonly value="${board.RENTAL_BOARD_TITLE}"></td>
-									</tr>
-									<tr>
-										<td>작성자</td>
-										
-										<td><input type="text" readonly value="${board.MB_ID}" ></td>
-									</tr>
-									<tr>
-										<td>내용</td>
-										<td><textarea cols="50" rows="7"
-												readonly  id="ckeditor">${board.RENTAL_BOARD_CONTENT}</textarea></td>
-									</tr>
-								<tr>
-										 <c:url var="RentalBoardList"
-												value="/RentalBoardList.do">
-												<c:param name="page" value="1" />
-							 	  	 </c:url> 
-									 <c:if test="${member eq board.MB_ID}">
-									 
-								     	<c:url var="bupview" value="RentalBoardUpdateView.do">
-        			 						<c:param name="bnum" value="${board.RENTAL_BOARD_NO}"/>
-         									<c:param name="page" value="${currentPage}"/>
-       							   	 	</c:url>
-        					    		<c:url var="bdelete" value="RentalBoardDelete.do">
-        						 			<c:param name="bnum" value="${board.RENTAL_BOARD_NO}"/>
-        						 			<c:param name="content" value ="${board.RENTAL_BOARD_CONTENT}"/>
-        						    	</c:url>
-        					           	 <td colspan="2" align="center"><a href="${bupview}"> <input type= "button" value ="수정하기"></a>
-          									<a href="${bdelete}"> <input type= "button" value ="삭제하기"></a>
-          									<a href="${RentalBoardList}"><input type= "button" value ="목록으로"></a></td>
-      								 	</c:if>
-							 	  	 <c:if test="${member ne board.MB_ID}">
-							 	  		<td colspan="2" align="center"><a href="${RentalBoardList}"><input type= "button" value ="목록으로"></a></td>
-							 	  	</c:if>
-							 	</tr>
-							</table>
-						</div>
-					</div>	
-				</div>
-			</form>
-	 <div class="container">
+   <div class="fullscreen-section bg-black pvb0">
+      <div class="container wpc-boxoffice pv8">
+         <div class="row" >
+            <form  class="form-horizontal" role="form" id="editorForm" enctype="multipart/form-data" method="post" action="" >
+               <div class="form-group">
+                  <div class="form-group" style= "padding-top: 150px;">
+                     <div class="col-lg-12">
+                        <table id="tb">
+                           <tr>
+                              <td>제목</td>
+                              <td><input type="text" readonly value="${board.RENTAL_BOARD_TITLE}"></td>
+                           </tr>
+                           <tr>
+                              <td>작성자</td>
+                              
+                              <td><input type="text" readonly value="${board.MB_ID}" ></td>
+                           </tr>
+                           <tr>
+                              <td>내용</td>
+                              <td><textarea cols="50" rows="7"
+                                    readonly  id="ckeditor">${board.RENTAL_BOARD_CONTENT}</textarea></td>
+                           </tr>
+                        <tr>
+                               <c:url var="RentalBoardList"
+                                    value="/RentalBoardList.do">
+                                    <c:param name="page" value="1" />
+                               </c:url> 
+                            <c:if test="${member eq board.MB_ID}">
+                            
+                                <c:url var="bupview" value="RentalBoardUpdateView.do">
+                                    <c:param name="bnum" value="${board.RENTAL_BOARD_NO}"/>
+                                    <c:param name="page" value="${currentPage}"/>
+                                      </c:url>
+                                 <c:url var="bdelete" value="RentalBoardDelete.do">
+                                    <c:param name="bnum" value="${board.RENTAL_BOARD_NO}"/>
+                                    <c:param name="content" value ="${board.RENTAL_BOARD_CONTENT}"/>
+                                 </c:url>
+                                      <td colspan="2" align="center"><a href="${bupview}"> <input type= "button" value ="수정하기"></a>
+                                     <a href="${bdelete}"> <input type= "button" value ="삭제하기"></a>
+                                     <a href="${RentalBoardList}"><input type= "button" value ="목록으로"></a></td>
+                                  </c:if>
+                               <c:if test="${member ne board.MB_ID}">
+                                 <td colspan="2" align="center"><a href="${RentalBoardList}"><input type= "button" value ="목록으로"></a></td>
+                              </c:if>
+                         </tr>
+                     </table>
+                  </div>
+               </div>   
+            </div>
+         </form>
+    <div class="container">
         <div class="commentList"></div>
     </div>
-  		<div style="width:650px; text-align: center;"><br>
-  			 <div class="container">
-     			   <label for="content">comment</label>
-      		     <form name="commentInsertForm">
-           	    	 <div class="input-group">
-           	    		 <input type="text" class="form-control" id="RENTAL_BOARD_REPLY_CONTENT" name="content" placeholder="내용을 입력하세요.">
-             	 		 <span class="input-group-btn">
-              				 <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
-             	 		 </span>
-         		 	 </div>
-        		</form>
-   		    </div>
-  		 </div>
-	 </div>
+        <div style="width:650px; text-align: center;"><br>
+            <div class="container">
+                 <label for="content">comment</label>
+                 <c:if test="${member eq 'admin' }">
+                 <form name="commentInsertForm">
+                      <div class="input-group">
+                         <input type="text" class="form-control" id="RENTAL_BOARD_REPLY_CONTENT" name="content" placeholder="내용을 입력하세요.">
+                        <span class="input-group-btn">
+                           <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
+                        </span>
+                    </div>
+              </form>
+              </c:if>
+             </div>
+         </div>
+    </div>
    </div>
 </div>
 
 </section>
 <jsp:include page="../inc/footer.jsp" flush="false" />
 </body>
-				<script>
-					$(function() {
+            <script>
+               $(function() {
 
-						CKEDITOR.replace('ckeditor', {
-							width : '1000px',
-							height : '400px',
-							filebrowserImageUploadUrl : 'RentalBoardImgInsert.do'
-						});
+                  CKEDITOR.replace('ckeditor', {
+                     width : '1000px',
+                     height : '400px',
+                     filebrowserImageUploadUrl : 'RentalBoardImgInsert.do'
+                  });
 
-						CKEDITOR.on('dialogDefinition', function(ev) {
-							var dialogName = ev.data.name;
-							var dialogDefinition = ev.data.definition;
+                  CKEDITOR.on('dialogDefinition', function(ev) {
+                     var dialogName = ev.data.name;
+                     var dialogDefinition = ev.data.definition;
 
-							switch (dialogName) {
-							case 'image': //Image Properties dialog
-								//dialogDefinition.removeContents('info');
-								dialogDefinition.removeContents('Link');
-								dialogDefinition.removeContents('advanced');
-								break;
-							}
-						});
+                     switch (dialogName) {
+                     case 'image': //Image Properties dialog
+                        //dialogDefinition.removeContents('info');
+                        dialogDefinition.removeContents('Link');
+                        dialogDefinition.removeContents('advanced');
+                        break;
+                     }
+                  });
 
-					});
-				</script>
+               });
+            </script>
 </html>
