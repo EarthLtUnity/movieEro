@@ -335,7 +335,7 @@ header#header .nav>ul>li>a{color: #fff; line-height: 90px; }
 header#header .nav .dep2{display: none; }
 header#header .nav .dep2 li{/*margin-bottom: 10px;*/}
 header#header .nav .dep2 li a{display: block; color: #fff;}
-header#header .header_menu{line-height: 90px;}
+header#header .header_menu{line-height: 90px; padding: 0;}
 body.sticky-menu #header {
   -webkit-transition: all 0.25s ease;
   -moz-transition: all 0.25s ease;
