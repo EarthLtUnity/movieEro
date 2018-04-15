@@ -103,8 +103,8 @@ public class MemberController {
 	// 회원정보 수정폼 이동
 	@RequestMapping(value="memberModifyForm.do")
 	public String memberModifyForm(Model model, HttpSession session) {
-		System.out.println("현재 로그인한 아이디(세션): "+session.getAttribute("member"));
-		String loginId = (String) session.getAttribute("member");
+		System.out.println("현재 로그인한 아이디(세션): "+session.getAttribute("memberID"));
+		String loginId = (String) session.getAttribute("memberID");
 		if(loginId!=null) {
 			MemberVO memberInfo = memberService.selectMemberInfo(loginId);			
 			model.addAttribute("memberInfo", memberInfo);

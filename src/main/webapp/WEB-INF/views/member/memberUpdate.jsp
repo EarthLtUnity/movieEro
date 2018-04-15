@@ -2,11 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../inc/head.jsp" flush="false" />
 <jsp:include page="../inc/header.jsp" flush="false" />
-<c:if test="${empty member}">
+<c:if test="${empty memberID}">
 	<script>
 		location.href="./";
 	</script>
-</c:if>	
+</c:if>
 <section class="sub_content member_join_wrap">
 	<div class="container">
 		<div class="row">               
@@ -15,7 +15,7 @@
 				<form action="./memberModify.do" method="post" id="frmMembermodi" name="frmMembermodi">
 					<div class="form-group">
 						<label for="id">아이디</label>
-						<input type="text" class="form-control" name="mb_id" id="mb_id" value="${member}" readonly="readonly">
+						<input type="text" class="form-control" name="mb_id" id="mb_id" value="${memberID}" readonly="readonly">
 					</div>
 					<div class="form-group">
 					    <label for="pass">비밀번호</label>
