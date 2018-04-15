@@ -12,7 +12,7 @@
 <header id="header" class="menu-top-left">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 col-sm-6 col-xs-4">
+			<div class="col-md-9 col-sm-6 col-xs-4">
 				<h1><a href="./" id="logo" title="Tenguu" class="logo-image" data-bg-image="images/common/logo.png">Movie愛路</a></h1>		
 				<nav class="nav" id="headerNav">
 					<ul class="cf">
@@ -31,13 +31,13 @@
 							<ul class="dep2">
 								<li><a href="notice.do">공지사항</a></li>
 								<li><a href="withBoadIntro.do">같이보기</a></li>
-								<li><a href="freeBoadList.do">자유게시판</a></li>
+								<!-- <li><a href="freeBoadList.do">자유게시판</a></li> -->
 							</ul>						
 						</li>
 					</ul>
 				</nav>
 			</div>
-			<div class="header_menu col-md-4 col-sm-6 col-xs-8 phl0">
+			<div class="header_menu col-md-3 col-sm-6 col-xs-8 phl0">
 				<div class="header_author">
 					<c:set var="memberID" value="${memberID}" />
 					<%-- 로그인 여부로 보여지는 메뉴 --%>
@@ -63,11 +63,11 @@
 					</span>
 				</div>
 				<div class="header_ticket">
-					<a href="#order" class="order_btn">Ticket</a>
-					<span>3</span>
+					<a href="#order" class="order_btn">Tickets</a>
+					<!-- <span>3</span> -->
 				</div>
 				<!-- <a href="javascript:;" id="header-search"></a> -->
-				<div class="button_container" id="toggle">
+				<div class="button_container mobile_nav" id="toggle">
 					<span class="top"></span>
 					<span class="middle"></span>
 					<span class="bottom"></span>
@@ -77,9 +77,9 @@
 					<nav class="overlay-menu">
 						<ul>
 							<li ><a href="./">Home</a></li>
-							<li><a href="loadMovie.do">Movie</a></li>
-							<li><a href="#">Hall</a></li>
-							<li><a href="#">Community</a></li>
+							<li><a href="movieList.do">Movie</a></li>
+							<li><a href="RentalService.do">Hall</a></li>
+							<li><a href="notice.do">Community</a></li>
 							<li><a href="#order" class="order_btn">Ticket</a></li>
 						</ul>
 					</nav>

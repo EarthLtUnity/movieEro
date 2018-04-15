@@ -69,20 +69,24 @@ var ClassMainSlick = {
 	nowPlaying: function() { // 현재 상영중인 영화 리스트 출력
     	$('#slick_movie_list').slick({
     		slidesToShow: 5,
-    		//autoplay: true,
+    		autoplay: true,
     		arrows: true,
     		pauseOnHover: true,
 
     		responsive: [
-    		   {
-    		     breakpoint: 640,
-    		     settings: { slidesToShow: 2 }
-    		   },
-    		   {
-    		     breakpoint: 480,
-    		     settings: { slidesToShow: 1 }
-    		   },
-    		 ]
+    			{
+    				breakpoint: 800,
+    				settings: { slidesToShow: 3 }
+    			},
+    			{
+    				breakpoint: 640,
+    				settings: { slidesToShow: 2 }
+    			},
+    			{
+    				breakpoint: 480,
+    				settings: { slidesToShow: 1 }
+    			},
+    		]
 
     	});			
 	}
@@ -124,8 +128,8 @@ var WingBanner = {
 			// 쿠키 생성
 			$.cookie('wingBanner', arrImg);
 			
-			// a 태그 아직 링크 없어서 추가한것, 링크 걸고 나면 이거 빼기
-			event.preventDefault();
+			// a 태그 아직 링크 없어서 추가한것, 링크 걸고 나면 제거
+			//event.preventDefault();
 		});		
 	},
 	cookieFn : function() { // 쿠키값 가져와 초기 이미지 세팅

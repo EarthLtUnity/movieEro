@@ -9,7 +9,6 @@
         <ol class="carousel-indicators">
             <li data-target="#headerslider" data-slide-to="0" class="active"></li>
             <li data-target="#headerslider" data-slide-to="1"></li>
-            <li data-target="#headerslider" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner" role="listbox">
             <div class="item active">
@@ -64,7 +63,7 @@
                                         <li>Science Fiction</li>
                                         <li>Adventure</li>
                                     </ul>
-                                    <div class="title" data-animation="animated bounceInRight" >The Battle of Algiers (La Battaglia)  <i>(1967)</i></div>
+                                    <div class="title" data-animation="animated bounceInRight" >Black Pather  <i>(2018)</i></div>
                                     <div class="slide_right" data-animation="animated bounceInRight">
                                         <a href="javascript:;" class="btn-trailer">watch trailer</a> <a href="javascript:;" class="btn-ticket">buy ticket</a>
                                         <ul class="award-logo">
@@ -92,45 +91,7 @@
                     </div>
                 </div>
             </div>
-            <div class="item">
-                <div class="fill" data-bg-image="images/header/header.png">
-                 <div class="bs-slider-overlay"></div>
-                    <div class="container movie-slider-container"> 
-                        <div class="row">
-                             <div class="col-sm-12 movie-slider-content"> 
-                                <div class="slider-content" >
-                                    <ul class="subtitle"  data-animation="animated bounceInRight">
-                                        <li>Action</li>
-                                        <li>Science Fiction</li>
-                                    </ul>
-                                    <div class="title" data-animation="animated bounceInRight" >The Battle of Algiers (Di Algeri)<i>(1967)</i></div>
-                                    <div class="slide_right" data-animation="animated bounceInRight">
-                                        <a href="javascript:;" class="btn-trailer">watch trailer</a> <a href="javascript:;" class="btn-ticket">buy ticket</a>
-                                        <ul class="award-logo">
-                                            <li><img src="images/header/icon1.png" alt="icon" ></li>
-                                            <li><img src="images/header/icon2.png" alt="icon"></li>
-                                            <li><img src="images/header/icon3.png" alt="icon"></li>
-                                            <li><img src="images/header/icon4.png" alt="icon"></li>
-                                        </ul>
-                                    </div>
-                                    <div class="chart-cirle" data-animation="animated bounceInUp">
-                                        <div class="chart-circle-l" data-animation="animated bounceInUp">
-                                            <div class="circle-chart" data-circle-width="7" data-percent="86" data-text="8.6">
-                                            </div>
-                                            <span>IMDB Ratffing</span>
-                                        </div>
-                                        <div class="chart-circle-r" data-animation="animated bounceInUp">
-                                            <div class="circle-chart" data-circle-width="7" data-percent="74" data-text="7.4">
-                                            </div>
-                                            <span>Rotten Rating</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+       
         </div>
 
         <!-- Controls -->
@@ -157,9 +118,9 @@
 	                			<div class="bg_movie_poster" style="background-image: url(<c:out value="${nowPlayingList.MV_IMAGE}"/>);">
 							        <div class="entry-hover">
 							            <div class="entry-actions">
-							                <a href="https://vimeo.com/38217880" class="btn-trailers video-player">예고편</a>
+							                <a href="https://vimeo.com/251341022" class="btn-trailers video-player">예고편</a>
 							                <!-- <a href="#order" class="btn-ticket order_btn ">buy ticket</a> -->
-							                <a href="#" class="view_detail">상세보기</a>
+							                <a href="./summary.do?MVInfoSeq=${nowPlayingList.MV_INFO_SEQ}" class="view_detail">상세보기</a>
 							                <input type="hidden" value="<c:out value="${nowPlayingList.MV_IMAGE}"/>" />
 							            </div>
 							        </div>                		
@@ -202,7 +163,8 @@
 			<!--// 실시간 채팅 -->
 
 		</div>
-    </div>        
+    </div>   
+    <!--       
     <div class="fullscreen-section bg-black pvb0">
         <div class="container wpc-boxoffice pv8">
             <div class="row">
@@ -340,9 +302,7 @@
             </div>
         </div>
     </div>    
-    <div class="fullscreen-section">
-	<!-- 뭐 넣을까?? -->
-    </div>
+	-->
 </section>
 
 <jsp:include page="../inc/footer.jsp" flush="false" />

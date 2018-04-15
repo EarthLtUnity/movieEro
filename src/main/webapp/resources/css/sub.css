@@ -121,3 +121,12 @@ a{text-decoration: none;}
 }
 .msg_send_wrap{margin-top: 5px; margin-left: 1%; width: 14%; max-width: 50px; max-height: 50px; padding: 10px; border-radius: 50%; background-color: #fff;}
 #chatBox input:focus{outline: none;}
+
+.order_btn{color: #fb802d;}
+/* 모바일용 네비게이션 처리 */
+.mobile_nav{display: none;}
+@media screen and (max-width: 800px) {
+.nav{display: none;}
+.mobile_nav{display: block;}
+.wing_banner_wrap{display: none;}
+}
