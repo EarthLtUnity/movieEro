@@ -94,6 +94,14 @@
   <script async src="https://www.youtube.com/iframe_api"></script>
   <script type="text/javascript">
   
+	setTimeout(function() {
+		 alert(' \n  ㅉㅉㅉ.. 혼자 영화보기 외롭지?');
+		 alert(' \n  만원 주고 영화 보기 아깝지?');
+		 alert(' \n 같이 영화 볼 친구없지? ㅉㅉㅉ...');
+		 alert(' \n 모두 YES 라면 이미지를 선택하세요~');
+	}, 3000);
+	
+  
   
   var player;
   function onYouTubePlayerAPIReady() {

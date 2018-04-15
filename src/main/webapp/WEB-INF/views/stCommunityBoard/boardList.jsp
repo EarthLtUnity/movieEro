@@ -64,15 +64,15 @@ $(document).ready(function(){
 			
 			// 1. 로그인 
 			if(userId == "" || userId == null){
-				alert('Sorry, Login Please ~');
+				alert('\n Sorry, Login Please ~');
 				
 			// 2. 해당 게시판에 쳠여 이력 	
 			} else if(dupChk){ // 중복이 존재한다면 true일 테니 여기서 조건이 확인 
-				alert("이미 가입한 회원입니다.");
+				alert("\n 이미 가입한 회원입니다.");
 				
 			// 3. 모집인원이 다 찼는지 	
 			} else if(mCount == 0){
-				alert("이미 만석입니다. \n다음 기회를 이용해 주세요."); 
+				alert("\n 이미 만석입니다. \n다음 기회를 이용해 주세요."); 
 				
 			// 4. 로그인 ok, 게시판 참여한적 없고, 모집인원이 아직 남았다면 진행	
 			} else{
@@ -87,8 +87,9 @@ $(document).ready(function(){
 					            	WITH_BOARD_NOW_ID : memberList+", "+userId
 					            },
 					            success : function(result){
-					            	var msg = '결제가 완료되었습니다.';
+					            	var msg = '\n 결제가 완료되었습니다.';
 					    			alert(msg);
+					    			alert('\n 쿠폰은 참여한 게시글에서 즉시 확인 가능합니다');
 					            	location.href="withBoardList.do";//반환값 지정해서 페이지 리로딩
 					            }
 					    	});
@@ -196,10 +197,10 @@ $(document).ready(function(){
 			var userId = '${memberId}';
 			
 			if(userId == "" || userId == null){
-				alert('Sorry, Login Please ~');
+				alert('\n Sorry, Login Please ~');
 				return location.href="withBoardList.do";
 			}else{
-			alert('영화 예매 목적 외 내용이나, 광고성 글, 도배 게시글은 \n 관리자에 의해 임의로 삭제 될 수 있으니 참고 바랍니다');
+			alert('\n 영화 예매 목적 외 내용이나, 광고성 글, 도배 게시글은 \n 관리자에 의해 임의로 삭제 될 수 있으니 참고 바랍니다');
 				
 			}
 		})
@@ -214,7 +215,7 @@ $(document).ready(function(){
 <section class="sub_common_sec block_board">
 	<div class="bl_brd_wrap Seungtae_BoardList">
 		<br><br><br><br><br>
-		<h1 id="news02">With Me / ${writerNo}</h1>
+		<h1 id="news02">With Me </h1>
 		<br>
 		<section class="section-content ">
 			<!-- BoardList 투명 창  -->
@@ -232,7 +233,7 @@ $(document).ready(function(){
 						
 						
 						<div class="col-sm-7 col-xs-12">
-							<a href="withBoardList.do" class="btn">ALL_Reflesh / ${memberId}</a>
+							<a href="withBoardList.do" class="btn">List_Reflesh</a>
 							<br><br>
 							<ul class="wpc-box-list">
 								<c:forEach var="boardmain" items="${list}"> <!-- boardList for문 -->
@@ -287,6 +288,7 @@ $(document).ready(function(){
 										</c:if>  <!-- boardmain.WITH_BOARD_NO == boardsub.WITH_BOARD_NO 비교문-->
 									</c:forEach> <!-- boardList for문 end -->
 								</c:forEach> <!-- boardListsub for문 end -->
+								</ul>
 
 
 
@@ -299,12 +301,12 @@ $(document).ready(function(){
 									<div class="modal-content">
 										<div class="modal-header">
 											<span class="close">&times;</span>
-											<h2 align="center" class="modal-body-couponTitle">HELLO~</h2>
+											<h2 align="center" class="modal-body-couponTitle">Welcome to MovieEro</h2>
 										</div>
 										<div class="modal-body">
-											<p class="modal-body-couponNo">Some text in the Modal Body</p>
-											<p class="modal-body-couponMessage">Some other text...</p>
-											<p class="modal-body-writerPhoneNo">Some other text...</p>
+											<p class="modal-body-couponNo">3명이상 영화보고 할인 받자</p>
+											<p class="modal-body-couponMessage"></p>
+											<p class="modal-body-writerPhoneNo">모이기만 하면 쿠폰이 자동지급</p>
 										</div>
 									</div>
 								</div>
