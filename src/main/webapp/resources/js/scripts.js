@@ -467,7 +467,7 @@
 	//sum total money
 	function recalculateTotal(sc) {
 		var total = 0;
-		price = 1000;
+		price = 10000;
 		sc.find('selected').each(function () {
 			total += price;
 		});

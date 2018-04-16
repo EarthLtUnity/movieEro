@@ -79,7 +79,7 @@ $(document).ready(function(){
 				// 3. 모두 정상이라면 가입이 가능해야 한다.
 				//결제창
 				
-					$.ajax({
+					/* $.ajax({
 					    		url: "withReserve.do", // 가맹점 서버
 					            method: "GET",
 					            data: {
@@ -92,9 +92,9 @@ $(document).ready(function(){
 					    			alert('\n 쿠폰은 참여한 게시글에서 즉시 확인 가능합니다');
 					            	location.href="withBoardList.do";//반환값 지정해서 페이지 리로딩
 					            }
-					    	});
+					    	}); */
 				
-				 /*  IMP.request_pay({
+				   IMP.request_pay({
 					    pg : 'inicis',
 					    pay_method : 'card',
 					    merchant_uid : 'merchant_' + new Date().getTime(),
@@ -127,7 +127,7 @@ $(document).ready(function(){
 		
 					        alert(msg);
 					    }
-				}); */
+				}); 
 			} /* else ENd */
 		}); /* click function ENd */
 		

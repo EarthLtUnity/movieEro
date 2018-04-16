@@ -105,7 +105,7 @@
     data-cycle-timeout=2000>
 		<div class="cycle-pager"></div>
 		<c:forEach var="theaterImg" items="${theaterImage}">
-   		 <img src="http://localhost:8088/adminMovieEro/resources/images/theater/${theaterImg.RENTAL_SERVICE_IMAGE}">
+   		 <img src="http://192.168.20.71:8088/adminMovieEro/resources/images/theater/${theaterImg.RENTAL_SERVICE_IMAGE}">
 		</c:forEach>
 	</div>
 </div>

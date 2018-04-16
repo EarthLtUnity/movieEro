@@ -104,13 +104,14 @@ $("#datavalue").val(date);
                         	    <c:set var="theater" value="${requestScope.theater}"></c:set>
 								<c:forEach var="theaterlist" items="${theater}">
                                 	<div class="swiper-slide">
-                                   	 	<div class="movie-image" data-bg-image="http://localhost:8088/adminMovieEro/resources/images/theater/${theaterlist.RENTAL_SERVICE_IMAGE}">
+                                   	 	<div class="movie-image" data-bg-image="http://192.168.20.71:8088/adminMovieEro/resources/images/theater/${theaterlist.RENTAL_SERVICE_IMAGE}">
                                         	<div class="entry-hover">
                                             	<div class="entry-actions">
                                         	    	<form name="theaterview">
                                             			<input type="hidden" name ="test1" value="${theaterlist.RENTAL_SERVICE_NO}"/>
                                             		</form>
-                                            		<input type='button' onclick='popupOpen(${theaterlist.RENTAL_SERVICE_NO})' value='정보 보기'/> 
+                                            		<h3>${theaterlist.RENTAL_SERVICE_TITLE}</h3>
+                                           			<input type='button' onclick='popupOpen(${theaterlist.RENTAL_SERVICE_NO})' value='정보 보기'/> 
                                                 	<c:if test="${!empty member}"><a href="#rentalreserve" class="btn_rental order_btn">영화관예매하기</a></c:if>
                                                 	<c:if test="${empty member}"><a href="" onclick="nomember()">영화관예매하기</a></c:if>
                                                </div>
